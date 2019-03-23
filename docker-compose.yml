@@ -4,19 +4,19 @@ services:
     image: prismagraphql/prisma:1.27
     restart: always
     ports:
-    - "4466:4466"
+    - "${PRISMA_PORT}:${PRISMA_PORT}"
     environment:
       PRISMA_CONFIG: |
-        port: 4466
+        port: ${PRISMA_PORT}
         # uncomment the next line and provide the env var PRISMA_MANAGEMENT_API_SECRET=my-secret to activate cluster security
         # managementApiSecret: my-secret
         databases:
           default:
             connector: postgres
-            host: fandem-io-test.c2ilmknaee16.eu-west-1.rds.amazonaws.com
-            database: fandem_io_test
-            user: demonstrator
-            password: V1qc57PgEFoYkFD
+            host: ${PG_HOST}
+            database: ${PG_DB}
+            user: ${PG_USER}
+            password: ${PG_PWD}
             rawAccess: true
-            port: '4309'
+            port: '${PG_PORT}'
             migrations: true

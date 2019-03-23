@@ -1,4 +1,42 @@
 type User {
   id: ID! @unique
+  email: String!
+  firstName: String!
+  lastName: String!
+  countryCode: String
+  phoneNumber: String
+  favoriteTeam: Team
+  country: Country
+  displayName: String
+  isPrivate: Boolean
+  subscriptions: [Subscription]!
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+type Subscription {
+  id: ID! @unique
   name: String!
+}
+
+type Country {
+  id: ID! @unique
+  countryName: String!
+}
+
+type Team {
+  id: ID! @unique
+  code: Int!
+  fplTeamId: Int!
+  name: String!
+  shortName: String!
+  strength: Int!
+  strengthAttackAway: Int!
+  strengthAttackHome: Int!
+  strengthDefenceAway: Int!
+  strengthDefenceHome: Int!
+  strengthOverallAway: Int!
+  strengthOverallHome: Int!
+  teamDivision: Int!
 }
