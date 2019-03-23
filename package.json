@@ -1,0 +1,24 @@
+{
+  "name": "fandem-prisma",
+  "version": "0.1.0",
+  "description": "my fandem.io node, prisma, graphql backend files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeAlexMartinez/fandem-prisma.git"
+  },
+  "keywords": [
+    "node",
+    "prisma",
+    "graphql"
+  ],
+  "author": "Michael Martinez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikeAlexMartinez/fandem-prisma/issues"
+  },
+  "homepage": "https://github.com/MikeAlexMartinez/fandem-prisma#readme"
+}
