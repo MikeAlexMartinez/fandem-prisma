@@ -4,7 +4,12 @@
   "description": "my fandem.io node, prisma, graphql backend files",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "nodemon -e js,graphql -x node src/index.js",
+    "debug": "nodemon -e js,graphql -x node --inspect src/index.js",
+    "playground": "graphql playground",
+    "deploy": "prisma deploy",
+    "dev": "npm-run-all --parallel debug playground"
   },
   "repository": {
     "type": "git",
@@ -36,5 +41,13 @@
     "prisma": "^1.29.1",
     "prisma-binding": "^2.3.9",
     "stripe": "^6.28.0"
+  },
+  "devDependencies": {
+    "jest": "^24.5.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
   }
 }
