@@ -4,3 +4,6 @@ secret: ${env:PRISMA_MANAGEMENT_API_SECRET}
 generate:
   - generator: javascript-client
     output: src/generated/prisma-client/
+hooks:
+  post-deploy:
+      - graphql get-schema -p prisma

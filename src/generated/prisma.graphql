@@ -1,0 +1,1563 @@
+# source: http://localhost:6464
+# timestamp: Sat Mar 23 2019 12:16:32 GMT+0000 (GMT)
+
+type AggregateCountry {
+  count: Int!
+}
+
+type AggregateSubscription {
+  count: Int!
+}
+
+type AggregateTeam {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+type Country implements Node {
+  id: ID!
+  countryName: String!
+}
+
+"""A connection to a list of items."""
+type CountryConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CountryEdge]!
+  aggregate: AggregateCountry!
+}
+
+input CountryCreateInput {
+  countryName: String!
+}
+
+input CountryCreateOneInput {
+  create: CountryCreateInput
+  connect: CountryWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type CountryEdge {
+  """The item at the end of the edge."""
+  node: Country!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CountryOrderByInput {
+  id_ASC
+  id_DESC
+  countryName_ASC
+  countryName_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input CountryUpdateDataInput {
+  countryName: String
+}
+
+input CountryUpdateInput {
+  countryName: String
+}
+
+input CountryUpdateManyMutationInput {
+  countryName: String
+}
+
+input CountryUpdateOneInput {
+  create: CountryCreateInput
+  connect: CountryWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: CountryUpdateDataInput
+  upsert: CountryUpsertNestedInput
+}
+
+input CountryUpsertNestedInput {
+  update: CountryUpdateDataInput!
+  create: CountryCreateInput!
+}
+
+input CountryWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CountryWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CountryWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CountryWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  countryName: String
+
+  """All values that are not equal to given value."""
+  countryName_not: String
+
+  """All values that are contained in given list."""
+  countryName_in: [String!]
+
+  """All values that are not contained in given list."""
+  countryName_not_in: [String!]
+
+  """All values less than the given value."""
+  countryName_lt: String
+
+  """All values less than or equal the given value."""
+  countryName_lte: String
+
+  """All values greater than the given value."""
+  countryName_gt: String
+
+  """All values greater than or equal the given value."""
+  countryName_gte: String
+
+  """All values containing the given string."""
+  countryName_contains: String
+
+  """All values not containing the given string."""
+  countryName_not_contains: String
+
+  """All values starting with the given string."""
+  countryName_starts_with: String
+
+  """All values not starting with the given string."""
+  countryName_not_starts_with: String
+
+  """All values ending with the given string."""
+  countryName_ends_with: String
+
+  """All values not ending with the given string."""
+  countryName_not_ends_with: String
+}
+
+input CountryWhereUniqueInput {
+  id: ID
+}
+
+"""Raw JSON value"""
+scalar Json
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  createCountry(data: CountryCreateInput!): Country!
+  createSubscription(data: SubscriptionCreateInput!): Subscription!
+  createTeam(data: TeamCreateInput!): Team!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
+  updateSubscription(data: SubscriptionUpdateInput!, where: SubscriptionWhereUniqueInput!): Subscription
+  updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteCountry(where: CountryWhereUniqueInput!): Country
+  deleteSubscription(where: SubscriptionWhereUniqueInput!): Subscription
+  deleteTeam(where: TeamWhereUniqueInput!): Team
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
+  upsertSubscription(where: SubscriptionWhereUniqueInput!, create: SubscriptionCreateInput!, update: SubscriptionUpdateInput!): Subscription!
+  upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
+  updateManySubscriptions(data: SubscriptionUpdateManyMutationInput!, where: SubscriptionWhereInput): BatchPayload!
+  updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyCountries(where: CountryWhereInput): BatchPayload!
+  deleteManySubscriptions(where: SubscriptionWhereInput): BatchPayload!
+  deleteManyTeams(where: TeamWhereInput): BatchPayload!
+  executeRaw(database: PrismaDatabase, query: String!): Json!
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+enum PrismaDatabase {
+  default
+}
+
+type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
+  subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription]!
+  teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
+  user(where: UserWhereUniqueInput!): User
+  country(where: CountryWhereUniqueInput!): Country
+  subscription(where: SubscriptionWhereUniqueInput!): Subscription
+  team(where: TeamWhereUniqueInput!): Team
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
+  subscriptionsConnection(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriptionConnection!
+  teamsConnection(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription implements Node {
+  id: ID!
+  name: String!
+}
+
+"""A connection to a list of items."""
+type SubscriptionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SubscriptionEdge]!
+  aggregate: AggregateSubscription!
+}
+
+input SubscriptionCreateInput {
+  name: String!
+}
+
+input SubscriptionCreateManyInput {
+  create: [SubscriptionCreateInput!]
+  connect: [SubscriptionWhereUniqueInput!]
+}
+
+"""An edge in a connection."""
+type SubscriptionEdge {
+  """The item at the end of the edge."""
+  node: Subscription!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum SubscriptionOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input SubscriptionScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubscriptionScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubscriptionScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubscriptionScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+input SubscriptionUpdateDataInput {
+  name: String
+}
+
+input SubscriptionUpdateInput {
+  name: String
+}
+
+input SubscriptionUpdateManyDataInput {
+  name: String
+}
+
+input SubscriptionUpdateManyInput {
+  create: [SubscriptionCreateInput!]
+  connect: [SubscriptionWhereUniqueInput!]
+  set: [SubscriptionWhereUniqueInput!]
+  disconnect: [SubscriptionWhereUniqueInput!]
+  delete: [SubscriptionWhereUniqueInput!]
+  update: [SubscriptionUpdateWithWhereUniqueNestedInput!]
+  updateMany: [SubscriptionUpdateManyWithWhereNestedInput!]
+  deleteMany: [SubscriptionScalarWhereInput!]
+  upsert: [SubscriptionUpsertWithWhereUniqueNestedInput!]
+}
+
+input SubscriptionUpdateManyMutationInput {
+  name: String
+}
+
+input SubscriptionUpdateManyWithWhereNestedInput {
+  where: SubscriptionScalarWhereInput!
+  data: SubscriptionUpdateManyDataInput!
+}
+
+input SubscriptionUpdateWithWhereUniqueNestedInput {
+  where: SubscriptionWhereUniqueInput!
+  data: SubscriptionUpdateDataInput!
+}
+
+input SubscriptionUpsertWithWhereUniqueNestedInput {
+  where: SubscriptionWhereUniqueInput!
+  update: SubscriptionUpdateDataInput!
+  create: SubscriptionCreateInput!
+}
+
+input SubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SubscriptionWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+input SubscriptionWhereUniqueInput {
+  id: ID
+}
+
+type Team implements Node {
+  id: ID!
+  code: Int!
+  fplTeamId: Int!
+  name: String!
+  shortName: String!
+  strength: Int!
+  strengthAttackAway: Int!
+  strengthAttackHome: Int!
+  strengthDefenceAway: Int!
+  strengthDefenceHome: Int!
+  strengthOverallAway: Int!
+  strengthOverallHome: Int!
+  teamDivision: Int!
+}
+
+"""A connection to a list of items."""
+type TeamConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [TeamEdge]!
+  aggregate: AggregateTeam!
+}
+
+input TeamCreateInput {
+  code: Int!
+  fplTeamId: Int!
+  name: String!
+  shortName: String!
+  strength: Int!
+  strengthAttackAway: Int!
+  strengthAttackHome: Int!
+  strengthDefenceAway: Int!
+  strengthDefenceHome: Int!
+  strengthOverallAway: Int!
+  strengthOverallHome: Int!
+  teamDivision: Int!
+}
+
+input TeamCreateOneInput {
+  create: TeamCreateInput
+  connect: TeamWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type TeamEdge {
+  """The item at the end of the edge."""
+  node: Team!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum TeamOrderByInput {
+  id_ASC
+  id_DESC
+  code_ASC
+  code_DESC
+  fplTeamId_ASC
+  fplTeamId_DESC
+  name_ASC
+  name_DESC
+  shortName_ASC
+  shortName_DESC
+  strength_ASC
+  strength_DESC
+  strengthAttackAway_ASC
+  strengthAttackAway_DESC
+  strengthAttackHome_ASC
+  strengthAttackHome_DESC
+  strengthDefenceAway_ASC
+  strengthDefenceAway_DESC
+  strengthDefenceHome_ASC
+  strengthDefenceHome_DESC
+  strengthOverallAway_ASC
+  strengthOverallAway_DESC
+  strengthOverallHome_ASC
+  strengthOverallHome_DESC
+  teamDivision_ASC
+  teamDivision_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input TeamUpdateDataInput {
+  code: Int
+  fplTeamId: Int
+  name: String
+  shortName: String
+  strength: Int
+  strengthAttackAway: Int
+  strengthAttackHome: Int
+  strengthDefenceAway: Int
+  strengthDefenceHome: Int
+  strengthOverallAway: Int
+  strengthOverallHome: Int
+  teamDivision: Int
+}
+
+input TeamUpdateInput {
+  code: Int
+  fplTeamId: Int
+  name: String
+  shortName: String
+  strength: Int
+  strengthAttackAway: Int
+  strengthAttackHome: Int
+  strengthDefenceAway: Int
+  strengthDefenceHome: Int
+  strengthOverallAway: Int
+  strengthOverallHome: Int
+  teamDivision: Int
+}
+
+input TeamUpdateManyMutationInput {
+  code: Int
+  fplTeamId: Int
+  name: String
+  shortName: String
+  strength: Int
+  strengthAttackAway: Int
+  strengthAttackHome: Int
+  strengthDefenceAway: Int
+  strengthDefenceHome: Int
+  strengthOverallAway: Int
+  strengthOverallHome: Int
+  teamDivision: Int
+}
+
+input TeamUpdateOneInput {
+  create: TeamCreateInput
+  connect: TeamWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: TeamUpdateDataInput
+  upsert: TeamUpsertNestedInput
+}
+
+input TeamUpsertNestedInput {
+  update: TeamUpdateDataInput!
+  create: TeamCreateInput!
+}
+
+input TeamWhereInput {
+  """Logical AND on all given filters."""
+  AND: [TeamWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [TeamWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [TeamWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  code: Int
+
+  """All values that are not equal to given value."""
+  code_not: Int
+
+  """All values that are contained in given list."""
+  code_in: [Int!]
+
+  """All values that are not contained in given list."""
+  code_not_in: [Int!]
+
+  """All values less than the given value."""
+  code_lt: Int
+
+  """All values less than or equal the given value."""
+  code_lte: Int
+
+  """All values greater than the given value."""
+  code_gt: Int
+
+  """All values greater than or equal the given value."""
+  code_gte: Int
+  fplTeamId: Int
+
+  """All values that are not equal to given value."""
+  fplTeamId_not: Int
+
+  """All values that are contained in given list."""
+  fplTeamId_in: [Int!]
+
+  """All values that are not contained in given list."""
+  fplTeamId_not_in: [Int!]
+
+  """All values less than the given value."""
+  fplTeamId_lt: Int
+
+  """All values less than or equal the given value."""
+  fplTeamId_lte: Int
+
+  """All values greater than the given value."""
+  fplTeamId_gt: Int
+
+  """All values greater than or equal the given value."""
+  fplTeamId_gte: Int
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  shortName: String
+
+  """All values that are not equal to given value."""
+  shortName_not: String
+
+  """All values that are contained in given list."""
+  shortName_in: [String!]
+
+  """All values that are not contained in given list."""
+  shortName_not_in: [String!]
+
+  """All values less than the given value."""
+  shortName_lt: String
+
+  """All values less than or equal the given value."""
+  shortName_lte: String
+
+  """All values greater than the given value."""
+  shortName_gt: String
+
+  """All values greater than or equal the given value."""
+  shortName_gte: String
+
+  """All values containing the given string."""
+  shortName_contains: String
+
+  """All values not containing the given string."""
+  shortName_not_contains: String
+
+  """All values starting with the given string."""
+  shortName_starts_with: String
+
+  """All values not starting with the given string."""
+  shortName_not_starts_with: String
+
+  """All values ending with the given string."""
+  shortName_ends_with: String
+
+  """All values not ending with the given string."""
+  shortName_not_ends_with: String
+  strength: Int
+
+  """All values that are not equal to given value."""
+  strength_not: Int
+
+  """All values that are contained in given list."""
+  strength_in: [Int!]
+
+  """All values that are not contained in given list."""
+  strength_not_in: [Int!]
+
+  """All values less than the given value."""
+  strength_lt: Int
+
+  """All values less than or equal the given value."""
+  strength_lte: Int
+
+  """All values greater than the given value."""
+  strength_gt: Int
+
+  """All values greater than or equal the given value."""
+  strength_gte: Int
+  strengthAttackAway: Int
+
+  """All values that are not equal to given value."""
+  strengthAttackAway_not: Int
+
+  """All values that are contained in given list."""
+  strengthAttackAway_in: [Int!]
+
+  """All values that are not contained in given list."""
+  strengthAttackAway_not_in: [Int!]
+
+  """All values less than the given value."""
+  strengthAttackAway_lt: Int
+
+  """All values less than or equal the given value."""
+  strengthAttackAway_lte: Int
+
+  """All values greater than the given value."""
+  strengthAttackAway_gt: Int
+
+  """All values greater than or equal the given value."""
+  strengthAttackAway_gte: Int
+  strengthAttackHome: Int
+
+  """All values that are not equal to given value."""
+  strengthAttackHome_not: Int
+
+  """All values that are contained in given list."""
+  strengthAttackHome_in: [Int!]
+
+  """All values that are not contained in given list."""
+  strengthAttackHome_not_in: [Int!]
+
+  """All values less than the given value."""
+  strengthAttackHome_lt: Int
+
+  """All values less than or equal the given value."""
+  strengthAttackHome_lte: Int
+
+  """All values greater than the given value."""
+  strengthAttackHome_gt: Int
+
+  """All values greater than or equal the given value."""
+  strengthAttackHome_gte: Int
+  strengthDefenceAway: Int
+
+  """All values that are not equal to given value."""
+  strengthDefenceAway_not: Int
+
+  """All values that are contained in given list."""
+  strengthDefenceAway_in: [Int!]
+
+  """All values that are not contained in given list."""
+  strengthDefenceAway_not_in: [Int!]
+
+  """All values less than the given value."""
+  strengthDefenceAway_lt: Int
+
+  """All values less than or equal the given value."""
+  strengthDefenceAway_lte: Int
+
+  """All values greater than the given value."""
+  strengthDefenceAway_gt: Int
+
+  """All values greater than or equal the given value."""
+  strengthDefenceAway_gte: Int
+  strengthDefenceHome: Int
+
+  """All values that are not equal to given value."""
+  strengthDefenceHome_not: Int
+
+  """All values that are contained in given list."""
+  strengthDefenceHome_in: [Int!]
+
+  """All values that are not contained in given list."""
+  strengthDefenceHome_not_in: [Int!]
+
+  """All values less than the given value."""
+  strengthDefenceHome_lt: Int
+
+  """All values less than or equal the given value."""
+  strengthDefenceHome_lte: Int
+
+  """All values greater than the given value."""
+  strengthDefenceHome_gt: Int
+
+  """All values greater than or equal the given value."""
+  strengthDefenceHome_gte: Int
+  strengthOverallAway: Int
+
+  """All values that are not equal to given value."""
+  strengthOverallAway_not: Int
+
+  """All values that are contained in given list."""
+  strengthOverallAway_in: [Int!]
+
+  """All values that are not contained in given list."""
+  strengthOverallAway_not_in: [Int!]
+
+  """All values less than the given value."""
+  strengthOverallAway_lt: Int
+
+  """All values less than or equal the given value."""
+  strengthOverallAway_lte: Int
+
+  """All values greater than the given value."""
+  strengthOverallAway_gt: Int
+
+  """All values greater than or equal the given value."""
+  strengthOverallAway_gte: Int
+  strengthOverallHome: Int
+
+  """All values that are not equal to given value."""
+  strengthOverallHome_not: Int
+
+  """All values that are contained in given list."""
+  strengthOverallHome_in: [Int!]
+
+  """All values that are not contained in given list."""
+  strengthOverallHome_not_in: [Int!]
+
+  """All values less than the given value."""
+  strengthOverallHome_lt: Int
+
+  """All values less than or equal the given value."""
+  strengthOverallHome_lte: Int
+
+  """All values greater than the given value."""
+  strengthOverallHome_gt: Int
+
+  """All values greater than or equal the given value."""
+  strengthOverallHome_gte: Int
+  teamDivision: Int
+
+  """All values that are not equal to given value."""
+  teamDivision_not: Int
+
+  """All values that are contained in given list."""
+  teamDivision_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamDivision_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamDivision_lt: Int
+
+  """All values less than or equal the given value."""
+  teamDivision_lte: Int
+
+  """All values greater than the given value."""
+  teamDivision_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamDivision_gte: Int
+}
+
+input TeamWhereUniqueInput {
+  id: ID
+}
+
+type User implements Node {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  countryCode: String
+  phoneNumber: String
+  favoriteTeam: Team
+  country: Country
+  displayName: String
+  isPrivate: Boolean
+  subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamCreateOneInput
+  country: CountryCreateOneInput
+  subscriptions: SubscriptionCreateManyInput
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  countryCode_ASC
+  countryCode_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+  displayName_ASC
+  displayName_DESC
+  isPrivate_ASC
+  isPrivate_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input UserUpdateInput {
+  email: String
+  firstName: String
+  lastName: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamUpdateOneInput
+  country: CountryUpdateOneInput
+  subscriptions: SubscriptionUpdateManyInput
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  firstName: String
+  lastName: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  firstName: String
+
+  """All values that are not equal to given value."""
+  firstName_not: String
+
+  """All values that are contained in given list."""
+  firstName_in: [String!]
+
+  """All values that are not contained in given list."""
+  firstName_not_in: [String!]
+
+  """All values less than the given value."""
+  firstName_lt: String
+
+  """All values less than or equal the given value."""
+  firstName_lte: String
+
+  """All values greater than the given value."""
+  firstName_gt: String
+
+  """All values greater than or equal the given value."""
+  firstName_gte: String
+
+  """All values containing the given string."""
+  firstName_contains: String
+
+  """All values not containing the given string."""
+  firstName_not_contains: String
+
+  """All values starting with the given string."""
+  firstName_starts_with: String
+
+  """All values not starting with the given string."""
+  firstName_not_starts_with: String
+
+  """All values ending with the given string."""
+  firstName_ends_with: String
+
+  """All values not ending with the given string."""
+  firstName_not_ends_with: String
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
+  countryCode: String
+
+  """All values that are not equal to given value."""
+  countryCode_not: String
+
+  """All values that are contained in given list."""
+  countryCode_in: [String!]
+
+  """All values that are not contained in given list."""
+  countryCode_not_in: [String!]
+
+  """All values less than the given value."""
+  countryCode_lt: String
+
+  """All values less than or equal the given value."""
+  countryCode_lte: String
+
+  """All values greater than the given value."""
+  countryCode_gt: String
+
+  """All values greater than or equal the given value."""
+  countryCode_gte: String
+
+  """All values containing the given string."""
+  countryCode_contains: String
+
+  """All values not containing the given string."""
+  countryCode_not_contains: String
+
+  """All values starting with the given string."""
+  countryCode_starts_with: String
+
+  """All values not starting with the given string."""
+  countryCode_not_starts_with: String
+
+  """All values ending with the given string."""
+  countryCode_ends_with: String
+
+  """All values not ending with the given string."""
+  countryCode_not_ends_with: String
+  phoneNumber: String
+
+  """All values that are not equal to given value."""
+  phoneNumber_not: String
+
+  """All values that are contained in given list."""
+  phoneNumber_in: [String!]
+
+  """All values that are not contained in given list."""
+  phoneNumber_not_in: [String!]
+
+  """All values less than the given value."""
+  phoneNumber_lt: String
+
+  """All values less than or equal the given value."""
+  phoneNumber_lte: String
+
+  """All values greater than the given value."""
+  phoneNumber_gt: String
+
+  """All values greater than or equal the given value."""
+  phoneNumber_gte: String
+
+  """All values containing the given string."""
+  phoneNumber_contains: String
+
+  """All values not containing the given string."""
+  phoneNumber_not_contains: String
+
+  """All values starting with the given string."""
+  phoneNumber_starts_with: String
+
+  """All values not starting with the given string."""
+  phoneNumber_not_starts_with: String
+
+  """All values ending with the given string."""
+  phoneNumber_ends_with: String
+
+  """All values not ending with the given string."""
+  phoneNumber_not_ends_with: String
+  displayName: String
+
+  """All values that are not equal to given value."""
+  displayName_not: String
+
+  """All values that are contained in given list."""
+  displayName_in: [String!]
+
+  """All values that are not contained in given list."""
+  displayName_not_in: [String!]
+
+  """All values less than the given value."""
+  displayName_lt: String
+
+  """All values less than or equal the given value."""
+  displayName_lte: String
+
+  """All values greater than the given value."""
+  displayName_gt: String
+
+  """All values greater than or equal the given value."""
+  displayName_gte: String
+
+  """All values containing the given string."""
+  displayName_contains: String
+
+  """All values not containing the given string."""
+  displayName_not_contains: String
+
+  """All values starting with the given string."""
+  displayName_starts_with: String
+
+  """All values not starting with the given string."""
+  displayName_not_starts_with: String
+
+  """All values ending with the given string."""
+  displayName_ends_with: String
+
+  """All values not ending with the given string."""
+  displayName_not_ends_with: String
+  isPrivate: Boolean
+
+  """All values that are not equal to given value."""
+  isPrivate_not: Boolean
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  resetToken: String
+
+  """All values that are not equal to given value."""
+  resetToken_not: String
+
+  """All values that are contained in given list."""
+  resetToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  resetToken_not_in: [String!]
+
+  """All values less than the given value."""
+  resetToken_lt: String
+
+  """All values less than or equal the given value."""
+  resetToken_lte: String
+
+  """All values greater than the given value."""
+  resetToken_gt: String
+
+  """All values greater than or equal the given value."""
+  resetToken_gte: String
+
+  """All values containing the given string."""
+  resetToken_contains: String
+
+  """All values not containing the given string."""
+  resetToken_not_contains: String
+
+  """All values starting with the given string."""
+  resetToken_starts_with: String
+
+  """All values not starting with the given string."""
+  resetToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  resetToken_ends_with: String
+
+  """All values not ending with the given string."""
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+
+  """All values that are not equal to given value."""
+  resetTokenExpiry_not: Float
+
+  """All values that are contained in given list."""
+  resetTokenExpiry_in: [Float!]
+
+  """All values that are not contained in given list."""
+  resetTokenExpiry_not_in: [Float!]
+
+  """All values less than the given value."""
+  resetTokenExpiry_lt: Float
+
+  """All values less than or equal the given value."""
+  resetTokenExpiry_lte: Float
+
+  """All values greater than the given value."""
+  resetTokenExpiry_gt: Float
+
+  """All values greater than or equal the given value."""
+  resetTokenExpiry_gte: Float
+  favoriteTeam: TeamWhereInput
+  country: CountryWhereInput
+  subscriptions_every: SubscriptionWhereInput
+  subscriptions_some: SubscriptionWhereInput
+  subscriptions_none: SubscriptionWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+}
