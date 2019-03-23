@@ -4,5 +4,6 @@
     "titleBar.inactiveBackground": "#FF2C70CC"
   },
   "editor.tabSize": 2,
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true
 }
