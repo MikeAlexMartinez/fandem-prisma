@@ -1,6 +1,7 @@
 "use strict";
+const path = require("path");
 
-const fetchFromApi = require("call-api");
+const fetchFromApi = require("./call-api");
 const MAIN = "https://fantasy.premierleague.com/drf/bootstrap-static";
 
 // Globals

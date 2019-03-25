@@ -1,4 +1,4 @@
-const fetchMainData = require("fetch-main-data");
+const { fetchMain } = require("./fetch-main-data");
 
 module.exports = seedTeamData;
 
@@ -7,7 +7,7 @@ async function seedTeamData({ db }) {
 
   // fetch team data
   try {
-    mainData = await fetchMainData();
+    mainData = await fetchMain();
   } catch (e) {
     throw e;
   }
@@ -18,7 +18,7 @@ async function seedTeamData({ db }) {
   }
 
   for (team of teams) {
-    await db.mutation.createTeam(team);
+    await db.mutation.createTeam({ data: team }, "{ id }");
   }
 }
 
