@@ -22,7 +22,9 @@ type Subscription {
 
 type Country {
   id: ID! @unique
-  countryName: String!
+  iso: String!
+  name: String!
+  code: String!
 }
 
 type Team {

@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Sat Mar 23 2019 12:16:32 GMT+0000 (GMT)
+# timestamp: Mon Mar 25 2019 20:25:08 GMT+0000 (GMT)
 
 type AggregateCountry {
   count: Int!
@@ -24,7 +24,9 @@ type BatchPayload {
 
 type Country implements Node {
   id: ID!
-  countryName: String!
+  iso: String!
+  name: String!
+  code: String!
 }
 
 """A connection to a list of items."""
@@ -38,7 +40,9 @@ type CountryConnection {
 }
 
 input CountryCreateInput {
-  countryName: String!
+  iso: String!
+  name: String!
+  code: String!
 }
 
 input CountryCreateOneInput {
@@ -58,8 +62,12 @@ type CountryEdge {
 enum CountryOrderByInput {
   id_ASC
   id_DESC
-  countryName_ASC
-  countryName_DESC
+  iso_ASC
+  iso_DESC
+  name_ASC
+  name_DESC
+  code_ASC
+  code_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -67,15 +75,21 @@ enum CountryOrderByInput {
 }
 
 input CountryUpdateDataInput {
-  countryName: String
+  iso: String
+  name: String
+  code: String
 }
 
 input CountryUpdateInput {
-  countryName: String
+  iso: String
+  name: String
+  code: String
 }
 
 input CountryUpdateManyMutationInput {
-  countryName: String
+  iso: String
+  name: String
+  code: String
 }
 
 input CountryUpdateOneInput {
@@ -141,46 +155,126 @@ input CountryWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  countryName: String
+  iso: String
 
   """All values that are not equal to given value."""
-  countryName_not: String
+  iso_not: String
 
   """All values that are contained in given list."""
-  countryName_in: [String!]
+  iso_in: [String!]
 
   """All values that are not contained in given list."""
-  countryName_not_in: [String!]
+  iso_not_in: [String!]
 
   """All values less than the given value."""
-  countryName_lt: String
+  iso_lt: String
 
   """All values less than or equal the given value."""
-  countryName_lte: String
+  iso_lte: String
 
   """All values greater than the given value."""
-  countryName_gt: String
+  iso_gt: String
 
   """All values greater than or equal the given value."""
-  countryName_gte: String
+  iso_gte: String
 
   """All values containing the given string."""
-  countryName_contains: String
+  iso_contains: String
 
   """All values not containing the given string."""
-  countryName_not_contains: String
+  iso_not_contains: String
 
   """All values starting with the given string."""
-  countryName_starts_with: String
+  iso_starts_with: String
 
   """All values not starting with the given string."""
-  countryName_not_starts_with: String
+  iso_not_starts_with: String
 
   """All values ending with the given string."""
-  countryName_ends_with: String
+  iso_ends_with: String
 
   """All values not ending with the given string."""
-  countryName_not_ends_with: String
+  iso_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  code: String
+
+  """All values that are not equal to given value."""
+  code_not: String
+
+  """All values that are contained in given list."""
+  code_in: [String!]
+
+  """All values that are not contained in given list."""
+  code_not_in: [String!]
+
+  """All values less than the given value."""
+  code_lt: String
+
+  """All values less than or equal the given value."""
+  code_lte: String
+
+  """All values greater than the given value."""
+  code_gt: String
+
+  """All values greater than or equal the given value."""
+  code_gte: String
+
+  """All values containing the given string."""
+  code_contains: String
+
+  """All values not containing the given string."""
+  code_not_contains: String
+
+  """All values starting with the given string."""
+  code_starts_with: String
+
+  """All values not starting with the given string."""
+  code_not_starts_with: String
+
+  """All values ending with the given string."""
+  code_ends_with: String
+
+  """All values not ending with the given string."""
+  code_not_ends_with: String
 }
 
 input CountryWhereUniqueInput {
