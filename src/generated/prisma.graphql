@@ -1,5 +1,169 @@
 # source: http://localhost:6464
-# timestamp: Mon Mar 25 2019 20:25:08 GMT+0000 (GMT)
+# timestamp: Tue Mar 26 2019 09:10:58 GMT+0000 (GMT)
+
+type ActiveSubscriptions implements Node {
+  id: ID!
+  user: User!
+  subscription: UserRole!
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+"""A connection to a list of items."""
+type ActiveSubscriptionsConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ActiveSubscriptionsEdge]!
+  aggregate: AggregateActiveSubscriptions!
+}
+
+input ActiveSubscriptionsCreateInput {
+  startDate: DateTime!
+  endDate: DateTime!
+  user: UserCreateOneInput!
+  subscription: UserRoleCreateOneInput!
+}
+
+"""An edge in a connection."""
+type ActiveSubscriptionsEdge {
+  """The item at the end of the edge."""
+  node: ActiveSubscriptions!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ActiveSubscriptionsOrderByInput {
+  id_ASC
+  id_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input ActiveSubscriptionsUpdateInput {
+  startDate: DateTime
+  endDate: DateTime
+  user: UserUpdateOneRequiredInput
+  subscription: UserRoleUpdateOneRequiredInput
+}
+
+input ActiveSubscriptionsUpdateManyMutationInput {
+  startDate: DateTime
+  endDate: DateTime
+}
+
+input ActiveSubscriptionsWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ActiveSubscriptionsWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ActiveSubscriptionsWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ActiveSubscriptionsWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  startDate: DateTime
+
+  """All values that are not equal to given value."""
+  startDate_not: DateTime
+
+  """All values that are contained in given list."""
+  startDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  startDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  startDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  startDate_lte: DateTime
+
+  """All values greater than the given value."""
+  startDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  startDate_gte: DateTime
+  endDate: DateTime
+
+  """All values that are not equal to given value."""
+  endDate_not: DateTime
+
+  """All values that are contained in given list."""
+  endDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  endDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  endDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  endDate_lte: DateTime
+
+  """All values greater than the given value."""
+  endDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  endDate_gte: DateTime
+  user: UserWhereInput
+  subscription: UserRoleWhereInput
+}
+
+input ActiveSubscriptionsWhereUniqueInput {
+  id: ID
+}
+
+type AggregateActiveSubscriptions {
+  count: Int!
+}
 
 type AggregateCountry {
   count: Int!
@@ -14,6 +178,14 @@ type AggregateTeam {
 }
 
 type AggregateUser {
+  count: Int!
+}
+
+type AggregateUserAssignedRole {
+  count: Int!
+}
+
+type AggregateUserRole {
   count: Int!
 }
 
@@ -281,6 +453,8 @@ input CountryWhereUniqueInput {
   id: ID
 }
 
+scalar DateTime
+
 """Raw JSON value"""
 scalar Json
 
@@ -291,29 +465,46 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
-  createCountry(data: CountryCreateInput!): Country!
+  createUserAssignedRole(data: UserAssignedRoleCreateInput!): UserAssignedRole!
+  createActiveSubscriptions(data: ActiveSubscriptionsCreateInput!): ActiveSubscriptions!
   createSubscription(data: SubscriptionCreateInput!): Subscription!
+  createCountry(data: CountryCreateInput!): Country!
+  createUser(data: UserCreateInput!): User!
+  createUserRole(data: UserRoleCreateInput!): UserRole!
   createTeam(data: TeamCreateInput!): Team!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
+  updateUserAssignedRole(data: UserAssignedRoleUpdateInput!, where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
+  updateActiveSubscriptions(data: ActiveSubscriptionsUpdateInput!, where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   updateSubscription(data: SubscriptionUpdateInput!, where: SubscriptionWhereUniqueInput!): Subscription
+  updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateUserRole(data: UserRoleUpdateInput!, where: UserRoleWhereUniqueInput!): UserRole
   updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteCountry(where: CountryWhereUniqueInput!): Country
+  deleteUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
+  deleteActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   deleteSubscription(where: SubscriptionWhereUniqueInput!): Subscription
+  deleteCountry(where: CountryWhereUniqueInput!): Country
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteUserRole(where: UserRoleWhereUniqueInput!): UserRole
   deleteTeam(where: TeamWhereUniqueInput!): Team
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
+  upsertUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!, create: UserAssignedRoleCreateInput!, update: UserAssignedRoleUpdateInput!): UserAssignedRole!
+  upsertActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!, create: ActiveSubscriptionsCreateInput!, update: ActiveSubscriptionsUpdateInput!): ActiveSubscriptions!
   upsertSubscription(where: SubscriptionWhereUniqueInput!, create: SubscriptionCreateInput!, update: SubscriptionUpdateInput!): Subscription!
+  upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertUserRole(where: UserRoleWhereUniqueInput!, create: UserRoleCreateInput!, update: UserRoleUpdateInput!): UserRole!
   upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
+  updateManyActiveSubscriptionses(data: ActiveSubscriptionsUpdateManyMutationInput!, where: ActiveSubscriptionsWhereInput): BatchPayload!
   updateManySubscriptions(data: SubscriptionUpdateManyMutationInput!, where: SubscriptionWhereInput): BatchPayload!
+  updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyUserRoles(data: UserRoleUpdateManyMutationInput!, where: UserRoleWhereInput): BatchPayload!
   updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyCountries(where: CountryWhereInput): BatchPayload!
+  deleteManyUserAssignedRoles(where: UserAssignedRoleWhereInput): BatchPayload!
+  deleteManyActiveSubscriptionses(where: ActiveSubscriptionsWhereInput): BatchPayload!
   deleteManySubscriptions(where: SubscriptionWhereInput): BatchPayload!
+  deleteManyCountries(where: CountryWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyUserRoles(where: UserRoleWhereInput): BatchPayload!
   deleteManyTeams(where: TeamWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
 }
@@ -344,17 +535,26 @@ enum PrismaDatabase {
 }
 
 type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
+  userAssignedRoles(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAssignedRole]!
+  activeSubscriptionses(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ActiveSubscriptions]!
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription]!
+  countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole]!
   teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
-  user(where: UserWhereUniqueInput!): User
-  country(where: CountryWhereUniqueInput!): Country
+  userAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
+  activeSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   subscription(where: SubscriptionWhereUniqueInput!): Subscription
+  country(where: CountryWhereUniqueInput!): Country
+  user(where: UserWhereUniqueInput!): User
+  userRole(where: UserRoleWhereUniqueInput!): UserRole
   team(where: TeamWhereUniqueInput!): Team
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
+  userAssignedRolesConnection(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAssignedRoleConnection!
+  activeSubscriptionsesConnection(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ActiveSubscriptionsConnection!
   subscriptionsConnection(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriptionConnection!
+  countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  userRolesConnection(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserRoleConnection!
   teamsConnection(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamConnection!
 
   """Fetches an object given its ID"""
@@ -367,6 +567,7 @@ type Query {
 type Subscription implements Node {
   id: ID!
   name: String!
+  description: String!
 }
 
 """A connection to a list of items."""
@@ -381,6 +582,7 @@ type SubscriptionConnection {
 
 input SubscriptionCreateInput {
   name: String!
+  description: String!
 }
 
 input SubscriptionCreateManyInput {
@@ -402,6 +604,8 @@ enum SubscriptionOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  description_ASC
+  description_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -497,18 +701,61 @@ input SubscriptionScalarWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
 }
 
 input SubscriptionUpdateDataInput {
   name: String
+  description: String
 }
 
 input SubscriptionUpdateInput {
   name: String
+  description: String
 }
 
 input SubscriptionUpdateManyDataInput {
   name: String
+  description: String
 }
 
 input SubscriptionUpdateManyInput {
@@ -525,6 +772,7 @@ input SubscriptionUpdateManyInput {
 
 input SubscriptionUpdateManyMutationInput {
   name: String
+  description: String
 }
 
 input SubscriptionUpdateManyWithWhereNestedInput {
@@ -632,6 +880,46 @@ input SubscriptionWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
 }
 
 input SubscriptionWhereUniqueInput {
@@ -1155,6 +1443,108 @@ type User implements Node {
   password: String
   resetToken: String
   resetTokenExpiry: Float
+  userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole!]
+}
+
+type UserAssignedRole implements Node {
+  id: ID!
+  user: User!
+  userRole: UserRole!
+}
+
+"""A connection to a list of items."""
+type UserAssignedRoleConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserAssignedRoleEdge]!
+  aggregate: AggregateUserAssignedRole!
+}
+
+input UserAssignedRoleCreateInput {
+  user: UserCreateOneInput!
+  userRole: UserRoleCreateOneInput!
+}
+
+"""An edge in a connection."""
+type UserAssignedRoleEdge {
+  """The item at the end of the edge."""
+  node: UserAssignedRole!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserAssignedRoleOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input UserAssignedRoleUpdateInput {
+  user: UserUpdateOneRequiredInput
+  userRole: UserRoleUpdateOneRequiredInput
+}
+
+input UserAssignedRoleWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserAssignedRoleWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserAssignedRoleWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserAssignedRoleWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  user: UserWhereInput
+  userRole: UserRoleWhereInput
+}
+
+input UserAssignedRoleWhereUniqueInput {
+  id: ID
 }
 
 """A connection to a list of items."""
@@ -1181,6 +1571,12 @@ input UserCreateInput {
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
   subscriptions: SubscriptionCreateManyInput
+  userRoles: UserRoleCreateManyInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 """An edge in a connection."""
@@ -1221,6 +1617,402 @@ enum UserOrderByInput {
   createdAt_DESC
 }
 
+type UserRole implements Node {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+"""A connection to a list of items."""
+type UserRoleConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserRoleEdge]!
+  aggregate: AggregateUserRole!
+}
+
+input UserRoleCreateInput {
+  name: String!
+  description: String!
+}
+
+input UserRoleCreateManyInput {
+  create: [UserRoleCreateInput!]
+  connect: [UserRoleWhereUniqueInput!]
+}
+
+input UserRoleCreateOneInput {
+  create: UserRoleCreateInput
+  connect: UserRoleWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type UserRoleEdge {
+  """The item at the end of the edge."""
+  node: UserRole!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserRoleOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input UserRoleScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserRoleScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserRoleScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserRoleScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+}
+
+input UserRoleUpdateDataInput {
+  name: String
+  description: String
+}
+
+input UserRoleUpdateInput {
+  name: String
+  description: String
+}
+
+input UserRoleUpdateManyDataInput {
+  name: String
+  description: String
+}
+
+input UserRoleUpdateManyInput {
+  create: [UserRoleCreateInput!]
+  connect: [UserRoleWhereUniqueInput!]
+  set: [UserRoleWhereUniqueInput!]
+  disconnect: [UserRoleWhereUniqueInput!]
+  delete: [UserRoleWhereUniqueInput!]
+  update: [UserRoleUpdateWithWhereUniqueNestedInput!]
+  updateMany: [UserRoleUpdateManyWithWhereNestedInput!]
+  deleteMany: [UserRoleScalarWhereInput!]
+  upsert: [UserRoleUpsertWithWhereUniqueNestedInput!]
+}
+
+input UserRoleUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input UserRoleUpdateManyWithWhereNestedInput {
+  where: UserRoleScalarWhereInput!
+  data: UserRoleUpdateManyDataInput!
+}
+
+input UserRoleUpdateOneRequiredInput {
+  create: UserRoleCreateInput
+  connect: UserRoleWhereUniqueInput
+  update: UserRoleUpdateDataInput
+  upsert: UserRoleUpsertNestedInput
+}
+
+input UserRoleUpdateWithWhereUniqueNestedInput {
+  where: UserRoleWhereUniqueInput!
+  data: UserRoleUpdateDataInput!
+}
+
+input UserRoleUpsertNestedInput {
+  update: UserRoleUpdateDataInput!
+  create: UserRoleCreateInput!
+}
+
+input UserRoleUpsertWithWhereUniqueNestedInput {
+  where: UserRoleWhereUniqueInput!
+  update: UserRoleUpdateDataInput!
+  create: UserRoleCreateInput!
+}
+
+input UserRoleWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserRoleWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserRoleWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserRoleWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+}
+
+input UserRoleWhereUniqueInput {
+  id: ID
+}
+
+input UserUpdateDataInput {
+  email: String
+  firstName: String
+  lastName: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamUpdateOneInput
+  country: CountryUpdateOneInput
+  subscriptions: SubscriptionUpdateManyInput
+  userRoles: UserRoleUpdateManyInput
+}
+
 input UserUpdateInput {
   email: String
   firstName: String
@@ -1235,6 +2027,7 @@ input UserUpdateInput {
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
   subscriptions: SubscriptionUpdateManyInput
+  userRoles: UserRoleUpdateManyInput
 }
 
 input UserUpdateManyMutationInput {
@@ -1248,6 +2041,18 @@ input UserUpdateManyMutationInput {
   password: String
   resetToken: String
   resetTokenExpiry: Float
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {
@@ -1650,6 +2455,9 @@ input UserWhereInput {
   subscriptions_every: SubscriptionWhereInput
   subscriptions_some: SubscriptionWhereInput
   subscriptions_none: SubscriptionWhereInput
+  userRoles_every: UserRoleWhereInput
+  userRoles_some: UserRoleWhereInput
+  userRoles_none: UserRoleWhereInput
 }
 
 input UserWhereUniqueInput {

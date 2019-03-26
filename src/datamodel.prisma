@@ -9,15 +9,37 @@ type User {
   country: Country
   displayName: String
   isPrivate: Boolean
-  subscriptions: [Subscription]!
   password: String
   resetToken: String
   resetTokenExpiry: Float
+  subscriptions: [Subscription]!
+  userRoles: [UserRole!]!
+}
+
+type UserRole {
+  id: ID! @unique
+  name: String!
+  description: String!
+}
+
+type UserAssignedRole {
+  id: ID! @unique
+  user: User!
+  userRole: UserRole!
+}
+
+type ActiveSubscriptions {
+  id: ID! @unique
+  user: User!
+  subscription: UserRole!
+  startDate: DateTime!
+  endDate: DateTime!
 }
 
 type Subscription {
   id: ID! @unique
   name: String!
+  description: String!
 }
 
 type Country {
