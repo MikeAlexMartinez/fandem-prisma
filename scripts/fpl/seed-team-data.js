@@ -17,9 +17,10 @@ async function seedTeamData({ db }) {
     teams = transformTeamData(mainData.teams);
   }
 
-  for (team of teams) {
-    await db.mutation.createTeam({ data: team }, "{ id }");
-  }
+  return teams.map(async team => {
+    const t = await db.mutation.createTeam({ data: team }, "{ id name }");
+    return t;
+  });
 }
 
 function transformTeamData(teams) {

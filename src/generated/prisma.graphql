@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Tue Mar 26 2019 09:10:58 GMT+0000 (GMT)
+# timestamp: Tue Mar 26 2019 21:43:05 GMT+0000 (GMT)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -451,6 +451,7 @@ input CountryWhereInput {
 
 input CountryWhereUniqueInput {
   id: ID
+  name: String
 }
 
 scalar DateTime
@@ -924,6 +925,7 @@ input SubscriptionWhereInput {
 
 input SubscriptionWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type Team implements Node {
@@ -1426,6 +1428,7 @@ input TeamWhereInput {
 
 input TeamWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type User implements Node {
@@ -1439,10 +1442,10 @@ type User implements Node {
   country: Country
   displayName: String
   isPrivate: Boolean
-  subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
   password: String
   resetToken: String
   resetTokenExpiry: Float
+  subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole!]
 }
 

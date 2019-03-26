@@ -12,13 +12,24 @@ const setup = async () => {
   // add teams
   const teams = await seedTeamData({ db });
   // add countries
-  const contries = await seedCountries({ db });
+  const countries = await seedCountries({ db });
   // add subscription types
-  const subscriptions = await seedSubscriptions({ db });
+  const subs = await seedSubscriptions({ db });
   // add roles
   const roles = await seedRoles({ db });
   // add super user (ME)
-  const users = await seedUsers({ db });
+  const users = await seedUsers({
+    db,
+    data: {
+      teams,
+      countries,
+      subs,
+      roles
+    }
+  });
+
+  console.log(users);
+  console.log(`created ${users.length} users`);
 };
 
 setup();

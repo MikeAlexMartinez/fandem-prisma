@@ -12,7 +12,7 @@ type User {
   password: String
   resetToken: String
   resetTokenExpiry: Float
-  subscriptions: [Subscription]!
+  subscriptions: [Subscription!]!
   userRoles: [UserRole!]!
 }
 
@@ -38,14 +38,14 @@ type ActiveSubscriptions {
 
 type Subscription {
   id: ID! @unique
-  name: String!
+  name: String! @unique
   description: String!
 }
 
 type Country {
   id: ID! @unique
   iso: String!
-  name: String!
+  name: String! @unique
   code: String!
 }
 
@@ -53,7 +53,7 @@ type Team {
   id: ID! @unique
   code: Int!
   fplTeamId: Int!
-  name: String!
+  name: String! @unique
   shortName: String!
   strength: Int!
   strengthAttackAway: Int!
