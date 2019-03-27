@@ -38,14 +38,14 @@ type ActiveSubscriptions {
 
 type Subscription {
   id: ID! @unique
-  name: String! @unique
+  name: String!
   description: String!
 }
 
 type Country {
   id: ID! @unique
   iso: String!
-  name: String! @unique
+  name: String!
   code: String!
 }
 
@@ -53,7 +53,7 @@ type Team {
   id: ID! @unique
   code: Int!
   fplTeamId: Int!
-  name: String! @unique
+  name: String!
   shortName: String!
   strength: Int!
   strengthAttackAway: Int!

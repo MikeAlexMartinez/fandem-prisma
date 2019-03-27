@@ -17,10 +17,11 @@ async function seedTeamData({ db }) {
     teams = transformTeamData(mainData.teams);
   }
 
-  return teams.map(async team => {
-    const t = await db.mutation.createTeam({ data: team }, "{ id name }");
-    return t;
-  });
+  return await Promise.all(
+    teams.map(
+      async team => await db.mutation.createTeam({ data: team }, "{ id name }")
+    )
+  );
 }
 
 function transformTeamData(teams) {

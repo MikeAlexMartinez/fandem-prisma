@@ -5,10 +5,18 @@ const users = require("./users");
 module.exports = seedUsers;
 
 async function seedUsers({ db, data }) {
-  const insertedUsers = users.map(user => {
-    const userToInsert = transformUser(user, data);
-  });
-  return insertedUsers;
+  return await Promise.all(
+    users.map(async user => {
+      const userToInsert = await transformUser(user, data);
+      const insertedUser = await db.mutation.createUser(
+        {
+          data: userToInsert
+        },
+        "{ id firstName lastName }"
+      );
+      return insertedUser;
+    })
+  );
 }
 
 async function transformUser(user, { teams, countries, subs, roles }) {
@@ -21,7 +29,9 @@ async function transformUser(user, { teams, countries, subs, roles }) {
     throw new Error("favourite team not found!");
   }
   const favoriteTeam = {
-    id: favoriteTeamObj.id
+    connect: {
+      id: favoriteTeamObj.id
+    }
   };
 
   // fetch country
@@ -30,11 +40,13 @@ async function transformUser(user, { teams, countries, subs, roles }) {
     throw new Error("country not found!");
   }
   const country = {
-    id: countryObj.id
+    connect: {
+      id: countryObj.id
+    }
   };
 
   // fetch subscriptions
-  const subscriptions = user.subscriptions.map(key => {
+  const subscriptionsCreateMany = user.subscriptions.map(key => {
     const selectedSub = subs.find(s => s.name === key);
     if (!selectedSub) {
       throw new Error("subscription not found!");
@@ -43,9 +55,12 @@ async function transformUser(user, { teams, countries, subs, roles }) {
       id: selectedSub.id
     };
   });
+  const subscriptions = {
+    connect: subscriptionsCreateMany
+  };
 
   // fetch applicable roles
-  const userRoles = user.userRoles.map(key => {
+  const userRolesCreateMany = user.userRoles.map(key => {
     const role = roles.find(r => r.name === key);
     if (!role) {
       throw new Error("subscription not found!");
@@ -54,6 +69,9 @@ async function transformUser(user, { teams, countries, subs, roles }) {
       id: role.id
     };
   });
+  const userRoles = {
+    connect: userRolesCreateMany
+  };
 
   return {
     ...user,

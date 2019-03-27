@@ -3,11 +3,10 @@ const roles = require("./roles");
 module.exports = seedRoles;
 
 async function seedRoles({ db }) {
-  return roles.map(async role => {
-    const inserted = await db.mutation.createUserRole(
-      { data: role },
-      "{ id, name }"
-    );
-    return inserted;
-  });
+  return Promise.all(
+    roles.map(
+      async role =>
+        await db.mutation.createUserRole({ data: role }, "{ id, name }")
+    )
+  );
 }

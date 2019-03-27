@@ -11,12 +11,16 @@ const seedUsers = require("./scripts/users/seed-users");
 const setup = async () => {
   // add teams
   const teams = await seedTeamData({ db });
+  console.log(`Inserted ${teams.length} teams`);
   // add countries
   const countries = await seedCountries({ db });
+  console.log(`Inserted ${countries.length} countries`);
   // add subscription types
   const subs = await seedSubscriptions({ db });
+  console.log(`Inserted ${subs.length} subscriptions`);
   // add roles
   const roles = await seedRoles({ db });
+  console.log(`Inserted ${roles.length} roles`);
   // add super user (ME)
   const users = await seedUsers({
     db,
@@ -27,8 +31,6 @@ const setup = async () => {
       roles
     }
   });
-
-  console.log(users);
   console.log(`created ${users.length} users`);
 };
 
