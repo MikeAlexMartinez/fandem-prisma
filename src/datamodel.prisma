@@ -1,8 +1,7 @@
 type User {
   id: ID! @unique
   email: String!
-  firstName: String!
-  lastName: String!
+  name: String!
   countryCode: String
   phoneNumber: String
   favoriteTeam: Team

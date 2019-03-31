@@ -1,9 +1,24 @@
-
+# import * from './generated/prisma.graphql'
 
 type Mutation {
-  hi: String!
+  createUser(name: String!, email: String!, password: String!): User!
 }
 
 type Query {
-  hi: String!
+  checkEmail(email: String!): Boolean!
+}
+
+# hide password and resetToken fields
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  countryCode: String
+  phoneNumber: String
+  favoriteTeam: Team
+  country: Country
+  displayName: String
+  isPrivate: Boolean
+  subscriptions: [Subscription!]!
+  userRoles: [UserRole!]!
 }

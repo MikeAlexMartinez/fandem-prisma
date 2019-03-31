@@ -7,14 +7,18 @@ module.exports = seedUsers;
 async function seedUsers({ db, data }) {
   return await Promise.all(
     users.map(async user => {
-      const userToInsert = await transformUser(user, data);
-      const insertedUser = await db.mutation.createUser(
-        {
-          data: userToInsert
-        },
-        "{ id firstName lastName }"
-      );
-      return insertedUser;
+      try {
+        const userToInsert = await transformUser(user, data);
+        const insertedUser = await db.mutation.createUser(
+          {
+            data: userToInsert
+          },
+          "{ id email }"
+        );
+        return insertedUser;
+      } catch (e) {
+        console.error(e);
+      }
     })
   );
 }

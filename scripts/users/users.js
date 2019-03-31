@@ -1,8 +1,7 @@
 module.exports = [
   {
     email: "mike.alex.martinez+admin@gmail.com",
-    firstName: "Michael",
-    lastName: "Martinez",
+    name: "Michael Martinez",
     countryCode: "",
     phoneNumber: "",
     displayName: "hurriKANE",
@@ -17,8 +16,7 @@ module.exports = [
   },
   {
     email: "mike.alex.martinez+user@gmail.com",
-    firstName: "Mike",
-    lastName: "Marty",
+    name: "Mike Marty",
     countryCode: "",
     phoneNumber: "",
     displayName: "A Sterling Performance",
