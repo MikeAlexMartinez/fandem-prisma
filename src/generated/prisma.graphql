@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Sun Mar 31 2019 21:40:34 GMT+0100 (BST)
+# timestamp: Mon Apr 01 2019 20:13:23 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -1439,6 +1439,10 @@ type User implements Node {
   displayName: String
   isPrivate: Boolean
   password: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: DateTime
+  emailValidated: Boolean!
+  validationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
@@ -1564,6 +1568,10 @@ input UserCreateInput {
   displayName: String
   isPrivate: Boolean
   password: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: DateTime
+  emailValidated: Boolean
+  validationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
@@ -1603,6 +1611,14 @@ enum UserOrderByInput {
   isPrivate_DESC
   password_ASC
   password_DESC
+  emailValidationToken_ASC
+  emailValidationToken_DESC
+  emailValidationTokenExpiry_ASC
+  emailValidationTokenExpiry_DESC
+  emailValidated_ASC
+  emailValidated_DESC
+  validationDate_ASC
+  validationDate_DESC
   resetToken_ASC
   resetToken_DESC
   resetTokenExpiry_ASC
@@ -2000,6 +2016,10 @@ input UserUpdateDataInput {
   displayName: String
   isPrivate: Boolean
   password: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: DateTime
+  emailValidated: Boolean
+  validationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
@@ -2016,6 +2036,10 @@ input UserUpdateInput {
   displayName: String
   isPrivate: Boolean
   password: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: DateTime
+  emailValidated: Boolean
+  validationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
@@ -2032,6 +2056,10 @@ input UserUpdateManyMutationInput {
   displayName: String
   isPrivate: Boolean
   password: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: DateTime
+  emailValidated: Boolean
+  validationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
 }
@@ -2341,6 +2369,94 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
+  emailValidationToken: String
+
+  """All values that are not equal to given value."""
+  emailValidationToken_not: String
+
+  """All values that are contained in given list."""
+  emailValidationToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  emailValidationToken_not_in: [String!]
+
+  """All values less than the given value."""
+  emailValidationToken_lt: String
+
+  """All values less than or equal the given value."""
+  emailValidationToken_lte: String
+
+  """All values greater than the given value."""
+  emailValidationToken_gt: String
+
+  """All values greater than or equal the given value."""
+  emailValidationToken_gte: String
+
+  """All values containing the given string."""
+  emailValidationToken_contains: String
+
+  """All values not containing the given string."""
+  emailValidationToken_not_contains: String
+
+  """All values starting with the given string."""
+  emailValidationToken_starts_with: String
+
+  """All values not starting with the given string."""
+  emailValidationToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  emailValidationToken_ends_with: String
+
+  """All values not ending with the given string."""
+  emailValidationToken_not_ends_with: String
+  emailValidationTokenExpiry: DateTime
+
+  """All values that are not equal to given value."""
+  emailValidationTokenExpiry_not: DateTime
+
+  """All values that are contained in given list."""
+  emailValidationTokenExpiry_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  emailValidationTokenExpiry_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  emailValidationTokenExpiry_lt: DateTime
+
+  """All values less than or equal the given value."""
+  emailValidationTokenExpiry_lte: DateTime
+
+  """All values greater than the given value."""
+  emailValidationTokenExpiry_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  emailValidationTokenExpiry_gte: DateTime
+  emailValidated: Boolean
+
+  """All values that are not equal to given value."""
+  emailValidated_not: Boolean
+  validationDate: DateTime
+
+  """All values that are not equal to given value."""
+  validationDate_not: DateTime
+
+  """All values that are contained in given list."""
+  validationDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  validationDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  validationDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  validationDate_lte: DateTime
+
+  """All values greater than the given value."""
+  validationDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  validationDate_gte: DateTime
   resetToken: String
 
   """All values that are not equal to given value."""
@@ -2415,4 +2531,5 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }

@@ -1,7 +1,21 @@
 # import * from './generated/prisma.graphql'
 
+type SuccessMessage {
+  message: String
+}
+
 type Mutation {
   createUser(name: String!, email: String!, password: String!): User!
+  signIn(email: String!, password: String!): User!
+  signOut: SuccessMessage
+  requestEmailValidation: SuccessMessage
+  validateEmail(validationToken: String!): SuccessMessage
+  requestReset(email: String!): SuccessMessage
+  resetPassword(
+    resetToken: String!
+    password: String!
+    confirmPassword: String!
+  ): User!
 }
 
 type Query {
@@ -19,6 +33,7 @@ type User {
   country: Country
   displayName: String
   isPrivate: Boolean
+  emailValidated: Boolean!
   subscriptions: [Subscription!]!
   userRoles: [UserRole!]!
 }

@@ -1,6 +1,6 @@
 type User {
   id: ID! @unique
-  email: String!
+  email: String! @unique
   name: String!
   countryCode: String
   phoneNumber: String
@@ -9,6 +9,10 @@ type User {
   displayName: String
   isPrivate: Boolean
   password: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: DateTime
+  emailValidated: Boolean! @default(value: "false")
+  validationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   subscriptions: [Subscription!]!
