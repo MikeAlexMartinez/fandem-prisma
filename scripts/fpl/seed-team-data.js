@@ -9,7 +9,7 @@ async function seedTeamData({ db }) {
   try {
     mainData = await fetchMain();
   } catch (e) {
-    throw e;
+    return e;
   }
 
   let teams = [];

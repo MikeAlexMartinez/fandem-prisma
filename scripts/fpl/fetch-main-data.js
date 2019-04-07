@@ -34,7 +34,7 @@ async function fetchMain() {
   try {
     fplData = await getMainData();
   } catch (e) {
-    throw e;
+    return e;
   }
 
   return fplData;
@@ -51,7 +51,7 @@ async function getMainData() {
     const rawData = await fetchFromApi({ uri: MAIN });
     data = transformMainData(rawData);
   } catch (e) {
-    throw e;
+    return e;
   }
 
   return data;

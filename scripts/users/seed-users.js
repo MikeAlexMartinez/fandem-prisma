@@ -30,7 +30,7 @@ async function transformUser(user, { teams, countries, subs, roles }) {
   // fetch favourite team
   const favoriteTeamObj = teams.find(t => t.name === user.favoriteTeam);
   if (!favoriteTeamObj) {
-    throw new Error("favourite team not found!");
+    return new Error("favourite team not found!");
   }
   const favoriteTeam = {
     connect: {
@@ -41,7 +41,7 @@ async function transformUser(user, { teams, countries, subs, roles }) {
   // fetch country
   const countryObj = countries.find(c => (c.name = user.country));
   if (!countryObj) {
-    throw new Error("country not found!");
+    return new Error("country not found!");
   }
   const country = {
     connect: {
@@ -53,7 +53,7 @@ async function transformUser(user, { teams, countries, subs, roles }) {
   const subscriptionsCreateMany = user.subscriptions.map(key => {
     const selectedSub = subs.find(s => s.name === key);
     if (!selectedSub) {
-      throw new Error("subscription not found!");
+      return new Error("subscription not found!");
     }
     return {
       id: selectedSub.id
@@ -67,7 +67,7 @@ async function transformUser(user, { teams, countries, subs, roles }) {
   const userRolesCreateMany = user.userRoles.map(key => {
     const role = roles.find(r => r.name === key);
     if (!role) {
-      throw new Error("subscription not found!");
+      return new Error("subscription not found!");
     }
     return {
       id: role.id

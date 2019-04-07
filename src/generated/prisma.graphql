@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Mon Apr 01 2019 20:13:23 GMT+0100 (BST)
+# timestamp: Sat Apr 06 2019 12:13:45 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -1437,12 +1437,12 @@ type User implements Node {
   favoriteTeam: Team
   country: Country
   displayName: String
-  isPrivate: Boolean
+  isPrivate: Boolean!
   password: String
   emailValidationToken: String
   emailValidationTokenExpiry: DateTime
   emailValidated: Boolean!
-  validationDate: DateTime
+  emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
@@ -1571,7 +1571,7 @@ input UserCreateInput {
   emailValidationToken: String
   emailValidationTokenExpiry: DateTime
   emailValidated: Boolean
-  validationDate: DateTime
+  emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
@@ -1617,8 +1617,8 @@ enum UserOrderByInput {
   emailValidationTokenExpiry_DESC
   emailValidated_ASC
   emailValidated_DESC
-  validationDate_ASC
-  validationDate_DESC
+  emailValidationDate_ASC
+  emailValidationDate_DESC
   resetToken_ASC
   resetToken_DESC
   resetTokenExpiry_ASC
@@ -2019,7 +2019,7 @@ input UserUpdateDataInput {
   emailValidationToken: String
   emailValidationTokenExpiry: DateTime
   emailValidated: Boolean
-  validationDate: DateTime
+  emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
@@ -2039,7 +2039,7 @@ input UserUpdateInput {
   emailValidationToken: String
   emailValidationTokenExpiry: DateTime
   emailValidated: Boolean
-  validationDate: DateTime
+  emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
@@ -2059,7 +2059,7 @@ input UserUpdateManyMutationInput {
   emailValidationToken: String
   emailValidationTokenExpiry: DateTime
   emailValidated: Boolean
-  validationDate: DateTime
+  emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
 }
@@ -2435,28 +2435,28 @@ input UserWhereInput {
 
   """All values that are not equal to given value."""
   emailValidated_not: Boolean
-  validationDate: DateTime
+  emailValidationDate: DateTime
 
   """All values that are not equal to given value."""
-  validationDate_not: DateTime
+  emailValidationDate_not: DateTime
 
   """All values that are contained in given list."""
-  validationDate_in: [DateTime!]
+  emailValidationDate_in: [DateTime!]
 
   """All values that are not contained in given list."""
-  validationDate_not_in: [DateTime!]
+  emailValidationDate_not_in: [DateTime!]
 
   """All values less than the given value."""
-  validationDate_lt: DateTime
+  emailValidationDate_lt: DateTime
 
   """All values less than or equal the given value."""
-  validationDate_lte: DateTime
+  emailValidationDate_lte: DateTime
 
   """All values greater than the given value."""
-  validationDate_gt: DateTime
+  emailValidationDate_gt: DateTime
 
   """All values greater than or equal the given value."""
-  validationDate_gte: DateTime
+  emailValidationDate_gte: DateTime
   resetToken: String
 
   """All values that are not equal to given value."""

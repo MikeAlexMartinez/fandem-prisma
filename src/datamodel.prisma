@@ -7,12 +7,12 @@ type User {
   favoriteTeam: Team
   country: Country
   displayName: String
-  isPrivate: Boolean
+  isPrivate: Boolean! @default(value: "false")
   password: String
   emailValidationToken: String
   emailValidationTokenExpiry: DateTime
   emailValidated: Boolean! @default(value: "false")
-  validationDate: DateTime
+  emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
   subscriptions: [Subscription!]!
