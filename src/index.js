@@ -25,7 +25,7 @@ const db = require("./db");
     if (!req.userId) return next();
     const user = await db.query.user(
       { where: { id: req.userId } },
-      `{ id, email, userRoles, permissions }`
+      `{ id, email, userRoles }`
     );
     req.user = user;
     next();

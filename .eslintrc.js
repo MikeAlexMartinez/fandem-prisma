@@ -68,7 +68,7 @@ module.exports = {
     ],
     quotes: [
       2,
-      "single",
+      "double",
       {
         avoidEscape: true,
         allowTemplateLiterals: true
@@ -77,8 +77,6 @@ module.exports = {
     "prettier/prettier": [
       "error",
       {
-        trailingComma: "es5",
-        singleQuote: true,
         printWidth: 80
       }
     ]

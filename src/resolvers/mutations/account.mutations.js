@@ -51,7 +51,6 @@ const accountMutations = {
     });
 
     // finally return user
-    console.log(user);
     return user;
   },
   async signIn(parent, args, ctx, info) {
@@ -75,15 +74,15 @@ const accountMutations = {
 
     return user;
   },
-  signOut(parent, args, ctx, info) {
+  signOut(parent, args, ctx) {
     ctx.response.clearCookie("token");
     return {
       message: "Logged Out successfully"
     };
   },
-  async requestEmailValidation(parent, args, ctx, info) {
+  async requestEmailValidation(parent, args, ctx) {
     // check real user
-    const user = ctx.request.user;
+    const { user } = ctx.request;
     if (!user) {
       return new Error(`A valid user token wasn't provided`);
     }
@@ -93,7 +92,7 @@ const accountMutations = {
       "hex"
     );
     const emailValidationTokenExpiry = Date.now() + 1000 * 60 * 60; // one hour
-    const res = await ctx.db.mutation.updateUser({
+    await ctx.db.mutation.updateUser({
       where: { id: user.id },
       date: {
         emailValidationToken,
@@ -132,7 +131,7 @@ const accountMutations = {
       message: "Thanks! An email has been sent to you"
     };
   },
-  async validateEmail(parent, args, ctx, info) {
+  async validateEmail(parent, args, ctx) {
     const { emailValidationToken } = args;
 
     if (!emailValidationToken) {
@@ -151,7 +150,7 @@ const accountMutations = {
     }
 
     // update user
-    const updatedUser = await ctx.db.query.updateUser({
+    await ctx.db.query.updateUser({
       where: { id: user.id },
       data: {
         emailValidationToken: null,
@@ -166,7 +165,7 @@ const accountMutations = {
       message: "Thanks! Your email has been validated"
     };
   },
-  async requestReset(parent, args, ctx, info) {
+  async requestReset(parent, args, ctx) {
     const { email } = args;
     // check real user
     const user = await ctx.db.query.user({ where: { email: args.email } });
@@ -178,7 +177,7 @@ const accountMutations = {
     // Check resetToken and expiry on user
     const resetToken = (await promisify(randomBytes)(20)).toString("hex");
     const resetTokenExpiry = Date.now() + 1000 * 60 * 60; // 1 hour from now
-    const res = await ctx.db.mutation.updateUser({
+    await ctx.db.mutation.updateUser({
       where: { email },
       data: {
         resetToken,
@@ -214,7 +213,7 @@ const accountMutations = {
       message: "Thanks! An email has been sent to you"
     };
   },
-  async resetPassword(parent, args, ctx, info) {
+  async resetPassword(parent, args, ctx) {
     const { password, confirmPassword, resetToken } = args;
 
     // check passwords match
@@ -249,10 +248,7 @@ const accountMutations = {
     });
 
     // create jwt
-    const updatedUser = jwt.sign(
-      { userId: updatedUser.id },
-      process.env.APP_SECRET
-    );
+    const token = jwt.sign({ userId: updatedUser.id }, process.env.APP_SECRET);
 
     // set jwt
     ctx.response.cookie("token", token, {
