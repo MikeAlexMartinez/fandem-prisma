@@ -14,20 +14,40 @@ const db = require("./db");
   server.express.use((req, res, next) => {
     const { token } = req.cookies;
     if (token) {
-      const { userId } = jwt.verify(token, process.env.APP_SECRET);
-      req.userId = userId;
+      try {
+        const { userId } = jwt.verify(token, process.env.APP_SECRET);
+        req.userId = userId;
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      req.userId = null;
     }
     next();
   });
 
   // user middleware to fetch current user
   server.express.use(async (req, res, next) => {
-    if (!req.userId) return next();
-    const user = await db.query.user(
-      { where: { id: req.userId } },
-      `{ id, email, userRoles }`
-    );
-    req.user = user;
+    if (req.userId) {
+      try {
+        const user = await db.query.user(
+          { where: { id: req.userId } },
+          `{
+            id
+            email
+            userRoles {
+              name
+            }
+            subscriptions {
+              name
+            }
+          }`
+        );
+        req.user = user;
+      } catch (e) {
+        console.error(e);
+      }
+    }
     next();
   });
 
