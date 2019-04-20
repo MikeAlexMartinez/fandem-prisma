@@ -74,8 +74,7 @@ const accountMutations = {
     });
 
     try {
-      ctx.request.user = user;
-      await requestEmailValidation(ctx);
+      await requestEmailValidation({ user, ctx });
     } catch (e) {
       return e;
     }
@@ -86,7 +85,33 @@ const accountMutations = {
   async signIn(parent, args, ctx) {
     const { email, password } = args;
 
-    const user = await ctx.db.query.user(
+    const user = await ctx.db.query.user({ where: { email } });
+    if (!user) {
+      return new Error("Either the email or password was incorrect");
+    }
+
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      return new Error("Invalid Password!");
+    }
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    ctx.response.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 30 // One Month
+    });
+
+    console.log(user);
+
+    if (!user.emailValidated) {
+      try {
+        await requestEmailValidation({ user, ctx });
+      } catch (e) {
+        console.error(e);
+        return e;
+      }
+    }
+
+    const appUser = await ctx.db.query.user(
       { where: { email } },
       `{
         id
@@ -112,29 +137,8 @@ const accountMutations = {
         }
       }`
     );
-    if (!user) {
-      return new Error("Either the email or password was incorrect");
-    }
 
-    const valid = await bcrypt.compare(password, user.password);
-    if (!valid) {
-      return new Error("Invalid Password!");
-    }
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    ctx.response.cookie("token", token, {
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 30 // One Month
-    });
-
-    if (user.emailValidated) {
-      try {
-        await requestEmailValidation(ctx);
-      } catch (e) {
-        return e;
-      }
-    }
-
-    return user;
+    return appUser;
   },
   signOut(parent, args, ctx) {
     ctx.response.clearCookie("token");
@@ -150,24 +154,27 @@ const accountMutations = {
     }
     // check if legit token
     // and hasn't expired
-    const [user] = await ctx.db.query.users({
+    console.log(`token: ${emailValidationToken}`);
+    console.log(`expiry: ${Date.now() - 1000 * 60 * 60}`);
+    const resp = await ctx.db.query.users({
       where: {
         emailValidationToken,
         emailValidationTokenExpiry_gte: Date.now() - 1000 * 60 * 60
       }
     });
-    if (!user) {
+    console.log(resp);
+    if (!resp[0]) {
       return new Error(`Invalid email token provided`);
     }
 
     // update user
-    await ctx.db.query.updateUser({
+    await ctx.db.mutation.updateUser({
       where: { id: user.id },
       data: {
         emailValidationToken: null,
         emailValidationTokenExpiry: null,
         emailValidated: true,
-        emailValidationDate: new Date().toUTCString()
+        emailValidationDate: new Date()
       }
     });
 

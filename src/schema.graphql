@@ -9,7 +9,7 @@ type Mutation {
   signIn(email: String!, password: String!): User!
   signOut: SuccessMessage
   requestEmailValidation: SuccessMessage
-  validateEmail(validationToken: String!): SuccessMessage
+  validateEmail(emailValidationToken: String!): SuccessMessage
   requestReset(email: String!): SuccessMessage
   resetPassword(
     resetToken: String!

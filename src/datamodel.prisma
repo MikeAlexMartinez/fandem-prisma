@@ -10,7 +10,7 @@ type User {
   isPrivate: Boolean! @default(value: "false")
   password: String
   emailValidationToken: String
-  emailValidationTokenExpiry: DateTime
+  emailValidationTokenExpiry: Float
   emailValidated: Boolean! @default(value: "false")
   emailValidationDate: DateTime
   resetToken: String

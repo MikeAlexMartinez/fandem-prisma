@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Sat Apr 06 2019 12:13:45 GMT+0100 (BST)
+# timestamp: Sat Apr 20 2019 15:54:13 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -1440,7 +1440,7 @@ type User implements Node {
   isPrivate: Boolean!
   password: String
   emailValidationToken: String
-  emailValidationTokenExpiry: DateTime
+  emailValidationTokenExpiry: Float
   emailValidated: Boolean!
   emailValidationDate: DateTime
   resetToken: String
@@ -1569,7 +1569,7 @@ input UserCreateInput {
   isPrivate: Boolean
   password: String
   emailValidationToken: String
-  emailValidationTokenExpiry: DateTime
+  emailValidationTokenExpiry: Float
   emailValidated: Boolean
   emailValidationDate: DateTime
   resetToken: String
@@ -2017,7 +2017,7 @@ input UserUpdateDataInput {
   isPrivate: Boolean
   password: String
   emailValidationToken: String
-  emailValidationTokenExpiry: DateTime
+  emailValidationTokenExpiry: Float
   emailValidated: Boolean
   emailValidationDate: DateTime
   resetToken: String
@@ -2037,7 +2037,7 @@ input UserUpdateInput {
   isPrivate: Boolean
   password: String
   emailValidationToken: String
-  emailValidationTokenExpiry: DateTime
+  emailValidationTokenExpiry: Float
   emailValidated: Boolean
   emailValidationDate: DateTime
   resetToken: String
@@ -2057,7 +2057,7 @@ input UserUpdateManyMutationInput {
   isPrivate: Boolean
   password: String
   emailValidationToken: String
-  emailValidationTokenExpiry: DateTime
+  emailValidationTokenExpiry: Float
   emailValidated: Boolean
   emailValidationDate: DateTime
   resetToken: String
@@ -2409,28 +2409,28 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   emailValidationToken_not_ends_with: String
-  emailValidationTokenExpiry: DateTime
+  emailValidationTokenExpiry: Float
 
   """All values that are not equal to given value."""
-  emailValidationTokenExpiry_not: DateTime
+  emailValidationTokenExpiry_not: Float
 
   """All values that are contained in given list."""
-  emailValidationTokenExpiry_in: [DateTime!]
+  emailValidationTokenExpiry_in: [Float!]
 
   """All values that are not contained in given list."""
-  emailValidationTokenExpiry_not_in: [DateTime!]
+  emailValidationTokenExpiry_not_in: [Float!]
 
   """All values less than the given value."""
-  emailValidationTokenExpiry_lt: DateTime
+  emailValidationTokenExpiry_lt: Float
 
   """All values less than or equal the given value."""
-  emailValidationTokenExpiry_lte: DateTime
+  emailValidationTokenExpiry_lte: Float
 
   """All values greater than the given value."""
-  emailValidationTokenExpiry_gt: DateTime
+  emailValidationTokenExpiry_gt: Float
 
   """All values greater than or equal the given value."""
-  emailValidationTokenExpiry_gte: DateTime
+  emailValidationTokenExpiry_gte: Float
   emailValidated: Boolean
 
   """All values that are not equal to given value."""

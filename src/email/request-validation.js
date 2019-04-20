@@ -2,9 +2,7 @@ const { randomBytes } = require("crypto");
 const { promisify } = require("util");
 const { transport, makeANiceEmail } = require("./email");
 
-async function requestEmailValidation(ctx) {
-  // check real user
-  const { user } = ctx.request;
+async function requestEmailValidation({ user, ctx }) {
   if (!user) {
     return new Error(`A valid user token wasn't provided`);
   }
@@ -15,8 +13,8 @@ async function requestEmailValidation(ctx) {
   );
   const emailValidationTokenExpiry = Date.now() + 1000 * 60 * 60; // one hour
   await ctx.db.mutation.updateUser({
-    where: { id: user.id },
-    date: {
+    where: { email: user.email },
+    data: {
       emailValidationToken,
       emailValidationTokenExpiry,
       emailValidated: false
