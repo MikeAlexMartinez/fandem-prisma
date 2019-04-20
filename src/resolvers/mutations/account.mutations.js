@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { randomBytes } = require("crypto");
 const { promisify } = require("util");
 const { transport, makeANiceEmail } = require("../../email/email");
+const requestEmailValidation = require("../../email/request-validation");
 
 const accountMutations = {
   async createUser(parent, args, ctx, info) {
@@ -38,7 +39,29 @@ const accountMutations = {
           }
         }
       },
-      info
+      `{
+        id
+        email
+        name
+        countryCode
+        phoneNumber
+        favoriteTeam {
+          name
+          shortName
+        }
+        country {
+          name
+        }
+        displayName
+        isPrivate
+        emailValidated
+        subscriptions {
+          name
+        }
+        userRoles {
+          name
+        }
+      }`
     );
 
     // create JWT
@@ -50,13 +73,45 @@ const accountMutations = {
       maxAge: 1000 * 60 * 60 * 24 * 30 // One Month
     });
 
+    try {
+      ctx.request.user = user;
+      await requestEmailValidation(ctx);
+    } catch (e) {
+      return e;
+    }
+
     // finally return user
     return user;
   },
-  async signIn(parent, args, ctx, info) {
+  async signIn(parent, args, ctx) {
     const { email, password } = args;
 
-    const user = await ctx.db.query.user({ where: { email } });
+    const user = await ctx.db.query.user(
+      { where: { email } },
+      `{
+        id
+        email
+        name
+        countryCode
+        phoneNumber
+        favoriteTeam {
+          name
+          shortName
+        }
+        country {
+          name
+        }
+        displayName
+        isPrivate
+        emailValidated
+        subscriptions {
+          name
+        }
+        userRoles {
+          name
+        }
+      }`
+    );
     if (!user) {
       return new Error("Either the email or password was incorrect");
     }
@@ -65,12 +120,19 @@ const accountMutations = {
     if (!valid) {
       return new Error("Invalid Password!");
     }
-
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 30 // One Month
     });
+
+    if (user.emailValidated) {
+      try {
+        await requestEmailValidation(ctx);
+      } catch (e) {
+        return e;
+      }
+    }
 
     return user;
   },
@@ -78,57 +140,6 @@ const accountMutations = {
     ctx.response.clearCookie("token");
     return {
       message: "Logged Out successfully"
-    };
-  },
-  async requestEmailValidation(parent, args, ctx) {
-    // check real user
-    const { user } = ctx.request;
-    if (!user) {
-      return new Error(`A valid user token wasn't provided`);
-    }
-
-    // set tokens and expiry on user
-    const emailValidationToken = (await promisify(randomBytes)(10)).toString(
-      "hex"
-    );
-    const emailValidationTokenExpiry = Date.now() + 1000 * 60 * 60; // one hour
-    await ctx.db.mutation.updateUser({
-      where: { id: user.id },
-      date: {
-        emailValidationToken,
-        emailValidationTokenExpiry,
-        emailValidated: false
-      }
-    });
-
-    // email validation token
-    let mailResponse;
-    let error;
-    try {
-      mailResponse = await transport.sendMail({
-        from: "contact@fandem.io",
-        to: user.email,
-        subject: "Your Email Validation Token",
-        html: makeANiceEmail(`
-          Your Email Validation Token is here!
-          \n\n
-          <a href="${
-            process.env.FRONTEND_URL
-          }/validate?emailValidationToken=${emailValidationToken}">Click here to Validate Your Email</a>
-        `)
-      });
-      console.log(mailResponse);
-    } catch (e) {
-      console.error(e);
-      error = e;
-    }
-
-    if (error) {
-      return new Error("Error Encountered Sending Email");
-    }
-
-    return {
-      message: "Thanks! An email has been sent to you"
     };
   },
   async validateEmail(parent, args, ctx) {
