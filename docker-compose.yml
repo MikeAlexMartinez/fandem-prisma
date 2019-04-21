@@ -23,8 +23,7 @@ services:
             migrations: true
   postgres:
     image: postgres:10.7
-    # I don't want this to always restart during development
-    # restart: always
+    restart: always
     environment:
       POSTGRES_DB: ${PG_DB}
       POSTGRES_USER: ${PG_USER}

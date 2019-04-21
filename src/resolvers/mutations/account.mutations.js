@@ -154,19 +154,20 @@ const accountMutations = {
     }
     // check if legit token
     // and hasn't expired
-    console.log(`token: ${emailValidationToken}`);
-    console.log(`expiry: ${Date.now() - 1000 * 60 * 60}`);
     const resp = await ctx.db.query.users({
       where: {
         emailValidationToken,
         emailValidationTokenExpiry_gte: Date.now() - 1000 * 60 * 60
       }
     });
-    console.log(resp);
-    if (!resp[0]) {
+    if (resp.length > 1) {
+      return new Error(`Multiple tokens found`);
+    }
+    if (resp.length === 0) {
       return new Error(`Invalid email token provided`);
     }
 
+    const user = resp[0];
     // update user
     await ctx.db.mutation.updateUser({
       where: { id: user.id },
