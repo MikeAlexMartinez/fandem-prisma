@@ -19,8 +19,8 @@ type User {
   subscriptions: [Subscription!]!
   userRoles: [UserRole!]!
   status: [UserStatus]!
-  influence: Influencer!
-  follows: Follower!
+  influence: Influencer
+  follows: Follower
 }
 
 type Status {
