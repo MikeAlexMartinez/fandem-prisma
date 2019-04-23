@@ -6,9 +6,10 @@ type User {
   phoneNumber: String
   favoriteTeam: Team
   country: Country
-  displayName: String
+  displayName: String! @unique
   isPrivate: Boolean! @default(value: "false")
   password: String
+  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean! @default(value: "false")
@@ -17,6 +18,21 @@ type User {
   resetTokenExpiry: Float
   subscriptions: [Subscription!]!
   userRoles: [UserRole!]!
+  status: [UserStatus]!
+}
+
+type Status {
+  id: ID! @unique
+  author: UserStatus
+  content: String!
+  likes: [User]!
+}
+
+type UserStatus {
+  id: ID! @unique
+  author: User!
+  status: Status
+  currentStatus: Boolean
 }
 
 type UserRole {

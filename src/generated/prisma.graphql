@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Sat Apr 20 2019 15:54:13 GMT+0100 (BST)
+# timestamp: Mon Apr 22 2019 09:12:05 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -169,6 +169,10 @@ type AggregateCountry {
   count: Int!
 }
 
+type AggregateStatus {
+  count: Int!
+}
+
 type AggregateSubscription {
   count: Int!
 }
@@ -186,6 +190,10 @@ type AggregateUserAssignedRole {
 }
 
 type AggregateUserRole {
+  count: Int!
+}
+
+type AggregateUserStatus {
   count: Int!
 }
 
@@ -465,6 +473,8 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
+  createStatus(data: StatusCreateInput!): Status!
+  createUserStatus(data: UserStatusCreateInput!): UserStatus!
   createUserAssignedRole(data: UserAssignedRoleCreateInput!): UserAssignedRole!
   createActiveSubscriptions(data: ActiveSubscriptionsCreateInput!): ActiveSubscriptions!
   createSubscription(data: SubscriptionCreateInput!): Subscription!
@@ -472,6 +482,8 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   createUserRole(data: UserRoleCreateInput!): UserRole!
   createTeam(data: TeamCreateInput!): Team!
+  updateStatus(data: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status
+  updateUserStatus(data: UserStatusUpdateInput!, where: UserStatusWhereUniqueInput!): UserStatus
   updateUserAssignedRole(data: UserAssignedRoleUpdateInput!, where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   updateActiveSubscriptions(data: ActiveSubscriptionsUpdateInput!, where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   updateSubscription(data: SubscriptionUpdateInput!, where: SubscriptionWhereUniqueInput!): Subscription
@@ -479,6 +491,8 @@ type Mutation {
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateUserRole(data: UserRoleUpdateInput!, where: UserRoleWhereUniqueInput!): UserRole
   updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
+  deleteStatus(where: StatusWhereUniqueInput!): Status
+  deleteUserStatus(where: UserStatusWhereUniqueInput!): UserStatus
   deleteUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   deleteActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   deleteSubscription(where: SubscriptionWhereUniqueInput!): Subscription
@@ -486,6 +500,8 @@ type Mutation {
   deleteUser(where: UserWhereUniqueInput!): User
   deleteUserRole(where: UserRoleWhereUniqueInput!): UserRole
   deleteTeam(where: TeamWhereUniqueInput!): Team
+  upsertStatus(where: StatusWhereUniqueInput!, create: StatusCreateInput!, update: StatusUpdateInput!): Status!
+  upsertUserStatus(where: UserStatusWhereUniqueInput!, create: UserStatusCreateInput!, update: UserStatusUpdateInput!): UserStatus!
   upsertUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!, create: UserAssignedRoleCreateInput!, update: UserAssignedRoleUpdateInput!): UserAssignedRole!
   upsertActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!, create: ActiveSubscriptionsCreateInput!, update: ActiveSubscriptionsUpdateInput!): ActiveSubscriptions!
   upsertSubscription(where: SubscriptionWhereUniqueInput!, create: SubscriptionCreateInput!, update: SubscriptionUpdateInput!): Subscription!
@@ -493,12 +509,16 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertUserRole(where: UserRoleWhereUniqueInput!, create: UserRoleCreateInput!, update: UserRoleUpdateInput!): UserRole!
   upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
+  updateManyStatuses(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): BatchPayload!
+  updateManyUserStatuses(data: UserStatusUpdateManyMutationInput!, where: UserStatusWhereInput): BatchPayload!
   updateManyActiveSubscriptionses(data: ActiveSubscriptionsUpdateManyMutationInput!, where: ActiveSubscriptionsWhereInput): BatchPayload!
   updateManySubscriptions(data: SubscriptionUpdateManyMutationInput!, where: SubscriptionWhereInput): BatchPayload!
   updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyUserRoles(data: UserRoleUpdateManyMutationInput!, where: UserRoleWhereInput): BatchPayload!
   updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
+  deleteManyStatuses(where: StatusWhereInput): BatchPayload!
+  deleteManyUserStatuses(where: UserStatusWhereInput): BatchPayload!
   deleteManyUserAssignedRoles(where: UserAssignedRoleWhereInput): BatchPayload!
   deleteManyActiveSubscriptionses(where: ActiveSubscriptionsWhereInput): BatchPayload!
   deleteManySubscriptions(where: SubscriptionWhereInput): BatchPayload!
@@ -535,6 +555,8 @@ enum PrismaDatabase {
 }
 
 type Query {
+  statuses(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Status]!
+  userStatuses(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus]!
   userAssignedRoles(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAssignedRole]!
   activeSubscriptionses(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ActiveSubscriptions]!
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription]!
@@ -542,6 +564,8 @@ type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole]!
   teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
+  status(where: StatusWhereUniqueInput!): Status
+  userStatus(where: UserStatusWhereUniqueInput!): UserStatus
   userAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   activeSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   subscription(where: SubscriptionWhereUniqueInput!): Subscription
@@ -549,6 +573,8 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   userRole(where: UserRoleWhereUniqueInput!): UserRole
   team(where: TeamWhereUniqueInput!): Team
+  statusesConnection(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatusConnection!
+  userStatusesConnection(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStatusConnection!
   userAssignedRolesConnection(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAssignedRoleConnection!
   activeSubscriptionsesConnection(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ActiveSubscriptionsConnection!
   subscriptionsConnection(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriptionConnection!
@@ -562,6 +588,187 @@ type Query {
     """The ID of an object"""
     id: ID!
   ): Node
+}
+
+type Status implements Node {
+  id: ID!
+  author: UserStatus
+  content: String!
+  likes(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+}
+
+"""A connection to a list of items."""
+type StatusConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [StatusEdge]!
+  aggregate: AggregateStatus!
+}
+
+input StatusCreateInput {
+  content: String!
+  author: UserStatusCreateOneWithoutStatusInput
+  likes: UserCreateManyInput
+}
+
+input StatusCreateOneWithoutAuthorInput {
+  create: StatusCreateWithoutAuthorInput
+  connect: StatusWhereUniqueInput
+}
+
+input StatusCreateWithoutAuthorInput {
+  content: String!
+  likes: UserCreateManyInput
+}
+
+"""An edge in a connection."""
+type StatusEdge {
+  """The item at the end of the edge."""
+  node: Status!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum StatusOrderByInput {
+  id_ASC
+  id_DESC
+  content_ASC
+  content_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input StatusUpdateInput {
+  content: String
+  author: UserStatusUpdateOneWithoutStatusInput
+  likes: UserUpdateManyInput
+}
+
+input StatusUpdateManyMutationInput {
+  content: String
+}
+
+input StatusUpdateOneWithoutAuthorInput {
+  create: StatusCreateWithoutAuthorInput
+  connect: StatusWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: StatusUpdateWithoutAuthorDataInput
+  upsert: StatusUpsertWithoutAuthorInput
+}
+
+input StatusUpdateWithoutAuthorDataInput {
+  content: String
+  likes: UserUpdateManyInput
+}
+
+input StatusUpsertWithoutAuthorInput {
+  update: StatusUpdateWithoutAuthorDataInput!
+  create: StatusCreateWithoutAuthorInput!
+}
+
+input StatusWhereInput {
+  """Logical AND on all given filters."""
+  AND: [StatusWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [StatusWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [StatusWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  content: String
+
+  """All values that are not equal to given value."""
+  content_not: String
+
+  """All values that are contained in given list."""
+  content_in: [String!]
+
+  """All values that are not contained in given list."""
+  content_not_in: [String!]
+
+  """All values less than the given value."""
+  content_lt: String
+
+  """All values less than or equal the given value."""
+  content_lte: String
+
+  """All values greater than the given value."""
+  content_gt: String
+
+  """All values greater than or equal the given value."""
+  content_gte: String
+
+  """All values containing the given string."""
+  content_contains: String
+
+  """All values not containing the given string."""
+  content_not_contains: String
+
+  """All values starting with the given string."""
+  content_starts_with: String
+
+  """All values not starting with the given string."""
+  content_not_starts_with: String
+
+  """All values ending with the given string."""
+  content_ends_with: String
+
+  """All values not ending with the given string."""
+  content_not_ends_with: String
+  author: UserStatusWhereInput
+  likes_every: UserWhereInput
+  likes_some: UserWhereInput
+  likes_none: UserWhereInput
+}
+
+input StatusWhereUniqueInput {
+  id: ID
 }
 
 type Subscription implements Node {
@@ -1436,9 +1643,10 @@ type User implements Node {
   phoneNumber: String
   favoriteTeam: Team
   country: Country
-  displayName: String
+  displayName: String!
   isPrivate: Boolean!
   password: String
+  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean!
@@ -1447,6 +1655,7 @@ type User implements Node {
   resetTokenExpiry: Float
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole!]
+  status(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus!]
 }
 
 type UserAssignedRole implements Node {
@@ -1565,9 +1774,10 @@ input UserCreateInput {
   name: String!
   countryCode: String
   phoneNumber: String
-  displayName: String
+  displayName: String!
   isPrivate: Boolean
   password: String
+  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -1578,11 +1788,43 @@ input UserCreateInput {
   country: CountryCreateOneInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
+  status: UserStatusCreateManyWithoutAuthorInput
+}
+
+input UserCreateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
 }
 
 input UserCreateOneInput {
   create: UserCreateInput
   connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutStatusInput {
+  create: UserCreateWithoutStatusInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutStatusInput {
+  email: String!
+  name: String!
+  countryCode: String
+  phoneNumber: String
+  displayName: String!
+  isPrivate: Boolean
+  password: String
+  profilePicture: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamCreateOneInput
+  country: CountryCreateOneInput
+  subscriptions: SubscriptionCreateManyInput
+  userRoles: UserRoleCreateManyInput
 }
 
 """An edge in a connection."""
@@ -1611,6 +1853,8 @@ enum UserOrderByInput {
   isPrivate_DESC
   password_ASC
   password_DESC
+  profilePicture_ASC
+  profilePicture_DESC
   emailValidationToken_ASC
   emailValidationToken_DESC
   emailValidationTokenExpiry_ASC
@@ -2008,6 +2252,736 @@ input UserRoleWhereUniqueInput {
   id: ID
 }
 
+input UserScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  countryCode: String
+
+  """All values that are not equal to given value."""
+  countryCode_not: String
+
+  """All values that are contained in given list."""
+  countryCode_in: [String!]
+
+  """All values that are not contained in given list."""
+  countryCode_not_in: [String!]
+
+  """All values less than the given value."""
+  countryCode_lt: String
+
+  """All values less than or equal the given value."""
+  countryCode_lte: String
+
+  """All values greater than the given value."""
+  countryCode_gt: String
+
+  """All values greater than or equal the given value."""
+  countryCode_gte: String
+
+  """All values containing the given string."""
+  countryCode_contains: String
+
+  """All values not containing the given string."""
+  countryCode_not_contains: String
+
+  """All values starting with the given string."""
+  countryCode_starts_with: String
+
+  """All values not starting with the given string."""
+  countryCode_not_starts_with: String
+
+  """All values ending with the given string."""
+  countryCode_ends_with: String
+
+  """All values not ending with the given string."""
+  countryCode_not_ends_with: String
+  phoneNumber: String
+
+  """All values that are not equal to given value."""
+  phoneNumber_not: String
+
+  """All values that are contained in given list."""
+  phoneNumber_in: [String!]
+
+  """All values that are not contained in given list."""
+  phoneNumber_not_in: [String!]
+
+  """All values less than the given value."""
+  phoneNumber_lt: String
+
+  """All values less than or equal the given value."""
+  phoneNumber_lte: String
+
+  """All values greater than the given value."""
+  phoneNumber_gt: String
+
+  """All values greater than or equal the given value."""
+  phoneNumber_gte: String
+
+  """All values containing the given string."""
+  phoneNumber_contains: String
+
+  """All values not containing the given string."""
+  phoneNumber_not_contains: String
+
+  """All values starting with the given string."""
+  phoneNumber_starts_with: String
+
+  """All values not starting with the given string."""
+  phoneNumber_not_starts_with: String
+
+  """All values ending with the given string."""
+  phoneNumber_ends_with: String
+
+  """All values not ending with the given string."""
+  phoneNumber_not_ends_with: String
+  displayName: String
+
+  """All values that are not equal to given value."""
+  displayName_not: String
+
+  """All values that are contained in given list."""
+  displayName_in: [String!]
+
+  """All values that are not contained in given list."""
+  displayName_not_in: [String!]
+
+  """All values less than the given value."""
+  displayName_lt: String
+
+  """All values less than or equal the given value."""
+  displayName_lte: String
+
+  """All values greater than the given value."""
+  displayName_gt: String
+
+  """All values greater than or equal the given value."""
+  displayName_gte: String
+
+  """All values containing the given string."""
+  displayName_contains: String
+
+  """All values not containing the given string."""
+  displayName_not_contains: String
+
+  """All values starting with the given string."""
+  displayName_starts_with: String
+
+  """All values not starting with the given string."""
+  displayName_not_starts_with: String
+
+  """All values ending with the given string."""
+  displayName_ends_with: String
+
+  """All values not ending with the given string."""
+  displayName_not_ends_with: String
+  isPrivate: Boolean
+
+  """All values that are not equal to given value."""
+  isPrivate_not: Boolean
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  profilePicture: String
+
+  """All values that are not equal to given value."""
+  profilePicture_not: String
+
+  """All values that are contained in given list."""
+  profilePicture_in: [String!]
+
+  """All values that are not contained in given list."""
+  profilePicture_not_in: [String!]
+
+  """All values less than the given value."""
+  profilePicture_lt: String
+
+  """All values less than or equal the given value."""
+  profilePicture_lte: String
+
+  """All values greater than the given value."""
+  profilePicture_gt: String
+
+  """All values greater than or equal the given value."""
+  profilePicture_gte: String
+
+  """All values containing the given string."""
+  profilePicture_contains: String
+
+  """All values not containing the given string."""
+  profilePicture_not_contains: String
+
+  """All values starting with the given string."""
+  profilePicture_starts_with: String
+
+  """All values not starting with the given string."""
+  profilePicture_not_starts_with: String
+
+  """All values ending with the given string."""
+  profilePicture_ends_with: String
+
+  """All values not ending with the given string."""
+  profilePicture_not_ends_with: String
+  emailValidationToken: String
+
+  """All values that are not equal to given value."""
+  emailValidationToken_not: String
+
+  """All values that are contained in given list."""
+  emailValidationToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  emailValidationToken_not_in: [String!]
+
+  """All values less than the given value."""
+  emailValidationToken_lt: String
+
+  """All values less than or equal the given value."""
+  emailValidationToken_lte: String
+
+  """All values greater than the given value."""
+  emailValidationToken_gt: String
+
+  """All values greater than or equal the given value."""
+  emailValidationToken_gte: String
+
+  """All values containing the given string."""
+  emailValidationToken_contains: String
+
+  """All values not containing the given string."""
+  emailValidationToken_not_contains: String
+
+  """All values starting with the given string."""
+  emailValidationToken_starts_with: String
+
+  """All values not starting with the given string."""
+  emailValidationToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  emailValidationToken_ends_with: String
+
+  """All values not ending with the given string."""
+  emailValidationToken_not_ends_with: String
+  emailValidationTokenExpiry: Float
+
+  """All values that are not equal to given value."""
+  emailValidationTokenExpiry_not: Float
+
+  """All values that are contained in given list."""
+  emailValidationTokenExpiry_in: [Float!]
+
+  """All values that are not contained in given list."""
+  emailValidationTokenExpiry_not_in: [Float!]
+
+  """All values less than the given value."""
+  emailValidationTokenExpiry_lt: Float
+
+  """All values less than or equal the given value."""
+  emailValidationTokenExpiry_lte: Float
+
+  """All values greater than the given value."""
+  emailValidationTokenExpiry_gt: Float
+
+  """All values greater than or equal the given value."""
+  emailValidationTokenExpiry_gte: Float
+  emailValidated: Boolean
+
+  """All values that are not equal to given value."""
+  emailValidated_not: Boolean
+  emailValidationDate: DateTime
+
+  """All values that are not equal to given value."""
+  emailValidationDate_not: DateTime
+
+  """All values that are contained in given list."""
+  emailValidationDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  emailValidationDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  emailValidationDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  emailValidationDate_lte: DateTime
+
+  """All values greater than the given value."""
+  emailValidationDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  emailValidationDate_gte: DateTime
+  resetToken: String
+
+  """All values that are not equal to given value."""
+  resetToken_not: String
+
+  """All values that are contained in given list."""
+  resetToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  resetToken_not_in: [String!]
+
+  """All values less than the given value."""
+  resetToken_lt: String
+
+  """All values less than or equal the given value."""
+  resetToken_lte: String
+
+  """All values greater than the given value."""
+  resetToken_gt: String
+
+  """All values greater than or equal the given value."""
+  resetToken_gte: String
+
+  """All values containing the given string."""
+  resetToken_contains: String
+
+  """All values not containing the given string."""
+  resetToken_not_contains: String
+
+  """All values starting with the given string."""
+  resetToken_starts_with: String
+
+  """All values not starting with the given string."""
+  resetToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  resetToken_ends_with: String
+
+  """All values not ending with the given string."""
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+
+  """All values that are not equal to given value."""
+  resetTokenExpiry_not: Float
+
+  """All values that are contained in given list."""
+  resetTokenExpiry_in: [Float!]
+
+  """All values that are not contained in given list."""
+  resetTokenExpiry_not_in: [Float!]
+
+  """All values less than the given value."""
+  resetTokenExpiry_lt: Float
+
+  """All values less than or equal the given value."""
+  resetTokenExpiry_lte: Float
+
+  """All values greater than the given value."""
+  resetTokenExpiry_gt: Float
+
+  """All values greater than or equal the given value."""
+  resetTokenExpiry_gte: Float
+}
+
+type UserStatus implements Node {
+  id: ID!
+  author: User!
+  status: Status
+  currentStatus: Boolean
+}
+
+"""A connection to a list of items."""
+type UserStatusConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserStatusEdge]!
+  aggregate: AggregateUserStatus!
+}
+
+input UserStatusCreateInput {
+  currentStatus: Boolean
+  author: UserCreateOneWithoutStatusInput!
+  status: StatusCreateOneWithoutAuthorInput
+}
+
+input UserStatusCreateManyWithoutAuthorInput {
+  create: [UserStatusCreateWithoutAuthorInput!]
+  connect: [UserStatusWhereUniqueInput!]
+}
+
+input UserStatusCreateOneWithoutStatusInput {
+  create: UserStatusCreateWithoutStatusInput
+  connect: UserStatusWhereUniqueInput
+}
+
+input UserStatusCreateWithoutAuthorInput {
+  currentStatus: Boolean
+  status: StatusCreateOneWithoutAuthorInput
+}
+
+input UserStatusCreateWithoutStatusInput {
+  currentStatus: Boolean
+  author: UserCreateOneWithoutStatusInput!
+}
+
+"""An edge in a connection."""
+type UserStatusEdge {
+  """The item at the end of the edge."""
+  node: UserStatus!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserStatusOrderByInput {
+  id_ASC
+  id_DESC
+  currentStatus_ASC
+  currentStatus_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input UserStatusScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserStatusScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserStatusScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserStatusScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  currentStatus: Boolean
+
+  """All values that are not equal to given value."""
+  currentStatus_not: Boolean
+}
+
+input UserStatusUpdateInput {
+  currentStatus: Boolean
+  author: UserUpdateOneRequiredWithoutStatusInput
+  status: StatusUpdateOneWithoutAuthorInput
+}
+
+input UserStatusUpdateManyDataInput {
+  currentStatus: Boolean
+}
+
+input UserStatusUpdateManyMutationInput {
+  currentStatus: Boolean
+}
+
+input UserStatusUpdateManyWithoutAuthorInput {
+  create: [UserStatusCreateWithoutAuthorInput!]
+  connect: [UserStatusWhereUniqueInput!]
+  set: [UserStatusWhereUniqueInput!]
+  disconnect: [UserStatusWhereUniqueInput!]
+  delete: [UserStatusWhereUniqueInput!]
+  update: [UserStatusUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [UserStatusUpdateManyWithWhereNestedInput!]
+  deleteMany: [UserStatusScalarWhereInput!]
+  upsert: [UserStatusUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input UserStatusUpdateManyWithWhereNestedInput {
+  where: UserStatusScalarWhereInput!
+  data: UserStatusUpdateManyDataInput!
+}
+
+input UserStatusUpdateOneWithoutStatusInput {
+  create: UserStatusCreateWithoutStatusInput
+  connect: UserStatusWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserStatusUpdateWithoutStatusDataInput
+  upsert: UserStatusUpsertWithoutStatusInput
+}
+
+input UserStatusUpdateWithoutAuthorDataInput {
+  currentStatus: Boolean
+  status: StatusUpdateOneWithoutAuthorInput
+}
+
+input UserStatusUpdateWithoutStatusDataInput {
+  currentStatus: Boolean
+  author: UserUpdateOneRequiredWithoutStatusInput
+}
+
+input UserStatusUpdateWithWhereUniqueWithoutAuthorInput {
+  where: UserStatusWhereUniqueInput!
+  data: UserStatusUpdateWithoutAuthorDataInput!
+}
+
+input UserStatusUpsertWithoutStatusInput {
+  update: UserStatusUpdateWithoutStatusDataInput!
+  create: UserStatusCreateWithoutStatusInput!
+}
+
+input UserStatusUpsertWithWhereUniqueWithoutAuthorInput {
+  where: UserStatusWhereUniqueInput!
+  update: UserStatusUpdateWithoutAuthorDataInput!
+  create: UserStatusCreateWithoutAuthorInput!
+}
+
+input UserStatusWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserStatusWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserStatusWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserStatusWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  currentStatus: Boolean
+
+  """All values that are not equal to given value."""
+  currentStatus_not: Boolean
+  author: UserWhereInput
+  status: StatusWhereInput
+}
+
+input UserStatusWhereUniqueInput {
+  id: ID
+}
+
 input UserUpdateDataInput {
   email: String
   name: String
@@ -2016,6 +2990,7 @@ input UserUpdateDataInput {
   displayName: String
   isPrivate: Boolean
   password: String
+  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -2026,6 +3001,7 @@ input UserUpdateDataInput {
   country: CountryUpdateOneInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
+  status: UserStatusUpdateManyWithoutAuthorInput
 }
 
 input UserUpdateInput {
@@ -2036,6 +3012,94 @@ input UserUpdateInput {
   displayName: String
   isPrivate: Boolean
   password: String
+  profilePicture: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamUpdateOneInput
+  country: CountryUpdateOneInput
+  subscriptions: SubscriptionUpdateManyInput
+  userRoles: UserRoleUpdateManyInput
+  status: UserStatusUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateManyDataInput {
+  email: String
+  name: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  profilePicture: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+input UserUpdateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueNestedInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+  deleteMany: [UserScalarWhereInput!]
+  upsert: [UserUpsertWithWhereUniqueNestedInput!]
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  name: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  profilePicture: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+}
+
+input UserUpdateOneRequiredWithoutStatusInput {
+  create: UserCreateWithoutStatusInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutStatusDataInput
+  upsert: UserUpsertWithoutStatusInput
+}
+
+input UserUpdateWithoutStatusDataInput {
+  email: String
+  name: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -2048,30 +3112,23 @@ input UserUpdateInput {
   userRoles: UserRoleUpdateManyInput
 }
 
-input UserUpdateManyMutationInput {
-  email: String
-  name: String
-  countryCode: String
-  phoneNumber: String
-  displayName: String
-  isPrivate: Boolean
-  password: String
-  emailValidationToken: String
-  emailValidationTokenExpiry: Float
-  emailValidated: Boolean
-  emailValidationDate: DateTime
-  resetToken: String
-  resetTokenExpiry: Float
-}
-
-input UserUpdateOneRequiredInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
+input UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateDataInput!
 }
 
 input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutStatusInput {
+  update: UserUpdateWithoutStatusDataInput!
+  create: UserCreateWithoutStatusInput!
+}
+
+input UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
   update: UserUpdateDataInput!
   create: UserCreateInput!
 }
@@ -2369,6 +3426,46 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
+  profilePicture: String
+
+  """All values that are not equal to given value."""
+  profilePicture_not: String
+
+  """All values that are contained in given list."""
+  profilePicture_in: [String!]
+
+  """All values that are not contained in given list."""
+  profilePicture_not_in: [String!]
+
+  """All values less than the given value."""
+  profilePicture_lt: String
+
+  """All values less than or equal the given value."""
+  profilePicture_lte: String
+
+  """All values greater than the given value."""
+  profilePicture_gt: String
+
+  """All values greater than or equal the given value."""
+  profilePicture_gte: String
+
+  """All values containing the given string."""
+  profilePicture_contains: String
+
+  """All values not containing the given string."""
+  profilePicture_not_contains: String
+
+  """All values starting with the given string."""
+  profilePicture_starts_with: String
+
+  """All values not starting with the given string."""
+  profilePicture_not_starts_with: String
+
+  """All values ending with the given string."""
+  profilePicture_ends_with: String
+
+  """All values not ending with the given string."""
+  profilePicture_not_ends_with: String
   emailValidationToken: String
 
   """All values that are not equal to given value."""
@@ -2527,9 +3624,13 @@ input UserWhereInput {
   userRoles_every: UserRoleWhereInput
   userRoles_some: UserRoleWhereInput
   userRoles_none: UserRoleWhereInput
+  status_every: UserStatusWhereInput
+  status_some: UserStatusWhereInput
+  status_none: UserStatusWhereInput
 }
 
 input UserWhereUniqueInput {
   id: ID
   email: String
+  displayName: String
 }

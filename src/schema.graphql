@@ -5,7 +5,12 @@ type SuccessMessage {
 }
 
 type Mutation {
-  createUser(name: String!, email: String!, password: String!): User!
+  createUser(
+    name: String!
+    email: String!
+    password: String!
+    displayName: String!
+  ): User!
   signIn(email: String!, password: String!): User!
   signOut: SuccessMessage
   requestEmailValidation: SuccessMessage
@@ -20,6 +25,7 @@ type Mutation {
 
 type Query {
   checkEmail(email: String!): Boolean!
+  checkDisplayName(displayName: String!): Boolean!
   currentUser: User
 }
 

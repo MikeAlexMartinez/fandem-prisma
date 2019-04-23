@@ -1,5 +1,10 @@
 const accountQueries = {
-  async checkEmail(parent, args, ctx, info) {
+  async checkDisplayName(parent, args, ctx) {
+    return ctx.db.exists.User({
+      displayName: args.displayName
+    });
+  },
+  async checkEmail(parent, args, ctx) {
     return ctx.db.exists.User({
       email: args.email
     });
