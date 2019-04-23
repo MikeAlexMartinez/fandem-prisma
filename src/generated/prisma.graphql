@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Tue Apr 23 2019 19:39:10 GMT+0100 (BST)
+# timestamp: Tue Apr 23 2019 22:23:38 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -473,7 +473,7 @@ scalar DateTime
 
 type Follower implements Node {
   id: ID!
-  influencedBy: Influencer!
+  influencedBy(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer!]
   follower: User!
   blocked: Boolean!
   accepted: Boolean!
@@ -492,8 +492,8 @@ type FollowerConnection {
 input FollowerCreateInput {
   blocked: Boolean
   accepted: Boolean
-  influencedBy: InfluencerCreateOneWithoutFollowersInput!
-  follower: UserCreateOneInput!
+  influencedBy: InfluencerCreateManyWithoutFollowersInput
+  follower: UserCreateOneWithoutFollowsInput!
 }
 
 input FollowerCreateManyWithoutInfluencedByInput {
@@ -501,10 +501,21 @@ input FollowerCreateManyWithoutInfluencedByInput {
   connect: [FollowerWhereUniqueInput!]
 }
 
+input FollowerCreateOneWithoutFollowerInput {
+  create: FollowerCreateWithoutFollowerInput
+  connect: FollowerWhereUniqueInput
+}
+
+input FollowerCreateWithoutFollowerInput {
+  blocked: Boolean
+  accepted: Boolean
+  influencedBy: InfluencerCreateManyWithoutFollowersInput
+}
+
 input FollowerCreateWithoutInfluencedByInput {
   blocked: Boolean
   accepted: Boolean
-  follower: UserCreateOneInput!
+  follower: UserCreateOneWithoutFollowsInput!
 }
 
 """An edge in a connection."""
@@ -591,8 +602,8 @@ input FollowerScalarWhereInput {
 input FollowerUpdateInput {
   blocked: Boolean
   accepted: Boolean
-  influencedBy: InfluencerUpdateOneRequiredWithoutFollowersInput
-  follower: UserUpdateOneRequiredInput
+  influencedBy: InfluencerUpdateManyWithoutFollowersInput
+  follower: UserUpdateOneRequiredWithoutFollowsInput
 }
 
 input FollowerUpdateManyDataInput {
@@ -622,15 +633,33 @@ input FollowerUpdateManyWithWhereNestedInput {
   data: FollowerUpdateManyDataInput!
 }
 
+input FollowerUpdateOneRequiredWithoutFollowerInput {
+  create: FollowerCreateWithoutFollowerInput
+  connect: FollowerWhereUniqueInput
+  update: FollowerUpdateWithoutFollowerDataInput
+  upsert: FollowerUpsertWithoutFollowerInput
+}
+
+input FollowerUpdateWithoutFollowerDataInput {
+  blocked: Boolean
+  accepted: Boolean
+  influencedBy: InfluencerUpdateManyWithoutFollowersInput
+}
+
 input FollowerUpdateWithoutInfluencedByDataInput {
   blocked: Boolean
   accepted: Boolean
-  follower: UserUpdateOneRequiredInput
+  follower: UserUpdateOneRequiredWithoutFollowsInput
 }
 
 input FollowerUpdateWithWhereUniqueWithoutInfluencedByInput {
   where: FollowerWhereUniqueInput!
   data: FollowerUpdateWithoutInfluencedByDataInput!
+}
+
+input FollowerUpsertWithoutFollowerInput {
+  update: FollowerUpdateWithoutFollowerDataInput!
+  create: FollowerCreateWithoutFollowerInput!
 }
 
 input FollowerUpsertWithWhereUniqueWithoutInfluencedByInput {
@@ -696,7 +725,9 @@ input FollowerWhereInput {
 
   """All values that are not equal to given value."""
   accepted_not: Boolean
-  influencedBy: InfluencerWhereInput
+  influencedBy_every: InfluencerWhereInput
+  influencedBy_some: InfluencerWhereInput
+  influencedBy_none: InfluencerWhereInput
   follower: UserWhereInput
 }
 
@@ -725,13 +756,13 @@ input InfluencerCreateInput {
   followers: FollowerCreateManyWithoutInfluencedByInput
 }
 
-input InfluencerCreateManyWithoutInfluencerInput {
-  create: [InfluencerCreateWithoutInfluencerInput!]
+input InfluencerCreateManyWithoutFollowersInput {
+  create: [InfluencerCreateWithoutFollowersInput!]
   connect: [InfluencerWhereUniqueInput!]
 }
 
-input InfluencerCreateOneWithoutFollowersInput {
-  create: InfluencerCreateWithoutFollowersInput
+input InfluencerCreateOneWithoutInfluencerInput {
+  create: InfluencerCreateWithoutInfluencerInput
   connect: InfluencerWhereUniqueInput
 }
 
@@ -817,22 +848,22 @@ input InfluencerUpdateInput {
   followers: FollowerUpdateManyWithoutInfluencedByInput
 }
 
-input InfluencerUpdateManyWithoutInfluencerInput {
-  create: [InfluencerCreateWithoutInfluencerInput!]
+input InfluencerUpdateManyWithoutFollowersInput {
+  create: [InfluencerCreateWithoutFollowersInput!]
   connect: [InfluencerWhereUniqueInput!]
   set: [InfluencerWhereUniqueInput!]
   disconnect: [InfluencerWhereUniqueInput!]
   delete: [InfluencerWhereUniqueInput!]
-  update: [InfluencerUpdateWithWhereUniqueWithoutInfluencerInput!]
+  update: [InfluencerUpdateWithWhereUniqueWithoutFollowersInput!]
   deleteMany: [InfluencerScalarWhereInput!]
-  upsert: [InfluencerUpsertWithWhereUniqueWithoutInfluencerInput!]
+  upsert: [InfluencerUpsertWithWhereUniqueWithoutFollowersInput!]
 }
 
-input InfluencerUpdateOneRequiredWithoutFollowersInput {
-  create: InfluencerCreateWithoutFollowersInput
+input InfluencerUpdateOneRequiredWithoutInfluencerInput {
+  create: InfluencerCreateWithoutInfluencerInput
   connect: InfluencerWhereUniqueInput
-  update: InfluencerUpdateWithoutFollowersDataInput
-  upsert: InfluencerUpsertWithoutFollowersInput
+  update: InfluencerUpdateWithoutInfluencerDataInput
+  upsert: InfluencerUpsertWithoutInfluencerInput
 }
 
 input InfluencerUpdateWithoutFollowersDataInput {
@@ -843,20 +874,20 @@ input InfluencerUpdateWithoutInfluencerDataInput {
   followers: FollowerUpdateManyWithoutInfluencedByInput
 }
 
-input InfluencerUpdateWithWhereUniqueWithoutInfluencerInput {
+input InfluencerUpdateWithWhereUniqueWithoutFollowersInput {
   where: InfluencerWhereUniqueInput!
-  data: InfluencerUpdateWithoutInfluencerDataInput!
+  data: InfluencerUpdateWithoutFollowersDataInput!
 }
 
-input InfluencerUpsertWithoutFollowersInput {
-  update: InfluencerUpdateWithoutFollowersDataInput!
-  create: InfluencerCreateWithoutFollowersInput!
-}
-
-input InfluencerUpsertWithWhereUniqueWithoutInfluencerInput {
-  where: InfluencerWhereUniqueInput!
+input InfluencerUpsertWithoutInfluencerInput {
   update: InfluencerUpdateWithoutInfluencerDataInput!
   create: InfluencerCreateWithoutInfluencerInput!
+}
+
+input InfluencerUpsertWithWhereUniqueWithoutFollowersInput {
+  where: InfluencerWhereUniqueInput!
+  update: InfluencerUpdateWithoutFollowersDataInput!
+  create: InfluencerCreateWithoutFollowersInput!
 }
 
 input InfluencerWhereInput {
@@ -2128,7 +2159,8 @@ type User implements Node {
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole!]
   status(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus!]
-  influence(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer!]
+  influence: Influencer!
+  follows: Follower!
 }
 
 type UserAssignedRole implements Node {
@@ -2262,7 +2294,8 @@ input UserCreateInput {
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyWithoutAuthorInput
-  influence: InfluencerCreateManyWithoutInfluencerInput
+  influence: InfluencerCreateOneWithoutInfluencerInput!
+  follows: FollowerCreateOneWithoutFollowerInput!
 }
 
 input UserCreateManyInput {
@@ -2275,6 +2308,11 @@ input UserCreateOneInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateOneWithoutFollowsInput {
+  create: UserCreateWithoutFollowsInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreateOneWithoutInfluenceInput {
   create: UserCreateWithoutInfluenceInput
   connect: UserWhereUniqueInput
@@ -2283,6 +2321,29 @@ input UserCreateOneWithoutInfluenceInput {
 input UserCreateOneWithoutStatusInput {
   create: UserCreateWithoutStatusInput
   connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutFollowsInput {
+  email: String!
+  name: String!
+  countryCode: String
+  phoneNumber: String
+  displayName: String!
+  isPrivate: Boolean
+  password: String
+  profilePicture: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamCreateOneInput
+  country: CountryCreateOneInput
+  subscriptions: SubscriptionCreateManyInput
+  userRoles: UserRoleCreateManyInput
+  status: UserStatusCreateManyWithoutAuthorInput
+  influence: InfluencerCreateOneWithoutInfluencerInput!
 }
 
 input UserCreateWithoutInfluenceInput {
@@ -2305,6 +2366,7 @@ input UserCreateWithoutInfluenceInput {
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyWithoutAuthorInput
+  follows: FollowerCreateOneWithoutFollowerInput!
 }
 
 input UserCreateWithoutStatusInput {
@@ -2326,7 +2388,8 @@ input UserCreateWithoutStatusInput {
   country: CountryCreateOneInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
-  influence: InfluencerCreateManyWithoutInfluencerInput
+  influence: InfluencerCreateOneWithoutInfluencerInput!
+  follows: FollowerCreateOneWithoutFollowerInput!
 }
 
 """An edge in a connection."""
@@ -3504,7 +3567,8 @@ input UserUpdateDataInput {
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyWithoutAuthorInput
-  influence: InfluencerUpdateManyWithoutInfluencerInput
+  influence: InfluencerUpdateOneRequiredWithoutInfluencerInput
+  follows: FollowerUpdateOneRequiredWithoutFollowerInput
 }
 
 input UserUpdateInput {
@@ -3527,7 +3591,8 @@ input UserUpdateInput {
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyWithoutAuthorInput
-  influence: InfluencerUpdateManyWithoutInfluencerInput
+  influence: InfluencerUpdateOneRequiredWithoutInfluencerInput
+  follows: FollowerUpdateOneRequiredWithoutFollowerInput
 }
 
 input UserUpdateManyDataInput {
@@ -3588,6 +3653,13 @@ input UserUpdateOneRequiredInput {
   upsert: UserUpsertNestedInput
 }
 
+input UserUpdateOneRequiredWithoutFollowsInput {
+  create: UserCreateWithoutFollowsInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutFollowsDataInput
+  upsert: UserUpsertWithoutFollowsInput
+}
+
 input UserUpdateOneRequiredWithoutInfluenceInput {
   create: UserCreateWithoutInfluenceInput
   connect: UserWhereUniqueInput
@@ -3600,6 +3672,29 @@ input UserUpdateOneRequiredWithoutStatusInput {
   connect: UserWhereUniqueInput
   update: UserUpdateWithoutStatusDataInput
   upsert: UserUpsertWithoutStatusInput
+}
+
+input UserUpdateWithoutFollowsDataInput {
+  email: String
+  name: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  profilePicture: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamUpdateOneInput
+  country: CountryUpdateOneInput
+  subscriptions: SubscriptionUpdateManyInput
+  userRoles: UserRoleUpdateManyInput
+  status: UserStatusUpdateManyWithoutAuthorInput
+  influence: InfluencerUpdateOneRequiredWithoutInfluencerInput
 }
 
 input UserUpdateWithoutInfluenceDataInput {
@@ -3622,6 +3717,7 @@ input UserUpdateWithoutInfluenceDataInput {
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyWithoutAuthorInput
+  follows: FollowerUpdateOneRequiredWithoutFollowerInput
 }
 
 input UserUpdateWithoutStatusDataInput {
@@ -3643,7 +3739,8 @@ input UserUpdateWithoutStatusDataInput {
   country: CountryUpdateOneInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
-  influence: InfluencerUpdateManyWithoutInfluencerInput
+  influence: InfluencerUpdateOneRequiredWithoutInfluencerInput
+  follows: FollowerUpdateOneRequiredWithoutFollowerInput
 }
 
 input UserUpdateWithWhereUniqueNestedInput {
@@ -3654,6 +3751,11 @@ input UserUpdateWithWhereUniqueNestedInput {
 input UserUpsertNestedInput {
   update: UserUpdateDataInput!
   create: UserCreateInput!
+}
+
+input UserUpsertWithoutFollowsInput {
+  update: UserUpdateWithoutFollowsDataInput!
+  create: UserCreateWithoutFollowsInput!
 }
 
 input UserUpsertWithoutInfluenceInput {
@@ -4166,9 +4268,8 @@ input UserWhereInput {
   status_every: UserStatusWhereInput
   status_some: UserStatusWhereInput
   status_none: UserStatusWhereInput
-  influence_every: InfluencerWhereInput
-  influence_some: InfluencerWhereInput
-  influence_none: InfluencerWhereInput
+  influence: InfluencerWhereInput
+  follows: FollowerWhereInput
 }
 
 input UserWhereUniqueInput {
