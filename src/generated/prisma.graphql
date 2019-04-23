@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Mon Apr 22 2019 09:12:05 GMT+0100 (BST)
+# timestamp: Tue Apr 23 2019 19:39:10 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -166,6 +166,14 @@ type AggregateActiveSubscriptions {
 }
 
 type AggregateCountry {
+  count: Int!
+}
+
+type AggregateFollower {
+  count: Int!
+}
+
+type AggregateInfluencer {
   count: Int!
 }
 
@@ -463,6 +471,453 @@ input CountryWhereUniqueInput {
 
 scalar DateTime
 
+type Follower implements Node {
+  id: ID!
+  influencedBy: Influencer!
+  follower: User!
+  blocked: Boolean!
+  accepted: Boolean!
+}
+
+"""A connection to a list of items."""
+type FollowerConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FollowerEdge]!
+  aggregate: AggregateFollower!
+}
+
+input FollowerCreateInput {
+  blocked: Boolean
+  accepted: Boolean
+  influencedBy: InfluencerCreateOneWithoutFollowersInput!
+  follower: UserCreateOneInput!
+}
+
+input FollowerCreateManyWithoutInfluencedByInput {
+  create: [FollowerCreateWithoutInfluencedByInput!]
+  connect: [FollowerWhereUniqueInput!]
+}
+
+input FollowerCreateWithoutInfluencedByInput {
+  blocked: Boolean
+  accepted: Boolean
+  follower: UserCreateOneInput!
+}
+
+"""An edge in a connection."""
+type FollowerEdge {
+  """The item at the end of the edge."""
+  node: Follower!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FollowerOrderByInput {
+  id_ASC
+  id_DESC
+  blocked_ASC
+  blocked_DESC
+  accepted_ASC
+  accepted_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input FollowerScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FollowerScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FollowerScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FollowerScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  blocked: Boolean
+
+  """All values that are not equal to given value."""
+  blocked_not: Boolean
+  accepted: Boolean
+
+  """All values that are not equal to given value."""
+  accepted_not: Boolean
+}
+
+input FollowerUpdateInput {
+  blocked: Boolean
+  accepted: Boolean
+  influencedBy: InfluencerUpdateOneRequiredWithoutFollowersInput
+  follower: UserUpdateOneRequiredInput
+}
+
+input FollowerUpdateManyDataInput {
+  blocked: Boolean
+  accepted: Boolean
+}
+
+input FollowerUpdateManyMutationInput {
+  blocked: Boolean
+  accepted: Boolean
+}
+
+input FollowerUpdateManyWithoutInfluencedByInput {
+  create: [FollowerCreateWithoutInfluencedByInput!]
+  connect: [FollowerWhereUniqueInput!]
+  set: [FollowerWhereUniqueInput!]
+  disconnect: [FollowerWhereUniqueInput!]
+  delete: [FollowerWhereUniqueInput!]
+  update: [FollowerUpdateWithWhereUniqueWithoutInfluencedByInput!]
+  updateMany: [FollowerUpdateManyWithWhereNestedInput!]
+  deleteMany: [FollowerScalarWhereInput!]
+  upsert: [FollowerUpsertWithWhereUniqueWithoutInfluencedByInput!]
+}
+
+input FollowerUpdateManyWithWhereNestedInput {
+  where: FollowerScalarWhereInput!
+  data: FollowerUpdateManyDataInput!
+}
+
+input FollowerUpdateWithoutInfluencedByDataInput {
+  blocked: Boolean
+  accepted: Boolean
+  follower: UserUpdateOneRequiredInput
+}
+
+input FollowerUpdateWithWhereUniqueWithoutInfluencedByInput {
+  where: FollowerWhereUniqueInput!
+  data: FollowerUpdateWithoutInfluencedByDataInput!
+}
+
+input FollowerUpsertWithWhereUniqueWithoutInfluencedByInput {
+  where: FollowerWhereUniqueInput!
+  update: FollowerUpdateWithoutInfluencedByDataInput!
+  create: FollowerCreateWithoutInfluencedByInput!
+}
+
+input FollowerWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FollowerWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FollowerWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FollowerWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  blocked: Boolean
+
+  """All values that are not equal to given value."""
+  blocked_not: Boolean
+  accepted: Boolean
+
+  """All values that are not equal to given value."""
+  accepted_not: Boolean
+  influencedBy: InfluencerWhereInput
+  follower: UserWhereInput
+}
+
+input FollowerWhereUniqueInput {
+  id: ID
+}
+
+type Influencer implements Node {
+  id: ID!
+  influencer: User!
+  followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower!]
+}
+
+"""A connection to a list of items."""
+type InfluencerConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [InfluencerEdge]!
+  aggregate: AggregateInfluencer!
+}
+
+input InfluencerCreateInput {
+  influencer: UserCreateOneWithoutInfluenceInput!
+  followers: FollowerCreateManyWithoutInfluencedByInput
+}
+
+input InfluencerCreateManyWithoutInfluencerInput {
+  create: [InfluencerCreateWithoutInfluencerInput!]
+  connect: [InfluencerWhereUniqueInput!]
+}
+
+input InfluencerCreateOneWithoutFollowersInput {
+  create: InfluencerCreateWithoutFollowersInput
+  connect: InfluencerWhereUniqueInput
+}
+
+input InfluencerCreateWithoutFollowersInput {
+  influencer: UserCreateOneWithoutInfluenceInput!
+}
+
+input InfluencerCreateWithoutInfluencerInput {
+  followers: FollowerCreateManyWithoutInfluencedByInput
+}
+
+"""An edge in a connection."""
+type InfluencerEdge {
+  """The item at the end of the edge."""
+  node: Influencer!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum InfluencerOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input InfluencerScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InfluencerScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InfluencerScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InfluencerScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+}
+
+input InfluencerUpdateInput {
+  influencer: UserUpdateOneRequiredWithoutInfluenceInput
+  followers: FollowerUpdateManyWithoutInfluencedByInput
+}
+
+input InfluencerUpdateManyWithoutInfluencerInput {
+  create: [InfluencerCreateWithoutInfluencerInput!]
+  connect: [InfluencerWhereUniqueInput!]
+  set: [InfluencerWhereUniqueInput!]
+  disconnect: [InfluencerWhereUniqueInput!]
+  delete: [InfluencerWhereUniqueInput!]
+  update: [InfluencerUpdateWithWhereUniqueWithoutInfluencerInput!]
+  deleteMany: [InfluencerScalarWhereInput!]
+  upsert: [InfluencerUpsertWithWhereUniqueWithoutInfluencerInput!]
+}
+
+input InfluencerUpdateOneRequiredWithoutFollowersInput {
+  create: InfluencerCreateWithoutFollowersInput
+  connect: InfluencerWhereUniqueInput
+  update: InfluencerUpdateWithoutFollowersDataInput
+  upsert: InfluencerUpsertWithoutFollowersInput
+}
+
+input InfluencerUpdateWithoutFollowersDataInput {
+  influencer: UserUpdateOneRequiredWithoutInfluenceInput
+}
+
+input InfluencerUpdateWithoutInfluencerDataInput {
+  followers: FollowerUpdateManyWithoutInfluencedByInput
+}
+
+input InfluencerUpdateWithWhereUniqueWithoutInfluencerInput {
+  where: InfluencerWhereUniqueInput!
+  data: InfluencerUpdateWithoutInfluencerDataInput!
+}
+
+input InfluencerUpsertWithoutFollowersInput {
+  update: InfluencerUpdateWithoutFollowersDataInput!
+  create: InfluencerCreateWithoutFollowersInput!
+}
+
+input InfluencerUpsertWithWhereUniqueWithoutInfluencerInput {
+  where: InfluencerWhereUniqueInput!
+  update: InfluencerUpdateWithoutInfluencerDataInput!
+  create: InfluencerCreateWithoutInfluencerInput!
+}
+
+input InfluencerWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InfluencerWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InfluencerWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InfluencerWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  influencer: UserWhereInput
+  followers_every: FollowerWhereInput
+  followers_some: FollowerWhereInput
+  followers_none: FollowerWhereInput
+}
+
+input InfluencerWhereUniqueInput {
+  id: ID
+}
+
 """Raw JSON value"""
 scalar Json
 
@@ -475,6 +930,8 @@ scalar Long
 type Mutation {
   createStatus(data: StatusCreateInput!): Status!
   createUserStatus(data: UserStatusCreateInput!): UserStatus!
+  createInfluencer(data: InfluencerCreateInput!): Influencer!
+  createFollower(data: FollowerCreateInput!): Follower!
   createUserAssignedRole(data: UserAssignedRoleCreateInput!): UserAssignedRole!
   createActiveSubscriptions(data: ActiveSubscriptionsCreateInput!): ActiveSubscriptions!
   createSubscription(data: SubscriptionCreateInput!): Subscription!
@@ -484,6 +941,8 @@ type Mutation {
   createTeam(data: TeamCreateInput!): Team!
   updateStatus(data: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status
   updateUserStatus(data: UserStatusUpdateInput!, where: UserStatusWhereUniqueInput!): UserStatus
+  updateInfluencer(data: InfluencerUpdateInput!, where: InfluencerWhereUniqueInput!): Influencer
+  updateFollower(data: FollowerUpdateInput!, where: FollowerWhereUniqueInput!): Follower
   updateUserAssignedRole(data: UserAssignedRoleUpdateInput!, where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   updateActiveSubscriptions(data: ActiveSubscriptionsUpdateInput!, where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   updateSubscription(data: SubscriptionUpdateInput!, where: SubscriptionWhereUniqueInput!): Subscription
@@ -493,6 +952,8 @@ type Mutation {
   updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
   deleteStatus(where: StatusWhereUniqueInput!): Status
   deleteUserStatus(where: UserStatusWhereUniqueInput!): UserStatus
+  deleteInfluencer(where: InfluencerWhereUniqueInput!): Influencer
+  deleteFollower(where: FollowerWhereUniqueInput!): Follower
   deleteUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   deleteActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   deleteSubscription(where: SubscriptionWhereUniqueInput!): Subscription
@@ -502,6 +963,8 @@ type Mutation {
   deleteTeam(where: TeamWhereUniqueInput!): Team
   upsertStatus(where: StatusWhereUniqueInput!, create: StatusCreateInput!, update: StatusUpdateInput!): Status!
   upsertUserStatus(where: UserStatusWhereUniqueInput!, create: UserStatusCreateInput!, update: UserStatusUpdateInput!): UserStatus!
+  upsertInfluencer(where: InfluencerWhereUniqueInput!, create: InfluencerCreateInput!, update: InfluencerUpdateInput!): Influencer!
+  upsertFollower(where: FollowerWhereUniqueInput!, create: FollowerCreateInput!, update: FollowerUpdateInput!): Follower!
   upsertUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!, create: UserAssignedRoleCreateInput!, update: UserAssignedRoleUpdateInput!): UserAssignedRole!
   upsertActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!, create: ActiveSubscriptionsCreateInput!, update: ActiveSubscriptionsUpdateInput!): ActiveSubscriptions!
   upsertSubscription(where: SubscriptionWhereUniqueInput!, create: SubscriptionCreateInput!, update: SubscriptionUpdateInput!): Subscription!
@@ -511,6 +974,7 @@ type Mutation {
   upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
   updateManyStatuses(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): BatchPayload!
   updateManyUserStatuses(data: UserStatusUpdateManyMutationInput!, where: UserStatusWhereInput): BatchPayload!
+  updateManyFollowers(data: FollowerUpdateManyMutationInput!, where: FollowerWhereInput): BatchPayload!
   updateManyActiveSubscriptionses(data: ActiveSubscriptionsUpdateManyMutationInput!, where: ActiveSubscriptionsWhereInput): BatchPayload!
   updateManySubscriptions(data: SubscriptionUpdateManyMutationInput!, where: SubscriptionWhereInput): BatchPayload!
   updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
@@ -519,6 +983,8 @@ type Mutation {
   updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
   deleteManyStatuses(where: StatusWhereInput): BatchPayload!
   deleteManyUserStatuses(where: UserStatusWhereInput): BatchPayload!
+  deleteManyInfluencers(where: InfluencerWhereInput): BatchPayload!
+  deleteManyFollowers(where: FollowerWhereInput): BatchPayload!
   deleteManyUserAssignedRoles(where: UserAssignedRoleWhereInput): BatchPayload!
   deleteManyActiveSubscriptionses(where: ActiveSubscriptionsWhereInput): BatchPayload!
   deleteManySubscriptions(where: SubscriptionWhereInput): BatchPayload!
@@ -557,6 +1023,8 @@ enum PrismaDatabase {
 type Query {
   statuses(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Status]!
   userStatuses(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus]!
+  influencers(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer]!
+  followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower]!
   userAssignedRoles(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAssignedRole]!
   activeSubscriptionses(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ActiveSubscriptions]!
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription]!
@@ -566,6 +1034,8 @@ type Query {
   teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
   status(where: StatusWhereUniqueInput!): Status
   userStatus(where: UserStatusWhereUniqueInput!): UserStatus
+  influencer(where: InfluencerWhereUniqueInput!): Influencer
+  follower(where: FollowerWhereUniqueInput!): Follower
   userAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   activeSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   subscription(where: SubscriptionWhereUniqueInput!): Subscription
@@ -575,6 +1045,8 @@ type Query {
   team(where: TeamWhereUniqueInput!): Team
   statusesConnection(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatusConnection!
   userStatusesConnection(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStatusConnection!
+  influencersConnection(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InfluencerConnection!
+  followersConnection(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FollowerConnection!
   userAssignedRolesConnection(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAssignedRoleConnection!
   activeSubscriptionsesConnection(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ActiveSubscriptionsConnection!
   subscriptionsConnection(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriptionConnection!
@@ -1656,6 +2128,7 @@ type User implements Node {
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole!]
   status(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus!]
+  influence(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer!]
 }
 
 type UserAssignedRole implements Node {
@@ -1789,6 +2262,7 @@ input UserCreateInput {
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyWithoutAuthorInput
+  influence: InfluencerCreateManyWithoutInfluencerInput
 }
 
 input UserCreateManyInput {
@@ -1801,9 +2275,36 @@ input UserCreateOneInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateOneWithoutInfluenceInput {
+  create: UserCreateWithoutInfluenceInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreateOneWithoutStatusInput {
   create: UserCreateWithoutStatusInput
   connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutInfluenceInput {
+  email: String!
+  name: String!
+  countryCode: String
+  phoneNumber: String
+  displayName: String!
+  isPrivate: Boolean
+  password: String
+  profilePicture: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamCreateOneInput
+  country: CountryCreateOneInput
+  subscriptions: SubscriptionCreateManyInput
+  userRoles: UserRoleCreateManyInput
+  status: UserStatusCreateManyWithoutAuthorInput
 }
 
 input UserCreateWithoutStatusInput {
@@ -1825,6 +2326,7 @@ input UserCreateWithoutStatusInput {
   country: CountryCreateOneInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
+  influence: InfluencerCreateManyWithoutInfluencerInput
 }
 
 """An edge in a connection."""
@@ -3002,6 +3504,7 @@ input UserUpdateDataInput {
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyWithoutAuthorInput
+  influence: InfluencerUpdateManyWithoutInfluencerInput
 }
 
 input UserUpdateInput {
@@ -3024,6 +3527,7 @@ input UserUpdateInput {
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyWithoutAuthorInput
+  influence: InfluencerUpdateManyWithoutInfluencerInput
 }
 
 input UserUpdateManyDataInput {
@@ -3084,11 +3588,40 @@ input UserUpdateOneRequiredInput {
   upsert: UserUpsertNestedInput
 }
 
+input UserUpdateOneRequiredWithoutInfluenceInput {
+  create: UserCreateWithoutInfluenceInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutInfluenceDataInput
+  upsert: UserUpsertWithoutInfluenceInput
+}
+
 input UserUpdateOneRequiredWithoutStatusInput {
   create: UserCreateWithoutStatusInput
   connect: UserWhereUniqueInput
   update: UserUpdateWithoutStatusDataInput
   upsert: UserUpsertWithoutStatusInput
+}
+
+input UserUpdateWithoutInfluenceDataInput {
+  email: String
+  name: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  profilePicture: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamUpdateOneInput
+  country: CountryUpdateOneInput
+  subscriptions: SubscriptionUpdateManyInput
+  userRoles: UserRoleUpdateManyInput
+  status: UserStatusUpdateManyWithoutAuthorInput
 }
 
 input UserUpdateWithoutStatusDataInput {
@@ -3110,6 +3643,7 @@ input UserUpdateWithoutStatusDataInput {
   country: CountryUpdateOneInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
+  influence: InfluencerUpdateManyWithoutInfluencerInput
 }
 
 input UserUpdateWithWhereUniqueNestedInput {
@@ -3120,6 +3654,11 @@ input UserUpdateWithWhereUniqueNestedInput {
 input UserUpsertNestedInput {
   update: UserUpdateDataInput!
   create: UserCreateInput!
+}
+
+input UserUpsertWithoutInfluenceInput {
+  update: UserUpdateWithoutInfluenceDataInput!
+  create: UserCreateWithoutInfluenceInput!
 }
 
 input UserUpsertWithoutStatusInput {
@@ -3627,6 +4166,9 @@ input UserWhereInput {
   status_every: UserStatusWhereInput
   status_some: UserStatusWhereInput
   status_none: UserStatusWhereInput
+  influence_every: InfluencerWhereInput
+  influence_some: InfluencerWhereInput
+  influence_none: InfluencerWhereInput
 }
 
 input UserWhereUniqueInput {

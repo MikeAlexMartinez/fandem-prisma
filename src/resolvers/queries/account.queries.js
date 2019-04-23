@@ -9,6 +9,18 @@ const accountQueries = {
       email: args.email
     });
   },
+  async userByDisplayName(parent, args, ctx, info) {
+    const { userId } = ctx.request;
+    if (!userId) {
+      return null;
+    }
+    return ctx.db.query.user(
+      {
+        where: { displayName: args.displayName }
+      },
+      info
+    );
+  },
   async currentUser(parent, args, ctx, info) {
     const { userId } = ctx.request;
     if (!userId) {

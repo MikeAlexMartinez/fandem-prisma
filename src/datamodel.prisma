@@ -19,6 +19,7 @@ type User {
   subscriptions: [Subscription!]!
   userRoles: [UserRole!]!
   status: [UserStatus]!
+  influence: [Influencer]!
 }
 
 type Status {
@@ -33,6 +34,20 @@ type UserStatus {
   author: User!
   status: Status
   currentStatus: Boolean
+}
+
+type Influencer {
+  id: ID! @unique
+  influencer: User!
+  followers: [Follower]!
+}
+
+type Follower {
+  id: ID! @unique
+  influencedBy: Influencer!
+  follower: User!
+  blocked: Boolean! @default(value: "false")
+  accepted: Boolean! @default(value: "false")
 }
 
 type UserRole {
