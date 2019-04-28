@@ -44,4 +44,8 @@ type User {
   emailValidated: Boolean!
   subscriptions: [Subscription!]!
   userRoles: [UserRole!]!
+  photos(where: UserPhotoWhereInput): [UserPhoto]
+  status: [UserStatus]!
+  followers: UserFollower!
+  influencers: UserInfluencer!
 }

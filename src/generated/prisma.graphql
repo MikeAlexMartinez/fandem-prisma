@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Tue Apr 23 2019 22:23:38 GMT+0100 (BST)
+# timestamp: Sat Apr 27 2019 19:51:36 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -194,6 +194,18 @@ type AggregateUser {
 }
 
 type AggregateUserAssignedRole {
+  count: Int!
+}
+
+type AggregateUserFollower {
+  count: Int!
+}
+
+type AggregateUserInfluencer {
+  count: Int!
+}
+
+type AggregateUserPhoto {
   count: Int!
 }
 
@@ -473,8 +485,7 @@ scalar DateTime
 
 type Follower implements Node {
   id: ID!
-  influencedBy(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer!]
-  follower: User!
+  user: User!
   blocked: Boolean!
   accepted: Boolean!
 }
@@ -492,30 +503,12 @@ type FollowerConnection {
 input FollowerCreateInput {
   blocked: Boolean
   accepted: Boolean
-  influencedBy: InfluencerCreateManyWithoutFollowersInput
-  follower: UserCreateOneWithoutFollowsInput!
+  user: UserCreateOneInput!
 }
 
-input FollowerCreateManyWithoutInfluencedByInput {
-  create: [FollowerCreateWithoutInfluencedByInput!]
+input FollowerCreateManyInput {
+  create: [FollowerCreateInput!]
   connect: [FollowerWhereUniqueInput!]
-}
-
-input FollowerCreateOneWithoutFollowerInput {
-  create: FollowerCreateWithoutFollowerInput
-  connect: FollowerWhereUniqueInput
-}
-
-input FollowerCreateWithoutFollowerInput {
-  blocked: Boolean
-  accepted: Boolean
-  influencedBy: InfluencerCreateManyWithoutFollowersInput
-}
-
-input FollowerCreateWithoutInfluencedByInput {
-  blocked: Boolean
-  accepted: Boolean
-  follower: UserCreateOneWithoutFollowsInput!
 }
 
 """An edge in a connection."""
@@ -599,11 +592,16 @@ input FollowerScalarWhereInput {
   accepted_not: Boolean
 }
 
+input FollowerUpdateDataInput {
+  blocked: Boolean
+  accepted: Boolean
+  user: UserUpdateOneRequiredInput
+}
+
 input FollowerUpdateInput {
   blocked: Boolean
   accepted: Boolean
-  influencedBy: InfluencerUpdateManyWithoutFollowersInput
-  follower: UserUpdateOneRequiredWithoutFollowsInput
+  user: UserUpdateOneRequiredInput
 }
 
 input FollowerUpdateManyDataInput {
@@ -611,21 +609,21 @@ input FollowerUpdateManyDataInput {
   accepted: Boolean
 }
 
-input FollowerUpdateManyMutationInput {
-  blocked: Boolean
-  accepted: Boolean
-}
-
-input FollowerUpdateManyWithoutInfluencedByInput {
-  create: [FollowerCreateWithoutInfluencedByInput!]
+input FollowerUpdateManyInput {
+  create: [FollowerCreateInput!]
   connect: [FollowerWhereUniqueInput!]
   set: [FollowerWhereUniqueInput!]
   disconnect: [FollowerWhereUniqueInput!]
   delete: [FollowerWhereUniqueInput!]
-  update: [FollowerUpdateWithWhereUniqueWithoutInfluencedByInput!]
+  update: [FollowerUpdateWithWhereUniqueNestedInput!]
   updateMany: [FollowerUpdateManyWithWhereNestedInput!]
   deleteMany: [FollowerScalarWhereInput!]
-  upsert: [FollowerUpsertWithWhereUniqueWithoutInfluencedByInput!]
+  upsert: [FollowerUpsertWithWhereUniqueNestedInput!]
+}
+
+input FollowerUpdateManyMutationInput {
+  blocked: Boolean
+  accepted: Boolean
 }
 
 input FollowerUpdateManyWithWhereNestedInput {
@@ -633,39 +631,15 @@ input FollowerUpdateManyWithWhereNestedInput {
   data: FollowerUpdateManyDataInput!
 }
 
-input FollowerUpdateOneRequiredWithoutFollowerInput {
-  create: FollowerCreateWithoutFollowerInput
-  connect: FollowerWhereUniqueInput
-  update: FollowerUpdateWithoutFollowerDataInput
-  upsert: FollowerUpsertWithoutFollowerInput
-}
-
-input FollowerUpdateWithoutFollowerDataInput {
-  blocked: Boolean
-  accepted: Boolean
-  influencedBy: InfluencerUpdateManyWithoutFollowersInput
-}
-
-input FollowerUpdateWithoutInfluencedByDataInput {
-  blocked: Boolean
-  accepted: Boolean
-  follower: UserUpdateOneRequiredWithoutFollowsInput
-}
-
-input FollowerUpdateWithWhereUniqueWithoutInfluencedByInput {
+input FollowerUpdateWithWhereUniqueNestedInput {
   where: FollowerWhereUniqueInput!
-  data: FollowerUpdateWithoutInfluencedByDataInput!
+  data: FollowerUpdateDataInput!
 }
 
-input FollowerUpsertWithoutFollowerInput {
-  update: FollowerUpdateWithoutFollowerDataInput!
-  create: FollowerCreateWithoutFollowerInput!
-}
-
-input FollowerUpsertWithWhereUniqueWithoutInfluencedByInput {
+input FollowerUpsertWithWhereUniqueNestedInput {
   where: FollowerWhereUniqueInput!
-  update: FollowerUpdateWithoutInfluencedByDataInput!
-  create: FollowerCreateWithoutInfluencedByInput!
+  update: FollowerUpdateDataInput!
+  create: FollowerCreateInput!
 }
 
 input FollowerWhereInput {
@@ -725,10 +699,7 @@ input FollowerWhereInput {
 
   """All values that are not equal to given value."""
   accepted_not: Boolean
-  influencedBy_every: InfluencerWhereInput
-  influencedBy_some: InfluencerWhereInput
-  influencedBy_none: InfluencerWhereInput
-  follower: UserWhereInput
+  user: UserWhereInput
 }
 
 input FollowerWhereUniqueInput {
@@ -737,8 +708,7 @@ input FollowerWhereUniqueInput {
 
 type Influencer implements Node {
   id: ID!
-  influencer: User!
-  followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower!]
+  user: User!
 }
 
 """A connection to a list of items."""
@@ -752,26 +722,12 @@ type InfluencerConnection {
 }
 
 input InfluencerCreateInput {
-  influencer: UserCreateOneWithoutInfluenceInput!
-  followers: FollowerCreateManyWithoutInfluencedByInput
+  user: UserCreateOneInput!
 }
 
-input InfluencerCreateManyWithoutFollowersInput {
-  create: [InfluencerCreateWithoutFollowersInput!]
+input InfluencerCreateManyInput {
+  create: [InfluencerCreateInput!]
   connect: [InfluencerWhereUniqueInput!]
-}
-
-input InfluencerCreateOneWithoutInfluencerInput {
-  create: InfluencerCreateWithoutInfluencerInput
-  connect: InfluencerWhereUniqueInput
-}
-
-input InfluencerCreateWithoutFollowersInput {
-  influencer: UserCreateOneWithoutInfluenceInput!
-}
-
-input InfluencerCreateWithoutInfluencerInput {
-  followers: FollowerCreateManyWithoutInfluencedByInput
 }
 
 """An edge in a connection."""
@@ -843,51 +799,34 @@ input InfluencerScalarWhereInput {
   id_not_ends_with: ID
 }
 
-input InfluencerUpdateInput {
-  influencer: UserUpdateOneRequiredWithoutInfluenceInput
-  followers: FollowerUpdateManyWithoutInfluencedByInput
+input InfluencerUpdateDataInput {
+  user: UserUpdateOneRequiredInput
 }
 
-input InfluencerUpdateManyWithoutFollowersInput {
-  create: [InfluencerCreateWithoutFollowersInput!]
+input InfluencerUpdateInput {
+  user: UserUpdateOneRequiredInput
+}
+
+input InfluencerUpdateManyInput {
+  create: [InfluencerCreateInput!]
   connect: [InfluencerWhereUniqueInput!]
   set: [InfluencerWhereUniqueInput!]
   disconnect: [InfluencerWhereUniqueInput!]
   delete: [InfluencerWhereUniqueInput!]
-  update: [InfluencerUpdateWithWhereUniqueWithoutFollowersInput!]
+  update: [InfluencerUpdateWithWhereUniqueNestedInput!]
   deleteMany: [InfluencerScalarWhereInput!]
-  upsert: [InfluencerUpsertWithWhereUniqueWithoutFollowersInput!]
+  upsert: [InfluencerUpsertWithWhereUniqueNestedInput!]
 }
 
-input InfluencerUpdateOneRequiredWithoutInfluencerInput {
-  create: InfluencerCreateWithoutInfluencerInput
-  connect: InfluencerWhereUniqueInput
-  update: InfluencerUpdateWithoutInfluencerDataInput
-  upsert: InfluencerUpsertWithoutInfluencerInput
-}
-
-input InfluencerUpdateWithoutFollowersDataInput {
-  influencer: UserUpdateOneRequiredWithoutInfluenceInput
-}
-
-input InfluencerUpdateWithoutInfluencerDataInput {
-  followers: FollowerUpdateManyWithoutInfluencedByInput
-}
-
-input InfluencerUpdateWithWhereUniqueWithoutFollowersInput {
+input InfluencerUpdateWithWhereUniqueNestedInput {
   where: InfluencerWhereUniqueInput!
-  data: InfluencerUpdateWithoutFollowersDataInput!
+  data: InfluencerUpdateDataInput!
 }
 
-input InfluencerUpsertWithoutInfluencerInput {
-  update: InfluencerUpdateWithoutInfluencerDataInput!
-  create: InfluencerCreateWithoutInfluencerInput!
-}
-
-input InfluencerUpsertWithWhereUniqueWithoutFollowersInput {
+input InfluencerUpsertWithWhereUniqueNestedInput {
   where: InfluencerWhereUniqueInput!
-  update: InfluencerUpdateWithoutFollowersDataInput!
-  create: InfluencerCreateWithoutFollowersInput!
+  update: InfluencerUpdateDataInput!
+  create: InfluencerCreateInput!
 }
 
 input InfluencerWhereInput {
@@ -939,10 +878,7 @@ input InfluencerWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  influencer: UserWhereInput
-  followers_every: FollowerWhereInput
-  followers_some: FollowerWhereInput
-  followers_none: FollowerWhereInput
+  user: UserWhereInput
 }
 
 input InfluencerWhereUniqueInput {
@@ -960,68 +896,84 @@ scalar Long
 
 type Mutation {
   createStatus(data: StatusCreateInput!): Status!
-  createUserStatus(data: UserStatusCreateInput!): UserStatus!
-  createInfluencer(data: InfluencerCreateInput!): Influencer!
-  createFollower(data: FollowerCreateInput!): Follower!
+  createUserFollower(data: UserFollowerCreateInput!): UserFollower!
+  createUserInfluencer(data: UserInfluencerCreateInput!): UserInfluencer!
   createUserAssignedRole(data: UserAssignedRoleCreateInput!): UserAssignedRole!
   createActiveSubscriptions(data: ActiveSubscriptionsCreateInput!): ActiveSubscriptions!
   createSubscription(data: SubscriptionCreateInput!): Subscription!
+  createInfluencer(data: InfluencerCreateInput!): Influencer!
+  createUserStatus(data: UserStatusCreateInput!): UserStatus!
   createCountry(data: CountryCreateInput!): Country!
+  createFollower(data: FollowerCreateInput!): Follower!
   createUser(data: UserCreateInput!): User!
   createUserRole(data: UserRoleCreateInput!): UserRole!
+  createUserPhoto(data: UserPhotoCreateInput!): UserPhoto!
   createTeam(data: TeamCreateInput!): Team!
   updateStatus(data: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status
-  updateUserStatus(data: UserStatusUpdateInput!, where: UserStatusWhereUniqueInput!): UserStatus
-  updateInfluencer(data: InfluencerUpdateInput!, where: InfluencerWhereUniqueInput!): Influencer
-  updateFollower(data: FollowerUpdateInput!, where: FollowerWhereUniqueInput!): Follower
+  updateUserFollower(data: UserFollowerUpdateInput!, where: UserFollowerWhereUniqueInput!): UserFollower
+  updateUserInfluencer(data: UserInfluencerUpdateInput!, where: UserInfluencerWhereUniqueInput!): UserInfluencer
   updateUserAssignedRole(data: UserAssignedRoleUpdateInput!, where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   updateActiveSubscriptions(data: ActiveSubscriptionsUpdateInput!, where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   updateSubscription(data: SubscriptionUpdateInput!, where: SubscriptionWhereUniqueInput!): Subscription
+  updateInfluencer(data: InfluencerUpdateInput!, where: InfluencerWhereUniqueInput!): Influencer
+  updateUserStatus(data: UserStatusUpdateInput!, where: UserStatusWhereUniqueInput!): UserStatus
   updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
+  updateFollower(data: FollowerUpdateInput!, where: FollowerWhereUniqueInput!): Follower
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateUserRole(data: UserRoleUpdateInput!, where: UserRoleWhereUniqueInput!): UserRole
+  updateUserPhoto(data: UserPhotoUpdateInput!, where: UserPhotoWhereUniqueInput!): UserPhoto
   updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
   deleteStatus(where: StatusWhereUniqueInput!): Status
-  deleteUserStatus(where: UserStatusWhereUniqueInput!): UserStatus
-  deleteInfluencer(where: InfluencerWhereUniqueInput!): Influencer
-  deleteFollower(where: FollowerWhereUniqueInput!): Follower
+  deleteUserFollower(where: UserFollowerWhereUniqueInput!): UserFollower
+  deleteUserInfluencer(where: UserInfluencerWhereUniqueInput!): UserInfluencer
   deleteUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   deleteActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   deleteSubscription(where: SubscriptionWhereUniqueInput!): Subscription
+  deleteInfluencer(where: InfluencerWhereUniqueInput!): Influencer
+  deleteUserStatus(where: UserStatusWhereUniqueInput!): UserStatus
   deleteCountry(where: CountryWhereUniqueInput!): Country
+  deleteFollower(where: FollowerWhereUniqueInput!): Follower
   deleteUser(where: UserWhereUniqueInput!): User
   deleteUserRole(where: UserRoleWhereUniqueInput!): UserRole
+  deleteUserPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
   deleteTeam(where: TeamWhereUniqueInput!): Team
   upsertStatus(where: StatusWhereUniqueInput!, create: StatusCreateInput!, update: StatusUpdateInput!): Status!
-  upsertUserStatus(where: UserStatusWhereUniqueInput!, create: UserStatusCreateInput!, update: UserStatusUpdateInput!): UserStatus!
-  upsertInfluencer(where: InfluencerWhereUniqueInput!, create: InfluencerCreateInput!, update: InfluencerUpdateInput!): Influencer!
-  upsertFollower(where: FollowerWhereUniqueInput!, create: FollowerCreateInput!, update: FollowerUpdateInput!): Follower!
+  upsertUserFollower(where: UserFollowerWhereUniqueInput!, create: UserFollowerCreateInput!, update: UserFollowerUpdateInput!): UserFollower!
+  upsertUserInfluencer(where: UserInfluencerWhereUniqueInput!, create: UserInfluencerCreateInput!, update: UserInfluencerUpdateInput!): UserInfluencer!
   upsertUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!, create: UserAssignedRoleCreateInput!, update: UserAssignedRoleUpdateInput!): UserAssignedRole!
   upsertActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!, create: ActiveSubscriptionsCreateInput!, update: ActiveSubscriptionsUpdateInput!): ActiveSubscriptions!
   upsertSubscription(where: SubscriptionWhereUniqueInput!, create: SubscriptionCreateInput!, update: SubscriptionUpdateInput!): Subscription!
+  upsertInfluencer(where: InfluencerWhereUniqueInput!, create: InfluencerCreateInput!, update: InfluencerUpdateInput!): Influencer!
+  upsertUserStatus(where: UserStatusWhereUniqueInput!, create: UserStatusCreateInput!, update: UserStatusUpdateInput!): UserStatus!
   upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
+  upsertFollower(where: FollowerWhereUniqueInput!, create: FollowerCreateInput!, update: FollowerUpdateInput!): Follower!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertUserRole(where: UserRoleWhereUniqueInput!, create: UserRoleCreateInput!, update: UserRoleUpdateInput!): UserRole!
+  upsertUserPhoto(where: UserPhotoWhereUniqueInput!, create: UserPhotoCreateInput!, update: UserPhotoUpdateInput!): UserPhoto!
   upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
   updateManyStatuses(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): BatchPayload!
-  updateManyUserStatuses(data: UserStatusUpdateManyMutationInput!, where: UserStatusWhereInput): BatchPayload!
-  updateManyFollowers(data: FollowerUpdateManyMutationInput!, where: FollowerWhereInput): BatchPayload!
   updateManyActiveSubscriptionses(data: ActiveSubscriptionsUpdateManyMutationInput!, where: ActiveSubscriptionsWhereInput): BatchPayload!
   updateManySubscriptions(data: SubscriptionUpdateManyMutationInput!, where: SubscriptionWhereInput): BatchPayload!
+  updateManyUserStatuses(data: UserStatusUpdateManyMutationInput!, where: UserStatusWhereInput): BatchPayload!
   updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
+  updateManyFollowers(data: FollowerUpdateManyMutationInput!, where: FollowerWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyUserRoles(data: UserRoleUpdateManyMutationInput!, where: UserRoleWhereInput): BatchPayload!
+  updateManyUserPhotos(data: UserPhotoUpdateManyMutationInput!, where: UserPhotoWhereInput): BatchPayload!
   updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
   deleteManyStatuses(where: StatusWhereInput): BatchPayload!
-  deleteManyUserStatuses(where: UserStatusWhereInput): BatchPayload!
-  deleteManyInfluencers(where: InfluencerWhereInput): BatchPayload!
-  deleteManyFollowers(where: FollowerWhereInput): BatchPayload!
+  deleteManyUserFollowers(where: UserFollowerWhereInput): BatchPayload!
+  deleteManyUserInfluencers(where: UserInfluencerWhereInput): BatchPayload!
   deleteManyUserAssignedRoles(where: UserAssignedRoleWhereInput): BatchPayload!
   deleteManyActiveSubscriptionses(where: ActiveSubscriptionsWhereInput): BatchPayload!
   deleteManySubscriptions(where: SubscriptionWhereInput): BatchPayload!
+  deleteManyInfluencers(where: InfluencerWhereInput): BatchPayload!
+  deleteManyUserStatuses(where: UserStatusWhereInput): BatchPayload!
   deleteManyCountries(where: CountryWhereInput): BatchPayload!
+  deleteManyFollowers(where: FollowerWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyUserRoles(where: UserRoleWhereInput): BatchPayload!
+  deleteManyUserPhotos(where: UserPhotoWhereInput): BatchPayload!
   deleteManyTeams(where: TeamWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
 }
@@ -1053,37 +1005,46 @@ enum PrismaDatabase {
 
 type Query {
   statuses(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Status]!
-  userStatuses(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus]!
-  influencers(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer]!
-  followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower]!
+  userFollowers(where: UserFollowerWhereInput, orderBy: UserFollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserFollower]!
+  userInfluencers(where: UserInfluencerWhereInput, orderBy: UserInfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserInfluencer]!
   userAssignedRoles(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAssignedRole]!
   activeSubscriptionses(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ActiveSubscriptions]!
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription]!
+  influencers(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer]!
+  userStatuses(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus]!
   countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
+  followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole]!
+  userPhotos(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserPhoto]!
   teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
   status(where: StatusWhereUniqueInput!): Status
-  userStatus(where: UserStatusWhereUniqueInput!): UserStatus
-  influencer(where: InfluencerWhereUniqueInput!): Influencer
-  follower(where: FollowerWhereUniqueInput!): Follower
+  userFollower(where: UserFollowerWhereUniqueInput!): UserFollower
+  userInfluencer(where: UserInfluencerWhereUniqueInput!): UserInfluencer
   userAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   activeSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   subscription(where: SubscriptionWhereUniqueInput!): Subscription
+  influencer(where: InfluencerWhereUniqueInput!): Influencer
+  userStatus(where: UserStatusWhereUniqueInput!): UserStatus
   country(where: CountryWhereUniqueInput!): Country
+  follower(where: FollowerWhereUniqueInput!): Follower
   user(where: UserWhereUniqueInput!): User
   userRole(where: UserRoleWhereUniqueInput!): UserRole
+  userPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
   team(where: TeamWhereUniqueInput!): Team
   statusesConnection(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatusConnection!
-  userStatusesConnection(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStatusConnection!
-  influencersConnection(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InfluencerConnection!
-  followersConnection(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FollowerConnection!
+  userFollowersConnection(where: UserFollowerWhereInput, orderBy: UserFollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserFollowerConnection!
+  userInfluencersConnection(where: UserInfluencerWhereInput, orderBy: UserInfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserInfluencerConnection!
   userAssignedRolesConnection(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAssignedRoleConnection!
   activeSubscriptionsesConnection(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ActiveSubscriptionsConnection!
   subscriptionsConnection(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriptionConnection!
+  influencersConnection(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InfluencerConnection!
+  userStatusesConnection(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStatusConnection!
   countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
+  followersConnection(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FollowerConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   userRolesConnection(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserRoleConnection!
+  userPhotosConnection(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserPhotoConnection!
   teamsConnection(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamConnection!
 
   """Fetches an object given its ID"""
@@ -2148,8 +2109,8 @@ type User implements Node {
   country: Country
   displayName: String!
   isPrivate: Boolean!
-  password: String
-  profilePicture: String
+  password: String!
+  photos(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserPhoto!]
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean!
@@ -2159,8 +2120,8 @@ type User implements Node {
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole!]
   status(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus!]
-  influence: Influencer!
-  follows: Follower!
+  followers: UserFollower!
+  influencers: UserInfluencer!
 }
 
 type UserAssignedRole implements Node {
@@ -2281,8 +2242,7 @@ input UserCreateInput {
   phoneNumber: String
   displayName: String!
   isPrivate: Boolean
-  password: String
-  profilePicture: String
+  password: String!
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -2291,11 +2251,12 @@ input UserCreateInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
+  photos: UserPhotoCreateManyInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
-  status: UserStatusCreateManyWithoutAuthorInput
-  influence: InfluencerCreateOneWithoutInfluencerInput!
-  follows: FollowerCreateOneWithoutFollowerInput!
+  status: UserStatusCreateManyInput
+  followers: UserFollowerCreateOneWithoutUserInput!
+  influencers: UserInfluencerCreateOneWithoutUserInput!
 }
 
 input UserCreateManyInput {
@@ -2308,30 +2269,24 @@ input UserCreateOneInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutFollowsInput {
-  create: UserCreateWithoutFollowsInput
+input UserCreateOneWithoutFollowersInput {
+  create: UserCreateWithoutFollowersInput
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutInfluenceInput {
-  create: UserCreateWithoutInfluenceInput
+input UserCreateOneWithoutInfluencersInput {
+  create: UserCreateWithoutInfluencersInput
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutStatusInput {
-  create: UserCreateWithoutStatusInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutFollowsInput {
+input UserCreateWithoutFollowersInput {
   email: String!
   name: String!
   countryCode: String
   phoneNumber: String
   displayName: String!
   isPrivate: Boolean
-  password: String
-  profilePicture: String
+  password: String!
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -2340,21 +2295,21 @@ input UserCreateWithoutFollowsInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
+  photos: UserPhotoCreateManyInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
-  status: UserStatusCreateManyWithoutAuthorInput
-  influence: InfluencerCreateOneWithoutInfluencerInput!
+  status: UserStatusCreateManyInput
+  influencers: UserInfluencerCreateOneWithoutUserInput!
 }
 
-input UserCreateWithoutInfluenceInput {
+input UserCreateWithoutInfluencersInput {
   email: String!
   name: String!
   countryCode: String
   phoneNumber: String
   displayName: String!
   isPrivate: Boolean
-  password: String
-  profilePicture: String
+  password: String!
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -2363,33 +2318,11 @@ input UserCreateWithoutInfluenceInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
+  photos: UserPhotoCreateManyInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
-  status: UserStatusCreateManyWithoutAuthorInput
-  follows: FollowerCreateOneWithoutFollowerInput!
-}
-
-input UserCreateWithoutStatusInput {
-  email: String!
-  name: String!
-  countryCode: String
-  phoneNumber: String
-  displayName: String!
-  isPrivate: Boolean
-  password: String
-  profilePicture: String
-  emailValidationToken: String
-  emailValidationTokenExpiry: Float
-  emailValidated: Boolean
-  emailValidationDate: DateTime
-  resetToken: String
-  resetTokenExpiry: Float
-  favoriteTeam: TeamCreateOneInput
-  country: CountryCreateOneInput
-  subscriptions: SubscriptionCreateManyInput
-  userRoles: UserRoleCreateManyInput
-  influence: InfluencerCreateOneWithoutInfluencerInput!
-  follows: FollowerCreateOneWithoutFollowerInput!
+  status: UserStatusCreateManyInput
+  followers: UserFollowerCreateOneWithoutUserInput!
 }
 
 """An edge in a connection."""
@@ -2399,6 +2332,262 @@ type UserEdge {
 
   """A cursor for use in pagination."""
   cursor: String!
+}
+
+type UserFollower implements Node {
+  id: ID!
+  followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower!]
+  user: User!
+}
+
+"""A connection to a list of items."""
+type UserFollowerConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserFollowerEdge]!
+  aggregate: AggregateUserFollower!
+}
+
+input UserFollowerCreateInput {
+  followers: FollowerCreateManyInput
+  user: UserCreateOneWithoutFollowersInput!
+}
+
+input UserFollowerCreateOneWithoutUserInput {
+  create: UserFollowerCreateWithoutUserInput
+  connect: UserFollowerWhereUniqueInput
+}
+
+input UserFollowerCreateWithoutUserInput {
+  followers: FollowerCreateManyInput
+}
+
+"""An edge in a connection."""
+type UserFollowerEdge {
+  """The item at the end of the edge."""
+  node: UserFollower!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserFollowerOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input UserFollowerUpdateInput {
+  followers: FollowerUpdateManyInput
+  user: UserUpdateOneRequiredWithoutFollowersInput
+}
+
+input UserFollowerUpdateOneRequiredWithoutUserInput {
+  create: UserFollowerCreateWithoutUserInput
+  connect: UserFollowerWhereUniqueInput
+  update: UserFollowerUpdateWithoutUserDataInput
+  upsert: UserFollowerUpsertWithoutUserInput
+}
+
+input UserFollowerUpdateWithoutUserDataInput {
+  followers: FollowerUpdateManyInput
+}
+
+input UserFollowerUpsertWithoutUserInput {
+  update: UserFollowerUpdateWithoutUserDataInput!
+  create: UserFollowerCreateWithoutUserInput!
+}
+
+input UserFollowerWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserFollowerWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserFollowerWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserFollowerWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  followers_every: FollowerWhereInput
+  followers_some: FollowerWhereInput
+  followers_none: FollowerWhereInput
+  user: UserWhereInput
+}
+
+input UserFollowerWhereUniqueInput {
+  id: ID
+}
+
+type UserInfluencer implements Node {
+  id: ID!
+  user: User!
+  influencers(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer!]
+}
+
+"""A connection to a list of items."""
+type UserInfluencerConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserInfluencerEdge]!
+  aggregate: AggregateUserInfluencer!
+}
+
+input UserInfluencerCreateInput {
+  user: UserCreateOneWithoutInfluencersInput!
+  influencers: InfluencerCreateManyInput
+}
+
+input UserInfluencerCreateOneWithoutUserInput {
+  create: UserInfluencerCreateWithoutUserInput
+  connect: UserInfluencerWhereUniqueInput
+}
+
+input UserInfluencerCreateWithoutUserInput {
+  influencers: InfluencerCreateManyInput
+}
+
+"""An edge in a connection."""
+type UserInfluencerEdge {
+  """The item at the end of the edge."""
+  node: UserInfluencer!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserInfluencerOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input UserInfluencerUpdateInput {
+  user: UserUpdateOneRequiredWithoutInfluencersInput
+  influencers: InfluencerUpdateManyInput
+}
+
+input UserInfluencerUpdateOneRequiredWithoutUserInput {
+  create: UserInfluencerCreateWithoutUserInput
+  connect: UserInfluencerWhereUniqueInput
+  update: UserInfluencerUpdateWithoutUserDataInput
+  upsert: UserInfluencerUpsertWithoutUserInput
+}
+
+input UserInfluencerUpdateWithoutUserDataInput {
+  influencers: InfluencerUpdateManyInput
+}
+
+input UserInfluencerUpsertWithoutUserInput {
+  update: UserInfluencerUpdateWithoutUserDataInput!
+  create: UserInfluencerCreateWithoutUserInput!
+}
+
+input UserInfluencerWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserInfluencerWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserInfluencerWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserInfluencerWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  user: UserWhereInput
+  influencers_every: InfluencerWhereInput
+  influencers_some: InfluencerWhereInput
+  influencers_none: InfluencerWhereInput
+}
+
+input UserInfluencerWhereUniqueInput {
+  id: ID
 }
 
 enum UserOrderByInput {
@@ -2418,8 +2607,6 @@ enum UserOrderByInput {
   isPrivate_DESC
   password_ASC
   password_DESC
-  profilePicture_ASC
-  profilePicture_DESC
   emailValidationToken_ASC
   emailValidationToken_DESC
   emailValidationTokenExpiry_ASC
@@ -2436,6 +2623,472 @@ enum UserOrderByInput {
   updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+}
+
+type UserPhoto implements Node {
+  id: ID!
+  image: String!
+  largeImage: String
+  smallImage: String
+  isProfile: Boolean
+}
+
+"""A connection to a list of items."""
+type UserPhotoConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserPhotoEdge]!
+  aggregate: AggregateUserPhoto!
+}
+
+input UserPhotoCreateInput {
+  image: String!
+  largeImage: String
+  smallImage: String
+  isProfile: Boolean
+}
+
+input UserPhotoCreateManyInput {
+  create: [UserPhotoCreateInput!]
+  connect: [UserPhotoWhereUniqueInput!]
+}
+
+"""An edge in a connection."""
+type UserPhotoEdge {
+  """The item at the end of the edge."""
+  node: UserPhoto!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserPhotoOrderByInput {
+  id_ASC
+  id_DESC
+  image_ASC
+  image_DESC
+  largeImage_ASC
+  largeImage_DESC
+  smallImage_ASC
+  smallImage_DESC
+  isProfile_ASC
+  isProfile_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input UserPhotoScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserPhotoScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserPhotoScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserPhotoScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  image: String
+
+  """All values that are not equal to given value."""
+  image_not: String
+
+  """All values that are contained in given list."""
+  image_in: [String!]
+
+  """All values that are not contained in given list."""
+  image_not_in: [String!]
+
+  """All values less than the given value."""
+  image_lt: String
+
+  """All values less than or equal the given value."""
+  image_lte: String
+
+  """All values greater than the given value."""
+  image_gt: String
+
+  """All values greater than or equal the given value."""
+  image_gte: String
+
+  """All values containing the given string."""
+  image_contains: String
+
+  """All values not containing the given string."""
+  image_not_contains: String
+
+  """All values starting with the given string."""
+  image_starts_with: String
+
+  """All values not starting with the given string."""
+  image_not_starts_with: String
+
+  """All values ending with the given string."""
+  image_ends_with: String
+
+  """All values not ending with the given string."""
+  image_not_ends_with: String
+  largeImage: String
+
+  """All values that are not equal to given value."""
+  largeImage_not: String
+
+  """All values that are contained in given list."""
+  largeImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  largeImage_not_in: [String!]
+
+  """All values less than the given value."""
+  largeImage_lt: String
+
+  """All values less than or equal the given value."""
+  largeImage_lte: String
+
+  """All values greater than the given value."""
+  largeImage_gt: String
+
+  """All values greater than or equal the given value."""
+  largeImage_gte: String
+
+  """All values containing the given string."""
+  largeImage_contains: String
+
+  """All values not containing the given string."""
+  largeImage_not_contains: String
+
+  """All values starting with the given string."""
+  largeImage_starts_with: String
+
+  """All values not starting with the given string."""
+  largeImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  largeImage_ends_with: String
+
+  """All values not ending with the given string."""
+  largeImage_not_ends_with: String
+  smallImage: String
+
+  """All values that are not equal to given value."""
+  smallImage_not: String
+
+  """All values that are contained in given list."""
+  smallImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  smallImage_not_in: [String!]
+
+  """All values less than the given value."""
+  smallImage_lt: String
+
+  """All values less than or equal the given value."""
+  smallImage_lte: String
+
+  """All values greater than the given value."""
+  smallImage_gt: String
+
+  """All values greater than or equal the given value."""
+  smallImage_gte: String
+
+  """All values containing the given string."""
+  smallImage_contains: String
+
+  """All values not containing the given string."""
+  smallImage_not_contains: String
+
+  """All values starting with the given string."""
+  smallImage_starts_with: String
+
+  """All values not starting with the given string."""
+  smallImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  smallImage_ends_with: String
+
+  """All values not ending with the given string."""
+  smallImage_not_ends_with: String
+  isProfile: Boolean
+
+  """All values that are not equal to given value."""
+  isProfile_not: Boolean
+}
+
+input UserPhotoUpdateDataInput {
+  image: String
+  largeImage: String
+  smallImage: String
+  isProfile: Boolean
+}
+
+input UserPhotoUpdateInput {
+  image: String
+  largeImage: String
+  smallImage: String
+  isProfile: Boolean
+}
+
+input UserPhotoUpdateManyDataInput {
+  image: String
+  largeImage: String
+  smallImage: String
+  isProfile: Boolean
+}
+
+input UserPhotoUpdateManyInput {
+  create: [UserPhotoCreateInput!]
+  connect: [UserPhotoWhereUniqueInput!]
+  set: [UserPhotoWhereUniqueInput!]
+  disconnect: [UserPhotoWhereUniqueInput!]
+  delete: [UserPhotoWhereUniqueInput!]
+  update: [UserPhotoUpdateWithWhereUniqueNestedInput!]
+  updateMany: [UserPhotoUpdateManyWithWhereNestedInput!]
+  deleteMany: [UserPhotoScalarWhereInput!]
+  upsert: [UserPhotoUpsertWithWhereUniqueNestedInput!]
+}
+
+input UserPhotoUpdateManyMutationInput {
+  image: String
+  largeImage: String
+  smallImage: String
+  isProfile: Boolean
+}
+
+input UserPhotoUpdateManyWithWhereNestedInput {
+  where: UserPhotoScalarWhereInput!
+  data: UserPhotoUpdateManyDataInput!
+}
+
+input UserPhotoUpdateWithWhereUniqueNestedInput {
+  where: UserPhotoWhereUniqueInput!
+  data: UserPhotoUpdateDataInput!
+}
+
+input UserPhotoUpsertWithWhereUniqueNestedInput {
+  where: UserPhotoWhereUniqueInput!
+  update: UserPhotoUpdateDataInput!
+  create: UserPhotoCreateInput!
+}
+
+input UserPhotoWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserPhotoWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserPhotoWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserPhotoWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  image: String
+
+  """All values that are not equal to given value."""
+  image_not: String
+
+  """All values that are contained in given list."""
+  image_in: [String!]
+
+  """All values that are not contained in given list."""
+  image_not_in: [String!]
+
+  """All values less than the given value."""
+  image_lt: String
+
+  """All values less than or equal the given value."""
+  image_lte: String
+
+  """All values greater than the given value."""
+  image_gt: String
+
+  """All values greater than or equal the given value."""
+  image_gte: String
+
+  """All values containing the given string."""
+  image_contains: String
+
+  """All values not containing the given string."""
+  image_not_contains: String
+
+  """All values starting with the given string."""
+  image_starts_with: String
+
+  """All values not starting with the given string."""
+  image_not_starts_with: String
+
+  """All values ending with the given string."""
+  image_ends_with: String
+
+  """All values not ending with the given string."""
+  image_not_ends_with: String
+  largeImage: String
+
+  """All values that are not equal to given value."""
+  largeImage_not: String
+
+  """All values that are contained in given list."""
+  largeImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  largeImage_not_in: [String!]
+
+  """All values less than the given value."""
+  largeImage_lt: String
+
+  """All values less than or equal the given value."""
+  largeImage_lte: String
+
+  """All values greater than the given value."""
+  largeImage_gt: String
+
+  """All values greater than or equal the given value."""
+  largeImage_gte: String
+
+  """All values containing the given string."""
+  largeImage_contains: String
+
+  """All values not containing the given string."""
+  largeImage_not_contains: String
+
+  """All values starting with the given string."""
+  largeImage_starts_with: String
+
+  """All values not starting with the given string."""
+  largeImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  largeImage_ends_with: String
+
+  """All values not ending with the given string."""
+  largeImage_not_ends_with: String
+  smallImage: String
+
+  """All values that are not equal to given value."""
+  smallImage_not: String
+
+  """All values that are contained in given list."""
+  smallImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  smallImage_not_in: [String!]
+
+  """All values less than the given value."""
+  smallImage_lt: String
+
+  """All values less than or equal the given value."""
+  smallImage_lte: String
+
+  """All values greater than the given value."""
+  smallImage_gt: String
+
+  """All values greater than or equal the given value."""
+  smallImage_gte: String
+
+  """All values containing the given string."""
+  smallImage_contains: String
+
+  """All values not containing the given string."""
+  smallImage_not_contains: String
+
+  """All values starting with the given string."""
+  smallImage_starts_with: String
+
+  """All values not starting with the given string."""
+  smallImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  smallImage_ends_with: String
+
+  """All values not ending with the given string."""
+  smallImage_not_ends_with: String
+  isProfile: Boolean
+
+  """All values that are not equal to given value."""
+  isProfile_not: Boolean
+}
+
+input UserPhotoWhereUniqueInput {
+  id: ID
 }
 
 type UserRole implements Node {
@@ -3110,46 +3763,6 @@ input UserScalarWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
-  profilePicture: String
-
-  """All values that are not equal to given value."""
-  profilePicture_not: String
-
-  """All values that are contained in given list."""
-  profilePicture_in: [String!]
-
-  """All values that are not contained in given list."""
-  profilePicture_not_in: [String!]
-
-  """All values less than the given value."""
-  profilePicture_lt: String
-
-  """All values less than or equal the given value."""
-  profilePicture_lte: String
-
-  """All values greater than the given value."""
-  profilePicture_gt: String
-
-  """All values greater than or equal the given value."""
-  profilePicture_gte: String
-
-  """All values containing the given string."""
-  profilePicture_contains: String
-
-  """All values not containing the given string."""
-  profilePicture_not_contains: String
-
-  """All values starting with the given string."""
-  profilePicture_starts_with: String
-
-  """All values not starting with the given string."""
-  profilePicture_not_starts_with: String
-
-  """All values ending with the given string."""
-  profilePicture_ends_with: String
-
-  """All values not ending with the given string."""
-  profilePicture_not_ends_with: String
   emailValidationToken: String
 
   """All values that are not equal to given value."""
@@ -3304,7 +3917,6 @@ input UserScalarWhereInput {
 
 type UserStatus implements Node {
   id: ID!
-  author: User!
   status: Status
   currentStatus: Boolean
 }
@@ -3321,12 +3933,11 @@ type UserStatusConnection {
 
 input UserStatusCreateInput {
   currentStatus: Boolean
-  author: UserCreateOneWithoutStatusInput!
   status: StatusCreateOneWithoutAuthorInput
 }
 
-input UserStatusCreateManyWithoutAuthorInput {
-  create: [UserStatusCreateWithoutAuthorInput!]
+input UserStatusCreateManyInput {
+  create: [UserStatusCreateInput!]
   connect: [UserStatusWhereUniqueInput!]
 }
 
@@ -3335,14 +3946,8 @@ input UserStatusCreateOneWithoutStatusInput {
   connect: UserStatusWhereUniqueInput
 }
 
-input UserStatusCreateWithoutAuthorInput {
-  currentStatus: Boolean
-  status: StatusCreateOneWithoutAuthorInput
-}
-
 input UserStatusCreateWithoutStatusInput {
   currentStatus: Boolean
-  author: UserCreateOneWithoutStatusInput!
 }
 
 """An edge in a connection."""
@@ -3420,9 +4025,13 @@ input UserStatusScalarWhereInput {
   currentStatus_not: Boolean
 }
 
+input UserStatusUpdateDataInput {
+  currentStatus: Boolean
+  status: StatusUpdateOneWithoutAuthorInput
+}
+
 input UserStatusUpdateInput {
   currentStatus: Boolean
-  author: UserUpdateOneRequiredWithoutStatusInput
   status: StatusUpdateOneWithoutAuthorInput
 }
 
@@ -3430,20 +4039,20 @@ input UserStatusUpdateManyDataInput {
   currentStatus: Boolean
 }
 
-input UserStatusUpdateManyMutationInput {
-  currentStatus: Boolean
-}
-
-input UserStatusUpdateManyWithoutAuthorInput {
-  create: [UserStatusCreateWithoutAuthorInput!]
+input UserStatusUpdateManyInput {
+  create: [UserStatusCreateInput!]
   connect: [UserStatusWhereUniqueInput!]
   set: [UserStatusWhereUniqueInput!]
   disconnect: [UserStatusWhereUniqueInput!]
   delete: [UserStatusWhereUniqueInput!]
-  update: [UserStatusUpdateWithWhereUniqueWithoutAuthorInput!]
+  update: [UserStatusUpdateWithWhereUniqueNestedInput!]
   updateMany: [UserStatusUpdateManyWithWhereNestedInput!]
   deleteMany: [UserStatusScalarWhereInput!]
-  upsert: [UserStatusUpsertWithWhereUniqueWithoutAuthorInput!]
+  upsert: [UserStatusUpsertWithWhereUniqueNestedInput!]
+}
+
+input UserStatusUpdateManyMutationInput {
+  currentStatus: Boolean
 }
 
 input UserStatusUpdateManyWithWhereNestedInput {
@@ -3460,19 +4069,13 @@ input UserStatusUpdateOneWithoutStatusInput {
   upsert: UserStatusUpsertWithoutStatusInput
 }
 
-input UserStatusUpdateWithoutAuthorDataInput {
-  currentStatus: Boolean
-  status: StatusUpdateOneWithoutAuthorInput
-}
-
 input UserStatusUpdateWithoutStatusDataInput {
   currentStatus: Boolean
-  author: UserUpdateOneRequiredWithoutStatusInput
 }
 
-input UserStatusUpdateWithWhereUniqueWithoutAuthorInput {
+input UserStatusUpdateWithWhereUniqueNestedInput {
   where: UserStatusWhereUniqueInput!
-  data: UserStatusUpdateWithoutAuthorDataInput!
+  data: UserStatusUpdateDataInput!
 }
 
 input UserStatusUpsertWithoutStatusInput {
@@ -3480,10 +4083,10 @@ input UserStatusUpsertWithoutStatusInput {
   create: UserStatusCreateWithoutStatusInput!
 }
 
-input UserStatusUpsertWithWhereUniqueWithoutAuthorInput {
+input UserStatusUpsertWithWhereUniqueNestedInput {
   where: UserStatusWhereUniqueInput!
-  update: UserStatusUpdateWithoutAuthorDataInput!
-  create: UserStatusCreateWithoutAuthorInput!
+  update: UserStatusUpdateDataInput!
+  create: UserStatusCreateInput!
 }
 
 input UserStatusWhereInput {
@@ -3539,7 +4142,6 @@ input UserStatusWhereInput {
 
   """All values that are not equal to given value."""
   currentStatus_not: Boolean
-  author: UserWhereInput
   status: StatusWhereInput
 }
 
@@ -3555,7 +4157,6 @@ input UserUpdateDataInput {
   displayName: String
   isPrivate: Boolean
   password: String
-  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -3564,11 +4165,12 @@ input UserUpdateDataInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
+  photos: UserPhotoUpdateManyInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
-  status: UserStatusUpdateManyWithoutAuthorInput
-  influence: InfluencerUpdateOneRequiredWithoutInfluencerInput
-  follows: FollowerUpdateOneRequiredWithoutFollowerInput
+  status: UserStatusUpdateManyInput
+  followers: UserFollowerUpdateOneRequiredWithoutUserInput
+  influencers: UserInfluencerUpdateOneRequiredWithoutUserInput
 }
 
 input UserUpdateInput {
@@ -3579,7 +4181,6 @@ input UserUpdateInput {
   displayName: String
   isPrivate: Boolean
   password: String
-  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -3588,11 +4189,12 @@ input UserUpdateInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
+  photos: UserPhotoUpdateManyInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
-  status: UserStatusUpdateManyWithoutAuthorInput
-  influence: InfluencerUpdateOneRequiredWithoutInfluencerInput
-  follows: FollowerUpdateOneRequiredWithoutFollowerInput
+  status: UserStatusUpdateManyInput
+  followers: UserFollowerUpdateOneRequiredWithoutUserInput
+  influencers: UserInfluencerUpdateOneRequiredWithoutUserInput
 }
 
 input UserUpdateManyDataInput {
@@ -3603,7 +4205,6 @@ input UserUpdateManyDataInput {
   displayName: String
   isPrivate: Boolean
   password: String
-  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -3632,7 +4233,6 @@ input UserUpdateManyMutationInput {
   displayName: String
   isPrivate: Boolean
   password: String
-  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -3653,28 +4253,21 @@ input UserUpdateOneRequiredInput {
   upsert: UserUpsertNestedInput
 }
 
-input UserUpdateOneRequiredWithoutFollowsInput {
-  create: UserCreateWithoutFollowsInput
+input UserUpdateOneRequiredWithoutFollowersInput {
+  create: UserCreateWithoutFollowersInput
   connect: UserWhereUniqueInput
-  update: UserUpdateWithoutFollowsDataInput
-  upsert: UserUpsertWithoutFollowsInput
+  update: UserUpdateWithoutFollowersDataInput
+  upsert: UserUpsertWithoutFollowersInput
 }
 
-input UserUpdateOneRequiredWithoutInfluenceInput {
-  create: UserCreateWithoutInfluenceInput
+input UserUpdateOneRequiredWithoutInfluencersInput {
+  create: UserCreateWithoutInfluencersInput
   connect: UserWhereUniqueInput
-  update: UserUpdateWithoutInfluenceDataInput
-  upsert: UserUpsertWithoutInfluenceInput
+  update: UserUpdateWithoutInfluencersDataInput
+  upsert: UserUpsertWithoutInfluencersInput
 }
 
-input UserUpdateOneRequiredWithoutStatusInput {
-  create: UserCreateWithoutStatusInput
-  connect: UserWhereUniqueInput
-  update: UserUpdateWithoutStatusDataInput
-  upsert: UserUpsertWithoutStatusInput
-}
-
-input UserUpdateWithoutFollowsDataInput {
+input UserUpdateWithoutFollowersDataInput {
   email: String
   name: String
   countryCode: String
@@ -3682,7 +4275,6 @@ input UserUpdateWithoutFollowsDataInput {
   displayName: String
   isPrivate: Boolean
   password: String
-  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -3691,13 +4283,14 @@ input UserUpdateWithoutFollowsDataInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
+  photos: UserPhotoUpdateManyInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
-  status: UserStatusUpdateManyWithoutAuthorInput
-  influence: InfluencerUpdateOneRequiredWithoutInfluencerInput
+  status: UserStatusUpdateManyInput
+  influencers: UserInfluencerUpdateOneRequiredWithoutUserInput
 }
 
-input UserUpdateWithoutInfluenceDataInput {
+input UserUpdateWithoutInfluencersDataInput {
   email: String
   name: String
   countryCode: String
@@ -3705,7 +4298,6 @@ input UserUpdateWithoutInfluenceDataInput {
   displayName: String
   isPrivate: Boolean
   password: String
-  profilePicture: String
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean
@@ -3714,33 +4306,11 @@ input UserUpdateWithoutInfluenceDataInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
+  photos: UserPhotoUpdateManyInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
-  status: UserStatusUpdateManyWithoutAuthorInput
-  follows: FollowerUpdateOneRequiredWithoutFollowerInput
-}
-
-input UserUpdateWithoutStatusDataInput {
-  email: String
-  name: String
-  countryCode: String
-  phoneNumber: String
-  displayName: String
-  isPrivate: Boolean
-  password: String
-  profilePicture: String
-  emailValidationToken: String
-  emailValidationTokenExpiry: Float
-  emailValidated: Boolean
-  emailValidationDate: DateTime
-  resetToken: String
-  resetTokenExpiry: Float
-  favoriteTeam: TeamUpdateOneInput
-  country: CountryUpdateOneInput
-  subscriptions: SubscriptionUpdateManyInput
-  userRoles: UserRoleUpdateManyInput
-  influence: InfluencerUpdateOneRequiredWithoutInfluencerInput
-  follows: FollowerUpdateOneRequiredWithoutFollowerInput
+  status: UserStatusUpdateManyInput
+  followers: UserFollowerUpdateOneRequiredWithoutUserInput
 }
 
 input UserUpdateWithWhereUniqueNestedInput {
@@ -3753,19 +4323,14 @@ input UserUpsertNestedInput {
   create: UserCreateInput!
 }
 
-input UserUpsertWithoutFollowsInput {
-  update: UserUpdateWithoutFollowsDataInput!
-  create: UserCreateWithoutFollowsInput!
+input UserUpsertWithoutFollowersInput {
+  update: UserUpdateWithoutFollowersDataInput!
+  create: UserCreateWithoutFollowersInput!
 }
 
-input UserUpsertWithoutInfluenceInput {
-  update: UserUpdateWithoutInfluenceDataInput!
-  create: UserCreateWithoutInfluenceInput!
-}
-
-input UserUpsertWithoutStatusInput {
-  update: UserUpdateWithoutStatusDataInput!
-  create: UserCreateWithoutStatusInput!
+input UserUpsertWithoutInfluencersInput {
+  update: UserUpdateWithoutInfluencersDataInput!
+  create: UserCreateWithoutInfluencersInput!
 }
 
 input UserUpsertWithWhereUniqueNestedInput {
@@ -4067,46 +4632,6 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
-  profilePicture: String
-
-  """All values that are not equal to given value."""
-  profilePicture_not: String
-
-  """All values that are contained in given list."""
-  profilePicture_in: [String!]
-
-  """All values that are not contained in given list."""
-  profilePicture_not_in: [String!]
-
-  """All values less than the given value."""
-  profilePicture_lt: String
-
-  """All values less than or equal the given value."""
-  profilePicture_lte: String
-
-  """All values greater than the given value."""
-  profilePicture_gt: String
-
-  """All values greater than or equal the given value."""
-  profilePicture_gte: String
-
-  """All values containing the given string."""
-  profilePicture_contains: String
-
-  """All values not containing the given string."""
-  profilePicture_not_contains: String
-
-  """All values starting with the given string."""
-  profilePicture_starts_with: String
-
-  """All values not starting with the given string."""
-  profilePicture_not_starts_with: String
-
-  """All values ending with the given string."""
-  profilePicture_ends_with: String
-
-  """All values not ending with the given string."""
-  profilePicture_not_ends_with: String
   emailValidationToken: String
 
   """All values that are not equal to given value."""
@@ -4259,6 +4784,9 @@ input UserWhereInput {
   resetTokenExpiry_gte: Float
   favoriteTeam: TeamWhereInput
   country: CountryWhereInput
+  photos_every: UserPhotoWhereInput
+  photos_some: UserPhotoWhereInput
+  photos_none: UserPhotoWhereInput
   subscriptions_every: SubscriptionWhereInput
   subscriptions_some: SubscriptionWhereInput
   subscriptions_none: SubscriptionWhereInput
@@ -4268,8 +4796,8 @@ input UserWhereInput {
   status_every: UserStatusWhereInput
   status_some: UserStatusWhereInput
   status_none: UserStatusWhereInput
-  influence: InfluencerWhereInput
-  follows: FollowerWhereInput
+  followers: UserFollowerWhereInput
+  influencers: UserInfluencerWhereInput
 }
 
 input UserWhereUniqueInput {
