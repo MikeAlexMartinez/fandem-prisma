@@ -27,7 +27,9 @@ type Query {
   checkEmail(email: String!): Boolean!
   checkDisplayName(displayName: String!): Boolean!
   userByDisplayName(displayName: String!): User
+  fetchAllTeams: [Team!]!
   currentUser: User
+  getCountries: [Country!]!
 }
 
 # hide password and resetToken fields
