@@ -5,6 +5,8 @@ const { promisify } = require("util");
 const { transport, makeANiceEmail } = require("../../email/email");
 const requestEmailValidation = require("../../email/request-validation");
 
+const { connectWithId } = require("../../utils/connectors");
+
 const accountMutations = {
   async createUser(parent, args, ctx, info) {
     const email = args.email.toLowerCase();
@@ -311,37 +313,33 @@ const accountMutations = {
     return updatedUser;
   },
   async updateUserProfile(parent, args, ctx, info) {
-    if (!req.user) {
+    if (!ctx.request.user) {
       throw new Error(`You must be logged in to do this`);
     }
 
-    const { id, displayName, isPrivate, name, favoriteTeam, country } = args;
+    const user = ctx.request.user;
+    const { displayName, isPrivate, name, favoriteTeamId, countryId } = args;
 
-    if (req.user.id !== id) {
-      throw new Error(`User id mismatch`);
+    let result;
+    try {
+      result = await ctx.db.mutation.updateUser(
+        {
+          where: { id: user.id },
+          data: {
+            displayName,
+            name,
+            isPrivate,
+            favoriteTeam: connectWithId(favoriteTeamId),
+            country: connectWithId(countryId)
+          }
+        },
+        info
+      );
+    } catch (e) {
+      console.error(e);
     }
 
-    return ctx.db.mutation.updateUser(
-      {
-        where: { id },
-        data: {
-          displayName,
-          name,
-          isPrivate,
-          favoriteTeam: {
-            connect: {
-              id: favoriteTeam.id
-            }
-          },
-          country: {
-            connect: {
-              id: country.id
-            }
-          }
-        }
-      },
-      info
-    );
+    return result;
   }
 };
 

@@ -22,12 +22,11 @@ type Mutation {
     confirmPassword: String!
   ): User!
   updateUserProfile(
-    id: ID!
     displayName: String!
     isPrivate: Boolean!
     name: String
-    favoriteTeam: Team
-    country: Country
+    favoriteTeamId: ID
+    countryId: ID
   ): User!
 }
 
@@ -37,7 +36,7 @@ type Query {
   userByDisplayName(displayName: String!): User
   teams: [Team!]!
   currentUser: User
-  countries: [Country!]!
+  countries(orderBy: CountryOrderByInput): [Country!]!
 }
 
 # hide password and resetToken fields

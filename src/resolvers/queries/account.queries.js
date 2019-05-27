@@ -1,3 +1,5 @@
+const { forwardTo } = require("prisma-binding");
+
 const accountQueries = {
   async checkDisplayName(parent, args, ctx) {
     return ctx.db.exists.User({
@@ -33,9 +35,7 @@ const accountQueries = {
       info
     );
   },
-  async countries(parent, args, ctx, info) {
-    return ctx.db.query.countries({}, info);
-  }
+  countries: forwardTo("db")
 };
 
 module.exports = accountQueries;
