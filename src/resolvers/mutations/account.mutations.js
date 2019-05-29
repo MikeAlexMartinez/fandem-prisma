@@ -27,6 +27,7 @@ const accountMutations = {
           ...args,
           email,
           password,
+          status: [],
           userRoles: {
             connect: {
               id: plainUserRole.id
@@ -35,6 +36,16 @@ const accountMutations = {
           subscriptions: {
             connect: {
               id: freeSubscripton.id
+            }
+          },
+          followers: {
+            create: {
+              followers: []
+            }
+          },
+          influencers: {
+            create: {
+              influencers: []
             }
           }
         }
@@ -60,6 +71,27 @@ const accountMutations = {
         }
         userRoles {
           name
+        }
+        status {
+          status {
+            content
+          }
+        }
+        followers {
+          followers {
+            user {
+              isPrivate
+              displayName
+            }
+          }
+        }
+        influencers {
+          influencers {
+            user {
+              isPrivate
+              displayName
+            }
+          }
         }
       }`
     );
@@ -277,6 +309,39 @@ const accountMutations = {
 
     // return to user
     return updatedUser;
+  },
+  async updateUserProfile(parent, args, ctx, info) {
+    if (!req.user) {
+      throw new Error(`You must be logged in to do this`);
+    }
+
+    const { id, displayName, isPrivate, name, favoriteTeam, country } = args;
+
+    if (req.user.id !== id) {
+      throw new Error(`User id mismatch`);
+    }
+
+    return ctx.db.mutation.updateUser(
+      {
+        where: { id },
+        data: {
+          displayName,
+          name,
+          isPrivate,
+          favoriteTeam: {
+            connect: {
+              id: favoriteTeam.id
+            }
+          },
+          country: {
+            connect: {
+              id: country.id
+            }
+          }
+        }
+      },
+      info
+    );
   }
 };
 
