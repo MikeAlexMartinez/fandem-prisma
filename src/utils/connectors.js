@@ -1,5 +1,5 @@
 const connectWithId = id =>
-  countryId
+  id
     ? {
         connect: {
           id

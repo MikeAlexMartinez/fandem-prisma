@@ -35,7 +35,9 @@ const accountQueries = {
       info
     );
   },
-  countries: forwardTo("db")
+  async countries(parent, args, ctx, info) {
+    return ctx.db.query.countries({}, info);
+  }
 };
 
 module.exports = accountQueries;
