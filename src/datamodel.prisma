@@ -25,10 +25,16 @@ type User {
 
 type UserPhoto {
   id: ID! @unique
+  user: User!
+  photo: Photo!
+  isProfile: Boolean
+}
+
+type Photo {
+  id: ID! @unique
   image: String!
   largeImage: String
   smallImage: String
-  isProfile: Boolean
 }
 
 type Status {

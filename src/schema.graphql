@@ -28,6 +28,7 @@ type Mutation {
     favoriteTeamId: ID
     countryId: ID
   ): User!
+  addProfilePicture(image: String!): UserPhoto!
 }
 
 type Query {
@@ -57,4 +58,27 @@ type User {
   status: [UserStatus]!
   followers: UserFollower!
   influencers: UserInfluencer!
+}
+
+type Country {
+  id: ID
+  iso: String
+  name: String
+  code: String
+}
+
+type Team {
+  id: ID
+  code: Int
+  fplTeamId: Int
+  name: String
+  shortName: String
+  strength: Int
+  strengthAttackAway: Int
+  strengthAttackHome: Int
+  strengthDefenceAway: Int
+  strengthDefenceHome: Int
+  strengthOverallAway: Int
+  strengthOverallHome: Int
+  teamDivision: Int
 }

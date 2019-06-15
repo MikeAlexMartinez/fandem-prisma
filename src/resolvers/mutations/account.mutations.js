@@ -340,6 +340,62 @@ const accountMutations = {
     }
 
     return result;
+  },
+  async addProfilePicture(parent, args, ctx, info) {
+    if (!ctx.request.user) {
+      throw new Error(`You must be logged in to do this`);
+    }
+
+    const user = ctx.request.user;
+    const { image } = args;
+
+    // mark any photos for this user as isProfile: false
+    let removedProfilePics;
+    try {
+      removedProfilePics = await ctx.db.mutation.updateManyUserPhotos(
+        {
+          where: {
+            user: {
+              id: user.id
+            }
+          },
+          data: {
+            isProfile: false
+          }
+        },
+        `{ count }`
+      );
+    } catch (e) {
+      console.error(e);
+    }
+
+    console.log(removedProfilePics);
+
+    let result;
+    try {
+      result = await ctx.db.mutation.createUserPhoto(
+        {
+          data: {
+            isProfile: true,
+            user: {
+              connect: {
+                id: user.id
+              }
+            },
+            photo: {
+              create: {
+                image
+              }
+            }
+          }
+        },
+        info
+      );
+    } catch (e) {
+      console.error(e);
+    }
+
+    return result;
   }
 };
 

@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Sat Apr 27 2019 19:51:36 GMT+0100 (BST)
+# timestamp: Sat Jun 15 2019 14:01:32 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -174,6 +174,10 @@ type AggregateFollower {
 }
 
 type AggregateInfluencer {
+  count: Int!
+}
+
+type AggregatePhoto {
   count: Int!
 }
 
@@ -895,11 +899,13 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
+  createUserPhoto(data: UserPhotoCreateInput!): UserPhoto!
   createStatus(data: StatusCreateInput!): Status!
   createUserFollower(data: UserFollowerCreateInput!): UserFollower!
   createUserInfluencer(data: UserInfluencerCreateInput!): UserInfluencer!
   createUserAssignedRole(data: UserAssignedRoleCreateInput!): UserAssignedRole!
   createActiveSubscriptions(data: ActiveSubscriptionsCreateInput!): ActiveSubscriptions!
+  createPhoto(data: PhotoCreateInput!): Photo!
   createSubscription(data: SubscriptionCreateInput!): Subscription!
   createInfluencer(data: InfluencerCreateInput!): Influencer!
   createUserStatus(data: UserStatusCreateInput!): UserStatus!
@@ -907,13 +913,14 @@ type Mutation {
   createFollower(data: FollowerCreateInput!): Follower!
   createUser(data: UserCreateInput!): User!
   createUserRole(data: UserRoleCreateInput!): UserRole!
-  createUserPhoto(data: UserPhotoCreateInput!): UserPhoto!
   createTeam(data: TeamCreateInput!): Team!
+  updateUserPhoto(data: UserPhotoUpdateInput!, where: UserPhotoWhereUniqueInput!): UserPhoto
   updateStatus(data: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status
   updateUserFollower(data: UserFollowerUpdateInput!, where: UserFollowerWhereUniqueInput!): UserFollower
   updateUserInfluencer(data: UserInfluencerUpdateInput!, where: UserInfluencerWhereUniqueInput!): UserInfluencer
   updateUserAssignedRole(data: UserAssignedRoleUpdateInput!, where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   updateActiveSubscriptions(data: ActiveSubscriptionsUpdateInput!, where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  updatePhoto(data: PhotoUpdateInput!, where: PhotoWhereUniqueInput!): Photo
   updateSubscription(data: SubscriptionUpdateInput!, where: SubscriptionWhereUniqueInput!): Subscription
   updateInfluencer(data: InfluencerUpdateInput!, where: InfluencerWhereUniqueInput!): Influencer
   updateUserStatus(data: UserStatusUpdateInput!, where: UserStatusWhereUniqueInput!): UserStatus
@@ -921,13 +928,14 @@ type Mutation {
   updateFollower(data: FollowerUpdateInput!, where: FollowerWhereUniqueInput!): Follower
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateUserRole(data: UserRoleUpdateInput!, where: UserRoleWhereUniqueInput!): UserRole
-  updateUserPhoto(data: UserPhotoUpdateInput!, where: UserPhotoWhereUniqueInput!): UserPhoto
   updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
+  deleteUserPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
   deleteStatus(where: StatusWhereUniqueInput!): Status
   deleteUserFollower(where: UserFollowerWhereUniqueInput!): UserFollower
   deleteUserInfluencer(where: UserInfluencerWhereUniqueInput!): UserInfluencer
   deleteUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   deleteActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  deletePhoto(where: PhotoWhereUniqueInput!): Photo
   deleteSubscription(where: SubscriptionWhereUniqueInput!): Subscription
   deleteInfluencer(where: InfluencerWhereUniqueInput!): Influencer
   deleteUserStatus(where: UserStatusWhereUniqueInput!): UserStatus
@@ -935,13 +943,14 @@ type Mutation {
   deleteFollower(where: FollowerWhereUniqueInput!): Follower
   deleteUser(where: UserWhereUniqueInput!): User
   deleteUserRole(where: UserRoleWhereUniqueInput!): UserRole
-  deleteUserPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
   deleteTeam(where: TeamWhereUniqueInput!): Team
+  upsertUserPhoto(where: UserPhotoWhereUniqueInput!, create: UserPhotoCreateInput!, update: UserPhotoUpdateInput!): UserPhoto!
   upsertStatus(where: StatusWhereUniqueInput!, create: StatusCreateInput!, update: StatusUpdateInput!): Status!
   upsertUserFollower(where: UserFollowerWhereUniqueInput!, create: UserFollowerCreateInput!, update: UserFollowerUpdateInput!): UserFollower!
   upsertUserInfluencer(where: UserInfluencerWhereUniqueInput!, create: UserInfluencerCreateInput!, update: UserInfluencerUpdateInput!): UserInfluencer!
   upsertUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!, create: UserAssignedRoleCreateInput!, update: UserAssignedRoleUpdateInput!): UserAssignedRole!
   upsertActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!, create: ActiveSubscriptionsCreateInput!, update: ActiveSubscriptionsUpdateInput!): ActiveSubscriptions!
+  upsertPhoto(where: PhotoWhereUniqueInput!, create: PhotoCreateInput!, update: PhotoUpdateInput!): Photo!
   upsertSubscription(where: SubscriptionWhereUniqueInput!, create: SubscriptionCreateInput!, update: SubscriptionUpdateInput!): Subscription!
   upsertInfluencer(where: InfluencerWhereUniqueInput!, create: InfluencerCreateInput!, update: InfluencerUpdateInput!): Influencer!
   upsertUserStatus(where: UserStatusWhereUniqueInput!, create: UserStatusCreateInput!, update: UserStatusUpdateInput!): UserStatus!
@@ -949,23 +958,25 @@ type Mutation {
   upsertFollower(where: FollowerWhereUniqueInput!, create: FollowerCreateInput!, update: FollowerUpdateInput!): Follower!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertUserRole(where: UserRoleWhereUniqueInput!, create: UserRoleCreateInput!, update: UserRoleUpdateInput!): UserRole!
-  upsertUserPhoto(where: UserPhotoWhereUniqueInput!, create: UserPhotoCreateInput!, update: UserPhotoUpdateInput!): UserPhoto!
   upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
+  updateManyUserPhotos(data: UserPhotoUpdateManyMutationInput!, where: UserPhotoWhereInput): BatchPayload!
   updateManyStatuses(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): BatchPayload!
   updateManyActiveSubscriptionses(data: ActiveSubscriptionsUpdateManyMutationInput!, where: ActiveSubscriptionsWhereInput): BatchPayload!
+  updateManyPhotos(data: PhotoUpdateManyMutationInput!, where: PhotoWhereInput): BatchPayload!
   updateManySubscriptions(data: SubscriptionUpdateManyMutationInput!, where: SubscriptionWhereInput): BatchPayload!
   updateManyUserStatuses(data: UserStatusUpdateManyMutationInput!, where: UserStatusWhereInput): BatchPayload!
   updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
   updateManyFollowers(data: FollowerUpdateManyMutationInput!, where: FollowerWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyUserRoles(data: UserRoleUpdateManyMutationInput!, where: UserRoleWhereInput): BatchPayload!
-  updateManyUserPhotos(data: UserPhotoUpdateManyMutationInput!, where: UserPhotoWhereInput): BatchPayload!
   updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
+  deleteManyUserPhotos(where: UserPhotoWhereInput): BatchPayload!
   deleteManyStatuses(where: StatusWhereInput): BatchPayload!
   deleteManyUserFollowers(where: UserFollowerWhereInput): BatchPayload!
   deleteManyUserInfluencers(where: UserInfluencerWhereInput): BatchPayload!
   deleteManyUserAssignedRoles(where: UserAssignedRoleWhereInput): BatchPayload!
   deleteManyActiveSubscriptionses(where: ActiveSubscriptionsWhereInput): BatchPayload!
+  deleteManyPhotos(where: PhotoWhereInput): BatchPayload!
   deleteManySubscriptions(where: SubscriptionWhereInput): BatchPayload!
   deleteManyInfluencers(where: InfluencerWhereInput): BatchPayload!
   deleteManyUserStatuses(where: UserStatusWhereInput): BatchPayload!
@@ -973,7 +984,6 @@ type Mutation {
   deleteManyFollowers(where: FollowerWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyUserRoles(where: UserRoleWhereInput): BatchPayload!
-  deleteManyUserPhotos(where: UserPhotoWhereInput): BatchPayload!
   deleteManyTeams(where: TeamWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
 }
@@ -999,16 +1009,275 @@ type PageInfo {
   endCursor: String
 }
 
+type Photo implements Node {
+  id: ID!
+  image: String!
+  largeImage: String
+  smallImage: String
+}
+
+"""A connection to a list of items."""
+type PhotoConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PhotoEdge]!
+  aggregate: AggregatePhoto!
+}
+
+input PhotoCreateInput {
+  image: String!
+  largeImage: String
+  smallImage: String
+}
+
+input PhotoCreateOneInput {
+  create: PhotoCreateInput
+  connect: PhotoWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type PhotoEdge {
+  """The item at the end of the edge."""
+  node: Photo!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PhotoOrderByInput {
+  id_ASC
+  id_DESC
+  image_ASC
+  image_DESC
+  largeImage_ASC
+  largeImage_DESC
+  smallImage_ASC
+  smallImage_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+input PhotoUpdateDataInput {
+  image: String
+  largeImage: String
+  smallImage: String
+}
+
+input PhotoUpdateInput {
+  image: String
+  largeImage: String
+  smallImage: String
+}
+
+input PhotoUpdateManyMutationInput {
+  image: String
+  largeImage: String
+  smallImage: String
+}
+
+input PhotoUpdateOneRequiredInput {
+  create: PhotoCreateInput
+  connect: PhotoWhereUniqueInput
+  update: PhotoUpdateDataInput
+  upsert: PhotoUpsertNestedInput
+}
+
+input PhotoUpsertNestedInput {
+  update: PhotoUpdateDataInput!
+  create: PhotoCreateInput!
+}
+
+input PhotoWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PhotoWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PhotoWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PhotoWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  image: String
+
+  """All values that are not equal to given value."""
+  image_not: String
+
+  """All values that are contained in given list."""
+  image_in: [String!]
+
+  """All values that are not contained in given list."""
+  image_not_in: [String!]
+
+  """All values less than the given value."""
+  image_lt: String
+
+  """All values less than or equal the given value."""
+  image_lte: String
+
+  """All values greater than the given value."""
+  image_gt: String
+
+  """All values greater than or equal the given value."""
+  image_gte: String
+
+  """All values containing the given string."""
+  image_contains: String
+
+  """All values not containing the given string."""
+  image_not_contains: String
+
+  """All values starting with the given string."""
+  image_starts_with: String
+
+  """All values not starting with the given string."""
+  image_not_starts_with: String
+
+  """All values ending with the given string."""
+  image_ends_with: String
+
+  """All values not ending with the given string."""
+  image_not_ends_with: String
+  largeImage: String
+
+  """All values that are not equal to given value."""
+  largeImage_not: String
+
+  """All values that are contained in given list."""
+  largeImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  largeImage_not_in: [String!]
+
+  """All values less than the given value."""
+  largeImage_lt: String
+
+  """All values less than or equal the given value."""
+  largeImage_lte: String
+
+  """All values greater than the given value."""
+  largeImage_gt: String
+
+  """All values greater than or equal the given value."""
+  largeImage_gte: String
+
+  """All values containing the given string."""
+  largeImage_contains: String
+
+  """All values not containing the given string."""
+  largeImage_not_contains: String
+
+  """All values starting with the given string."""
+  largeImage_starts_with: String
+
+  """All values not starting with the given string."""
+  largeImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  largeImage_ends_with: String
+
+  """All values not ending with the given string."""
+  largeImage_not_ends_with: String
+  smallImage: String
+
+  """All values that are not equal to given value."""
+  smallImage_not: String
+
+  """All values that are contained in given list."""
+  smallImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  smallImage_not_in: [String!]
+
+  """All values less than the given value."""
+  smallImage_lt: String
+
+  """All values less than or equal the given value."""
+  smallImage_lte: String
+
+  """All values greater than the given value."""
+  smallImage_gt: String
+
+  """All values greater than or equal the given value."""
+  smallImage_gte: String
+
+  """All values containing the given string."""
+  smallImage_contains: String
+
+  """All values not containing the given string."""
+  smallImage_not_contains: String
+
+  """All values starting with the given string."""
+  smallImage_starts_with: String
+
+  """All values not starting with the given string."""
+  smallImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  smallImage_ends_with: String
+
+  """All values not ending with the given string."""
+  smallImage_not_ends_with: String
+}
+
+input PhotoWhereUniqueInput {
+  id: ID
+}
+
 enum PrismaDatabase {
   default
 }
 
 type Query {
+  userPhotos(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserPhoto]!
   statuses(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Status]!
   userFollowers(where: UserFollowerWhereInput, orderBy: UserFollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserFollower]!
   userInfluencers(where: UserInfluencerWhereInput, orderBy: UserInfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserInfluencer]!
   userAssignedRoles(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAssignedRole]!
   activeSubscriptionses(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ActiveSubscriptions]!
+  photos(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Photo]!
   subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription]!
   influencers(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer]!
   userStatuses(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus]!
@@ -1016,13 +1285,14 @@ type Query {
   followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole]!
-  userPhotos(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserPhoto]!
   teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
+  userPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
   status(where: StatusWhereUniqueInput!): Status
   userFollower(where: UserFollowerWhereUniqueInput!): UserFollower
   userInfluencer(where: UserInfluencerWhereUniqueInput!): UserInfluencer
   userAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   activeSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  photo(where: PhotoWhereUniqueInput!): Photo
   subscription(where: SubscriptionWhereUniqueInput!): Subscription
   influencer(where: InfluencerWhereUniqueInput!): Influencer
   userStatus(where: UserStatusWhereUniqueInput!): UserStatus
@@ -1030,13 +1300,14 @@ type Query {
   follower(where: FollowerWhereUniqueInput!): Follower
   user(where: UserWhereUniqueInput!): User
   userRole(where: UserRoleWhereUniqueInput!): UserRole
-  userPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
   team(where: TeamWhereUniqueInput!): Team
+  userPhotosConnection(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserPhotoConnection!
   statusesConnection(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatusConnection!
   userFollowersConnection(where: UserFollowerWhereInput, orderBy: UserFollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserFollowerConnection!
   userInfluencersConnection(where: UserInfluencerWhereInput, orderBy: UserInfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserInfluencerConnection!
   userAssignedRolesConnection(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAssignedRoleConnection!
   activeSubscriptionsesConnection(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ActiveSubscriptionsConnection!
+  photosConnection(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PhotoConnection!
   subscriptionsConnection(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriptionConnection!
   influencersConnection(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InfluencerConnection!
   userStatusesConnection(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStatusConnection!
@@ -1044,7 +1315,6 @@ type Query {
   followersConnection(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FollowerConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   userRolesConnection(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserRoleConnection!
-  userPhotosConnection(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserPhotoConnection!
   teamsConnection(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamConnection!
 
   """Fetches an object given its ID"""
@@ -2251,7 +2521,7 @@ input UserCreateInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
-  photos: UserPhotoCreateManyInput
+  photos: UserPhotoCreateManyWithoutUserInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyInput
@@ -2279,6 +2549,11 @@ input UserCreateOneWithoutInfluencersInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateOneWithoutPhotosInput {
+  create: UserCreateWithoutPhotosInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreateWithoutFollowersInput {
   email: String!
   name: String!
@@ -2295,7 +2570,7 @@ input UserCreateWithoutFollowersInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
-  photos: UserPhotoCreateManyInput
+  photos: UserPhotoCreateManyWithoutUserInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyInput
@@ -2318,11 +2593,34 @@ input UserCreateWithoutInfluencersInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
-  photos: UserPhotoCreateManyInput
+  photos: UserPhotoCreateManyWithoutUserInput
   subscriptions: SubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyInput
   followers: UserFollowerCreateOneWithoutUserInput!
+}
+
+input UserCreateWithoutPhotosInput {
+  email: String!
+  name: String!
+  countryCode: String
+  phoneNumber: String
+  displayName: String!
+  isPrivate: Boolean
+  password: String!
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamCreateOneInput
+  country: CountryCreateOneInput
+  subscriptions: SubscriptionCreateManyInput
+  userRoles: UserRoleCreateManyInput
+  status: UserStatusCreateManyInput
+  followers: UserFollowerCreateOneWithoutUserInput!
+  influencers: UserInfluencerCreateOneWithoutUserInput!
 }
 
 """An edge in a connection."""
@@ -2627,9 +2925,8 @@ enum UserOrderByInput {
 
 type UserPhoto implements Node {
   id: ID!
-  image: String!
-  largeImage: String
-  smallImage: String
+  user: User!
+  photo: Photo!
   isProfile: Boolean
 }
 
@@ -2644,15 +2941,19 @@ type UserPhotoConnection {
 }
 
 input UserPhotoCreateInput {
-  image: String!
-  largeImage: String
-  smallImage: String
   isProfile: Boolean
+  user: UserCreateOneWithoutPhotosInput!
+  photo: PhotoCreateOneInput!
 }
 
-input UserPhotoCreateManyInput {
-  create: [UserPhotoCreateInput!]
+input UserPhotoCreateManyWithoutUserInput {
+  create: [UserPhotoCreateWithoutUserInput!]
   connect: [UserPhotoWhereUniqueInput!]
+}
+
+input UserPhotoCreateWithoutUserInput {
+  isProfile: Boolean
+  photo: PhotoCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -2667,12 +2968,6 @@ type UserPhotoEdge {
 enum UserPhotoOrderByInput {
   id_ASC
   id_DESC
-  image_ASC
-  image_DESC
-  largeImage_ASC
-  largeImage_DESC
-  smallImage_ASC
-  smallImage_DESC
   isProfile_ASC
   isProfile_DESC
   updatedAt_ASC
@@ -2730,170 +3025,36 @@ input UserPhotoScalarWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  image: String
-
-  """All values that are not equal to given value."""
-  image_not: String
-
-  """All values that are contained in given list."""
-  image_in: [String!]
-
-  """All values that are not contained in given list."""
-  image_not_in: [String!]
-
-  """All values less than the given value."""
-  image_lt: String
-
-  """All values less than or equal the given value."""
-  image_lte: String
-
-  """All values greater than the given value."""
-  image_gt: String
-
-  """All values greater than or equal the given value."""
-  image_gte: String
-
-  """All values containing the given string."""
-  image_contains: String
-
-  """All values not containing the given string."""
-  image_not_contains: String
-
-  """All values starting with the given string."""
-  image_starts_with: String
-
-  """All values not starting with the given string."""
-  image_not_starts_with: String
-
-  """All values ending with the given string."""
-  image_ends_with: String
-
-  """All values not ending with the given string."""
-  image_not_ends_with: String
-  largeImage: String
-
-  """All values that are not equal to given value."""
-  largeImage_not: String
-
-  """All values that are contained in given list."""
-  largeImage_in: [String!]
-
-  """All values that are not contained in given list."""
-  largeImage_not_in: [String!]
-
-  """All values less than the given value."""
-  largeImage_lt: String
-
-  """All values less than or equal the given value."""
-  largeImage_lte: String
-
-  """All values greater than the given value."""
-  largeImage_gt: String
-
-  """All values greater than or equal the given value."""
-  largeImage_gte: String
-
-  """All values containing the given string."""
-  largeImage_contains: String
-
-  """All values not containing the given string."""
-  largeImage_not_contains: String
-
-  """All values starting with the given string."""
-  largeImage_starts_with: String
-
-  """All values not starting with the given string."""
-  largeImage_not_starts_with: String
-
-  """All values ending with the given string."""
-  largeImage_ends_with: String
-
-  """All values not ending with the given string."""
-  largeImage_not_ends_with: String
-  smallImage: String
-
-  """All values that are not equal to given value."""
-  smallImage_not: String
-
-  """All values that are contained in given list."""
-  smallImage_in: [String!]
-
-  """All values that are not contained in given list."""
-  smallImage_not_in: [String!]
-
-  """All values less than the given value."""
-  smallImage_lt: String
-
-  """All values less than or equal the given value."""
-  smallImage_lte: String
-
-  """All values greater than the given value."""
-  smallImage_gt: String
-
-  """All values greater than or equal the given value."""
-  smallImage_gte: String
-
-  """All values containing the given string."""
-  smallImage_contains: String
-
-  """All values not containing the given string."""
-  smallImage_not_contains: String
-
-  """All values starting with the given string."""
-  smallImage_starts_with: String
-
-  """All values not starting with the given string."""
-  smallImage_not_starts_with: String
-
-  """All values ending with the given string."""
-  smallImage_ends_with: String
-
-  """All values not ending with the given string."""
-  smallImage_not_ends_with: String
   isProfile: Boolean
 
   """All values that are not equal to given value."""
   isProfile_not: Boolean
 }
 
-input UserPhotoUpdateDataInput {
-  image: String
-  largeImage: String
-  smallImage: String
-  isProfile: Boolean
-}
-
 input UserPhotoUpdateInput {
-  image: String
-  largeImage: String
-  smallImage: String
   isProfile: Boolean
+  user: UserUpdateOneRequiredWithoutPhotosInput
+  photo: PhotoUpdateOneRequiredInput
 }
 
 input UserPhotoUpdateManyDataInput {
-  image: String
-  largeImage: String
-  smallImage: String
   isProfile: Boolean
 }
 
-input UserPhotoUpdateManyInput {
-  create: [UserPhotoCreateInput!]
+input UserPhotoUpdateManyMutationInput {
+  isProfile: Boolean
+}
+
+input UserPhotoUpdateManyWithoutUserInput {
+  create: [UserPhotoCreateWithoutUserInput!]
   connect: [UserPhotoWhereUniqueInput!]
   set: [UserPhotoWhereUniqueInput!]
   disconnect: [UserPhotoWhereUniqueInput!]
   delete: [UserPhotoWhereUniqueInput!]
-  update: [UserPhotoUpdateWithWhereUniqueNestedInput!]
+  update: [UserPhotoUpdateWithWhereUniqueWithoutUserInput!]
   updateMany: [UserPhotoUpdateManyWithWhereNestedInput!]
   deleteMany: [UserPhotoScalarWhereInput!]
-  upsert: [UserPhotoUpsertWithWhereUniqueNestedInput!]
-}
-
-input UserPhotoUpdateManyMutationInput {
-  image: String
-  largeImage: String
-  smallImage: String
-  isProfile: Boolean
+  upsert: [UserPhotoUpsertWithWhereUniqueWithoutUserInput!]
 }
 
 input UserPhotoUpdateManyWithWhereNestedInput {
@@ -2901,15 +3062,20 @@ input UserPhotoUpdateManyWithWhereNestedInput {
   data: UserPhotoUpdateManyDataInput!
 }
 
-input UserPhotoUpdateWithWhereUniqueNestedInput {
-  where: UserPhotoWhereUniqueInput!
-  data: UserPhotoUpdateDataInput!
+input UserPhotoUpdateWithoutUserDataInput {
+  isProfile: Boolean
+  photo: PhotoUpdateOneRequiredInput
 }
 
-input UserPhotoUpsertWithWhereUniqueNestedInput {
+input UserPhotoUpdateWithWhereUniqueWithoutUserInput {
   where: UserPhotoWhereUniqueInput!
-  update: UserPhotoUpdateDataInput!
-  create: UserPhotoCreateInput!
+  data: UserPhotoUpdateWithoutUserDataInput!
+}
+
+input UserPhotoUpsertWithWhereUniqueWithoutUserInput {
+  where: UserPhotoWhereUniqueInput!
+  update: UserPhotoUpdateWithoutUserDataInput!
+  create: UserPhotoCreateWithoutUserInput!
 }
 
 input UserPhotoWhereInput {
@@ -2961,130 +3127,12 @@ input UserPhotoWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  image: String
-
-  """All values that are not equal to given value."""
-  image_not: String
-
-  """All values that are contained in given list."""
-  image_in: [String!]
-
-  """All values that are not contained in given list."""
-  image_not_in: [String!]
-
-  """All values less than the given value."""
-  image_lt: String
-
-  """All values less than or equal the given value."""
-  image_lte: String
-
-  """All values greater than the given value."""
-  image_gt: String
-
-  """All values greater than or equal the given value."""
-  image_gte: String
-
-  """All values containing the given string."""
-  image_contains: String
-
-  """All values not containing the given string."""
-  image_not_contains: String
-
-  """All values starting with the given string."""
-  image_starts_with: String
-
-  """All values not starting with the given string."""
-  image_not_starts_with: String
-
-  """All values ending with the given string."""
-  image_ends_with: String
-
-  """All values not ending with the given string."""
-  image_not_ends_with: String
-  largeImage: String
-
-  """All values that are not equal to given value."""
-  largeImage_not: String
-
-  """All values that are contained in given list."""
-  largeImage_in: [String!]
-
-  """All values that are not contained in given list."""
-  largeImage_not_in: [String!]
-
-  """All values less than the given value."""
-  largeImage_lt: String
-
-  """All values less than or equal the given value."""
-  largeImage_lte: String
-
-  """All values greater than the given value."""
-  largeImage_gt: String
-
-  """All values greater than or equal the given value."""
-  largeImage_gte: String
-
-  """All values containing the given string."""
-  largeImage_contains: String
-
-  """All values not containing the given string."""
-  largeImage_not_contains: String
-
-  """All values starting with the given string."""
-  largeImage_starts_with: String
-
-  """All values not starting with the given string."""
-  largeImage_not_starts_with: String
-
-  """All values ending with the given string."""
-  largeImage_ends_with: String
-
-  """All values not ending with the given string."""
-  largeImage_not_ends_with: String
-  smallImage: String
-
-  """All values that are not equal to given value."""
-  smallImage_not: String
-
-  """All values that are contained in given list."""
-  smallImage_in: [String!]
-
-  """All values that are not contained in given list."""
-  smallImage_not_in: [String!]
-
-  """All values less than the given value."""
-  smallImage_lt: String
-
-  """All values less than or equal the given value."""
-  smallImage_lte: String
-
-  """All values greater than the given value."""
-  smallImage_gt: String
-
-  """All values greater than or equal the given value."""
-  smallImage_gte: String
-
-  """All values containing the given string."""
-  smallImage_contains: String
-
-  """All values not containing the given string."""
-  smallImage_not_contains: String
-
-  """All values starting with the given string."""
-  smallImage_starts_with: String
-
-  """All values not starting with the given string."""
-  smallImage_not_starts_with: String
-
-  """All values ending with the given string."""
-  smallImage_ends_with: String
-
-  """All values not ending with the given string."""
-  smallImage_not_ends_with: String
   isProfile: Boolean
 
   """All values that are not equal to given value."""
   isProfile_not: Boolean
+  user: UserWhereInput
+  photo: PhotoWhereInput
 }
 
 input UserPhotoWhereUniqueInput {
@@ -4165,7 +4213,7 @@ input UserUpdateDataInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
-  photos: UserPhotoUpdateManyInput
+  photos: UserPhotoUpdateManyWithoutUserInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
@@ -4189,7 +4237,7 @@ input UserUpdateInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
-  photos: UserPhotoUpdateManyInput
+  photos: UserPhotoUpdateManyWithoutUserInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
@@ -4267,6 +4315,13 @@ input UserUpdateOneRequiredWithoutInfluencersInput {
   upsert: UserUpsertWithoutInfluencersInput
 }
 
+input UserUpdateOneRequiredWithoutPhotosInput {
+  create: UserCreateWithoutPhotosInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutPhotosDataInput
+  upsert: UserUpsertWithoutPhotosInput
+}
+
 input UserUpdateWithoutFollowersDataInput {
   email: String
   name: String
@@ -4283,7 +4338,7 @@ input UserUpdateWithoutFollowersDataInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
-  photos: UserPhotoUpdateManyInput
+  photos: UserPhotoUpdateManyWithoutUserInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
@@ -4306,11 +4361,34 @@ input UserUpdateWithoutInfluencersDataInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
-  photos: UserPhotoUpdateManyInput
+  photos: UserPhotoUpdateManyWithoutUserInput
   subscriptions: SubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
   followers: UserFollowerUpdateOneRequiredWithoutUserInput
+}
+
+input UserUpdateWithoutPhotosDataInput {
+  email: String
+  name: String
+  countryCode: String
+  phoneNumber: String
+  displayName: String
+  isPrivate: Boolean
+  password: String
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  favoriteTeam: TeamUpdateOneInput
+  country: CountryUpdateOneInput
+  subscriptions: SubscriptionUpdateManyInput
+  userRoles: UserRoleUpdateManyInput
+  status: UserStatusUpdateManyInput
+  followers: UserFollowerUpdateOneRequiredWithoutUserInput
+  influencers: UserInfluencerUpdateOneRequiredWithoutUserInput
 }
 
 input UserUpdateWithWhereUniqueNestedInput {
@@ -4331,6 +4409,11 @@ input UserUpsertWithoutFollowersInput {
 input UserUpsertWithoutInfluencersInput {
   update: UserUpdateWithoutInfluencersDataInput!
   create: UserCreateWithoutInfluencersInput!
+}
+
+input UserUpsertWithoutPhotosInput {
+  update: UserUpdateWithoutPhotosDataInput!
+  create: UserCreateWithoutPhotosInput!
 }
 
 input UserUpsertWithWhereUniqueNestedInput {
