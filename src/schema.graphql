@@ -59,26 +59,3 @@ type User {
   followers: UserFollower!
   influencers: UserInfluencer!
 }
-
-type Country {
-  id: ID
-  iso: String
-  name: String
-  code: String
-}
-
-type Team {
-  id: ID
-  code: Int
-  fplTeamId: Int
-  name: String
-  shortName: String
-  strength: Int
-  strengthAttackAway: Int
-  strengthAttackHome: Int
-  strengthDefenceAway: Int
-  strengthDefenceHome: Int
-  strengthOverallAway: Int
-  strengthOverallHome: Int
-  teamDivision: Int
-}

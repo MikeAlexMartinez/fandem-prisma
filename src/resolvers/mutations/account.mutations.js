@@ -134,8 +134,6 @@ const accountMutations = {
       maxAge: 1000 * 60 * 60 * 24 * 30 // One Month
     });
 
-    console.log(user);
-
     if (!user.emailValidated) {
       try {
         await requestEmailValidation({ user, ctx });
@@ -252,7 +250,6 @@ const accountMutations = {
           }/reset?resetToken=${resetToken}">Click here to Reset</a>
         `)
       });
-      console.log(mailResponse);
     } catch (e) {
       console.error(e);
       error = e;
@@ -357,7 +354,8 @@ const accountMutations = {
           where: {
             user: {
               id: user.id
-            }
+            },
+            isProfile: true
           },
           data: {
             isProfile: false
@@ -368,8 +366,6 @@ const accountMutations = {
     } catch (e) {
       console.error(e);
     }
-
-    console.log(removedProfilePics);
 
     let result;
     try {
