@@ -35,7 +35,7 @@ type Query {
   checkEmail(email: String!): Boolean!
   checkDisplayName(displayName: String!): Boolean!
   userByDisplayName(displayName: String!): User
-  teams: [Team!]!
+  teams(orderBy: TeamOrderByInput): [Team!]!
   currentUser: User
   countries(orderBy: CountryOrderByInput): [Country!]!
 }
@@ -58,4 +58,27 @@ type User {
   status: [UserStatus]!
   followers: UserFollower!
   influencers: UserInfluencer!
+}
+
+type Country {
+  id: ID
+  iso: String
+  name: String
+  code: String
+}
+
+type Team {
+  id: ID
+  code: Int
+  fplTeamId: Int
+  name: String
+  shortName: String
+  strength: Int
+  strengthAttackAway: Int
+  strengthAttackHome: Int
+  strengthDefenceAway: Int
+  strengthDefenceHome: Int
+  strengthOverallAway: Int
+  strengthOverallHome: Int
+  teamDivision: Int
 }

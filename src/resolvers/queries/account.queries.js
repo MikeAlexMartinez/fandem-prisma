@@ -1,5 +1,3 @@
-const { forwardTo } = require("prisma-binding");
-
 const accountQueries = {
   async checkDisplayName(parent, args, ctx) {
     return ctx.db.exists.User({
@@ -36,7 +34,7 @@ const accountQueries = {
     );
   },
   async countries(parent, args, ctx, info) {
-    return ctx.db.query.countries({}, info);
+    return ctx.db.query.countries(null, info);
   }
 };
 
