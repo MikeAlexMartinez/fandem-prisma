@@ -9,7 +9,7 @@ const seedSubscriptions = require("./scripts/users/seed-subscriptions");
 const seedUsers = require("./scripts/users/seed-users");
 
 const setup = async () => {
-  // add teams
+  // add teams - (Change to All relevant FPL data)
   const teams = await seedTeamData({ db });
   console.log(`Inserted ${teams.length} teams`);
   // add countries

@@ -109,7 +109,7 @@ type Country {
 
 type Team {
   id: ID! @unique
-  code: Int!
+  code: Int! @unique
   fplTeamId: Int!
   name: String!
   shortName: String!
@@ -121,4 +121,67 @@ type Team {
   strengthOverallAway: Int!
   strengthOverallHome: Int!
   teamDivision: Int!
+  homeFixtures: [HomeTeamFixture]!
+  awayFixtures: [AwayTeamFixture]!
+}
+
+type Season {
+  id: ID! @unique
+  fplId: Int! @unique
+  competition: String!
+  startYear: Int!
+  endYear: Int!
+  isCurrent: Boolean!
+  isPrevious: Boolean!
+  isNext: boolean!
+}
+
+type Gameweek {
+  id: ID! @unique
+  fplEventId: Int! @unique
+  season: Season!
+  averageEntryScore: Int
+  dataChecked: Boolean!
+  deadlineTime: DateTime!
+  deadlineTimeEpoch: Int!
+  deadlineTimeFormatted: String!
+  deadlineTimeGameOffset: Int!
+  finished: Boolean!
+  highestScore: Int
+  highestScoringEntry: Int
+  isCurrent: Boolean!
+  isNext: Boolean!
+  isPrevious: Boolean!
+  name: String!
+}
+
+type HomeTeamFixture {
+  id: ID! @unique
+  fixture: Fixture!
+  homeTeam: Team!
+}
+
+type AwayTeamFixture {
+  id: ID! @unique
+  fixture: Fixture!
+  awayTeam: Team!
+}
+
+type Fixture {
+  id: ID! @unique
+  fplCode: Int! @unique
+  event: Gameweek!
+  finished: Boolean!
+  finishedProvisional: Boolean!
+  fixtureId: Int!
+  kickoffTime: DateTime
+  minutes: Int!
+  provisionalStartTime: Boolean!
+  started: Boolean!
+  teamA: AwayTeam!
+  teamADifficulty: Int!
+  teamAScore: Int
+  teamH: HomeTeam!
+  teamHDifficulty: Int!
+  teamHScore: Int
 }

@@ -2,7 +2,7 @@
 const path = require("path");
 
 const fetchFromApi = require("./call-api");
-const MAIN = "https://fantasy.premierleague.com/drf/bootstrap-static";
+const MAIN = "https://fantasy.premierleague.com/api/bootstrap-static";
 
 // Globals
 const args = process.argv;
