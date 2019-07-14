@@ -2,7 +2,7 @@
 const path = require("path");
 
 const fetchFromApi = require("./call-api");
-const MAIN = "https://fantasy.premierleague.com/api/bootstrap-static";
+const { MAIN_API } = require("./endpoints");
 
 // Globals
 const args = process.argv;
@@ -48,7 +48,7 @@ async function getMainData() {
   let data;
 
   try {
-    const rawData = await fetchFromApi({ uri: MAIN });
+    const rawData = await fetchFromApi({ uri: MAIN_API });
     data = transformMainData(rawData);
   } catch (e) {
     return e;
