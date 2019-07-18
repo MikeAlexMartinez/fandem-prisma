@@ -1,7 +1,7 @@
 version: "3"
 services:
   prisma:
-    image: prismagraphql/prisma:1.27
+    image: prismagraphql/prisma:1.31
     # I don't want this to always restart during development
     # restart: always
     ports:

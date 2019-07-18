@@ -1,25 +1,24 @@
-const { fetchMain } = require("./fetch-main-data");
-
-module.exports = seedTeamData;
-
-async function seedTeamData({ db }) {
-  let mainData;
-
-  // fetch team data
-  try {
-    mainData = await fetchMain();
-  } catch (e) {
-    return e;
-  }
-
-  let teams = [];
-  if (mainData && mainData.teams) {
-    teams = transformTeamData(mainData.teams);
-  }
+async function seedTeamData({ db, teams, season }) {
+  const transformedTeams = transformTeamData(teams, season);
 
   return await Promise.all(
-    teams.map(
-      async team => await db.mutation.createTeam({ data: team }, "{ id name }")
+    transformedTeams.map(
+      async team =>
+        await db.mutation.createTeam(
+          {
+            data: {
+              ...team,
+              season: {
+                connect: {
+                  id: season.id
+                }
+              },
+              homeFixtures: [],
+              awayFixtures: []
+            }
+          },
+          "{ id name }"
+        )
     )
   );
 }
@@ -40,3 +39,5 @@ function transformTeamData(teams) {
     teamDivision: team.team_division
   }));
 }
+
+module.exports = { seedTeamData, transformTeamData };

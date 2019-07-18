@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Sat Jun 15 2019 14:01:32 GMT+0100 (BST)
+# timestamp: Thu Jul 18 2019 11:05:39 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -7,6 +7,8 @@ type ActiveSubscriptions implements Node {
   subscription: UserRole!
   startDate: DateTime!
   endDate: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -20,6 +22,7 @@ type ActiveSubscriptionsConnection {
 }
 
 input ActiveSubscriptionsCreateInput {
+  id: ID
   startDate: DateTime!
   endDate: DateTime!
   user: UserCreateOneInput!
@@ -42,10 +45,57 @@ enum ActiveSubscriptionsOrderByInput {
   startDate_DESC
   endDate_ASC
   endDate_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ActiveSubscriptionsPreviousValues {
+  id: ID!
+  startDate: DateTime!
+  endDate: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ActiveSubscriptionsSubscriptionPayload {
+  mutation: MutationType!
+  node: ActiveSubscriptions
+  updatedFields: [String!]
+  previousValues: ActiveSubscriptionsPreviousValues
+}
+
+input ActiveSubscriptionsSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ActiveSubscriptionsSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ActiveSubscriptionsSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ActiveSubscriptionsSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ActiveSubscriptionsWhereInput
 }
 
 input ActiveSubscriptionsUpdateInput {
@@ -153,6 +203,50 @@ input ActiveSubscriptionsWhereInput {
 
   """All values greater than or equal the given value."""
   endDate_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   user: UserWhereInput
   subscription: UserRoleWhereInput
 }
@@ -165,11 +259,31 @@ type AggregateActiveSubscriptions {
   count: Int!
 }
 
+type AggregateAwayTeamFixture {
+  count: Int!
+}
+
 type AggregateCountry {
   count: Int!
 }
 
+type AggregateFandemSubscription {
+  count: Int!
+}
+
+type AggregateFixture {
+  count: Int!
+}
+
 type AggregateFollower {
+  count: Int!
+}
+
+type AggregateGameweek {
+  count: Int!
+}
+
+type AggregateHomeTeamFixture {
   count: Int!
 }
 
@@ -181,11 +295,11 @@ type AggregatePhoto {
   count: Int!
 }
 
-type AggregateStatus {
+type AggregateSeason {
   count: Int!
 }
 
-type AggregateSubscription {
+type AggregateStatus {
   count: Int!
 }
 
@@ -201,11 +315,11 @@ type AggregateUserAssignedRole {
   count: Int!
 }
 
-type AggregateUserFollower {
+type AggregateUserFollowers {
   count: Int!
 }
 
-type AggregateUserInfluencer {
+type AggregateUserInfluencers {
   count: Int!
 }
 
@@ -221,6 +335,356 @@ type AggregateUserStatus {
   count: Int!
 }
 
+type AwayTeamFixture implements Node {
+  id: ID!
+  fixture: Fixture!
+  awayTeam: Team!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type AwayTeamFixtureConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AwayTeamFixtureEdge]!
+  aggregate: AggregateAwayTeamFixture!
+}
+
+input AwayTeamFixtureCreateInput {
+  id: ID
+  fixture: FixtureCreateOneWithoutTeamAInput!
+  awayTeam: TeamCreateOneWithoutAwayFixturesInput!
+}
+
+input AwayTeamFixtureCreateManyWithoutAwayTeamInput {
+  create: [AwayTeamFixtureCreateWithoutAwayTeamInput!]
+  connect: [AwayTeamFixtureWhereUniqueInput!]
+}
+
+input AwayTeamFixtureCreateOneWithoutFixtureInput {
+  create: AwayTeamFixtureCreateWithoutFixtureInput
+  connect: AwayTeamFixtureWhereUniqueInput
+}
+
+input AwayTeamFixtureCreateWithoutAwayTeamInput {
+  id: ID
+  fixture: FixtureCreateOneWithoutTeamAInput!
+}
+
+input AwayTeamFixtureCreateWithoutFixtureInput {
+  id: ID
+  awayTeam: TeamCreateOneWithoutAwayFixturesInput!
+}
+
+"""An edge in a connection."""
+type AwayTeamFixtureEdge {
+  """The item at the end of the edge."""
+  node: AwayTeamFixture!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AwayTeamFixtureOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AwayTeamFixturePreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input AwayTeamFixtureScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AwayTeamFixtureScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AwayTeamFixtureScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AwayTeamFixtureScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+type AwayTeamFixtureSubscriptionPayload {
+  mutation: MutationType!
+  node: AwayTeamFixture
+  updatedFields: [String!]
+  previousValues: AwayTeamFixturePreviousValues
+}
+
+input AwayTeamFixtureSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AwayTeamFixtureSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AwayTeamFixtureSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AwayTeamFixtureSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AwayTeamFixtureWhereInput
+}
+
+input AwayTeamFixtureUpdateInput {
+  fixture: FixtureUpdateOneRequiredWithoutTeamAInput
+  awayTeam: TeamUpdateOneRequiredWithoutAwayFixturesInput
+}
+
+input AwayTeamFixtureUpdateManyWithoutAwayTeamInput {
+  create: [AwayTeamFixtureCreateWithoutAwayTeamInput!]
+  connect: [AwayTeamFixtureWhereUniqueInput!]
+  set: [AwayTeamFixtureWhereUniqueInput!]
+  disconnect: [AwayTeamFixtureWhereUniqueInput!]
+  delete: [AwayTeamFixtureWhereUniqueInput!]
+  update: [AwayTeamFixtureUpdateWithWhereUniqueWithoutAwayTeamInput!]
+  deleteMany: [AwayTeamFixtureScalarWhereInput!]
+  upsert: [AwayTeamFixtureUpsertWithWhereUniqueWithoutAwayTeamInput!]
+}
+
+input AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput {
+  create: AwayTeamFixtureCreateWithoutFixtureInput
+  connect: AwayTeamFixtureWhereUniqueInput
+  update: AwayTeamFixtureUpdateWithoutFixtureDataInput
+  upsert: AwayTeamFixtureUpsertWithoutFixtureInput
+}
+
+input AwayTeamFixtureUpdateWithoutAwayTeamDataInput {
+  fixture: FixtureUpdateOneRequiredWithoutTeamAInput
+}
+
+input AwayTeamFixtureUpdateWithoutFixtureDataInput {
+  awayTeam: TeamUpdateOneRequiredWithoutAwayFixturesInput
+}
+
+input AwayTeamFixtureUpdateWithWhereUniqueWithoutAwayTeamInput {
+  where: AwayTeamFixtureWhereUniqueInput!
+  data: AwayTeamFixtureUpdateWithoutAwayTeamDataInput!
+}
+
+input AwayTeamFixtureUpsertWithoutFixtureInput {
+  update: AwayTeamFixtureUpdateWithoutFixtureDataInput!
+  create: AwayTeamFixtureCreateWithoutFixtureInput!
+}
+
+input AwayTeamFixtureUpsertWithWhereUniqueWithoutAwayTeamInput {
+  where: AwayTeamFixtureWhereUniqueInput!
+  update: AwayTeamFixtureUpdateWithoutAwayTeamDataInput!
+  create: AwayTeamFixtureCreateWithoutAwayTeamInput!
+}
+
+input AwayTeamFixtureWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AwayTeamFixtureWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [AwayTeamFixtureWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AwayTeamFixtureWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  fixture: FixtureWhereInput
+  awayTeam: TeamWhereInput
+}
+
+input AwayTeamFixtureWhereUniqueInput {
+  id: ID
+}
+
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
@@ -231,6 +695,8 @@ type Country implements Node {
   iso: String!
   name: String!
   code: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -244,6 +710,7 @@ type CountryConnection {
 }
 
 input CountryCreateInput {
+  id: ID
   iso: String!
   name: String!
   code: String!
@@ -272,10 +739,58 @@ enum CountryOrderByInput {
   name_DESC
   code_ASC
   code_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type CountryPreviousValues {
+  id: ID!
+  iso: String!
+  name: String!
+  code: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CountrySubscriptionPayload {
+  mutation: MutationType!
+  node: Country
+  updatedFields: [String!]
+  previousValues: CountryPreviousValues
+}
+
+input CountrySubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CountrySubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CountrySubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CountrySubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CountryWhereInput
 }
 
 input CountryUpdateDataInput {
@@ -479,6 +994,50 @@ input CountryWhereInput {
 
   """All values not ending with the given string."""
   code_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input CountryWhereUniqueInput {
@@ -487,11 +1046,1094 @@ input CountryWhereUniqueInput {
 
 scalar DateTime
 
+type FandemSubscription implements Node {
+  id: ID!
+  name: String!
+  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type FandemSubscriptionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FandemSubscriptionEdge]!
+  aggregate: AggregateFandemSubscription!
+}
+
+input FandemSubscriptionCreateInput {
+  id: ID
+  name: String!
+  description: String!
+}
+
+input FandemSubscriptionCreateManyInput {
+  create: [FandemSubscriptionCreateInput!]
+  connect: [FandemSubscriptionWhereUniqueInput!]
+}
+
+"""An edge in a connection."""
+type FandemSubscriptionEdge {
+  """The item at the end of the edge."""
+  node: FandemSubscription!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FandemSubscriptionOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type FandemSubscriptionPreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input FandemSubscriptionScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FandemSubscriptionScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FandemSubscriptionScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FandemSubscriptionScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+type FandemSubscriptionSubscriptionPayload {
+  mutation: MutationType!
+  node: FandemSubscription
+  updatedFields: [String!]
+  previousValues: FandemSubscriptionPreviousValues
+}
+
+input FandemSubscriptionSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FandemSubscriptionSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FandemSubscriptionSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FandemSubscriptionSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FandemSubscriptionWhereInput
+}
+
+input FandemSubscriptionUpdateDataInput {
+  name: String
+  description: String
+}
+
+input FandemSubscriptionUpdateInput {
+  name: String
+  description: String
+}
+
+input FandemSubscriptionUpdateManyDataInput {
+  name: String
+  description: String
+}
+
+input FandemSubscriptionUpdateManyInput {
+  create: [FandemSubscriptionCreateInput!]
+  connect: [FandemSubscriptionWhereUniqueInput!]
+  set: [FandemSubscriptionWhereUniqueInput!]
+  disconnect: [FandemSubscriptionWhereUniqueInput!]
+  delete: [FandemSubscriptionWhereUniqueInput!]
+  update: [FandemSubscriptionUpdateWithWhereUniqueNestedInput!]
+  updateMany: [FandemSubscriptionUpdateManyWithWhereNestedInput!]
+  deleteMany: [FandemSubscriptionScalarWhereInput!]
+  upsert: [FandemSubscriptionUpsertWithWhereUniqueNestedInput!]
+}
+
+input FandemSubscriptionUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input FandemSubscriptionUpdateManyWithWhereNestedInput {
+  where: FandemSubscriptionScalarWhereInput!
+  data: FandemSubscriptionUpdateManyDataInput!
+}
+
+input FandemSubscriptionUpdateWithWhereUniqueNestedInput {
+  where: FandemSubscriptionWhereUniqueInput!
+  data: FandemSubscriptionUpdateDataInput!
+}
+
+input FandemSubscriptionUpsertWithWhereUniqueNestedInput {
+  where: FandemSubscriptionWhereUniqueInput!
+  update: FandemSubscriptionUpdateDataInput!
+  create: FandemSubscriptionCreateInput!
+}
+
+input FandemSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FandemSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FandemSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FandemSubscriptionWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+input FandemSubscriptionWhereUniqueInput {
+  id: ID
+}
+
+type Fixture implements Node {
+  id: ID!
+  fplCode: Int!
+  event: Gameweek!
+  finished: Boolean!
+  finishedProvisional: Boolean!
+  fixtureId: Int!
+  kickoffTime: DateTime
+  minutes: Int!
+  provisionalStartTime: Boolean!
+  started: Boolean!
+  teamA: AwayTeamFixture!
+  teamADifficulty: Int!
+  teamAScore: Int
+  teamH: HomeTeamFixture!
+  teamHDifficulty: Int!
+  teamHScore: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type FixtureConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FixtureEdge]!
+  aggregate: AggregateFixture!
+}
+
+input FixtureCreateInput {
+  id: ID
+  fplCode: Int!
+  finished: Boolean!
+  finishedProvisional: Boolean!
+  fixtureId: Int!
+  kickoffTime: DateTime
+  minutes: Int!
+  provisionalStartTime: Boolean!
+  started: Boolean!
+  teamADifficulty: Int!
+  teamAScore: Int
+  teamHDifficulty: Int!
+  teamHScore: Int
+  event: GameweekCreateOneInput!
+  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput!
+  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput!
+}
+
+input FixtureCreateOneWithoutTeamAInput {
+  create: FixtureCreateWithoutTeamAInput
+  connect: FixtureWhereUniqueInput
+}
+
+input FixtureCreateOneWithoutTeamHInput {
+  create: FixtureCreateWithoutTeamHInput
+  connect: FixtureWhereUniqueInput
+}
+
+input FixtureCreateWithoutTeamAInput {
+  id: ID
+  fplCode: Int!
+  finished: Boolean!
+  finishedProvisional: Boolean!
+  fixtureId: Int!
+  kickoffTime: DateTime
+  minutes: Int!
+  provisionalStartTime: Boolean!
+  started: Boolean!
+  teamADifficulty: Int!
+  teamAScore: Int
+  teamHDifficulty: Int!
+  teamHScore: Int
+  event: GameweekCreateOneInput!
+  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput!
+}
+
+input FixtureCreateWithoutTeamHInput {
+  id: ID
+  fplCode: Int!
+  finished: Boolean!
+  finishedProvisional: Boolean!
+  fixtureId: Int!
+  kickoffTime: DateTime
+  minutes: Int!
+  provisionalStartTime: Boolean!
+  started: Boolean!
+  teamADifficulty: Int!
+  teamAScore: Int
+  teamHDifficulty: Int!
+  teamHScore: Int
+  event: GameweekCreateOneInput!
+  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput!
+}
+
+"""An edge in a connection."""
+type FixtureEdge {
+  """The item at the end of the edge."""
+  node: Fixture!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FixtureOrderByInput {
+  id_ASC
+  id_DESC
+  fplCode_ASC
+  fplCode_DESC
+  finished_ASC
+  finished_DESC
+  finishedProvisional_ASC
+  finishedProvisional_DESC
+  fixtureId_ASC
+  fixtureId_DESC
+  kickoffTime_ASC
+  kickoffTime_DESC
+  minutes_ASC
+  minutes_DESC
+  provisionalStartTime_ASC
+  provisionalStartTime_DESC
+  started_ASC
+  started_DESC
+  teamADifficulty_ASC
+  teamADifficulty_DESC
+  teamAScore_ASC
+  teamAScore_DESC
+  teamHDifficulty_ASC
+  teamHDifficulty_DESC
+  teamHScore_ASC
+  teamHScore_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type FixturePreviousValues {
+  id: ID!
+  fplCode: Int!
+  finished: Boolean!
+  finishedProvisional: Boolean!
+  fixtureId: Int!
+  kickoffTime: DateTime
+  minutes: Int!
+  provisionalStartTime: Boolean!
+  started: Boolean!
+  teamADifficulty: Int!
+  teamAScore: Int
+  teamHDifficulty: Int!
+  teamHScore: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type FixtureSubscriptionPayload {
+  mutation: MutationType!
+  node: Fixture
+  updatedFields: [String!]
+  previousValues: FixturePreviousValues
+}
+
+input FixtureSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FixtureSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FixtureSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FixtureSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FixtureWhereInput
+}
+
+input FixtureUpdateInput {
+  fplCode: Int
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamADifficulty: Int
+  teamAScore: Int
+  teamHDifficulty: Int
+  teamHScore: Int
+  event: GameweekUpdateOneRequiredInput
+  teamA: AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput
+  teamH: HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput
+}
+
+input FixtureUpdateManyMutationInput {
+  fplCode: Int
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamADifficulty: Int
+  teamAScore: Int
+  teamHDifficulty: Int
+  teamHScore: Int
+}
+
+input FixtureUpdateOneRequiredWithoutTeamAInput {
+  create: FixtureCreateWithoutTeamAInput
+  connect: FixtureWhereUniqueInput
+  update: FixtureUpdateWithoutTeamADataInput
+  upsert: FixtureUpsertWithoutTeamAInput
+}
+
+input FixtureUpdateOneRequiredWithoutTeamHInput {
+  create: FixtureCreateWithoutTeamHInput
+  connect: FixtureWhereUniqueInput
+  update: FixtureUpdateWithoutTeamHDataInput
+  upsert: FixtureUpsertWithoutTeamHInput
+}
+
+input FixtureUpdateWithoutTeamADataInput {
+  fplCode: Int
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamADifficulty: Int
+  teamAScore: Int
+  teamHDifficulty: Int
+  teamHScore: Int
+  event: GameweekUpdateOneRequiredInput
+  teamH: HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput
+}
+
+input FixtureUpdateWithoutTeamHDataInput {
+  fplCode: Int
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamADifficulty: Int
+  teamAScore: Int
+  teamHDifficulty: Int
+  teamHScore: Int
+  event: GameweekUpdateOneRequiredInput
+  teamA: AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput
+}
+
+input FixtureUpsertWithoutTeamAInput {
+  update: FixtureUpdateWithoutTeamADataInput!
+  create: FixtureCreateWithoutTeamAInput!
+}
+
+input FixtureUpsertWithoutTeamHInput {
+  update: FixtureUpdateWithoutTeamHDataInput!
+  create: FixtureCreateWithoutTeamHInput!
+}
+
+input FixtureWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FixtureWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FixtureWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FixtureWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  fplCode: Int
+
+  """All values that are not equal to given value."""
+  fplCode_not: Int
+
+  """All values that are contained in given list."""
+  fplCode_in: [Int!]
+
+  """All values that are not contained in given list."""
+  fplCode_not_in: [Int!]
+
+  """All values less than the given value."""
+  fplCode_lt: Int
+
+  """All values less than or equal the given value."""
+  fplCode_lte: Int
+
+  """All values greater than the given value."""
+  fplCode_gt: Int
+
+  """All values greater than or equal the given value."""
+  fplCode_gte: Int
+  finished: Boolean
+
+  """All values that are not equal to given value."""
+  finished_not: Boolean
+  finishedProvisional: Boolean
+
+  """All values that are not equal to given value."""
+  finishedProvisional_not: Boolean
+  fixtureId: Int
+
+  """All values that are not equal to given value."""
+  fixtureId_not: Int
+
+  """All values that are contained in given list."""
+  fixtureId_in: [Int!]
+
+  """All values that are not contained in given list."""
+  fixtureId_not_in: [Int!]
+
+  """All values less than the given value."""
+  fixtureId_lt: Int
+
+  """All values less than or equal the given value."""
+  fixtureId_lte: Int
+
+  """All values greater than the given value."""
+  fixtureId_gt: Int
+
+  """All values greater than or equal the given value."""
+  fixtureId_gte: Int
+  kickoffTime: DateTime
+
+  """All values that are not equal to given value."""
+  kickoffTime_not: DateTime
+
+  """All values that are contained in given list."""
+  kickoffTime_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  kickoffTime_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  kickoffTime_lt: DateTime
+
+  """All values less than or equal the given value."""
+  kickoffTime_lte: DateTime
+
+  """All values greater than the given value."""
+  kickoffTime_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  kickoffTime_gte: DateTime
+  minutes: Int
+
+  """All values that are not equal to given value."""
+  minutes_not: Int
+
+  """All values that are contained in given list."""
+  minutes_in: [Int!]
+
+  """All values that are not contained in given list."""
+  minutes_not_in: [Int!]
+
+  """All values less than the given value."""
+  minutes_lt: Int
+
+  """All values less than or equal the given value."""
+  minutes_lte: Int
+
+  """All values greater than the given value."""
+  minutes_gt: Int
+
+  """All values greater than or equal the given value."""
+  minutes_gte: Int
+  provisionalStartTime: Boolean
+
+  """All values that are not equal to given value."""
+  provisionalStartTime_not: Boolean
+  started: Boolean
+
+  """All values that are not equal to given value."""
+  started_not: Boolean
+  teamADifficulty: Int
+
+  """All values that are not equal to given value."""
+  teamADifficulty_not: Int
+
+  """All values that are contained in given list."""
+  teamADifficulty_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamADifficulty_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamADifficulty_lt: Int
+
+  """All values less than or equal the given value."""
+  teamADifficulty_lte: Int
+
+  """All values greater than the given value."""
+  teamADifficulty_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamADifficulty_gte: Int
+  teamAScore: Int
+
+  """All values that are not equal to given value."""
+  teamAScore_not: Int
+
+  """All values that are contained in given list."""
+  teamAScore_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamAScore_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamAScore_lt: Int
+
+  """All values less than or equal the given value."""
+  teamAScore_lte: Int
+
+  """All values greater than the given value."""
+  teamAScore_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamAScore_gte: Int
+  teamHDifficulty: Int
+
+  """All values that are not equal to given value."""
+  teamHDifficulty_not: Int
+
+  """All values that are contained in given list."""
+  teamHDifficulty_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamHDifficulty_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamHDifficulty_lt: Int
+
+  """All values less than or equal the given value."""
+  teamHDifficulty_lte: Int
+
+  """All values greater than the given value."""
+  teamHDifficulty_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamHDifficulty_gte: Int
+  teamHScore: Int
+
+  """All values that are not equal to given value."""
+  teamHScore_not: Int
+
+  """All values that are contained in given list."""
+  teamHScore_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamHScore_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamHScore_lt: Int
+
+  """All values less than or equal the given value."""
+  teamHScore_lte: Int
+
+  """All values greater than the given value."""
+  teamHScore_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamHScore_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  event: GameweekWhereInput
+  teamA: AwayTeamFixtureWhereInput
+  teamH: HomeTeamFixtureWhereInput
+}
+
+input FixtureWhereUniqueInput {
+  id: ID
+  fplCode: Int
+}
+
 type Follower implements Node {
   id: ID!
   user: User!
   blocked: Boolean!
   accepted: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -505,6 +2147,7 @@ type FollowerConnection {
 }
 
 input FollowerCreateInput {
+  id: ID
   blocked: Boolean
   accepted: Boolean
   user: UserCreateOneInput!
@@ -531,10 +2174,18 @@ enum FollowerOrderByInput {
   blocked_DESC
   accepted_ASC
   accepted_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type FollowerPreviousValues {
+  id: ID!
+  blocked: Boolean!
+  accepted: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 input FollowerScalarWhereInput {
@@ -594,6 +2245,89 @@ input FollowerScalarWhereInput {
 
   """All values that are not equal to given value."""
   accepted_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+type FollowerSubscriptionPayload {
+  mutation: MutationType!
+  node: Follower
+  updatedFields: [String!]
+  previousValues: FollowerPreviousValues
+}
+
+input FollowerSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FollowerSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FollowerSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FollowerSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FollowerWhereInput
 }
 
 input FollowerUpdateDataInput {
@@ -703,6 +2437,50 @@ input FollowerWhereInput {
 
   """All values that are not equal to given value."""
   accepted_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   user: UserWhereInput
 }
 
@@ -710,9 +2488,893 @@ input FollowerWhereUniqueInput {
   id: ID
 }
 
+type Gameweek implements Node {
+  id: ID!
+  season: Season!
+  averageEntryScore: Int
+  dataChecked: Boolean!
+  deadlineTime: DateTime!
+  deadlineTimeEpoch: Int!
+  deadlineTimeGameOffset: Int!
+  finished: Boolean!
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int!
+  isCurrent: Boolean!
+  isNext: Boolean!
+  isPrevious: Boolean!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type GameweekConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [GameweekEdge]!
+  aggregate: AggregateGameweek!
+}
+
+input GameweekCreateInput {
+  id: ID
+  averageEntryScore: Int
+  dataChecked: Boolean!
+  deadlineTime: DateTime!
+  deadlineTimeEpoch: Int!
+  deadlineTimeGameOffset: Int!
+  finished: Boolean!
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int!
+  isCurrent: Boolean!
+  isNext: Boolean!
+  isPrevious: Boolean!
+  name: String!
+  season: SeasonCreateOneInput!
+}
+
+input GameweekCreateOneInput {
+  create: GameweekCreateInput
+  connect: GameweekWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type GameweekEdge {
+  """The item at the end of the edge."""
+  node: Gameweek!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum GameweekOrderByInput {
+  id_ASC
+  id_DESC
+  averageEntryScore_ASC
+  averageEntryScore_DESC
+  dataChecked_ASC
+  dataChecked_DESC
+  deadlineTime_ASC
+  deadlineTime_DESC
+  deadlineTimeEpoch_ASC
+  deadlineTimeEpoch_DESC
+  deadlineTimeGameOffset_ASC
+  deadlineTimeGameOffset_DESC
+  finished_ASC
+  finished_DESC
+  highestScore_ASC
+  highestScore_DESC
+  highestScoringEntry_ASC
+  highestScoringEntry_DESC
+  fplEventId_ASC
+  fplEventId_DESC
+  isCurrent_ASC
+  isCurrent_DESC
+  isNext_ASC
+  isNext_DESC
+  isPrevious_ASC
+  isPrevious_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type GameweekPreviousValues {
+  id: ID!
+  averageEntryScore: Int
+  dataChecked: Boolean!
+  deadlineTime: DateTime!
+  deadlineTimeEpoch: Int!
+  deadlineTimeGameOffset: Int!
+  finished: Boolean!
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int!
+  isCurrent: Boolean!
+  isNext: Boolean!
+  isPrevious: Boolean!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type GameweekSubscriptionPayload {
+  mutation: MutationType!
+  node: Gameweek
+  updatedFields: [String!]
+  previousValues: GameweekPreviousValues
+}
+
+input GameweekSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [GameweekSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [GameweekSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [GameweekSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: GameweekWhereInput
+}
+
+input GameweekUpdateDataInput {
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
+  season: SeasonUpdateOneRequiredInput
+}
+
+input GameweekUpdateInput {
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
+  season: SeasonUpdateOneRequiredInput
+}
+
+input GameweekUpdateManyMutationInput {
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
+}
+
+input GameweekUpdateOneRequiredInput {
+  create: GameweekCreateInput
+  connect: GameweekWhereUniqueInput
+  update: GameweekUpdateDataInput
+  upsert: GameweekUpsertNestedInput
+}
+
+input GameweekUpsertNestedInput {
+  update: GameweekUpdateDataInput!
+  create: GameweekCreateInput!
+}
+
+input GameweekWhereInput {
+  """Logical AND on all given filters."""
+  AND: [GameweekWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [GameweekWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [GameweekWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  averageEntryScore: Int
+
+  """All values that are not equal to given value."""
+  averageEntryScore_not: Int
+
+  """All values that are contained in given list."""
+  averageEntryScore_in: [Int!]
+
+  """All values that are not contained in given list."""
+  averageEntryScore_not_in: [Int!]
+
+  """All values less than the given value."""
+  averageEntryScore_lt: Int
+
+  """All values less than or equal the given value."""
+  averageEntryScore_lte: Int
+
+  """All values greater than the given value."""
+  averageEntryScore_gt: Int
+
+  """All values greater than or equal the given value."""
+  averageEntryScore_gte: Int
+  dataChecked: Boolean
+
+  """All values that are not equal to given value."""
+  dataChecked_not: Boolean
+  deadlineTime: DateTime
+
+  """All values that are not equal to given value."""
+  deadlineTime_not: DateTime
+
+  """All values that are contained in given list."""
+  deadlineTime_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  deadlineTime_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  deadlineTime_lt: DateTime
+
+  """All values less than or equal the given value."""
+  deadlineTime_lte: DateTime
+
+  """All values greater than the given value."""
+  deadlineTime_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  deadlineTime_gte: DateTime
+  deadlineTimeEpoch: Int
+
+  """All values that are not equal to given value."""
+  deadlineTimeEpoch_not: Int
+
+  """All values that are contained in given list."""
+  deadlineTimeEpoch_in: [Int!]
+
+  """All values that are not contained in given list."""
+  deadlineTimeEpoch_not_in: [Int!]
+
+  """All values less than the given value."""
+  deadlineTimeEpoch_lt: Int
+
+  """All values less than or equal the given value."""
+  deadlineTimeEpoch_lte: Int
+
+  """All values greater than the given value."""
+  deadlineTimeEpoch_gt: Int
+
+  """All values greater than or equal the given value."""
+  deadlineTimeEpoch_gte: Int
+  deadlineTimeGameOffset: Int
+
+  """All values that are not equal to given value."""
+  deadlineTimeGameOffset_not: Int
+
+  """All values that are contained in given list."""
+  deadlineTimeGameOffset_in: [Int!]
+
+  """All values that are not contained in given list."""
+  deadlineTimeGameOffset_not_in: [Int!]
+
+  """All values less than the given value."""
+  deadlineTimeGameOffset_lt: Int
+
+  """All values less than or equal the given value."""
+  deadlineTimeGameOffset_lte: Int
+
+  """All values greater than the given value."""
+  deadlineTimeGameOffset_gt: Int
+
+  """All values greater than or equal the given value."""
+  deadlineTimeGameOffset_gte: Int
+  finished: Boolean
+
+  """All values that are not equal to given value."""
+  finished_not: Boolean
+  highestScore: Int
+
+  """All values that are not equal to given value."""
+  highestScore_not: Int
+
+  """All values that are contained in given list."""
+  highestScore_in: [Int!]
+
+  """All values that are not contained in given list."""
+  highestScore_not_in: [Int!]
+
+  """All values less than the given value."""
+  highestScore_lt: Int
+
+  """All values less than or equal the given value."""
+  highestScore_lte: Int
+
+  """All values greater than the given value."""
+  highestScore_gt: Int
+
+  """All values greater than or equal the given value."""
+  highestScore_gte: Int
+  highestScoringEntry: Int
+
+  """All values that are not equal to given value."""
+  highestScoringEntry_not: Int
+
+  """All values that are contained in given list."""
+  highestScoringEntry_in: [Int!]
+
+  """All values that are not contained in given list."""
+  highestScoringEntry_not_in: [Int!]
+
+  """All values less than the given value."""
+  highestScoringEntry_lt: Int
+
+  """All values less than or equal the given value."""
+  highestScoringEntry_lte: Int
+
+  """All values greater than the given value."""
+  highestScoringEntry_gt: Int
+
+  """All values greater than or equal the given value."""
+  highestScoringEntry_gte: Int
+  fplEventId: Int
+
+  """All values that are not equal to given value."""
+  fplEventId_not: Int
+
+  """All values that are contained in given list."""
+  fplEventId_in: [Int!]
+
+  """All values that are not contained in given list."""
+  fplEventId_not_in: [Int!]
+
+  """All values less than the given value."""
+  fplEventId_lt: Int
+
+  """All values less than or equal the given value."""
+  fplEventId_lte: Int
+
+  """All values greater than the given value."""
+  fplEventId_gt: Int
+
+  """All values greater than or equal the given value."""
+  fplEventId_gte: Int
+  isCurrent: Boolean
+
+  """All values that are not equal to given value."""
+  isCurrent_not: Boolean
+  isNext: Boolean
+
+  """All values that are not equal to given value."""
+  isNext_not: Boolean
+  isPrevious: Boolean
+
+  """All values that are not equal to given value."""
+  isPrevious_not: Boolean
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  season: SeasonWhereInput
+}
+
+input GameweekWhereUniqueInput {
+  id: ID
+  fplEventId: Int
+}
+
+type HomeTeamFixture implements Node {
+  id: ID!
+  fixture: Fixture!
+  homeTeam: Team!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type HomeTeamFixtureConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [HomeTeamFixtureEdge]!
+  aggregate: AggregateHomeTeamFixture!
+}
+
+input HomeTeamFixtureCreateInput {
+  id: ID
+  fixture: FixtureCreateOneWithoutTeamHInput!
+  homeTeam: TeamCreateOneWithoutHomeFixturesInput!
+}
+
+input HomeTeamFixtureCreateManyWithoutHomeTeamInput {
+  create: [HomeTeamFixtureCreateWithoutHomeTeamInput!]
+  connect: [HomeTeamFixtureWhereUniqueInput!]
+}
+
+input HomeTeamFixtureCreateOneWithoutFixtureInput {
+  create: HomeTeamFixtureCreateWithoutFixtureInput
+  connect: HomeTeamFixtureWhereUniqueInput
+}
+
+input HomeTeamFixtureCreateWithoutFixtureInput {
+  id: ID
+  homeTeam: TeamCreateOneWithoutHomeFixturesInput!
+}
+
+input HomeTeamFixtureCreateWithoutHomeTeamInput {
+  id: ID
+  fixture: FixtureCreateOneWithoutTeamHInput!
+}
+
+"""An edge in a connection."""
+type HomeTeamFixtureEdge {
+  """The item at the end of the edge."""
+  node: HomeTeamFixture!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum HomeTeamFixtureOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type HomeTeamFixturePreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input HomeTeamFixtureScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [HomeTeamFixtureScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [HomeTeamFixtureScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [HomeTeamFixtureScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+type HomeTeamFixtureSubscriptionPayload {
+  mutation: MutationType!
+  node: HomeTeamFixture
+  updatedFields: [String!]
+  previousValues: HomeTeamFixturePreviousValues
+}
+
+input HomeTeamFixtureSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [HomeTeamFixtureSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [HomeTeamFixtureSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [HomeTeamFixtureSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: HomeTeamFixtureWhereInput
+}
+
+input HomeTeamFixtureUpdateInput {
+  fixture: FixtureUpdateOneRequiredWithoutTeamHInput
+  homeTeam: TeamUpdateOneRequiredWithoutHomeFixturesInput
+}
+
+input HomeTeamFixtureUpdateManyWithoutHomeTeamInput {
+  create: [HomeTeamFixtureCreateWithoutHomeTeamInput!]
+  connect: [HomeTeamFixtureWhereUniqueInput!]
+  set: [HomeTeamFixtureWhereUniqueInput!]
+  disconnect: [HomeTeamFixtureWhereUniqueInput!]
+  delete: [HomeTeamFixtureWhereUniqueInput!]
+  update: [HomeTeamFixtureUpdateWithWhereUniqueWithoutHomeTeamInput!]
+  deleteMany: [HomeTeamFixtureScalarWhereInput!]
+  upsert: [HomeTeamFixtureUpsertWithWhereUniqueWithoutHomeTeamInput!]
+}
+
+input HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput {
+  create: HomeTeamFixtureCreateWithoutFixtureInput
+  connect: HomeTeamFixtureWhereUniqueInput
+  update: HomeTeamFixtureUpdateWithoutFixtureDataInput
+  upsert: HomeTeamFixtureUpsertWithoutFixtureInput
+}
+
+input HomeTeamFixtureUpdateWithoutFixtureDataInput {
+  homeTeam: TeamUpdateOneRequiredWithoutHomeFixturesInput
+}
+
+input HomeTeamFixtureUpdateWithoutHomeTeamDataInput {
+  fixture: FixtureUpdateOneRequiredWithoutTeamHInput
+}
+
+input HomeTeamFixtureUpdateWithWhereUniqueWithoutHomeTeamInput {
+  where: HomeTeamFixtureWhereUniqueInput!
+  data: HomeTeamFixtureUpdateWithoutHomeTeamDataInput!
+}
+
+input HomeTeamFixtureUpsertWithoutFixtureInput {
+  update: HomeTeamFixtureUpdateWithoutFixtureDataInput!
+  create: HomeTeamFixtureCreateWithoutFixtureInput!
+}
+
+input HomeTeamFixtureUpsertWithWhereUniqueWithoutHomeTeamInput {
+  where: HomeTeamFixtureWhereUniqueInput!
+  update: HomeTeamFixtureUpdateWithoutHomeTeamDataInput!
+  create: HomeTeamFixtureCreateWithoutHomeTeamInput!
+}
+
+input HomeTeamFixtureWhereInput {
+  """Logical AND on all given filters."""
+  AND: [HomeTeamFixtureWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [HomeTeamFixtureWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [HomeTeamFixtureWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  fixture: FixtureWhereInput
+  homeTeam: TeamWhereInput
+}
+
+input HomeTeamFixtureWhereUniqueInput {
+  id: ID
+}
+
 type Influencer implements Node {
   id: ID!
   user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -726,6 +3388,7 @@ type InfluencerConnection {
 }
 
 input InfluencerCreateInput {
+  id: ID
   user: UserCreateOneInput!
 }
 
@@ -746,10 +3409,16 @@ type InfluencerEdge {
 enum InfluencerOrderByInput {
   id_ASC
   id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type InfluencerPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 input InfluencerScalarWhereInput {
@@ -801,6 +3470,89 @@ input InfluencerScalarWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+type InfluencerSubscriptionPayload {
+  mutation: MutationType!
+  node: Influencer
+  updatedFields: [String!]
+  previousValues: InfluencerPreviousValues
+}
+
+input InfluencerSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [InfluencerSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [InfluencerSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [InfluencerSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: InfluencerWhereInput
 }
 
 input InfluencerUpdateDataInput {
@@ -882,6 +3634,50 @@ input InfluencerWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   user: UserWhereInput
 }
 
@@ -901,91 +3697,125 @@ scalar Long
 type Mutation {
   createUserPhoto(data: UserPhotoCreateInput!): UserPhoto!
   createStatus(data: StatusCreateInput!): Status!
-  createUserFollower(data: UserFollowerCreateInput!): UserFollower!
-  createUserInfluencer(data: UserInfluencerCreateInput!): UserInfluencer!
+  createUserFollowers(data: UserFollowersCreateInput!): UserFollowers!
+  createUserInfluencers(data: UserInfluencersCreateInput!): UserInfluencers!
   createUserAssignedRole(data: UserAssignedRoleCreateInput!): UserAssignedRole!
   createActiveSubscriptions(data: ActiveSubscriptionsCreateInput!): ActiveSubscriptions!
+  createHomeTeamFixture(data: HomeTeamFixtureCreateInput!): HomeTeamFixture!
+  createAwayTeamFixture(data: AwayTeamFixtureCreateInput!): AwayTeamFixture!
+  createFixture(data: FixtureCreateInput!): Fixture!
+  createTeam(data: TeamCreateInput!): Team!
   createPhoto(data: PhotoCreateInput!): Photo!
-  createSubscription(data: SubscriptionCreateInput!): Subscription!
   createInfluencer(data: InfluencerCreateInput!): Influencer!
+  createFollower(data: FollowerCreateInput!): Follower!
+  createSeason(data: SeasonCreateInput!): Season!
   createUserStatus(data: UserStatusCreateInput!): UserStatus!
   createCountry(data: CountryCreateInput!): Country!
-  createFollower(data: FollowerCreateInput!): Follower!
+  createFandemSubscription(data: FandemSubscriptionCreateInput!): FandemSubscription!
+  createGameweek(data: GameweekCreateInput!): Gameweek!
   createUser(data: UserCreateInput!): User!
   createUserRole(data: UserRoleCreateInput!): UserRole!
-  createTeam(data: TeamCreateInput!): Team!
   updateUserPhoto(data: UserPhotoUpdateInput!, where: UserPhotoWhereUniqueInput!): UserPhoto
   updateStatus(data: StatusUpdateInput!, where: StatusWhereUniqueInput!): Status
-  updateUserFollower(data: UserFollowerUpdateInput!, where: UserFollowerWhereUniqueInput!): UserFollower
-  updateUserInfluencer(data: UserInfluencerUpdateInput!, where: UserInfluencerWhereUniqueInput!): UserInfluencer
+  updateUserFollowers(data: UserFollowersUpdateInput!, where: UserFollowersWhereUniqueInput!): UserFollowers
+  updateUserInfluencers(data: UserInfluencersUpdateInput!, where: UserInfluencersWhereUniqueInput!): UserInfluencers
   updateUserAssignedRole(data: UserAssignedRoleUpdateInput!, where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   updateActiveSubscriptions(data: ActiveSubscriptionsUpdateInput!, where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  updateHomeTeamFixture(data: HomeTeamFixtureUpdateInput!, where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
+  updateAwayTeamFixture(data: AwayTeamFixtureUpdateInput!, where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
+  updateFixture(data: FixtureUpdateInput!, where: FixtureWhereUniqueInput!): Fixture
+  updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
   updatePhoto(data: PhotoUpdateInput!, where: PhotoWhereUniqueInput!): Photo
-  updateSubscription(data: SubscriptionUpdateInput!, where: SubscriptionWhereUniqueInput!): Subscription
   updateInfluencer(data: InfluencerUpdateInput!, where: InfluencerWhereUniqueInput!): Influencer
+  updateFollower(data: FollowerUpdateInput!, where: FollowerWhereUniqueInput!): Follower
+  updateSeason(data: SeasonUpdateInput!, where: SeasonWhereUniqueInput!): Season
   updateUserStatus(data: UserStatusUpdateInput!, where: UserStatusWhereUniqueInput!): UserStatus
   updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
-  updateFollower(data: FollowerUpdateInput!, where: FollowerWhereUniqueInput!): Follower
+  updateFandemSubscription(data: FandemSubscriptionUpdateInput!, where: FandemSubscriptionWhereUniqueInput!): FandemSubscription
+  updateGameweek(data: GameweekUpdateInput!, where: GameweekWhereUniqueInput!): Gameweek
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateUserRole(data: UserRoleUpdateInput!, where: UserRoleWhereUniqueInput!): UserRole
-  updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
   deleteUserPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
   deleteStatus(where: StatusWhereUniqueInput!): Status
-  deleteUserFollower(where: UserFollowerWhereUniqueInput!): UserFollower
-  deleteUserInfluencer(where: UserInfluencerWhereUniqueInput!): UserInfluencer
+  deleteUserFollowers(where: UserFollowersWhereUniqueInput!): UserFollowers
+  deleteUserInfluencers(where: UserInfluencersWhereUniqueInput!): UserInfluencers
   deleteUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   deleteActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  deleteHomeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
+  deleteAwayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
+  deleteFixture(where: FixtureWhereUniqueInput!): Fixture
+  deleteTeam(where: TeamWhereUniqueInput!): Team
   deletePhoto(where: PhotoWhereUniqueInput!): Photo
-  deleteSubscription(where: SubscriptionWhereUniqueInput!): Subscription
   deleteInfluencer(where: InfluencerWhereUniqueInput!): Influencer
+  deleteFollower(where: FollowerWhereUniqueInput!): Follower
+  deleteSeason(where: SeasonWhereUniqueInput!): Season
   deleteUserStatus(where: UserStatusWhereUniqueInput!): UserStatus
   deleteCountry(where: CountryWhereUniqueInput!): Country
-  deleteFollower(where: FollowerWhereUniqueInput!): Follower
+  deleteFandemSubscription(where: FandemSubscriptionWhereUniqueInput!): FandemSubscription
+  deleteGameweek(where: GameweekWhereUniqueInput!): Gameweek
   deleteUser(where: UserWhereUniqueInput!): User
   deleteUserRole(where: UserRoleWhereUniqueInput!): UserRole
-  deleteTeam(where: TeamWhereUniqueInput!): Team
   upsertUserPhoto(where: UserPhotoWhereUniqueInput!, create: UserPhotoCreateInput!, update: UserPhotoUpdateInput!): UserPhoto!
   upsertStatus(where: StatusWhereUniqueInput!, create: StatusCreateInput!, update: StatusUpdateInput!): Status!
-  upsertUserFollower(where: UserFollowerWhereUniqueInput!, create: UserFollowerCreateInput!, update: UserFollowerUpdateInput!): UserFollower!
-  upsertUserInfluencer(where: UserInfluencerWhereUniqueInput!, create: UserInfluencerCreateInput!, update: UserInfluencerUpdateInput!): UserInfluencer!
+  upsertUserFollowers(where: UserFollowersWhereUniqueInput!, create: UserFollowersCreateInput!, update: UserFollowersUpdateInput!): UserFollowers!
+  upsertUserInfluencers(where: UserInfluencersWhereUniqueInput!, create: UserInfluencersCreateInput!, update: UserInfluencersUpdateInput!): UserInfluencers!
   upsertUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!, create: UserAssignedRoleCreateInput!, update: UserAssignedRoleUpdateInput!): UserAssignedRole!
   upsertActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!, create: ActiveSubscriptionsCreateInput!, update: ActiveSubscriptionsUpdateInput!): ActiveSubscriptions!
+  upsertHomeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!, create: HomeTeamFixtureCreateInput!, update: HomeTeamFixtureUpdateInput!): HomeTeamFixture!
+  upsertAwayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!, create: AwayTeamFixtureCreateInput!, update: AwayTeamFixtureUpdateInput!): AwayTeamFixture!
+  upsertFixture(where: FixtureWhereUniqueInput!, create: FixtureCreateInput!, update: FixtureUpdateInput!): Fixture!
+  upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
   upsertPhoto(where: PhotoWhereUniqueInput!, create: PhotoCreateInput!, update: PhotoUpdateInput!): Photo!
-  upsertSubscription(where: SubscriptionWhereUniqueInput!, create: SubscriptionCreateInput!, update: SubscriptionUpdateInput!): Subscription!
   upsertInfluencer(where: InfluencerWhereUniqueInput!, create: InfluencerCreateInput!, update: InfluencerUpdateInput!): Influencer!
+  upsertFollower(where: FollowerWhereUniqueInput!, create: FollowerCreateInput!, update: FollowerUpdateInput!): Follower!
+  upsertSeason(where: SeasonWhereUniqueInput!, create: SeasonCreateInput!, update: SeasonUpdateInput!): Season!
   upsertUserStatus(where: UserStatusWhereUniqueInput!, create: UserStatusCreateInput!, update: UserStatusUpdateInput!): UserStatus!
   upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
-  upsertFollower(where: FollowerWhereUniqueInput!, create: FollowerCreateInput!, update: FollowerUpdateInput!): Follower!
+  upsertFandemSubscription(where: FandemSubscriptionWhereUniqueInput!, create: FandemSubscriptionCreateInput!, update: FandemSubscriptionUpdateInput!): FandemSubscription!
+  upsertGameweek(where: GameweekWhereUniqueInput!, create: GameweekCreateInput!, update: GameweekUpdateInput!): Gameweek!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertUserRole(where: UserRoleWhereUniqueInput!, create: UserRoleCreateInput!, update: UserRoleUpdateInput!): UserRole!
-  upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
   updateManyUserPhotos(data: UserPhotoUpdateManyMutationInput!, where: UserPhotoWhereInput): BatchPayload!
   updateManyStatuses(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): BatchPayload!
   updateManyActiveSubscriptionses(data: ActiveSubscriptionsUpdateManyMutationInput!, where: ActiveSubscriptionsWhereInput): BatchPayload!
+  updateManyFixtures(data: FixtureUpdateManyMutationInput!, where: FixtureWhereInput): BatchPayload!
+  updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
   updateManyPhotos(data: PhotoUpdateManyMutationInput!, where: PhotoWhereInput): BatchPayload!
-  updateManySubscriptions(data: SubscriptionUpdateManyMutationInput!, where: SubscriptionWhereInput): BatchPayload!
+  updateManyFollowers(data: FollowerUpdateManyMutationInput!, where: FollowerWhereInput): BatchPayload!
+  updateManySeasons(data: SeasonUpdateManyMutationInput!, where: SeasonWhereInput): BatchPayload!
   updateManyUserStatuses(data: UserStatusUpdateManyMutationInput!, where: UserStatusWhereInput): BatchPayload!
   updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
-  updateManyFollowers(data: FollowerUpdateManyMutationInput!, where: FollowerWhereInput): BatchPayload!
+  updateManyFandemSubscriptions(data: FandemSubscriptionUpdateManyMutationInput!, where: FandemSubscriptionWhereInput): BatchPayload!
+  updateManyGameweeks(data: GameweekUpdateManyMutationInput!, where: GameweekWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyUserRoles(data: UserRoleUpdateManyMutationInput!, where: UserRoleWhereInput): BatchPayload!
-  updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
   deleteManyUserPhotos(where: UserPhotoWhereInput): BatchPayload!
   deleteManyStatuses(where: StatusWhereInput): BatchPayload!
-  deleteManyUserFollowers(where: UserFollowerWhereInput): BatchPayload!
-  deleteManyUserInfluencers(where: UserInfluencerWhereInput): BatchPayload!
+  deleteManyUserFollowerses(where: UserFollowersWhereInput): BatchPayload!
+  deleteManyUserInfluencerses(where: UserInfluencersWhereInput): BatchPayload!
   deleteManyUserAssignedRoles(where: UserAssignedRoleWhereInput): BatchPayload!
   deleteManyActiveSubscriptionses(where: ActiveSubscriptionsWhereInput): BatchPayload!
+  deleteManyHomeTeamFixtures(where: HomeTeamFixtureWhereInput): BatchPayload!
+  deleteManyAwayTeamFixtures(where: AwayTeamFixtureWhereInput): BatchPayload!
+  deleteManyFixtures(where: FixtureWhereInput): BatchPayload!
+  deleteManyTeams(where: TeamWhereInput): BatchPayload!
   deleteManyPhotos(where: PhotoWhereInput): BatchPayload!
-  deleteManySubscriptions(where: SubscriptionWhereInput): BatchPayload!
   deleteManyInfluencers(where: InfluencerWhereInput): BatchPayload!
+  deleteManyFollowers(where: FollowerWhereInput): BatchPayload!
+  deleteManySeasons(where: SeasonWhereInput): BatchPayload!
   deleteManyUserStatuses(where: UserStatusWhereInput): BatchPayload!
   deleteManyCountries(where: CountryWhereInput): BatchPayload!
-  deleteManyFollowers(where: FollowerWhereInput): BatchPayload!
+  deleteManyFandemSubscriptions(where: FandemSubscriptionWhereInput): BatchPayload!
+  deleteManyGameweeks(where: GameweekWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyUserRoles(where: UserRoleWhereInput): BatchPayload!
-  deleteManyTeams(where: TeamWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
 }
 
 """An object with an ID"""
@@ -1014,6 +3844,8 @@ type Photo implements Node {
   image: String!
   largeImage: String
   smallImage: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -1027,6 +3859,7 @@ type PhotoConnection {
 }
 
 input PhotoCreateInput {
+  id: ID
   image: String!
   largeImage: String
   smallImage: String
@@ -1055,10 +3888,58 @@ enum PhotoOrderByInput {
   largeImage_DESC
   smallImage_ASC
   smallImage_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type PhotoPreviousValues {
+  id: ID!
+  image: String!
+  largeImage: String
+  smallImage: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PhotoSubscriptionPayload {
+  mutation: MutationType!
+  node: Photo
+  updatedFields: [String!]
+  previousValues: PhotoPreviousValues
+}
+
+input PhotoSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PhotoSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PhotoSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PhotoSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PhotoWhereInput
 }
 
 input PhotoUpdateDataInput {
@@ -1260,6 +4141,50 @@ input PhotoWhereInput {
 
   """All values not ending with the given string."""
   smallImage_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input PhotoWhereUniqueInput {
@@ -1273,49 +4198,64 @@ enum PrismaDatabase {
 type Query {
   userPhotos(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserPhoto]!
   statuses(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Status]!
-  userFollowers(where: UserFollowerWhereInput, orderBy: UserFollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserFollower]!
-  userInfluencers(where: UserInfluencerWhereInput, orderBy: UserInfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserInfluencer]!
+  userFollowerses(where: UserFollowersWhereInput, orderBy: UserFollowersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserFollowers]!
+  userInfluencerses(where: UserInfluencersWhereInput, orderBy: UserInfluencersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserInfluencers]!
   userAssignedRoles(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAssignedRole]!
   activeSubscriptionses(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ActiveSubscriptions]!
+  homeTeamFixtures(where: HomeTeamFixtureWhereInput, orderBy: HomeTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HomeTeamFixture]!
+  awayTeamFixtures(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AwayTeamFixture]!
+  fixtures(where: FixtureWhereInput, orderBy: FixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Fixture]!
+  teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
   photos(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Photo]!
-  subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription]!
   influencers(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer]!
+  followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower]!
+  seasons(where: SeasonWhereInput, orderBy: SeasonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Season]!
   userStatuses(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus]!
   countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
-  followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower]!
+  fandemSubscriptions(where: FandemSubscriptionWhereInput, orderBy: FandemSubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FandemSubscription]!
+  gameweeks(where: GameweekWhereInput, orderBy: GameweekOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Gameweek]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole]!
-  teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
   userPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
   status(where: StatusWhereUniqueInput!): Status
-  userFollower(where: UserFollowerWhereUniqueInput!): UserFollower
-  userInfluencer(where: UserInfluencerWhereUniqueInput!): UserInfluencer
+  userFollowers(where: UserFollowersWhereUniqueInput!): UserFollowers
+  userInfluencers(where: UserInfluencersWhereUniqueInput!): UserInfluencers
   userAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   activeSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  homeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
+  awayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
+  fixture(where: FixtureWhereUniqueInput!): Fixture
+  team(where: TeamWhereUniqueInput!): Team
   photo(where: PhotoWhereUniqueInput!): Photo
-  subscription(where: SubscriptionWhereUniqueInput!): Subscription
   influencer(where: InfluencerWhereUniqueInput!): Influencer
+  follower(where: FollowerWhereUniqueInput!): Follower
+  season(where: SeasonWhereUniqueInput!): Season
   userStatus(where: UserStatusWhereUniqueInput!): UserStatus
   country(where: CountryWhereUniqueInput!): Country
-  follower(where: FollowerWhereUniqueInput!): Follower
+  fandemSubscription(where: FandemSubscriptionWhereUniqueInput!): FandemSubscription
+  gameweek(where: GameweekWhereUniqueInput!): Gameweek
   user(where: UserWhereUniqueInput!): User
   userRole(where: UserRoleWhereUniqueInput!): UserRole
-  team(where: TeamWhereUniqueInput!): Team
   userPhotosConnection(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserPhotoConnection!
   statusesConnection(where: StatusWhereInput, orderBy: StatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StatusConnection!
-  userFollowersConnection(where: UserFollowerWhereInput, orderBy: UserFollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserFollowerConnection!
-  userInfluencersConnection(where: UserInfluencerWhereInput, orderBy: UserInfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserInfluencerConnection!
+  userFollowersesConnection(where: UserFollowersWhereInput, orderBy: UserFollowersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserFollowersConnection!
+  userInfluencersesConnection(where: UserInfluencersWhereInput, orderBy: UserInfluencersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserInfluencersConnection!
   userAssignedRolesConnection(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAssignedRoleConnection!
   activeSubscriptionsesConnection(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ActiveSubscriptionsConnection!
+  homeTeamFixturesConnection(where: HomeTeamFixtureWhereInput, orderBy: HomeTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HomeTeamFixtureConnection!
+  awayTeamFixturesConnection(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AwayTeamFixtureConnection!
+  fixturesConnection(where: FixtureWhereInput, orderBy: FixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FixtureConnection!
+  teamsConnection(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamConnection!
   photosConnection(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PhotoConnection!
-  subscriptionsConnection(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SubscriptionConnection!
   influencersConnection(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InfluencerConnection!
+  followersConnection(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FollowerConnection!
+  seasonsConnection(where: SeasonWhereInput, orderBy: SeasonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SeasonConnection!
   userStatusesConnection(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStatusConnection!
   countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
-  followersConnection(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FollowerConnection!
+  fandemSubscriptionsConnection(where: FandemSubscriptionWhereInput, orderBy: FandemSubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FandemSubscriptionConnection!
+  gameweeksConnection(where: GameweekWhereInput, orderBy: GameweekOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GameweekConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   userRolesConnection(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserRoleConnection!
-  teamsConnection(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1324,11 +4264,444 @@ type Query {
   ): Node
 }
 
+type Season implements Node {
+  id: ID!
+  fplId: Int!
+  label: String!
+  competition: String!
+  startYear: Int!
+  endYear: Int!
+  isCurrent: Boolean!
+  isPrevious: Boolean!
+  isNext: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type SeasonConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SeasonEdge]!
+  aggregate: AggregateSeason!
+}
+
+input SeasonCreateInput {
+  id: ID
+  fplId: Int!
+  label: String!
+  competition: String!
+  startYear: Int!
+  endYear: Int!
+  isCurrent: Boolean!
+  isPrevious: Boolean!
+  isNext: Boolean!
+}
+
+input SeasonCreateOneInput {
+  create: SeasonCreateInput
+  connect: SeasonWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type SeasonEdge {
+  """The item at the end of the edge."""
+  node: Season!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum SeasonOrderByInput {
+  id_ASC
+  id_DESC
+  fplId_ASC
+  fplId_DESC
+  label_ASC
+  label_DESC
+  competition_ASC
+  competition_DESC
+  startYear_ASC
+  startYear_DESC
+  endYear_ASC
+  endYear_DESC
+  isCurrent_ASC
+  isCurrent_DESC
+  isPrevious_ASC
+  isPrevious_DESC
+  isNext_ASC
+  isNext_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type SeasonPreviousValues {
+  id: ID!
+  fplId: Int!
+  label: String!
+  competition: String!
+  startYear: Int!
+  endYear: Int!
+  isCurrent: Boolean!
+  isPrevious: Boolean!
+  isNext: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SeasonSubscriptionPayload {
+  mutation: MutationType!
+  node: Season
+  updatedFields: [String!]
+  previousValues: SeasonPreviousValues
+}
+
+input SeasonSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SeasonSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SeasonSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SeasonSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: SeasonWhereInput
+}
+
+input SeasonUpdateDataInput {
+  fplId: Int
+  label: String
+  competition: String
+  startYear: Int
+  endYear: Int
+  isCurrent: Boolean
+  isPrevious: Boolean
+  isNext: Boolean
+}
+
+input SeasonUpdateInput {
+  fplId: Int
+  label: String
+  competition: String
+  startYear: Int
+  endYear: Int
+  isCurrent: Boolean
+  isPrevious: Boolean
+  isNext: Boolean
+}
+
+input SeasonUpdateManyMutationInput {
+  fplId: Int
+  label: String
+  competition: String
+  startYear: Int
+  endYear: Int
+  isCurrent: Boolean
+  isPrevious: Boolean
+  isNext: Boolean
+}
+
+input SeasonUpdateOneRequiredInput {
+  create: SeasonCreateInput
+  connect: SeasonWhereUniqueInput
+  update: SeasonUpdateDataInput
+  upsert: SeasonUpsertNestedInput
+}
+
+input SeasonUpsertNestedInput {
+  update: SeasonUpdateDataInput!
+  create: SeasonCreateInput!
+}
+
+input SeasonWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SeasonWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SeasonWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SeasonWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  fplId: Int
+
+  """All values that are not equal to given value."""
+  fplId_not: Int
+
+  """All values that are contained in given list."""
+  fplId_in: [Int!]
+
+  """All values that are not contained in given list."""
+  fplId_not_in: [Int!]
+
+  """All values less than the given value."""
+  fplId_lt: Int
+
+  """All values less than or equal the given value."""
+  fplId_lte: Int
+
+  """All values greater than the given value."""
+  fplId_gt: Int
+
+  """All values greater than or equal the given value."""
+  fplId_gte: Int
+  label: String
+
+  """All values that are not equal to given value."""
+  label_not: String
+
+  """All values that are contained in given list."""
+  label_in: [String!]
+
+  """All values that are not contained in given list."""
+  label_not_in: [String!]
+
+  """All values less than the given value."""
+  label_lt: String
+
+  """All values less than or equal the given value."""
+  label_lte: String
+
+  """All values greater than the given value."""
+  label_gt: String
+
+  """All values greater than or equal the given value."""
+  label_gte: String
+
+  """All values containing the given string."""
+  label_contains: String
+
+  """All values not containing the given string."""
+  label_not_contains: String
+
+  """All values starting with the given string."""
+  label_starts_with: String
+
+  """All values not starting with the given string."""
+  label_not_starts_with: String
+
+  """All values ending with the given string."""
+  label_ends_with: String
+
+  """All values not ending with the given string."""
+  label_not_ends_with: String
+  competition: String
+
+  """All values that are not equal to given value."""
+  competition_not: String
+
+  """All values that are contained in given list."""
+  competition_in: [String!]
+
+  """All values that are not contained in given list."""
+  competition_not_in: [String!]
+
+  """All values less than the given value."""
+  competition_lt: String
+
+  """All values less than or equal the given value."""
+  competition_lte: String
+
+  """All values greater than the given value."""
+  competition_gt: String
+
+  """All values greater than or equal the given value."""
+  competition_gte: String
+
+  """All values containing the given string."""
+  competition_contains: String
+
+  """All values not containing the given string."""
+  competition_not_contains: String
+
+  """All values starting with the given string."""
+  competition_starts_with: String
+
+  """All values not starting with the given string."""
+  competition_not_starts_with: String
+
+  """All values ending with the given string."""
+  competition_ends_with: String
+
+  """All values not ending with the given string."""
+  competition_not_ends_with: String
+  startYear: Int
+
+  """All values that are not equal to given value."""
+  startYear_not: Int
+
+  """All values that are contained in given list."""
+  startYear_in: [Int!]
+
+  """All values that are not contained in given list."""
+  startYear_not_in: [Int!]
+
+  """All values less than the given value."""
+  startYear_lt: Int
+
+  """All values less than or equal the given value."""
+  startYear_lte: Int
+
+  """All values greater than the given value."""
+  startYear_gt: Int
+
+  """All values greater than or equal the given value."""
+  startYear_gte: Int
+  endYear: Int
+
+  """All values that are not equal to given value."""
+  endYear_not: Int
+
+  """All values that are contained in given list."""
+  endYear_in: [Int!]
+
+  """All values that are not contained in given list."""
+  endYear_not_in: [Int!]
+
+  """All values less than the given value."""
+  endYear_lt: Int
+
+  """All values less than or equal the given value."""
+  endYear_lte: Int
+
+  """All values greater than the given value."""
+  endYear_gt: Int
+
+  """All values greater than or equal the given value."""
+  endYear_gte: Int
+  isCurrent: Boolean
+
+  """All values that are not equal to given value."""
+  isCurrent_not: Boolean
+  isPrevious: Boolean
+
+  """All values that are not equal to given value."""
+  isPrevious_not: Boolean
+  isNext: Boolean
+
+  """All values that are not equal to given value."""
+  isNext_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+input SeasonWhereUniqueInput {
+  id: ID
+  fplId: Int
+}
+
 type Status implements Node {
   id: ID!
   author: UserStatus
   content: String!
   likes(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -1342,6 +4715,7 @@ type StatusConnection {
 }
 
 input StatusCreateInput {
+  id: ID
   content: String!
   author: UserStatusCreateOneWithoutStatusInput
   likes: UserCreateManyInput
@@ -1353,6 +4727,7 @@ input StatusCreateOneWithoutAuthorInput {
 }
 
 input StatusCreateWithoutAuthorInput {
+  id: ID
   content: String!
   likes: UserCreateManyInput
 }
@@ -1371,10 +4746,56 @@ enum StatusOrderByInput {
   id_DESC
   content_ASC
   content_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type StatusPreviousValues {
+  id: ID!
+  content: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type StatusSubscriptionPayload {
+  mutation: MutationType!
+  node: Status
+  updatedFields: [String!]
+  previousValues: StatusPreviousValues
+}
+
+input StatusSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [StatusSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [StatusSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [StatusSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: StatusWhereInput
 }
 
 input StatusUpdateInput {
@@ -1495,6 +4916,50 @@ input StatusWhereInput {
 
   """All values not ending with the given string."""
   content_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   author: UserStatusWhereInput
   likes_every: UserWhereInput
   likes_some: UserWhereInput
@@ -1505,371 +4970,33 @@ input StatusWhereUniqueInput {
   id: ID
 }
 
-type Subscription implements Node {
-  id: ID!
-  name: String!
-  description: String!
-}
-
-"""A connection to a list of items."""
-type SubscriptionConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [SubscriptionEdge]!
-  aggregate: AggregateSubscription!
-}
-
-input SubscriptionCreateInput {
-  name: String!
-  description: String!
-}
-
-input SubscriptionCreateManyInput {
-  create: [SubscriptionCreateInput!]
-  connect: [SubscriptionWhereUniqueInput!]
-}
-
-"""An edge in a connection."""
-type SubscriptionEdge {
-  """The item at the end of the edge."""
-  node: Subscription!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum SubscriptionOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  description_ASC
-  description_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-input SubscriptionScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [SubscriptionScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [SubscriptionScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [SubscriptionScalarWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  name: String
-
-  """All values that are not equal to given value."""
-  name_not: String
-
-  """All values that are contained in given list."""
-  name_in: [String!]
-
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
-
-  """All values less than the given value."""
-  name_lt: String
-
-  """All values less than or equal the given value."""
-  name_lte: String
-
-  """All values greater than the given value."""
-  name_gt: String
-
-  """All values greater than or equal the given value."""
-  name_gte: String
-
-  """All values containing the given string."""
-  name_contains: String
-
-  """All values not containing the given string."""
-  name_not_contains: String
-
-  """All values starting with the given string."""
-  name_starts_with: String
-
-  """All values not starting with the given string."""
-  name_not_starts_with: String
-
-  """All values ending with the given string."""
-  name_ends_with: String
-
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-  description: String
-
-  """All values that are not equal to given value."""
-  description_not: String
-
-  """All values that are contained in given list."""
-  description_in: [String!]
-
-  """All values that are not contained in given list."""
-  description_not_in: [String!]
-
-  """All values less than the given value."""
-  description_lt: String
-
-  """All values less than or equal the given value."""
-  description_lte: String
-
-  """All values greater than the given value."""
-  description_gt: String
-
-  """All values greater than or equal the given value."""
-  description_gte: String
-
-  """All values containing the given string."""
-  description_contains: String
-
-  """All values not containing the given string."""
-  description_not_contains: String
-
-  """All values starting with the given string."""
-  description_starts_with: String
-
-  """All values not starting with the given string."""
-  description_not_starts_with: String
-
-  """All values ending with the given string."""
-  description_ends_with: String
-
-  """All values not ending with the given string."""
-  description_not_ends_with: String
-}
-
-input SubscriptionUpdateDataInput {
-  name: String
-  description: String
-}
-
-input SubscriptionUpdateInput {
-  name: String
-  description: String
-}
-
-input SubscriptionUpdateManyDataInput {
-  name: String
-  description: String
-}
-
-input SubscriptionUpdateManyInput {
-  create: [SubscriptionCreateInput!]
-  connect: [SubscriptionWhereUniqueInput!]
-  set: [SubscriptionWhereUniqueInput!]
-  disconnect: [SubscriptionWhereUniqueInput!]
-  delete: [SubscriptionWhereUniqueInput!]
-  update: [SubscriptionUpdateWithWhereUniqueNestedInput!]
-  updateMany: [SubscriptionUpdateManyWithWhereNestedInput!]
-  deleteMany: [SubscriptionScalarWhereInput!]
-  upsert: [SubscriptionUpsertWithWhereUniqueNestedInput!]
-}
-
-input SubscriptionUpdateManyMutationInput {
-  name: String
-  description: String
-}
-
-input SubscriptionUpdateManyWithWhereNestedInput {
-  where: SubscriptionScalarWhereInput!
-  data: SubscriptionUpdateManyDataInput!
-}
-
-input SubscriptionUpdateWithWhereUniqueNestedInput {
-  where: SubscriptionWhereUniqueInput!
-  data: SubscriptionUpdateDataInput!
-}
-
-input SubscriptionUpsertWithWhereUniqueNestedInput {
-  where: SubscriptionWhereUniqueInput!
-  update: SubscriptionUpdateDataInput!
-  create: SubscriptionCreateInput!
-}
-
-input SubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [SubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [SubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [SubscriptionWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  name: String
-
-  """All values that are not equal to given value."""
-  name_not: String
-
-  """All values that are contained in given list."""
-  name_in: [String!]
-
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
-
-  """All values less than the given value."""
-  name_lt: String
-
-  """All values less than or equal the given value."""
-  name_lte: String
-
-  """All values greater than the given value."""
-  name_gt: String
-
-  """All values greater than or equal the given value."""
-  name_gte: String
-
-  """All values containing the given string."""
-  name_contains: String
-
-  """All values not containing the given string."""
-  name_not_contains: String
-
-  """All values starting with the given string."""
-  name_starts_with: String
-
-  """All values not starting with the given string."""
-  name_not_starts_with: String
-
-  """All values ending with the given string."""
-  name_ends_with: String
-
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-  description: String
-
-  """All values that are not equal to given value."""
-  description_not: String
-
-  """All values that are contained in given list."""
-  description_in: [String!]
-
-  """All values that are not contained in given list."""
-  description_not_in: [String!]
-
-  """All values less than the given value."""
-  description_lt: String
-
-  """All values less than or equal the given value."""
-  description_lte: String
-
-  """All values greater than the given value."""
-  description_gt: String
-
-  """All values greater than or equal the given value."""
-  description_gte: String
-
-  """All values containing the given string."""
-  description_contains: String
-
-  """All values not containing the given string."""
-  description_not_contains: String
-
-  """All values starting with the given string."""
-  description_starts_with: String
-
-  """All values not starting with the given string."""
-  description_not_starts_with: String
-
-  """All values ending with the given string."""
-  description_ends_with: String
-
-  """All values not ending with the given string."""
-  description_not_ends_with: String
-}
-
-input SubscriptionWhereUniqueInput {
-  id: ID
+type Subscription {
+  userPhoto(where: UserPhotoSubscriptionWhereInput): UserPhotoSubscriptionPayload
+  status(where: StatusSubscriptionWhereInput): StatusSubscriptionPayload
+  userFollowers(where: UserFollowersSubscriptionWhereInput): UserFollowersSubscriptionPayload
+  userInfluencers(where: UserInfluencersSubscriptionWhereInput): UserInfluencersSubscriptionPayload
+  userAssignedRole(where: UserAssignedRoleSubscriptionWhereInput): UserAssignedRoleSubscriptionPayload
+  activeSubscriptions(where: ActiveSubscriptionsSubscriptionWhereInput): ActiveSubscriptionsSubscriptionPayload
+  homeTeamFixture(where: HomeTeamFixtureSubscriptionWhereInput): HomeTeamFixtureSubscriptionPayload
+  awayTeamFixture(where: AwayTeamFixtureSubscriptionWhereInput): AwayTeamFixtureSubscriptionPayload
+  fixture(where: FixtureSubscriptionWhereInput): FixtureSubscriptionPayload
+  team(where: TeamSubscriptionWhereInput): TeamSubscriptionPayload
+  photo(where: PhotoSubscriptionWhereInput): PhotoSubscriptionPayload
+  influencer(where: InfluencerSubscriptionWhereInput): InfluencerSubscriptionPayload
+  follower(where: FollowerSubscriptionWhereInput): FollowerSubscriptionPayload
+  season(where: SeasonSubscriptionWhereInput): SeasonSubscriptionPayload
+  userStatus(where: UserStatusSubscriptionWhereInput): UserStatusSubscriptionPayload
+  country(where: CountrySubscriptionWhereInput): CountrySubscriptionPayload
+  fandemSubscription(where: FandemSubscriptionSubscriptionWhereInput): FandemSubscriptionSubscriptionPayload
+  gameweek(where: GameweekSubscriptionWhereInput): GameweekSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  userRole(where: UserRoleSubscriptionWhereInput): UserRoleSubscriptionPayload
 }
 
 type Team implements Node {
   id: ID!
   code: Int!
+  season: Season!
   fplTeamId: Int!
   name: String!
   shortName: String!
@@ -1880,7 +5007,11 @@ type Team implements Node {
   strengthDefenceHome: Int!
   strengthOverallAway: Int!
   strengthOverallHome: Int!
-  teamDivision: Int!
+  teamDivision: Int
+  homeFixtures(where: HomeTeamFixtureWhereInput, orderBy: HomeTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HomeTeamFixture!]
+  awayFixtures(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AwayTeamFixture!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -1894,6 +5025,7 @@ type TeamConnection {
 }
 
 input TeamCreateInput {
+  id: ID
   code: Int!
   fplTeamId: Int!
   name: String!
@@ -1905,12 +5037,61 @@ input TeamCreateInput {
   strengthDefenceHome: Int!
   strengthOverallAway: Int!
   strengthOverallHome: Int!
-  teamDivision: Int!
+  teamDivision: Int
+  season: SeasonCreateOneInput!
+  homeFixtures: HomeTeamFixtureCreateManyWithoutHomeTeamInput
+  awayFixtures: AwayTeamFixtureCreateManyWithoutAwayTeamInput
 }
 
 input TeamCreateOneInput {
   create: TeamCreateInput
   connect: TeamWhereUniqueInput
+}
+
+input TeamCreateOneWithoutAwayFixturesInput {
+  create: TeamCreateWithoutAwayFixturesInput
+  connect: TeamWhereUniqueInput
+}
+
+input TeamCreateOneWithoutHomeFixturesInput {
+  create: TeamCreateWithoutHomeFixturesInput
+  connect: TeamWhereUniqueInput
+}
+
+input TeamCreateWithoutAwayFixturesInput {
+  id: ID
+  code: Int!
+  fplTeamId: Int!
+  name: String!
+  shortName: String!
+  strength: Int!
+  strengthAttackAway: Int!
+  strengthAttackHome: Int!
+  strengthDefenceAway: Int!
+  strengthDefenceHome: Int!
+  strengthOverallAway: Int!
+  strengthOverallHome: Int!
+  teamDivision: Int
+  season: SeasonCreateOneInput!
+  homeFixtures: HomeTeamFixtureCreateManyWithoutHomeTeamInput
+}
+
+input TeamCreateWithoutHomeFixturesInput {
+  id: ID
+  code: Int!
+  fplTeamId: Int!
+  name: String!
+  shortName: String!
+  strength: Int!
+  strengthAttackAway: Int!
+  strengthAttackHome: Int!
+  strengthDefenceAway: Int!
+  strengthDefenceHome: Int!
+  strengthOverallAway: Int!
+  strengthOverallHome: Int!
+  teamDivision: Int
+  season: SeasonCreateOneInput!
+  awayFixtures: AwayTeamFixtureCreateManyWithoutAwayTeamInput
 }
 
 """An edge in a connection."""
@@ -1949,10 +5130,67 @@ enum TeamOrderByInput {
   strengthOverallHome_DESC
   teamDivision_ASC
   teamDivision_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type TeamPreviousValues {
+  id: ID!
+  code: Int!
+  fplTeamId: Int!
+  name: String!
+  shortName: String!
+  strength: Int!
+  strengthAttackAway: Int!
+  strengthAttackHome: Int!
+  strengthDefenceAway: Int!
+  strengthDefenceHome: Int!
+  strengthOverallAway: Int!
+  strengthOverallHome: Int!
+  teamDivision: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type TeamSubscriptionPayload {
+  mutation: MutationType!
+  node: Team
+  updatedFields: [String!]
+  previousValues: TeamPreviousValues
+}
+
+input TeamSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [TeamSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [TeamSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [TeamSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: TeamWhereInput
 }
 
 input TeamUpdateDataInput {
@@ -1968,6 +5206,9 @@ input TeamUpdateDataInput {
   strengthOverallAway: Int
   strengthOverallHome: Int
   teamDivision: Int
+  season: SeasonUpdateOneRequiredInput
+  homeFixtures: HomeTeamFixtureUpdateManyWithoutHomeTeamInput
+  awayFixtures: AwayTeamFixtureUpdateManyWithoutAwayTeamInput
 }
 
 input TeamUpdateInput {
@@ -1983,6 +5224,9 @@ input TeamUpdateInput {
   strengthOverallAway: Int
   strengthOverallHome: Int
   teamDivision: Int
+  season: SeasonUpdateOneRequiredInput
+  homeFixtures: HomeTeamFixtureUpdateManyWithoutHomeTeamInput
+  awayFixtures: AwayTeamFixtureUpdateManyWithoutAwayTeamInput
 }
 
 input TeamUpdateManyMutationInput {
@@ -2009,9 +5253,67 @@ input TeamUpdateOneInput {
   upsert: TeamUpsertNestedInput
 }
 
+input TeamUpdateOneRequiredWithoutAwayFixturesInput {
+  create: TeamCreateWithoutAwayFixturesInput
+  connect: TeamWhereUniqueInput
+  update: TeamUpdateWithoutAwayFixturesDataInput
+  upsert: TeamUpsertWithoutAwayFixturesInput
+}
+
+input TeamUpdateOneRequiredWithoutHomeFixturesInput {
+  create: TeamCreateWithoutHomeFixturesInput
+  connect: TeamWhereUniqueInput
+  update: TeamUpdateWithoutHomeFixturesDataInput
+  upsert: TeamUpsertWithoutHomeFixturesInput
+}
+
+input TeamUpdateWithoutAwayFixturesDataInput {
+  code: Int
+  fplTeamId: Int
+  name: String
+  shortName: String
+  strength: Int
+  strengthAttackAway: Int
+  strengthAttackHome: Int
+  strengthDefenceAway: Int
+  strengthDefenceHome: Int
+  strengthOverallAway: Int
+  strengthOverallHome: Int
+  teamDivision: Int
+  season: SeasonUpdateOneRequiredInput
+  homeFixtures: HomeTeamFixtureUpdateManyWithoutHomeTeamInput
+}
+
+input TeamUpdateWithoutHomeFixturesDataInput {
+  code: Int
+  fplTeamId: Int
+  name: String
+  shortName: String
+  strength: Int
+  strengthAttackAway: Int
+  strengthAttackHome: Int
+  strengthDefenceAway: Int
+  strengthDefenceHome: Int
+  strengthOverallAway: Int
+  strengthOverallHome: Int
+  teamDivision: Int
+  season: SeasonUpdateOneRequiredInput
+  awayFixtures: AwayTeamFixtureUpdateManyWithoutAwayTeamInput
+}
+
 input TeamUpsertNestedInput {
   update: TeamUpdateDataInput!
   create: TeamCreateInput!
+}
+
+input TeamUpsertWithoutAwayFixturesInput {
+  update: TeamUpdateWithoutAwayFixturesDataInput!
+  create: TeamCreateWithoutAwayFixturesInput!
+}
+
+input TeamUpsertWithoutHomeFixturesInput {
+  update: TeamUpdateWithoutHomeFixturesDataInput!
+  create: TeamCreateWithoutHomeFixturesInput!
 }
 
 input TeamWhereInput {
@@ -2363,10 +5665,62 @@ input TeamWhereInput {
 
   """All values greater than or equal the given value."""
   teamDivision_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  season: SeasonWhereInput
+  homeFixtures_every: HomeTeamFixtureWhereInput
+  homeFixtures_some: HomeTeamFixtureWhereInput
+  homeFixtures_none: HomeTeamFixtureWhereInput
+  awayFixtures_every: AwayTeamFixtureWhereInput
+  awayFixtures_some: AwayTeamFixtureWhereInput
+  awayFixtures_none: AwayTeamFixtureWhereInput
 }
 
 input TeamWhereUniqueInput {
   id: ID
+  code: Int
 }
 
 type User implements Node {
@@ -2387,17 +5741,21 @@ type User implements Node {
   emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
-  subscriptions(where: SubscriptionWhereInput, orderBy: SubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Subscription!]
+  subscriptions(where: FandemSubscriptionWhereInput, orderBy: FandemSubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FandemSubscription!]
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole!]
   status(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus!]
-  followers: UserFollower!
-  influencers: UserInfluencer!
+  followers: UserFollowers
+  influencers: UserInfluencers
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type UserAssignedRole implements Node {
   id: ID!
   user: User!
   userRole: UserRole!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -2411,6 +5769,7 @@ type UserAssignedRoleConnection {
 }
 
 input UserAssignedRoleCreateInput {
+  id: ID
   user: UserCreateOneInput!
   userRole: UserRoleCreateOneInput!
 }
@@ -2427,10 +5786,55 @@ type UserAssignedRoleEdge {
 enum UserAssignedRoleOrderByInput {
   id_ASC
   id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserAssignedRolePreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserAssignedRoleSubscriptionPayload {
+  mutation: MutationType!
+  node: UserAssignedRole
+  updatedFields: [String!]
+  previousValues: UserAssignedRolePreviousValues
+}
+
+input UserAssignedRoleSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserAssignedRoleSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserAssignedRoleSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserAssignedRoleSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserAssignedRoleWhereInput
 }
 
 input UserAssignedRoleUpdateInput {
@@ -2487,6 +5891,50 @@ input UserAssignedRoleWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   user: UserWhereInput
   userRole: UserRoleWhereInput
 }
@@ -2506,6 +5954,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  id: ID
   email: String!
   name: String!
   countryCode: String
@@ -2522,11 +5971,11 @@ input UserCreateInput {
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
   photos: UserPhotoCreateManyWithoutUserInput
-  subscriptions: SubscriptionCreateManyInput
+  subscriptions: FandemSubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyInput
-  followers: UserFollowerCreateOneWithoutUserInput!
-  influencers: UserInfluencerCreateOneWithoutUserInput!
+  followers: UserFollowersCreateOneWithoutUserInput
+  influencers: UserInfluencersCreateOneWithoutUserInput
 }
 
 input UserCreateManyInput {
@@ -2555,6 +6004,7 @@ input UserCreateOneWithoutPhotosInput {
 }
 
 input UserCreateWithoutFollowersInput {
+  id: ID
   email: String!
   name: String!
   countryCode: String
@@ -2571,13 +6021,14 @@ input UserCreateWithoutFollowersInput {
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
   photos: UserPhotoCreateManyWithoutUserInput
-  subscriptions: SubscriptionCreateManyInput
+  subscriptions: FandemSubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyInput
-  influencers: UserInfluencerCreateOneWithoutUserInput!
+  influencers: UserInfluencersCreateOneWithoutUserInput
 }
 
 input UserCreateWithoutInfluencersInput {
+  id: ID
   email: String!
   name: String!
   countryCode: String
@@ -2594,13 +6045,14 @@ input UserCreateWithoutInfluencersInput {
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
   photos: UserPhotoCreateManyWithoutUserInput
-  subscriptions: SubscriptionCreateManyInput
+  subscriptions: FandemSubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyInput
-  followers: UserFollowerCreateOneWithoutUserInput!
+  followers: UserFollowersCreateOneWithoutUserInput
 }
 
 input UserCreateWithoutPhotosInput {
+  id: ID
   email: String!
   name: String!
   countryCode: String
@@ -2616,11 +6068,11 @@ input UserCreateWithoutPhotosInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamCreateOneInput
   country: CountryCreateOneInput
-  subscriptions: SubscriptionCreateManyInput
+  subscriptions: FandemSubscriptionCreateManyInput
   userRoles: UserRoleCreateManyInput
   status: UserStatusCreateManyInput
-  followers: UserFollowerCreateOneWithoutUserInput!
-  influencers: UserInfluencerCreateOneWithoutUserInput!
+  followers: UserFollowersCreateOneWithoutUserInput
+  influencers: UserInfluencersCreateOneWithoutUserInput
 }
 
 """An edge in a connection."""
@@ -2632,84 +6084,135 @@ type UserEdge {
   cursor: String!
 }
 
-type UserFollower implements Node {
+type UserFollowers implements Node {
   id: ID!
   followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower!]
   user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
-type UserFollowerConnection {
+type UserFollowersConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [UserFollowerEdge]!
-  aggregate: AggregateUserFollower!
+  edges: [UserFollowersEdge]!
+  aggregate: AggregateUserFollowers!
 }
 
-input UserFollowerCreateInput {
+input UserFollowersCreateInput {
+  id: ID
   followers: FollowerCreateManyInput
   user: UserCreateOneWithoutFollowersInput!
 }
 
-input UserFollowerCreateOneWithoutUserInput {
-  create: UserFollowerCreateWithoutUserInput
-  connect: UserFollowerWhereUniqueInput
+input UserFollowersCreateOneWithoutUserInput {
+  create: UserFollowersCreateWithoutUserInput
+  connect: UserFollowersWhereUniqueInput
 }
 
-input UserFollowerCreateWithoutUserInput {
+input UserFollowersCreateWithoutUserInput {
+  id: ID
   followers: FollowerCreateManyInput
 }
 
 """An edge in a connection."""
-type UserFollowerEdge {
+type UserFollowersEdge {
   """The item at the end of the edge."""
-  node: UserFollower!
+  node: UserFollowers!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum UserFollowerOrderByInput {
+enum UserFollowersOrderByInput {
   id_ASC
   id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
-input UserFollowerUpdateInput {
+type UserFollowersPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserFollowersSubscriptionPayload {
+  mutation: MutationType!
+  node: UserFollowers
+  updatedFields: [String!]
+  previousValues: UserFollowersPreviousValues
+}
+
+input UserFollowersSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserFollowersSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserFollowersSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserFollowersSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserFollowersWhereInput
+}
+
+input UserFollowersUpdateInput {
   followers: FollowerUpdateManyInput
   user: UserUpdateOneRequiredWithoutFollowersInput
 }
 
-input UserFollowerUpdateOneRequiredWithoutUserInput {
-  create: UserFollowerCreateWithoutUserInput
-  connect: UserFollowerWhereUniqueInput
-  update: UserFollowerUpdateWithoutUserDataInput
-  upsert: UserFollowerUpsertWithoutUserInput
+input UserFollowersUpdateOneWithoutUserInput {
+  create: UserFollowersCreateWithoutUserInput
+  connect: UserFollowersWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserFollowersUpdateWithoutUserDataInput
+  upsert: UserFollowersUpsertWithoutUserInput
 }
 
-input UserFollowerUpdateWithoutUserDataInput {
+input UserFollowersUpdateWithoutUserDataInput {
   followers: FollowerUpdateManyInput
 }
 
-input UserFollowerUpsertWithoutUserInput {
-  update: UserFollowerUpdateWithoutUserDataInput!
-  create: UserFollowerCreateWithoutUserInput!
+input UserFollowersUpsertWithoutUserInput {
+  update: UserFollowersUpdateWithoutUserDataInput!
+  create: UserFollowersCreateWithoutUserInput!
 }
 
-input UserFollowerWhereInput {
+input UserFollowersWhereInput {
   """Logical AND on all given filters."""
-  AND: [UserFollowerWhereInput!]
+  AND: [UserFollowersWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [UserFollowerWhereInput!]
+  OR: [UserFollowersWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [UserFollowerWhereInput!]
+  NOT: [UserFollowersWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2750,94 +6253,189 @@ input UserFollowerWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   followers_every: FollowerWhereInput
   followers_some: FollowerWhereInput
   followers_none: FollowerWhereInput
   user: UserWhereInput
 }
 
-input UserFollowerWhereUniqueInput {
+input UserFollowersWhereUniqueInput {
   id: ID
 }
 
-type UserInfluencer implements Node {
+type UserInfluencers implements Node {
   id: ID!
   user: User!
   influencers(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
-type UserInfluencerConnection {
+type UserInfluencersConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [UserInfluencerEdge]!
-  aggregate: AggregateUserInfluencer!
+  edges: [UserInfluencersEdge]!
+  aggregate: AggregateUserInfluencers!
 }
 
-input UserInfluencerCreateInput {
+input UserInfluencersCreateInput {
+  id: ID
   user: UserCreateOneWithoutInfluencersInput!
   influencers: InfluencerCreateManyInput
 }
 
-input UserInfluencerCreateOneWithoutUserInput {
-  create: UserInfluencerCreateWithoutUserInput
-  connect: UserInfluencerWhereUniqueInput
+input UserInfluencersCreateOneWithoutUserInput {
+  create: UserInfluencersCreateWithoutUserInput
+  connect: UserInfluencersWhereUniqueInput
 }
 
-input UserInfluencerCreateWithoutUserInput {
+input UserInfluencersCreateWithoutUserInput {
+  id: ID
   influencers: InfluencerCreateManyInput
 }
 
 """An edge in a connection."""
-type UserInfluencerEdge {
+type UserInfluencersEdge {
   """The item at the end of the edge."""
-  node: UserInfluencer!
+  node: UserInfluencers!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum UserInfluencerOrderByInput {
+enum UserInfluencersOrderByInput {
   id_ASC
   id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
-input UserInfluencerUpdateInput {
+type UserInfluencersPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserInfluencersSubscriptionPayload {
+  mutation: MutationType!
+  node: UserInfluencers
+  updatedFields: [String!]
+  previousValues: UserInfluencersPreviousValues
+}
+
+input UserInfluencersSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserInfluencersSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserInfluencersSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserInfluencersSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserInfluencersWhereInput
+}
+
+input UserInfluencersUpdateInput {
   user: UserUpdateOneRequiredWithoutInfluencersInput
   influencers: InfluencerUpdateManyInput
 }
 
-input UserInfluencerUpdateOneRequiredWithoutUserInput {
-  create: UserInfluencerCreateWithoutUserInput
-  connect: UserInfluencerWhereUniqueInput
-  update: UserInfluencerUpdateWithoutUserDataInput
-  upsert: UserInfluencerUpsertWithoutUserInput
+input UserInfluencersUpdateOneWithoutUserInput {
+  create: UserInfluencersCreateWithoutUserInput
+  connect: UserInfluencersWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserInfluencersUpdateWithoutUserDataInput
+  upsert: UserInfluencersUpsertWithoutUserInput
 }
 
-input UserInfluencerUpdateWithoutUserDataInput {
+input UserInfluencersUpdateWithoutUserDataInput {
   influencers: InfluencerUpdateManyInput
 }
 
-input UserInfluencerUpsertWithoutUserInput {
-  update: UserInfluencerUpdateWithoutUserDataInput!
-  create: UserInfluencerCreateWithoutUserInput!
+input UserInfluencersUpsertWithoutUserInput {
+  update: UserInfluencersUpdateWithoutUserDataInput!
+  create: UserInfluencersCreateWithoutUserInput!
 }
 
-input UserInfluencerWhereInput {
+input UserInfluencersWhereInput {
   """Logical AND on all given filters."""
-  AND: [UserInfluencerWhereInput!]
+  AND: [UserInfluencersWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [UserInfluencerWhereInput!]
+  OR: [UserInfluencersWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [UserInfluencerWhereInput!]
+  NOT: [UserInfluencersWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2878,13 +6476,57 @@ input UserInfluencerWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   user: UserWhereInput
   influencers_every: InfluencerWhereInput
   influencers_some: InfluencerWhereInput
   influencers_none: InfluencerWhereInput
 }
 
-input UserInfluencerWhereUniqueInput {
+input UserInfluencersWhereUniqueInput {
   id: ID
 }
 
@@ -2917,10 +6559,10 @@ enum UserOrderByInput {
   resetToken_DESC
   resetTokenExpiry_ASC
   resetTokenExpiry_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type UserPhoto implements Node {
@@ -2928,6 +6570,8 @@ type UserPhoto implements Node {
   user: User!
   photo: Photo!
   isProfile: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -2941,6 +6585,7 @@ type UserPhotoConnection {
 }
 
 input UserPhotoCreateInput {
+  id: ID
   isProfile: Boolean
   user: UserCreateOneWithoutPhotosInput!
   photo: PhotoCreateOneInput!
@@ -2952,6 +6597,7 @@ input UserPhotoCreateManyWithoutUserInput {
 }
 
 input UserPhotoCreateWithoutUserInput {
+  id: ID
   isProfile: Boolean
   photo: PhotoCreateOneInput!
 }
@@ -2970,10 +6616,17 @@ enum UserPhotoOrderByInput {
   id_DESC
   isProfile_ASC
   isProfile_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPhotoPreviousValues {
+  id: ID!
+  isProfile: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 input UserPhotoScalarWhereInput {
@@ -3029,6 +6682,89 @@ input UserPhotoScalarWhereInput {
 
   """All values that are not equal to given value."""
   isProfile_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+type UserPhotoSubscriptionPayload {
+  mutation: MutationType!
+  node: UserPhoto
+  updatedFields: [String!]
+  previousValues: UserPhotoPreviousValues
+}
+
+input UserPhotoSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserPhotoSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserPhotoSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserPhotoSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserPhotoWhereInput
 }
 
 input UserPhotoUpdateInput {
@@ -3131,6 +6867,50 @@ input UserPhotoWhereInput {
 
   """All values that are not equal to given value."""
   isProfile_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   user: UserWhereInput
   photo: PhotoWhereInput
 }
@@ -3139,10 +6919,31 @@ input UserPhotoWhereUniqueInput {
   id: ID
 }
 
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  name: String!
+  countryCode: String
+  phoneNumber: String
+  displayName: String!
+  isPrivate: Boolean!
+  password: String!
+  emailValidationToken: String
+  emailValidationTokenExpiry: Float
+  emailValidated: Boolean!
+  emailValidationDate: DateTime
+  resetToken: String
+  resetTokenExpiry: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type UserRole implements Node {
   id: ID!
   name: String!
   description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -3156,6 +6957,7 @@ type UserRoleConnection {
 }
 
 input UserRoleCreateInput {
+  id: ID
   name: String!
   description: String!
 }
@@ -3186,10 +6988,18 @@ enum UserRoleOrderByInput {
   name_DESC
   description_ASC
   description_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserRolePreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 input UserRoleScalarWhereInput {
@@ -3321,6 +7131,89 @@ input UserRoleScalarWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+type UserRoleSubscriptionPayload {
+  mutation: MutationType!
+  node: UserRole
+  updatedFields: [String!]
+  previousValues: UserRolePreviousValues
+}
+
+input UserRoleSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserRoleSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserRoleSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserRoleSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserRoleWhereInput
 }
 
 input UserRoleUpdateDataInput {
@@ -3512,6 +7405,50 @@ input UserRoleWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input UserRoleWhereUniqueInput {
@@ -3961,12 +7898,58 @@ input UserScalarWhereInput {
 
   """All values greater than or equal the given value."""
   resetTokenExpiry_gte: Float
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 type UserStatus implements Node {
   id: ID!
   status: Status
   currentStatus: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -3980,6 +7963,7 @@ type UserStatusConnection {
 }
 
 input UserStatusCreateInput {
+  id: ID
   currentStatus: Boolean
   status: StatusCreateOneWithoutAuthorInput
 }
@@ -3995,6 +7979,7 @@ input UserStatusCreateOneWithoutStatusInput {
 }
 
 input UserStatusCreateWithoutStatusInput {
+  id: ID
   currentStatus: Boolean
 }
 
@@ -4012,10 +7997,17 @@ enum UserStatusOrderByInput {
   id_DESC
   currentStatus_ASC
   currentStatus_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserStatusPreviousValues {
+  id: ID!
+  currentStatus: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 input UserStatusScalarWhereInput {
@@ -4071,6 +8063,89 @@ input UserStatusScalarWhereInput {
 
   """All values that are not equal to given value."""
   currentStatus_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+type UserStatusSubscriptionPayload {
+  mutation: MutationType!
+  node: UserStatus
+  updatedFields: [String!]
+  previousValues: UserStatusPreviousValues
+}
+
+input UserStatusSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserStatusSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserStatusSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserStatusSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserStatusWhereInput
 }
 
 input UserStatusUpdateDataInput {
@@ -4190,11 +8265,94 @@ input UserStatusWhereInput {
 
   """All values that are not equal to given value."""
   currentStatus_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   status: StatusWhereInput
 }
 
 input UserStatusWhereUniqueInput {
   id: ID
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
 }
 
 input UserUpdateDataInput {
@@ -4214,11 +8372,11 @@ input UserUpdateDataInput {
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
   photos: UserPhotoUpdateManyWithoutUserInput
-  subscriptions: SubscriptionUpdateManyInput
+  subscriptions: FandemSubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
-  followers: UserFollowerUpdateOneRequiredWithoutUserInput
-  influencers: UserInfluencerUpdateOneRequiredWithoutUserInput
+  followers: UserFollowersUpdateOneWithoutUserInput
+  influencers: UserInfluencersUpdateOneWithoutUserInput
 }
 
 input UserUpdateInput {
@@ -4238,11 +8396,11 @@ input UserUpdateInput {
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
   photos: UserPhotoUpdateManyWithoutUserInput
-  subscriptions: SubscriptionUpdateManyInput
+  subscriptions: FandemSubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
-  followers: UserFollowerUpdateOneRequiredWithoutUserInput
-  influencers: UserInfluencerUpdateOneRequiredWithoutUserInput
+  followers: UserFollowersUpdateOneWithoutUserInput
+  influencers: UserInfluencersUpdateOneWithoutUserInput
 }
 
 input UserUpdateManyDataInput {
@@ -4339,10 +8497,10 @@ input UserUpdateWithoutFollowersDataInput {
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
   photos: UserPhotoUpdateManyWithoutUserInput
-  subscriptions: SubscriptionUpdateManyInput
+  subscriptions: FandemSubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
-  influencers: UserInfluencerUpdateOneRequiredWithoutUserInput
+  influencers: UserInfluencersUpdateOneWithoutUserInput
 }
 
 input UserUpdateWithoutInfluencersDataInput {
@@ -4362,10 +8520,10 @@ input UserUpdateWithoutInfluencersDataInput {
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
   photos: UserPhotoUpdateManyWithoutUserInput
-  subscriptions: SubscriptionUpdateManyInput
+  subscriptions: FandemSubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
-  followers: UserFollowerUpdateOneRequiredWithoutUserInput
+  followers: UserFollowersUpdateOneWithoutUserInput
 }
 
 input UserUpdateWithoutPhotosDataInput {
@@ -4384,11 +8542,11 @@ input UserUpdateWithoutPhotosDataInput {
   resetTokenExpiry: Float
   favoriteTeam: TeamUpdateOneInput
   country: CountryUpdateOneInput
-  subscriptions: SubscriptionUpdateManyInput
+  subscriptions: FandemSubscriptionUpdateManyInput
   userRoles: UserRoleUpdateManyInput
   status: UserStatusUpdateManyInput
-  followers: UserFollowerUpdateOneRequiredWithoutUserInput
-  influencers: UserInfluencerUpdateOneRequiredWithoutUserInput
+  followers: UserFollowersUpdateOneWithoutUserInput
+  influencers: UserInfluencersUpdateOneWithoutUserInput
 }
 
 input UserUpdateWithWhereUniqueNestedInput {
@@ -4865,22 +9023,66 @@ input UserWhereInput {
 
   """All values greater than or equal the given value."""
   resetTokenExpiry_gte: Float
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   favoriteTeam: TeamWhereInput
   country: CountryWhereInput
   photos_every: UserPhotoWhereInput
   photos_some: UserPhotoWhereInput
   photos_none: UserPhotoWhereInput
-  subscriptions_every: SubscriptionWhereInput
-  subscriptions_some: SubscriptionWhereInput
-  subscriptions_none: SubscriptionWhereInput
+  subscriptions_every: FandemSubscriptionWhereInput
+  subscriptions_some: FandemSubscriptionWhereInput
+  subscriptions_none: FandemSubscriptionWhereInput
   userRoles_every: UserRoleWhereInput
   userRoles_some: UserRoleWhereInput
   userRoles_none: UserRoleWhereInput
   status_every: UserStatusWhereInput
   status_some: UserStatusWhereInput
   status_none: UserStatusWhereInput
-  followers: UserFollowerWhereInput
-  influencers: UserInfluencerWhereInput
+  followers: UserFollowersWhereInput
+  influencers: UserInfluencersWhereInput
 }
 
 input UserWhereUniqueInput {

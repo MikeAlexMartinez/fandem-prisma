@@ -1,5 +1,5 @@
 type User {
-  id: ID! @unique
+  id: ID! @unique @id
   email: String! @unique
   name: String!
   countryCode: String
@@ -7,109 +7,138 @@ type User {
   favoriteTeam: Team
   country: Country
   displayName: String! @unique
-  isPrivate: Boolean! @default(value: "false")
+  isPrivate: Boolean! @default(value: false)
   password: String!
   photos: [UserPhoto]!
   emailValidationToken: String
   emailValidationTokenExpiry: Float
-  emailValidated: Boolean! @default(value: "false")
+  emailValidated: Boolean! @default(value: false)
   emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
-  subscriptions: [Subscription!]!
+  subscriptions: [FandemSubscription!]!
   userRoles: [UserRole!]!
   status: [UserStatus]!
-  followers: UserFollower!
-  influencers: UserInfluencer!
+  followers: UserFollowers @relation(link: INLINE)
+  influencers: UserInfluencers @relation(link: INLINE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type UserPhoto {
-  id: ID! @unique
+  id: ID! @unique @id
   user: User!
   photo: Photo!
   isProfile: Boolean
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Photo {
-  id: ID! @unique
+  id: ID! @unique @id
   image: String!
   largeImage: String
   smallImage: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Status {
-  id: ID! @unique
-  author: UserStatus
+  id: ID! @unique @id
+  author: UserStatus @relation(link: INLINE)
   content: String!
   likes: [User]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type UserStatus {
-  id: ID! @unique
+  id: ID! @unique @id
   status: Status
   currentStatus: Boolean
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Follower {
-  id: ID! @unique
-  user: User!
-  blocked: Boolean! @default(value: "false")
-  accepted: Boolean! @default(value: "false")
+  id: ID! @unique @id
+  user: User! @relation(link: INLINE)
+  blocked: Boolean! @default(value: false)
+  accepted: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
-type UserFollower {
-  id: ID! @unique
+type UserFollowers {
+  id: ID! @unique @id
   followers: [Follower]!
   user: User!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Influencer {
-  id: ID! @unique
-  user: User!
+  id: ID! @unique @id
+  user: User! @relation(link: INLINE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
-type UserInfluencer {
-  id: ID! @unique
+type UserInfluencers {
+  id: ID! @unique @id
   user: User!
   influencers: [Influencer]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type UserRole {
-  id: ID! @unique
+  id: ID! @unique @id
   name: String!
   description: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type UserAssignedRole {
-  id: ID! @unique
+  id: ID! @unique @id
   user: User!
   userRole: UserRole!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type ActiveSubscriptions {
-  id: ID! @unique
+  id: ID! @unique @id
   user: User!
   subscription: UserRole!
   startDate: DateTime!
   endDate: DateTime!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
-type Subscription {
-  id: ID! @unique
+type FandemSubscription {
+  id: ID! @unique @id
   name: String!
   description: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Country {
-  id: ID! @unique
+  id: ID! @unique @id
   iso: String!
   name: String!
   code: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Team {
-  id: ID! @unique
+  id: ID! @unique @id
   code: Int! @unique
+  season: Season!
   fplTeamId: Int!
   name: String!
   shortName: String!
@@ -120,55 +149,65 @@ type Team {
   strengthDefenceHome: Int!
   strengthOverallAway: Int!
   strengthOverallHome: Int!
-  teamDivision: Int!
+  teamDivision: Int
   homeFixtures: [HomeTeamFixture]!
   awayFixtures: [AwayTeamFixture]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Season {
-  id: ID! @unique
+  id: ID! @unique @id
   fplId: Int! @unique
+  label: String!
   competition: String!
   startYear: Int!
   endYear: Int!
   isCurrent: Boolean!
   isPrevious: Boolean!
-  isNext: boolean!
+  isNext: Boolean!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Gameweek {
-  id: ID! @unique
-  fplEventId: Int! @unique
+  id: ID! @unique @id
   season: Season!
   averageEntryScore: Int
   dataChecked: Boolean!
   deadlineTime: DateTime!
   deadlineTimeEpoch: Int!
-  deadlineTimeFormatted: String!
   deadlineTimeGameOffset: Int!
   finished: Boolean!
   highestScore: Int
   highestScoringEntry: Int
+  fplEventId: Int! @unique
   isCurrent: Boolean!
   isNext: Boolean!
   isPrevious: Boolean!
   name: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type HomeTeamFixture {
-  id: ID! @unique
-  fixture: Fixture!
+  id: ID! @unique @id
+  fixture: Fixture! @relation(link: INLINE)
   homeTeam: Team!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type AwayTeamFixture {
-  id: ID! @unique
-  fixture: Fixture!
+  id: ID! @unique @id
+  fixture: Fixture! @relation(link: INLINE)
   awayTeam: Team!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Fixture {
-  id: ID! @unique
+  id: ID! @unique @id
   fplCode: Int! @unique
   event: Gameweek!
   finished: Boolean!
@@ -178,10 +217,12 @@ type Fixture {
   minutes: Int!
   provisionalStartTime: Boolean!
   started: Boolean!
-  teamA: AwayTeam!
+  teamA: AwayTeamFixture!
   teamADifficulty: Int!
   teamAScore: Int
-  teamH: HomeTeam!
+  teamH: HomeTeamFixture!
   teamHDifficulty: Int!
   teamHScore: Int
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }

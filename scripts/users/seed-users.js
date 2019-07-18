@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 
+// data
 const users = require("./users");
 
 module.exports = seedUsers;

@@ -2,7 +2,7 @@ require("dotenv-safe").config();
 
 const db = require("./scripts/seed-db");
 
-const seedTeamData = require("./scripts/fpl/seed-team-data");
+const seedFplData = require("./scripts/fpl/seed-fpl-data");
 const seedCountries = require("./scripts/countries/seed-countries");
 const seedRoles = require("./scripts/users/seed-roles");
 const seedSubscriptions = require("./scripts/users/seed-subscriptions");
@@ -10,8 +10,10 @@ const seedUsers = require("./scripts/users/seed-users");
 
 const setup = async () => {
   // add teams - (Change to All relevant FPL data)
-  const teams = await seedTeamData({ db });
+  const { teams, gameweeks, season } = await seedFplData({ db });
   console.log(`Inserted ${teams.length} teams`);
+  console.log(`Inserted ${gameweeks.length} gameweeks`);
+  console.log(`Inserted ${season.competition} ${season.label} season`);
   // add countries
   const countries = await seedCountries({ db });
   console.log(`Inserted ${countries.length} countries`);

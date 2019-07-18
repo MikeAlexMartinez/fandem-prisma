@@ -6,7 +6,7 @@ async function seedSubscriptions({ db }) {
   return await Promise.all(
     subscriptions.map(
       async subscription =>
-        await db.mutation.createSubscription(
+        await db.mutation.createFandemSubscription(
           { data: subscription },
           "{ id, name }"
         )

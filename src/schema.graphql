@@ -56,8 +56,8 @@ type User {
   userRoles: [UserRole!]!
   photos(where: UserPhotoWhereInput): [UserPhoto]
   status: [UserStatus]!
-  followers: UserFollower!
-  influencers: UserInfluencer!
+  followers: UserFollowers!
+  influencers: UserInfluencers!
 }
 
 type Country {
