@@ -26,6 +26,7 @@ async function seedGameweeks({ db, gameweeks, season }) {
           {
             data: {
               ...team,
+              fixtures: [],
               season: {
                 connect: {
                   id: season.id

@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Thu Jul 18 2019 11:05:39 GMT+0100 (BST)
+# timestamp: Sun Jul 21 2019 12:37:29 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -1591,9 +1591,14 @@ input FixtureCreateInput {
   teamAScore: Int
   teamHDifficulty: Int!
   teamHScore: Int
-  event: GameweekCreateOneInput!
+  event: GameweekCreateOneWithoutFixturesInput!
   teamA: AwayTeamFixtureCreateOneWithoutFixtureInput!
   teamH: HomeTeamFixtureCreateOneWithoutFixtureInput!
+}
+
+input FixtureCreateManyWithoutEventInput {
+  create: [FixtureCreateWithoutEventInput!]
+  connect: [FixtureWhereUniqueInput!]
 }
 
 input FixtureCreateOneWithoutTeamAInput {
@@ -1604,6 +1609,24 @@ input FixtureCreateOneWithoutTeamAInput {
 input FixtureCreateOneWithoutTeamHInput {
   create: FixtureCreateWithoutTeamHInput
   connect: FixtureWhereUniqueInput
+}
+
+input FixtureCreateWithoutEventInput {
+  id: ID
+  fplCode: Int!
+  finished: Boolean!
+  finishedProvisional: Boolean!
+  fixtureId: Int!
+  kickoffTime: DateTime
+  minutes: Int!
+  provisionalStartTime: Boolean!
+  started: Boolean!
+  teamADifficulty: Int!
+  teamAScore: Int
+  teamHDifficulty: Int!
+  teamHScore: Int
+  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput!
+  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput!
 }
 
 input FixtureCreateWithoutTeamAInput {
@@ -1620,7 +1643,7 @@ input FixtureCreateWithoutTeamAInput {
   teamAScore: Int
   teamHDifficulty: Int!
   teamHScore: Int
-  event: GameweekCreateOneInput!
+  event: GameweekCreateOneWithoutFixturesInput!
   teamH: HomeTeamFixtureCreateOneWithoutFixtureInput!
 }
 
@@ -1638,7 +1661,7 @@ input FixtureCreateWithoutTeamHInput {
   teamAScore: Int
   teamHDifficulty: Int!
   teamHScore: Int
-  event: GameweekCreateOneInput!
+  event: GameweekCreateOneWithoutFixturesInput!
   teamA: AwayTeamFixtureCreateOneWithoutFixtureInput!
 }
 
@@ -1702,6 +1725,293 @@ type FixturePreviousValues {
   updatedAt: DateTime!
 }
 
+input FixtureScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FixtureScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FixtureScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FixtureScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  fplCode: Int
+
+  """All values that are not equal to given value."""
+  fplCode_not: Int
+
+  """All values that are contained in given list."""
+  fplCode_in: [Int!]
+
+  """All values that are not contained in given list."""
+  fplCode_not_in: [Int!]
+
+  """All values less than the given value."""
+  fplCode_lt: Int
+
+  """All values less than or equal the given value."""
+  fplCode_lte: Int
+
+  """All values greater than the given value."""
+  fplCode_gt: Int
+
+  """All values greater than or equal the given value."""
+  fplCode_gte: Int
+  finished: Boolean
+
+  """All values that are not equal to given value."""
+  finished_not: Boolean
+  finishedProvisional: Boolean
+
+  """All values that are not equal to given value."""
+  finishedProvisional_not: Boolean
+  fixtureId: Int
+
+  """All values that are not equal to given value."""
+  fixtureId_not: Int
+
+  """All values that are contained in given list."""
+  fixtureId_in: [Int!]
+
+  """All values that are not contained in given list."""
+  fixtureId_not_in: [Int!]
+
+  """All values less than the given value."""
+  fixtureId_lt: Int
+
+  """All values less than or equal the given value."""
+  fixtureId_lte: Int
+
+  """All values greater than the given value."""
+  fixtureId_gt: Int
+
+  """All values greater than or equal the given value."""
+  fixtureId_gte: Int
+  kickoffTime: DateTime
+
+  """All values that are not equal to given value."""
+  kickoffTime_not: DateTime
+
+  """All values that are contained in given list."""
+  kickoffTime_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  kickoffTime_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  kickoffTime_lt: DateTime
+
+  """All values less than or equal the given value."""
+  kickoffTime_lte: DateTime
+
+  """All values greater than the given value."""
+  kickoffTime_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  kickoffTime_gte: DateTime
+  minutes: Int
+
+  """All values that are not equal to given value."""
+  minutes_not: Int
+
+  """All values that are contained in given list."""
+  minutes_in: [Int!]
+
+  """All values that are not contained in given list."""
+  minutes_not_in: [Int!]
+
+  """All values less than the given value."""
+  minutes_lt: Int
+
+  """All values less than or equal the given value."""
+  minutes_lte: Int
+
+  """All values greater than the given value."""
+  minutes_gt: Int
+
+  """All values greater than or equal the given value."""
+  minutes_gte: Int
+  provisionalStartTime: Boolean
+
+  """All values that are not equal to given value."""
+  provisionalStartTime_not: Boolean
+  started: Boolean
+
+  """All values that are not equal to given value."""
+  started_not: Boolean
+  teamADifficulty: Int
+
+  """All values that are not equal to given value."""
+  teamADifficulty_not: Int
+
+  """All values that are contained in given list."""
+  teamADifficulty_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamADifficulty_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamADifficulty_lt: Int
+
+  """All values less than or equal the given value."""
+  teamADifficulty_lte: Int
+
+  """All values greater than the given value."""
+  teamADifficulty_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamADifficulty_gte: Int
+  teamAScore: Int
+
+  """All values that are not equal to given value."""
+  teamAScore_not: Int
+
+  """All values that are contained in given list."""
+  teamAScore_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamAScore_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamAScore_lt: Int
+
+  """All values less than or equal the given value."""
+  teamAScore_lte: Int
+
+  """All values greater than the given value."""
+  teamAScore_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamAScore_gte: Int
+  teamHDifficulty: Int
+
+  """All values that are not equal to given value."""
+  teamHDifficulty_not: Int
+
+  """All values that are contained in given list."""
+  teamHDifficulty_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamHDifficulty_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamHDifficulty_lt: Int
+
+  """All values less than or equal the given value."""
+  teamHDifficulty_lte: Int
+
+  """All values greater than the given value."""
+  teamHDifficulty_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamHDifficulty_gte: Int
+  teamHScore: Int
+
+  """All values that are not equal to given value."""
+  teamHScore_not: Int
+
+  """All values that are contained in given list."""
+  teamHScore_in: [Int!]
+
+  """All values that are not contained in given list."""
+  teamHScore_not_in: [Int!]
+
+  """All values less than the given value."""
+  teamHScore_lt: Int
+
+  """All values less than or equal the given value."""
+  teamHScore_lte: Int
+
+  """All values greater than the given value."""
+  teamHScore_gt: Int
+
+  """All values greater than or equal the given value."""
+  teamHScore_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
 type FixtureSubscriptionPayload {
   mutation: MutationType!
   node: Fixture
@@ -1754,9 +2064,24 @@ input FixtureUpdateInput {
   teamAScore: Int
   teamHDifficulty: Int
   teamHScore: Int
-  event: GameweekUpdateOneRequiredInput
+  event: GameweekUpdateOneRequiredWithoutFixturesInput
   teamA: AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput
   teamH: HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput
+}
+
+input FixtureUpdateManyDataInput {
+  fplCode: Int
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamADifficulty: Int
+  teamAScore: Int
+  teamHDifficulty: Int
+  teamHScore: Int
 }
 
 input FixtureUpdateManyMutationInput {
@@ -1774,6 +2099,23 @@ input FixtureUpdateManyMutationInput {
   teamHScore: Int
 }
 
+input FixtureUpdateManyWithoutEventInput {
+  create: [FixtureCreateWithoutEventInput!]
+  connect: [FixtureWhereUniqueInput!]
+  set: [FixtureWhereUniqueInput!]
+  disconnect: [FixtureWhereUniqueInput!]
+  delete: [FixtureWhereUniqueInput!]
+  update: [FixtureUpdateWithWhereUniqueWithoutEventInput!]
+  updateMany: [FixtureUpdateManyWithWhereNestedInput!]
+  deleteMany: [FixtureScalarWhereInput!]
+  upsert: [FixtureUpsertWithWhereUniqueWithoutEventInput!]
+}
+
+input FixtureUpdateManyWithWhereNestedInput {
+  where: FixtureScalarWhereInput!
+  data: FixtureUpdateManyDataInput!
+}
+
 input FixtureUpdateOneRequiredWithoutTeamAInput {
   create: FixtureCreateWithoutTeamAInput
   connect: FixtureWhereUniqueInput
@@ -1786,6 +2128,23 @@ input FixtureUpdateOneRequiredWithoutTeamHInput {
   connect: FixtureWhereUniqueInput
   update: FixtureUpdateWithoutTeamHDataInput
   upsert: FixtureUpsertWithoutTeamHInput
+}
+
+input FixtureUpdateWithoutEventDataInput {
+  fplCode: Int
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamADifficulty: Int
+  teamAScore: Int
+  teamHDifficulty: Int
+  teamHScore: Int
+  teamA: AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput
+  teamH: HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput
 }
 
 input FixtureUpdateWithoutTeamADataInput {
@@ -1801,7 +2160,7 @@ input FixtureUpdateWithoutTeamADataInput {
   teamAScore: Int
   teamHDifficulty: Int
   teamHScore: Int
-  event: GameweekUpdateOneRequiredInput
+  event: GameweekUpdateOneRequiredWithoutFixturesInput
   teamH: HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput
 }
 
@@ -1818,8 +2177,13 @@ input FixtureUpdateWithoutTeamHDataInput {
   teamAScore: Int
   teamHDifficulty: Int
   teamHScore: Int
-  event: GameweekUpdateOneRequiredInput
+  event: GameweekUpdateOneRequiredWithoutFixturesInput
   teamA: AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput
+}
+
+input FixtureUpdateWithWhereUniqueWithoutEventInput {
+  where: FixtureWhereUniqueInput!
+  data: FixtureUpdateWithoutEventDataInput!
 }
 
 input FixtureUpsertWithoutTeamAInput {
@@ -1830,6 +2194,12 @@ input FixtureUpsertWithoutTeamAInput {
 input FixtureUpsertWithoutTeamHInput {
   update: FixtureUpdateWithoutTeamHDataInput!
   create: FixtureCreateWithoutTeamHInput!
+}
+
+input FixtureUpsertWithWhereUniqueWithoutEventInput {
+  where: FixtureWhereUniqueInput!
+  update: FixtureUpdateWithoutEventDataInput!
+  create: FixtureCreateWithoutEventInput!
 }
 
 input FixtureWhereInput {
@@ -2504,6 +2874,7 @@ type Gameweek implements Node {
   isNext: Boolean!
   isPrevious: Boolean!
   name: String!
+  fixtures(where: FixtureWhereInput, orderBy: FixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Fixture!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -2533,12 +2904,54 @@ input GameweekCreateInput {
   isNext: Boolean!
   isPrevious: Boolean!
   name: String!
-  season: SeasonCreateOneInput!
+  season: SeasonCreateOneWithoutEventsInput!
+  fixtures: FixtureCreateManyWithoutEventInput
 }
 
-input GameweekCreateOneInput {
-  create: GameweekCreateInput
+input GameweekCreateManyWithoutSeasonInput {
+  create: [GameweekCreateWithoutSeasonInput!]
+  connect: [GameweekWhereUniqueInput!]
+}
+
+input GameweekCreateOneWithoutFixturesInput {
+  create: GameweekCreateWithoutFixturesInput
   connect: GameweekWhereUniqueInput
+}
+
+input GameweekCreateWithoutFixturesInput {
+  id: ID
+  averageEntryScore: Int
+  dataChecked: Boolean!
+  deadlineTime: DateTime!
+  deadlineTimeEpoch: Int!
+  deadlineTimeGameOffset: Int!
+  finished: Boolean!
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int!
+  isCurrent: Boolean!
+  isNext: Boolean!
+  isPrevious: Boolean!
+  name: String!
+  season: SeasonCreateOneWithoutEventsInput!
+}
+
+input GameweekCreateWithoutSeasonInput {
+  id: ID
+  averageEntryScore: Int
+  dataChecked: Boolean!
+  deadlineTime: DateTime!
+  deadlineTimeEpoch: Int!
+  deadlineTimeGameOffset: Int!
+  finished: Boolean!
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int!
+  isCurrent: Boolean!
+  isNext: Boolean!
+  isPrevious: Boolean!
+  name: String!
+  fixtures: FixtureCreateManyWithoutEventInput
 }
 
 """An edge in a connection."""
@@ -2604,6 +3017,315 @@ type GameweekPreviousValues {
   updatedAt: DateTime!
 }
 
+input GameweekScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [GameweekScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [GameweekScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [GameweekScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  averageEntryScore: Int
+
+  """All values that are not equal to given value."""
+  averageEntryScore_not: Int
+
+  """All values that are contained in given list."""
+  averageEntryScore_in: [Int!]
+
+  """All values that are not contained in given list."""
+  averageEntryScore_not_in: [Int!]
+
+  """All values less than the given value."""
+  averageEntryScore_lt: Int
+
+  """All values less than or equal the given value."""
+  averageEntryScore_lte: Int
+
+  """All values greater than the given value."""
+  averageEntryScore_gt: Int
+
+  """All values greater than or equal the given value."""
+  averageEntryScore_gte: Int
+  dataChecked: Boolean
+
+  """All values that are not equal to given value."""
+  dataChecked_not: Boolean
+  deadlineTime: DateTime
+
+  """All values that are not equal to given value."""
+  deadlineTime_not: DateTime
+
+  """All values that are contained in given list."""
+  deadlineTime_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  deadlineTime_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  deadlineTime_lt: DateTime
+
+  """All values less than or equal the given value."""
+  deadlineTime_lte: DateTime
+
+  """All values greater than the given value."""
+  deadlineTime_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  deadlineTime_gte: DateTime
+  deadlineTimeEpoch: Int
+
+  """All values that are not equal to given value."""
+  deadlineTimeEpoch_not: Int
+
+  """All values that are contained in given list."""
+  deadlineTimeEpoch_in: [Int!]
+
+  """All values that are not contained in given list."""
+  deadlineTimeEpoch_not_in: [Int!]
+
+  """All values less than the given value."""
+  deadlineTimeEpoch_lt: Int
+
+  """All values less than or equal the given value."""
+  deadlineTimeEpoch_lte: Int
+
+  """All values greater than the given value."""
+  deadlineTimeEpoch_gt: Int
+
+  """All values greater than or equal the given value."""
+  deadlineTimeEpoch_gte: Int
+  deadlineTimeGameOffset: Int
+
+  """All values that are not equal to given value."""
+  deadlineTimeGameOffset_not: Int
+
+  """All values that are contained in given list."""
+  deadlineTimeGameOffset_in: [Int!]
+
+  """All values that are not contained in given list."""
+  deadlineTimeGameOffset_not_in: [Int!]
+
+  """All values less than the given value."""
+  deadlineTimeGameOffset_lt: Int
+
+  """All values less than or equal the given value."""
+  deadlineTimeGameOffset_lte: Int
+
+  """All values greater than the given value."""
+  deadlineTimeGameOffset_gt: Int
+
+  """All values greater than or equal the given value."""
+  deadlineTimeGameOffset_gte: Int
+  finished: Boolean
+
+  """All values that are not equal to given value."""
+  finished_not: Boolean
+  highestScore: Int
+
+  """All values that are not equal to given value."""
+  highestScore_not: Int
+
+  """All values that are contained in given list."""
+  highestScore_in: [Int!]
+
+  """All values that are not contained in given list."""
+  highestScore_not_in: [Int!]
+
+  """All values less than the given value."""
+  highestScore_lt: Int
+
+  """All values less than or equal the given value."""
+  highestScore_lte: Int
+
+  """All values greater than the given value."""
+  highestScore_gt: Int
+
+  """All values greater than or equal the given value."""
+  highestScore_gte: Int
+  highestScoringEntry: Int
+
+  """All values that are not equal to given value."""
+  highestScoringEntry_not: Int
+
+  """All values that are contained in given list."""
+  highestScoringEntry_in: [Int!]
+
+  """All values that are not contained in given list."""
+  highestScoringEntry_not_in: [Int!]
+
+  """All values less than the given value."""
+  highestScoringEntry_lt: Int
+
+  """All values less than or equal the given value."""
+  highestScoringEntry_lte: Int
+
+  """All values greater than the given value."""
+  highestScoringEntry_gt: Int
+
+  """All values greater than or equal the given value."""
+  highestScoringEntry_gte: Int
+  fplEventId: Int
+
+  """All values that are not equal to given value."""
+  fplEventId_not: Int
+
+  """All values that are contained in given list."""
+  fplEventId_in: [Int!]
+
+  """All values that are not contained in given list."""
+  fplEventId_not_in: [Int!]
+
+  """All values less than the given value."""
+  fplEventId_lt: Int
+
+  """All values less than or equal the given value."""
+  fplEventId_lte: Int
+
+  """All values greater than the given value."""
+  fplEventId_gt: Int
+
+  """All values greater than or equal the given value."""
+  fplEventId_gte: Int
+  isCurrent: Boolean
+
+  """All values that are not equal to given value."""
+  isCurrent_not: Boolean
+  isNext: Boolean
+
+  """All values that are not equal to given value."""
+  isNext_not: Boolean
+  isPrevious: Boolean
+
+  """All values that are not equal to given value."""
+  isPrevious_not: Boolean
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
 type GameweekSubscriptionPayload {
   mutation: MutationType!
   node: Gameweek
@@ -2643,23 +3365,6 @@ input GameweekSubscriptionWhereInput {
   node: GameweekWhereInput
 }
 
-input GameweekUpdateDataInput {
-  averageEntryScore: Int
-  dataChecked: Boolean
-  deadlineTime: DateTime
-  deadlineTimeEpoch: Int
-  deadlineTimeGameOffset: Int
-  finished: Boolean
-  highestScore: Int
-  highestScoringEntry: Int
-  fplEventId: Int
-  isCurrent: Boolean
-  isNext: Boolean
-  isPrevious: Boolean
-  name: String
-  season: SeasonUpdateOneRequiredInput
-}
-
 input GameweekUpdateInput {
   averageEntryScore: Int
   dataChecked: Boolean
@@ -2674,7 +3379,24 @@ input GameweekUpdateInput {
   isNext: Boolean
   isPrevious: Boolean
   name: String
-  season: SeasonUpdateOneRequiredInput
+  season: SeasonUpdateOneRequiredWithoutEventsInput
+  fixtures: FixtureUpdateManyWithoutEventInput
+}
+
+input GameweekUpdateManyDataInput {
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
 }
 
 input GameweekUpdateManyMutationInput {
@@ -2693,16 +3415,78 @@ input GameweekUpdateManyMutationInput {
   name: String
 }
 
-input GameweekUpdateOneRequiredInput {
-  create: GameweekCreateInput
-  connect: GameweekWhereUniqueInput
-  update: GameweekUpdateDataInput
-  upsert: GameweekUpsertNestedInput
+input GameweekUpdateManyWithoutSeasonInput {
+  create: [GameweekCreateWithoutSeasonInput!]
+  connect: [GameweekWhereUniqueInput!]
+  set: [GameweekWhereUniqueInput!]
+  disconnect: [GameweekWhereUniqueInput!]
+  delete: [GameweekWhereUniqueInput!]
+  update: [GameweekUpdateWithWhereUniqueWithoutSeasonInput!]
+  updateMany: [GameweekUpdateManyWithWhereNestedInput!]
+  deleteMany: [GameweekScalarWhereInput!]
+  upsert: [GameweekUpsertWithWhereUniqueWithoutSeasonInput!]
 }
 
-input GameweekUpsertNestedInput {
-  update: GameweekUpdateDataInput!
-  create: GameweekCreateInput!
+input GameweekUpdateManyWithWhereNestedInput {
+  where: GameweekScalarWhereInput!
+  data: GameweekUpdateManyDataInput!
+}
+
+input GameweekUpdateOneRequiredWithoutFixturesInput {
+  create: GameweekCreateWithoutFixturesInput
+  connect: GameweekWhereUniqueInput
+  update: GameweekUpdateWithoutFixturesDataInput
+  upsert: GameweekUpsertWithoutFixturesInput
+}
+
+input GameweekUpdateWithoutFixturesDataInput {
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
+  season: SeasonUpdateOneRequiredWithoutEventsInput
+}
+
+input GameweekUpdateWithoutSeasonDataInput {
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
+  fixtures: FixtureUpdateManyWithoutEventInput
+}
+
+input GameweekUpdateWithWhereUniqueWithoutSeasonInput {
+  where: GameweekWhereUniqueInput!
+  data: GameweekUpdateWithoutSeasonDataInput!
+}
+
+input GameweekUpsertWithoutFixturesInput {
+  update: GameweekUpdateWithoutFixturesDataInput!
+  create: GameweekCreateWithoutFixturesInput!
+}
+
+input GameweekUpsertWithWhereUniqueWithoutSeasonInput {
+  where: GameweekWhereUniqueInput!
+  update: GameweekUpdateWithoutSeasonDataInput!
+  create: GameweekCreateWithoutSeasonInput!
 }
 
 input GameweekWhereInput {
@@ -3013,6 +3797,9 @@ input GameweekWhereInput {
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
   season: SeasonWhereInput
+  fixtures_every: FixtureWhereInput
+  fixtures_some: FixtureWhereInput
+  fixtures_none: FixtureWhereInput
 }
 
 input GameweekWhereUniqueInput {
@@ -3701,6 +4488,7 @@ type Mutation {
   createUserInfluencers(data: UserInfluencersCreateInput!): UserInfluencers!
   createUserAssignedRole(data: UserAssignedRoleCreateInput!): UserAssignedRole!
   createActiveSubscriptions(data: ActiveSubscriptionsCreateInput!): ActiveSubscriptions!
+  createGameweek(data: GameweekCreateInput!): Gameweek!
   createHomeTeamFixture(data: HomeTeamFixtureCreateInput!): HomeTeamFixture!
   createAwayTeamFixture(data: AwayTeamFixtureCreateInput!): AwayTeamFixture!
   createFixture(data: FixtureCreateInput!): Fixture!
@@ -3712,7 +4500,6 @@ type Mutation {
   createUserStatus(data: UserStatusCreateInput!): UserStatus!
   createCountry(data: CountryCreateInput!): Country!
   createFandemSubscription(data: FandemSubscriptionCreateInput!): FandemSubscription!
-  createGameweek(data: GameweekCreateInput!): Gameweek!
   createUser(data: UserCreateInput!): User!
   createUserRole(data: UserRoleCreateInput!): UserRole!
   updateUserPhoto(data: UserPhotoUpdateInput!, where: UserPhotoWhereUniqueInput!): UserPhoto
@@ -3721,6 +4508,7 @@ type Mutation {
   updateUserInfluencers(data: UserInfluencersUpdateInput!, where: UserInfluencersWhereUniqueInput!): UserInfluencers
   updateUserAssignedRole(data: UserAssignedRoleUpdateInput!, where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   updateActiveSubscriptions(data: ActiveSubscriptionsUpdateInput!, where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  updateGameweek(data: GameweekUpdateInput!, where: GameweekWhereUniqueInput!): Gameweek
   updateHomeTeamFixture(data: HomeTeamFixtureUpdateInput!, where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
   updateAwayTeamFixture(data: AwayTeamFixtureUpdateInput!, where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
   updateFixture(data: FixtureUpdateInput!, where: FixtureWhereUniqueInput!): Fixture
@@ -3732,7 +4520,6 @@ type Mutation {
   updateUserStatus(data: UserStatusUpdateInput!, where: UserStatusWhereUniqueInput!): UserStatus
   updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
   updateFandemSubscription(data: FandemSubscriptionUpdateInput!, where: FandemSubscriptionWhereUniqueInput!): FandemSubscription
-  updateGameweek(data: GameweekUpdateInput!, where: GameweekWhereUniqueInput!): Gameweek
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateUserRole(data: UserRoleUpdateInput!, where: UserRoleWhereUniqueInput!): UserRole
   deleteUserPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
@@ -3741,6 +4528,7 @@ type Mutation {
   deleteUserInfluencers(where: UserInfluencersWhereUniqueInput!): UserInfluencers
   deleteUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   deleteActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  deleteGameweek(where: GameweekWhereUniqueInput!): Gameweek
   deleteHomeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
   deleteAwayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
   deleteFixture(where: FixtureWhereUniqueInput!): Fixture
@@ -3752,7 +4540,6 @@ type Mutation {
   deleteUserStatus(where: UserStatusWhereUniqueInput!): UserStatus
   deleteCountry(where: CountryWhereUniqueInput!): Country
   deleteFandemSubscription(where: FandemSubscriptionWhereUniqueInput!): FandemSubscription
-  deleteGameweek(where: GameweekWhereUniqueInput!): Gameweek
   deleteUser(where: UserWhereUniqueInput!): User
   deleteUserRole(where: UserRoleWhereUniqueInput!): UserRole
   upsertUserPhoto(where: UserPhotoWhereUniqueInput!, create: UserPhotoCreateInput!, update: UserPhotoUpdateInput!): UserPhoto!
@@ -3761,6 +4548,7 @@ type Mutation {
   upsertUserInfluencers(where: UserInfluencersWhereUniqueInput!, create: UserInfluencersCreateInput!, update: UserInfluencersUpdateInput!): UserInfluencers!
   upsertUserAssignedRole(where: UserAssignedRoleWhereUniqueInput!, create: UserAssignedRoleCreateInput!, update: UserAssignedRoleUpdateInput!): UserAssignedRole!
   upsertActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!, create: ActiveSubscriptionsCreateInput!, update: ActiveSubscriptionsUpdateInput!): ActiveSubscriptions!
+  upsertGameweek(where: GameweekWhereUniqueInput!, create: GameweekCreateInput!, update: GameweekUpdateInput!): Gameweek!
   upsertHomeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!, create: HomeTeamFixtureCreateInput!, update: HomeTeamFixtureUpdateInput!): HomeTeamFixture!
   upsertAwayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!, create: AwayTeamFixtureCreateInput!, update: AwayTeamFixtureUpdateInput!): AwayTeamFixture!
   upsertFixture(where: FixtureWhereUniqueInput!, create: FixtureCreateInput!, update: FixtureUpdateInput!): Fixture!
@@ -3772,12 +4560,12 @@ type Mutation {
   upsertUserStatus(where: UserStatusWhereUniqueInput!, create: UserStatusCreateInput!, update: UserStatusUpdateInput!): UserStatus!
   upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
   upsertFandemSubscription(where: FandemSubscriptionWhereUniqueInput!, create: FandemSubscriptionCreateInput!, update: FandemSubscriptionUpdateInput!): FandemSubscription!
-  upsertGameweek(where: GameweekWhereUniqueInput!, create: GameweekCreateInput!, update: GameweekUpdateInput!): Gameweek!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertUserRole(where: UserRoleWhereUniqueInput!, create: UserRoleCreateInput!, update: UserRoleUpdateInput!): UserRole!
   updateManyUserPhotos(data: UserPhotoUpdateManyMutationInput!, where: UserPhotoWhereInput): BatchPayload!
   updateManyStatuses(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): BatchPayload!
   updateManyActiveSubscriptionses(data: ActiveSubscriptionsUpdateManyMutationInput!, where: ActiveSubscriptionsWhereInput): BatchPayload!
+  updateManyGameweeks(data: GameweekUpdateManyMutationInput!, where: GameweekWhereInput): BatchPayload!
   updateManyFixtures(data: FixtureUpdateManyMutationInput!, where: FixtureWhereInput): BatchPayload!
   updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
   updateManyPhotos(data: PhotoUpdateManyMutationInput!, where: PhotoWhereInput): BatchPayload!
@@ -3786,7 +4574,6 @@ type Mutation {
   updateManyUserStatuses(data: UserStatusUpdateManyMutationInput!, where: UserStatusWhereInput): BatchPayload!
   updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
   updateManyFandemSubscriptions(data: FandemSubscriptionUpdateManyMutationInput!, where: FandemSubscriptionWhereInput): BatchPayload!
-  updateManyGameweeks(data: GameweekUpdateManyMutationInput!, where: GameweekWhereInput): BatchPayload!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyUserRoles(data: UserRoleUpdateManyMutationInput!, where: UserRoleWhereInput): BatchPayload!
   deleteManyUserPhotos(where: UserPhotoWhereInput): BatchPayload!
@@ -3795,6 +4582,7 @@ type Mutation {
   deleteManyUserInfluencerses(where: UserInfluencersWhereInput): BatchPayload!
   deleteManyUserAssignedRoles(where: UserAssignedRoleWhereInput): BatchPayload!
   deleteManyActiveSubscriptionses(where: ActiveSubscriptionsWhereInput): BatchPayload!
+  deleteManyGameweeks(where: GameweekWhereInput): BatchPayload!
   deleteManyHomeTeamFixtures(where: HomeTeamFixtureWhereInput): BatchPayload!
   deleteManyAwayTeamFixtures(where: AwayTeamFixtureWhereInput): BatchPayload!
   deleteManyFixtures(where: FixtureWhereInput): BatchPayload!
@@ -3806,7 +4594,6 @@ type Mutation {
   deleteManyUserStatuses(where: UserStatusWhereInput): BatchPayload!
   deleteManyCountries(where: CountryWhereInput): BatchPayload!
   deleteManyFandemSubscriptions(where: FandemSubscriptionWhereInput): BatchPayload!
-  deleteManyGameweeks(where: GameweekWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyUserRoles(where: UserRoleWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
@@ -4202,6 +4989,7 @@ type Query {
   userInfluencerses(where: UserInfluencersWhereInput, orderBy: UserInfluencersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserInfluencers]!
   userAssignedRoles(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAssignedRole]!
   activeSubscriptionses(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ActiveSubscriptions]!
+  gameweeks(where: GameweekWhereInput, orderBy: GameweekOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Gameweek]!
   homeTeamFixtures(where: HomeTeamFixtureWhereInput, orderBy: HomeTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HomeTeamFixture]!
   awayTeamFixtures(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AwayTeamFixture]!
   fixtures(where: FixtureWhereInput, orderBy: FixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Fixture]!
@@ -4213,7 +5001,6 @@ type Query {
   userStatuses(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus]!
   countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
   fandemSubscriptions(where: FandemSubscriptionWhereInput, orderBy: FandemSubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FandemSubscription]!
-  gameweeks(where: GameweekWhereInput, orderBy: GameweekOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Gameweek]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   userRoles(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserRole]!
   userPhoto(where: UserPhotoWhereUniqueInput!): UserPhoto
@@ -4222,6 +5009,7 @@ type Query {
   userInfluencers(where: UserInfluencersWhereUniqueInput!): UserInfluencers
   userAssignedRole(where: UserAssignedRoleWhereUniqueInput!): UserAssignedRole
   activeSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
+  gameweek(where: GameweekWhereUniqueInput!): Gameweek
   homeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
   awayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
   fixture(where: FixtureWhereUniqueInput!): Fixture
@@ -4233,7 +5021,6 @@ type Query {
   userStatus(where: UserStatusWhereUniqueInput!): UserStatus
   country(where: CountryWhereUniqueInput!): Country
   fandemSubscription(where: FandemSubscriptionWhereUniqueInput!): FandemSubscription
-  gameweek(where: GameweekWhereUniqueInput!): Gameweek
   user(where: UserWhereUniqueInput!): User
   userRole(where: UserRoleWhereUniqueInput!): UserRole
   userPhotosConnection(where: UserPhotoWhereInput, orderBy: UserPhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserPhotoConnection!
@@ -4242,6 +5029,7 @@ type Query {
   userInfluencersesConnection(where: UserInfluencersWhereInput, orderBy: UserInfluencersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserInfluencersConnection!
   userAssignedRolesConnection(where: UserAssignedRoleWhereInput, orderBy: UserAssignedRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAssignedRoleConnection!
   activeSubscriptionsesConnection(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ActiveSubscriptionsConnection!
+  gameweeksConnection(where: GameweekWhereInput, orderBy: GameweekOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GameweekConnection!
   homeTeamFixturesConnection(where: HomeTeamFixtureWhereInput, orderBy: HomeTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HomeTeamFixtureConnection!
   awayTeamFixturesConnection(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AwayTeamFixtureConnection!
   fixturesConnection(where: FixtureWhereInput, orderBy: FixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FixtureConnection!
@@ -4253,7 +5041,6 @@ type Query {
   userStatusesConnection(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStatusConnection!
   countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
   fandemSubscriptionsConnection(where: FandemSubscriptionWhereInput, orderBy: FandemSubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FandemSubscriptionConnection!
-  gameweeksConnection(where: GameweekWhereInput, orderBy: GameweekOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GameweekConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   userRolesConnection(where: UserRoleWhereInput, orderBy: UserRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserRoleConnection!
 
@@ -4274,6 +5061,7 @@ type Season implements Node {
   isCurrent: Boolean!
   isPrevious: Boolean!
   isNext: Boolean!
+  events(where: GameweekWhereInput, orderBy: GameweekOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Gameweek!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -4298,11 +5086,29 @@ input SeasonCreateInput {
   isCurrent: Boolean!
   isPrevious: Boolean!
   isNext: Boolean!
+  events: GameweekCreateManyWithoutSeasonInput
 }
 
 input SeasonCreateOneInput {
   create: SeasonCreateInput
   connect: SeasonWhereUniqueInput
+}
+
+input SeasonCreateOneWithoutEventsInput {
+  create: SeasonCreateWithoutEventsInput
+  connect: SeasonWhereUniqueInput
+}
+
+input SeasonCreateWithoutEventsInput {
+  id: ID
+  fplId: Int!
+  label: String!
+  competition: String!
+  startYear: Int!
+  endYear: Int!
+  isCurrent: Boolean!
+  isPrevious: Boolean!
+  isNext: Boolean!
 }
 
 """An edge in a connection."""
@@ -4401,6 +5207,7 @@ input SeasonUpdateDataInput {
   isCurrent: Boolean
   isPrevious: Boolean
   isNext: Boolean
+  events: GameweekUpdateManyWithoutSeasonInput
 }
 
 input SeasonUpdateInput {
@@ -4412,6 +5219,7 @@ input SeasonUpdateInput {
   isCurrent: Boolean
   isPrevious: Boolean
   isNext: Boolean
+  events: GameweekUpdateManyWithoutSeasonInput
 }
 
 input SeasonUpdateManyMutationInput {
@@ -4432,9 +5240,32 @@ input SeasonUpdateOneRequiredInput {
   upsert: SeasonUpsertNestedInput
 }
 
+input SeasonUpdateOneRequiredWithoutEventsInput {
+  create: SeasonCreateWithoutEventsInput
+  connect: SeasonWhereUniqueInput
+  update: SeasonUpdateWithoutEventsDataInput
+  upsert: SeasonUpsertWithoutEventsInput
+}
+
+input SeasonUpdateWithoutEventsDataInput {
+  fplId: Int
+  label: String
+  competition: String
+  startYear: Int
+  endYear: Int
+  isCurrent: Boolean
+  isPrevious: Boolean
+  isNext: Boolean
+}
+
 input SeasonUpsertNestedInput {
   update: SeasonUpdateDataInput!
   create: SeasonCreateInput!
+}
+
+input SeasonUpsertWithoutEventsInput {
+  update: SeasonUpdateWithoutEventsDataInput!
+  create: SeasonCreateWithoutEventsInput!
 }
 
 input SeasonWhereInput {
@@ -4688,6 +5519,9 @@ input SeasonWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
+  events_every: GameweekWhereInput
+  events_some: GameweekWhereInput
+  events_none: GameweekWhereInput
 }
 
 input SeasonWhereUniqueInput {
@@ -4977,6 +5811,7 @@ type Subscription {
   userInfluencers(where: UserInfluencersSubscriptionWhereInput): UserInfluencersSubscriptionPayload
   userAssignedRole(where: UserAssignedRoleSubscriptionWhereInput): UserAssignedRoleSubscriptionPayload
   activeSubscriptions(where: ActiveSubscriptionsSubscriptionWhereInput): ActiveSubscriptionsSubscriptionPayload
+  gameweek(where: GameweekSubscriptionWhereInput): GameweekSubscriptionPayload
   homeTeamFixture(where: HomeTeamFixtureSubscriptionWhereInput): HomeTeamFixtureSubscriptionPayload
   awayTeamFixture(where: AwayTeamFixtureSubscriptionWhereInput): AwayTeamFixtureSubscriptionPayload
   fixture(where: FixtureSubscriptionWhereInput): FixtureSubscriptionPayload
@@ -4988,7 +5823,6 @@ type Subscription {
   userStatus(where: UserStatusSubscriptionWhereInput): UserStatusSubscriptionPayload
   country(where: CountrySubscriptionWhereInput): CountrySubscriptionPayload
   fandemSubscription(where: FandemSubscriptionSubscriptionWhereInput): FandemSubscriptionSubscriptionPayload
-  gameweek(where: GameweekSubscriptionWhereInput): GameweekSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   userRole(where: UserRoleSubscriptionWhereInput): UserRoleSubscriptionPayload
 }

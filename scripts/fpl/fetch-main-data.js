@@ -160,6 +160,7 @@ function transformMainData(mainApiResponse) {
  * @property {boolean} finished: false
  * @property {number} highest_score: null
  * @property {number} highest_scoring_entry: null
+ * @property {Array.<import('./fetch-event-data').SchemaFixture>} fixtures
  * @property {number} id: 2
  * @property {boolean} is_current: false
  * @property {boolean} is_next: false

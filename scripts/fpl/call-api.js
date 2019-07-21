@@ -21,7 +21,7 @@ const headerFields = {
  */
 async function fetchFromAPI({ uri, qS = {}, logging = true }) {
   if (logging) {
-    console.log("Requesting: " + uri);
+    console.log(`Requesting: ${uri}\n    With qS: ${JSON.stringify(qS)}`);
   }
 
   // set options for request

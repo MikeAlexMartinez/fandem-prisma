@@ -10,10 +10,11 @@ const seedUsers = require("./scripts/users/seed-users");
 
 const setup = async () => {
   // add teams - (Change to All relevant FPL data)
-  const { teams, gameweeks, season } = await seedFplData({ db });
+  const { teams, gameweeks, season, fixtures } = await seedFplData({ db });
   console.log(`Inserted ${teams.length} teams`);
   console.log(`Inserted ${gameweeks.length} gameweeks`);
   console.log(`Inserted ${season.competition} ${season.label} season`);
+  console.log(`Inserted ${fixtures.length} fixtures`);
   // add countries
   const countries = await seedCountries({ db });
   console.log(`Inserted ${countries.length} countries`);

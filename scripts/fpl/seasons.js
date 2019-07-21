@@ -9,6 +9,7 @@
  * @property {boolean} isCurrent
  * @property {boolean} isPrevious
  * @property {boolean} isNext
+ * @property {Array.<import('./seed-gameweeks').SchemaGameweek>} events
  */
 
 /**
@@ -23,7 +24,8 @@ const seasons = {
     endYear: 2020,
     isCurrent: true,
     isPrevious: false,
-    isNext: false
+    isNext: false,
+    events: []
   }
 };
 

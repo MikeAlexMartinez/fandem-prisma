@@ -166,13 +166,14 @@ type Season {
   isCurrent: Boolean!
   isPrevious: Boolean!
   isNext: Boolean!
+  events: [Gameweek]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
 type Gameweek {
   id: ID! @unique @id
-  season: Season!
+  season: Season! @relation(link: INLINE)
   averageEntryScore: Int
   dataChecked: Boolean!
   deadlineTime: DateTime!
@@ -186,6 +187,7 @@ type Gameweek {
   isNext: Boolean!
   isPrevious: Boolean!
   name: String!
+  fixtures: [Fixture]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -209,7 +211,7 @@ type AwayTeamFixture {
 type Fixture {
   id: ID! @unique @id
   fplCode: Int! @unique
-  event: Gameweek!
+  event: Gameweek! @relation(link: INLINE)
   finished: Boolean!
   finishedProvisional: Boolean!
   fixtureId: Int!

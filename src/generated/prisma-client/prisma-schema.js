@@ -897,7 +897,7 @@ type FixtureConnection {
 input FixtureCreateInput {
   id: ID
   fplCode: Int!
-  event: GameweekCreateOneInput!
+  event: GameweekCreateOneWithoutFixturesInput!
   finished: Boolean!
   finishedProvisional: Boolean!
   fixtureId: Int!
@@ -913,6 +913,11 @@ input FixtureCreateInput {
   teamHScore: Int
 }
 
+input FixtureCreateManyWithoutEventInput {
+  create: [FixtureCreateWithoutEventInput!]
+  connect: [FixtureWhereUniqueInput!]
+}
+
 input FixtureCreateOneWithoutTeamAInput {
   create: FixtureCreateWithoutTeamAInput
   connect: FixtureWhereUniqueInput
@@ -923,10 +928,28 @@ input FixtureCreateOneWithoutTeamHInput {
   connect: FixtureWhereUniqueInput
 }
 
+input FixtureCreateWithoutEventInput {
+  id: ID
+  fplCode: Int!
+  finished: Boolean!
+  finishedProvisional: Boolean!
+  fixtureId: Int!
+  kickoffTime: DateTime
+  minutes: Int!
+  provisionalStartTime: Boolean!
+  started: Boolean!
+  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput!
+  teamADifficulty: Int!
+  teamAScore: Int
+  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput!
+  teamHDifficulty: Int!
+  teamHScore: Int
+}
+
 input FixtureCreateWithoutTeamAInput {
   id: ID
   fplCode: Int!
-  event: GameweekCreateOneInput!
+  event: GameweekCreateOneWithoutFixturesInput!
   finished: Boolean!
   finishedProvisional: Boolean!
   fixtureId: Int!
@@ -944,7 +967,7 @@ input FixtureCreateWithoutTeamAInput {
 input FixtureCreateWithoutTeamHInput {
   id: ID
   fplCode: Int!
-  event: GameweekCreateOneInput!
+  event: GameweekCreateOneWithoutFixturesInput!
   finished: Boolean!
   finishedProvisional: Boolean!
   fixtureId: Int!
@@ -1015,6 +1038,114 @@ type FixturePreviousValues {
   updatedAt: DateTime!
 }
 
+input FixtureScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  fplCode: Int
+  fplCode_not: Int
+  fplCode_in: [Int!]
+  fplCode_not_in: [Int!]
+  fplCode_lt: Int
+  fplCode_lte: Int
+  fplCode_gt: Int
+  fplCode_gte: Int
+  finished: Boolean
+  finished_not: Boolean
+  finishedProvisional: Boolean
+  finishedProvisional_not: Boolean
+  fixtureId: Int
+  fixtureId_not: Int
+  fixtureId_in: [Int!]
+  fixtureId_not_in: [Int!]
+  fixtureId_lt: Int
+  fixtureId_lte: Int
+  fixtureId_gt: Int
+  fixtureId_gte: Int
+  kickoffTime: DateTime
+  kickoffTime_not: DateTime
+  kickoffTime_in: [DateTime!]
+  kickoffTime_not_in: [DateTime!]
+  kickoffTime_lt: DateTime
+  kickoffTime_lte: DateTime
+  kickoffTime_gt: DateTime
+  kickoffTime_gte: DateTime
+  minutes: Int
+  minutes_not: Int
+  minutes_in: [Int!]
+  minutes_not_in: [Int!]
+  minutes_lt: Int
+  minutes_lte: Int
+  minutes_gt: Int
+  minutes_gte: Int
+  provisionalStartTime: Boolean
+  provisionalStartTime_not: Boolean
+  started: Boolean
+  started_not: Boolean
+  teamADifficulty: Int
+  teamADifficulty_not: Int
+  teamADifficulty_in: [Int!]
+  teamADifficulty_not_in: [Int!]
+  teamADifficulty_lt: Int
+  teamADifficulty_lte: Int
+  teamADifficulty_gt: Int
+  teamADifficulty_gte: Int
+  teamAScore: Int
+  teamAScore_not: Int
+  teamAScore_in: [Int!]
+  teamAScore_not_in: [Int!]
+  teamAScore_lt: Int
+  teamAScore_lte: Int
+  teamAScore_gt: Int
+  teamAScore_gte: Int
+  teamHDifficulty: Int
+  teamHDifficulty_not: Int
+  teamHDifficulty_in: [Int!]
+  teamHDifficulty_not_in: [Int!]
+  teamHDifficulty_lt: Int
+  teamHDifficulty_lte: Int
+  teamHDifficulty_gt: Int
+  teamHDifficulty_gte: Int
+  teamHScore: Int
+  teamHScore_not: Int
+  teamHScore_in: [Int!]
+  teamHScore_not_in: [Int!]
+  teamHScore_lt: Int
+  teamHScore_lte: Int
+  teamHScore_gt: Int
+  teamHScore_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [FixtureScalarWhereInput!]
+  OR: [FixtureScalarWhereInput!]
+  NOT: [FixtureScalarWhereInput!]
+}
+
 type FixtureSubscriptionPayload {
   mutation: MutationType!
   node: Fixture
@@ -1035,7 +1166,7 @@ input FixtureSubscriptionWhereInput {
 
 input FixtureUpdateInput {
   fplCode: Int
-  event: GameweekUpdateOneRequiredInput
+  event: GameweekUpdateOneRequiredWithoutFixturesInput
   finished: Boolean
   finishedProvisional: Boolean
   fixtureId: Int
@@ -1047,6 +1178,21 @@ input FixtureUpdateInput {
   teamADifficulty: Int
   teamAScore: Int
   teamH: HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput
+  teamHDifficulty: Int
+  teamHScore: Int
+}
+
+input FixtureUpdateManyDataInput {
+  fplCode: Int
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamADifficulty: Int
+  teamAScore: Int
   teamHDifficulty: Int
   teamHScore: Int
 }
@@ -1066,6 +1212,23 @@ input FixtureUpdateManyMutationInput {
   teamHScore: Int
 }
 
+input FixtureUpdateManyWithoutEventInput {
+  create: [FixtureCreateWithoutEventInput!]
+  delete: [FixtureWhereUniqueInput!]
+  connect: [FixtureWhereUniqueInput!]
+  set: [FixtureWhereUniqueInput!]
+  disconnect: [FixtureWhereUniqueInput!]
+  update: [FixtureUpdateWithWhereUniqueWithoutEventInput!]
+  upsert: [FixtureUpsertWithWhereUniqueWithoutEventInput!]
+  deleteMany: [FixtureScalarWhereInput!]
+  updateMany: [FixtureUpdateManyWithWhereNestedInput!]
+}
+
+input FixtureUpdateManyWithWhereNestedInput {
+  where: FixtureScalarWhereInput!
+  data: FixtureUpdateManyDataInput!
+}
+
 input FixtureUpdateOneRequiredWithoutTeamAInput {
   create: FixtureCreateWithoutTeamAInput
   update: FixtureUpdateWithoutTeamADataInput
@@ -1080,9 +1243,26 @@ input FixtureUpdateOneRequiredWithoutTeamHInput {
   connect: FixtureWhereUniqueInput
 }
 
+input FixtureUpdateWithoutEventDataInput {
+  fplCode: Int
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamA: AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput
+  teamADifficulty: Int
+  teamAScore: Int
+  teamH: HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput
+  teamHDifficulty: Int
+  teamHScore: Int
+}
+
 input FixtureUpdateWithoutTeamADataInput {
   fplCode: Int
-  event: GameweekUpdateOneRequiredInput
+  event: GameweekUpdateOneRequiredWithoutFixturesInput
   finished: Boolean
   finishedProvisional: Boolean
   fixtureId: Int
@@ -1099,7 +1279,7 @@ input FixtureUpdateWithoutTeamADataInput {
 
 input FixtureUpdateWithoutTeamHDataInput {
   fplCode: Int
-  event: GameweekUpdateOneRequiredInput
+  event: GameweekUpdateOneRequiredWithoutFixturesInput
   finished: Boolean
   finishedProvisional: Boolean
   fixtureId: Int
@@ -1114,6 +1294,11 @@ input FixtureUpdateWithoutTeamHDataInput {
   teamHScore: Int
 }
 
+input FixtureUpdateWithWhereUniqueWithoutEventInput {
+  where: FixtureWhereUniqueInput!
+  data: FixtureUpdateWithoutEventDataInput!
+}
+
 input FixtureUpsertWithoutTeamAInput {
   update: FixtureUpdateWithoutTeamADataInput!
   create: FixtureCreateWithoutTeamAInput!
@@ -1122,6 +1307,12 @@ input FixtureUpsertWithoutTeamAInput {
 input FixtureUpsertWithoutTeamHInput {
   update: FixtureUpdateWithoutTeamHDataInput!
   create: FixtureCreateWithoutTeamHInput!
+}
+
+input FixtureUpsertWithWhereUniqueWithoutEventInput {
+  where: FixtureWhereUniqueInput!
+  update: FixtureUpdateWithoutEventDataInput!
+  create: FixtureCreateWithoutEventInput!
 }
 
 input FixtureWhereInput {
@@ -1462,6 +1653,7 @@ type Gameweek {
   isNext: Boolean!
   isPrevious: Boolean!
   name: String!
+  fixtures(where: FixtureWhereInput, orderBy: FixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Fixture!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1474,7 +1666,36 @@ type GameweekConnection {
 
 input GameweekCreateInput {
   id: ID
-  season: SeasonCreateOneInput!
+  season: SeasonCreateOneWithoutEventsInput!
+  averageEntryScore: Int
+  dataChecked: Boolean!
+  deadlineTime: DateTime!
+  deadlineTimeEpoch: Int!
+  deadlineTimeGameOffset: Int!
+  finished: Boolean!
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int!
+  isCurrent: Boolean!
+  isNext: Boolean!
+  isPrevious: Boolean!
+  name: String!
+  fixtures: FixtureCreateManyWithoutEventInput
+}
+
+input GameweekCreateManyWithoutSeasonInput {
+  create: [GameweekCreateWithoutSeasonInput!]
+  connect: [GameweekWhereUniqueInput!]
+}
+
+input GameweekCreateOneWithoutFixturesInput {
+  create: GameweekCreateWithoutFixturesInput
+  connect: GameweekWhereUniqueInput
+}
+
+input GameweekCreateWithoutFixturesInput {
+  id: ID
+  season: SeasonCreateOneWithoutEventsInput!
   averageEntryScore: Int
   dataChecked: Boolean!
   deadlineTime: DateTime!
@@ -1490,9 +1711,22 @@ input GameweekCreateInput {
   name: String!
 }
 
-input GameweekCreateOneInput {
-  create: GameweekCreateInput
-  connect: GameweekWhereUniqueInput
+input GameweekCreateWithoutSeasonInput {
+  id: ID
+  averageEntryScore: Int
+  dataChecked: Boolean!
+  deadlineTime: DateTime!
+  deadlineTimeEpoch: Int!
+  deadlineTimeGameOffset: Int!
+  finished: Boolean!
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int!
+  isCurrent: Boolean!
+  isNext: Boolean!
+  isPrevious: Boolean!
+  name: String!
+  fixtures: FixtureCreateManyWithoutEventInput
 }
 
 type GameweekEdge {
@@ -1554,6 +1788,122 @@ type GameweekPreviousValues {
   updatedAt: DateTime!
 }
 
+input GameweekScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  averageEntryScore: Int
+  averageEntryScore_not: Int
+  averageEntryScore_in: [Int!]
+  averageEntryScore_not_in: [Int!]
+  averageEntryScore_lt: Int
+  averageEntryScore_lte: Int
+  averageEntryScore_gt: Int
+  averageEntryScore_gte: Int
+  dataChecked: Boolean
+  dataChecked_not: Boolean
+  deadlineTime: DateTime
+  deadlineTime_not: DateTime
+  deadlineTime_in: [DateTime!]
+  deadlineTime_not_in: [DateTime!]
+  deadlineTime_lt: DateTime
+  deadlineTime_lte: DateTime
+  deadlineTime_gt: DateTime
+  deadlineTime_gte: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeEpoch_not: Int
+  deadlineTimeEpoch_in: [Int!]
+  deadlineTimeEpoch_not_in: [Int!]
+  deadlineTimeEpoch_lt: Int
+  deadlineTimeEpoch_lte: Int
+  deadlineTimeEpoch_gt: Int
+  deadlineTimeEpoch_gte: Int
+  deadlineTimeGameOffset: Int
+  deadlineTimeGameOffset_not: Int
+  deadlineTimeGameOffset_in: [Int!]
+  deadlineTimeGameOffset_not_in: [Int!]
+  deadlineTimeGameOffset_lt: Int
+  deadlineTimeGameOffset_lte: Int
+  deadlineTimeGameOffset_gt: Int
+  deadlineTimeGameOffset_gte: Int
+  finished: Boolean
+  finished_not: Boolean
+  highestScore: Int
+  highestScore_not: Int
+  highestScore_in: [Int!]
+  highestScore_not_in: [Int!]
+  highestScore_lt: Int
+  highestScore_lte: Int
+  highestScore_gt: Int
+  highestScore_gte: Int
+  highestScoringEntry: Int
+  highestScoringEntry_not: Int
+  highestScoringEntry_in: [Int!]
+  highestScoringEntry_not_in: [Int!]
+  highestScoringEntry_lt: Int
+  highestScoringEntry_lte: Int
+  highestScoringEntry_gt: Int
+  highestScoringEntry_gte: Int
+  fplEventId: Int
+  fplEventId_not: Int
+  fplEventId_in: [Int!]
+  fplEventId_not_in: [Int!]
+  fplEventId_lt: Int
+  fplEventId_lte: Int
+  fplEventId_gt: Int
+  fplEventId_gte: Int
+  isCurrent: Boolean
+  isCurrent_not: Boolean
+  isNext: Boolean
+  isNext_not: Boolean
+  isPrevious: Boolean
+  isPrevious_not: Boolean
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [GameweekScalarWhereInput!]
+  OR: [GameweekScalarWhereInput!]
+  NOT: [GameweekScalarWhereInput!]
+}
+
 type GameweekSubscriptionPayload {
   mutation: MutationType!
   node: Gameweek
@@ -1572,8 +1922,8 @@ input GameweekSubscriptionWhereInput {
   NOT: [GameweekSubscriptionWhereInput!]
 }
 
-input GameweekUpdateDataInput {
-  season: SeasonUpdateOneRequiredInput
+input GameweekUpdateInput {
+  season: SeasonUpdateOneRequiredWithoutEventsInput
   averageEntryScore: Int
   dataChecked: Boolean
   deadlineTime: DateTime
@@ -1587,10 +1937,10 @@ input GameweekUpdateDataInput {
   isNext: Boolean
   isPrevious: Boolean
   name: String
+  fixtures: FixtureUpdateManyWithoutEventInput
 }
 
-input GameweekUpdateInput {
-  season: SeasonUpdateOneRequiredInput
+input GameweekUpdateManyDataInput {
   averageEntryScore: Int
   dataChecked: Boolean
   deadlineTime: DateTime
@@ -1622,16 +1972,78 @@ input GameweekUpdateManyMutationInput {
   name: String
 }
 
-input GameweekUpdateOneRequiredInput {
-  create: GameweekCreateInput
-  update: GameweekUpdateDataInput
-  upsert: GameweekUpsertNestedInput
+input GameweekUpdateManyWithoutSeasonInput {
+  create: [GameweekCreateWithoutSeasonInput!]
+  delete: [GameweekWhereUniqueInput!]
+  connect: [GameweekWhereUniqueInput!]
+  set: [GameweekWhereUniqueInput!]
+  disconnect: [GameweekWhereUniqueInput!]
+  update: [GameweekUpdateWithWhereUniqueWithoutSeasonInput!]
+  upsert: [GameweekUpsertWithWhereUniqueWithoutSeasonInput!]
+  deleteMany: [GameweekScalarWhereInput!]
+  updateMany: [GameweekUpdateManyWithWhereNestedInput!]
+}
+
+input GameweekUpdateManyWithWhereNestedInput {
+  where: GameweekScalarWhereInput!
+  data: GameweekUpdateManyDataInput!
+}
+
+input GameweekUpdateOneRequiredWithoutFixturesInput {
+  create: GameweekCreateWithoutFixturesInput
+  update: GameweekUpdateWithoutFixturesDataInput
+  upsert: GameweekUpsertWithoutFixturesInput
   connect: GameweekWhereUniqueInput
 }
 
-input GameweekUpsertNestedInput {
-  update: GameweekUpdateDataInput!
-  create: GameweekCreateInput!
+input GameweekUpdateWithoutFixturesDataInput {
+  season: SeasonUpdateOneRequiredWithoutEventsInput
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
+}
+
+input GameweekUpdateWithoutSeasonDataInput {
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
+  fixtures: FixtureUpdateManyWithoutEventInput
+}
+
+input GameweekUpdateWithWhereUniqueWithoutSeasonInput {
+  where: GameweekWhereUniqueInput!
+  data: GameweekUpdateWithoutSeasonDataInput!
+}
+
+input GameweekUpsertWithoutFixturesInput {
+  update: GameweekUpdateWithoutFixturesDataInput!
+  create: GameweekCreateWithoutFixturesInput!
+}
+
+input GameweekUpsertWithWhereUniqueWithoutSeasonInput {
+  where: GameweekWhereUniqueInput!
+  update: GameweekUpdateWithoutSeasonDataInput!
+  create: GameweekCreateWithoutSeasonInput!
 }
 
 input GameweekWhereInput {
@@ -1730,6 +2142,9 @@ input GameweekWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  fixtures_every: FixtureWhereInput
+  fixtures_some: FixtureWhereInput
+  fixtures_none: FixtureWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -2523,6 +2938,7 @@ type Season {
   isCurrent: Boolean!
   isPrevious: Boolean!
   isNext: Boolean!
+  events(where: GameweekWhereInput, orderBy: GameweekOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Gameweek!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -2543,11 +2959,29 @@ input SeasonCreateInput {
   isCurrent: Boolean!
   isPrevious: Boolean!
   isNext: Boolean!
+  events: GameweekCreateManyWithoutSeasonInput
 }
 
 input SeasonCreateOneInput {
   create: SeasonCreateInput
   connect: SeasonWhereUniqueInput
+}
+
+input SeasonCreateOneWithoutEventsInput {
+  create: SeasonCreateWithoutEventsInput
+  connect: SeasonWhereUniqueInput
+}
+
+input SeasonCreateWithoutEventsInput {
+  id: ID
+  fplId: Int!
+  label: String!
+  competition: String!
+  startYear: Int!
+  endYear: Int!
+  isCurrent: Boolean!
+  isPrevious: Boolean!
+  isNext: Boolean!
 }
 
 type SeasonEdge {
@@ -2621,6 +3055,7 @@ input SeasonUpdateDataInput {
   isCurrent: Boolean
   isPrevious: Boolean
   isNext: Boolean
+  events: GameweekUpdateManyWithoutSeasonInput
 }
 
 input SeasonUpdateInput {
@@ -2632,6 +3067,7 @@ input SeasonUpdateInput {
   isCurrent: Boolean
   isPrevious: Boolean
   isNext: Boolean
+  events: GameweekUpdateManyWithoutSeasonInput
 }
 
 input SeasonUpdateManyMutationInput {
@@ -2652,9 +3088,32 @@ input SeasonUpdateOneRequiredInput {
   connect: SeasonWhereUniqueInput
 }
 
+input SeasonUpdateOneRequiredWithoutEventsInput {
+  create: SeasonCreateWithoutEventsInput
+  update: SeasonUpdateWithoutEventsDataInput
+  upsert: SeasonUpsertWithoutEventsInput
+  connect: SeasonWhereUniqueInput
+}
+
+input SeasonUpdateWithoutEventsDataInput {
+  fplId: Int
+  label: String
+  competition: String
+  startYear: Int
+  endYear: Int
+  isCurrent: Boolean
+  isPrevious: Boolean
+  isNext: Boolean
+}
+
 input SeasonUpsertNestedInput {
   update: SeasonUpdateDataInput!
   create: SeasonCreateInput!
+}
+
+input SeasonUpsertWithoutEventsInput {
+  update: SeasonUpdateWithoutEventsDataInput!
+  create: SeasonCreateWithoutEventsInput!
 }
 
 input SeasonWhereInput {
@@ -2730,6 +3189,9 @@ input SeasonWhereInput {
   isPrevious_not: Boolean
   isNext: Boolean
   isNext_not: Boolean
+  events_every: GameweekWhereInput
+  events_some: GameweekWhereInput
+  events_none: GameweekWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]

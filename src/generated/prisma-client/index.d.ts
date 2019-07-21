@@ -876,50 +876,6 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type CountryOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "iso_ASC"
-  | "iso_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "code_ASC"
-  | "code_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type UserPhotoOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "isProfile_ASC"
-  | "isProfile_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type ActiveSubscriptionsOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "startDate_ASC"
-  | "startDate_DESC"
-  | "endDate_ASC"
-  | "endDate_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type UserInfluencersOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type InfluencerOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -928,7 +884,7 @@ export type InfluencerOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type UserAssignedRoleOrderByInput =
+export type HomeTeamFixtureOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "createdAt_ASC"
@@ -948,33 +904,9 @@ export type FollowerOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type StatusOrderByInput =
+export type UserInfluencersOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "content_ASC"
-  | "content_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type HomeTeamFixtureOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type PhotoOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "image_ASC"
-  | "image_DESC"
-  | "largeImage_ASC"
-  | "largeImage_DESC"
-  | "smallImage_ASC"
-  | "smallImage_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -1014,6 +946,136 @@ export type UserOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
+export type UserAssignedRoleOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserStatusOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "currentStatus_ASC"
+  | "currentStatus_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type StatusOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "content_ASC"
+  | "content_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type GameweekOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "averageEntryScore_ASC"
+  | "averageEntryScore_DESC"
+  | "dataChecked_ASC"
+  | "dataChecked_DESC"
+  | "deadlineTime_ASC"
+  | "deadlineTime_DESC"
+  | "deadlineTimeEpoch_ASC"
+  | "deadlineTimeEpoch_DESC"
+  | "deadlineTimeGameOffset_ASC"
+  | "deadlineTimeGameOffset_DESC"
+  | "finished_ASC"
+  | "finished_DESC"
+  | "highestScore_ASC"
+  | "highestScore_DESC"
+  | "highestScoringEntry_ASC"
+  | "highestScoringEntry_DESC"
+  | "fplEventId_ASC"
+  | "fplEventId_DESC"
+  | "isCurrent_ASC"
+  | "isCurrent_DESC"
+  | "isNext_ASC"
+  | "isNext_DESC"
+  | "isPrevious_ASC"
+  | "isPrevious_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type PhotoOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "image_ASC"
+  | "image_DESC"
+  | "largeImage_ASC"
+  | "largeImage_DESC"
+  | "smallImage_ASC"
+  | "smallImage_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserRoleOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ActiveSubscriptionsOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "startDate_ASC"
+  | "startDate_DESC"
+  | "endDate_ASC"
+  | "endDate_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type AwayTeamFixtureOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type UserPhotoOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "isProfile_ASC"
+  | "isProfile_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type FandemSubscriptionOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
 export type FixtureOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -1046,79 +1108,17 @@ export type FixtureOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type AwayTeamFixtureOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type FandemSubscriptionOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type UserRoleOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
-export type UserStatusOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "currentStatus_ASC"
-  | "currentStatus_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
-
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export type GameweekOrderByInput =
+export type CountryOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "averageEntryScore_ASC"
-  | "averageEntryScore_DESC"
-  | "dataChecked_ASC"
-  | "dataChecked_DESC"
-  | "deadlineTime_ASC"
-  | "deadlineTime_DESC"
-  | "deadlineTimeEpoch_ASC"
-  | "deadlineTimeEpoch_DESC"
-  | "deadlineTimeGameOffset_ASC"
-  | "deadlineTimeGameOffset_DESC"
-  | "finished_ASC"
-  | "finished_DESC"
-  | "highestScore_ASC"
-  | "highestScore_DESC"
-  | "highestScoringEntry_ASC"
-  | "highestScoringEntry_DESC"
-  | "fplEventId_ASC"
-  | "fplEventId_DESC"
-  | "isCurrent_ASC"
-  | "isCurrent_DESC"
-  | "isNext_ASC"
-  | "isNext_DESC"
-  | "isPrevious_ASC"
-  | "isPrevious_DESC"
+  | "iso_ASC"
+  | "iso_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "code_ASC"
+  | "code_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -1188,147 +1188,9 @@ export type UserFollowersOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export interface GameweekUpsertNestedInput {
-  update: GameweekUpdateDataInput;
-  create: GameweekCreateInput;
-}
-
-export type ActiveSubscriptionsWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface AwayTeamFixtureUpdateWithoutAwayTeamDataInput {
-  fixture?: Maybe<FixtureUpdateOneRequiredWithoutTeamAInput>;
-}
-
-export interface UserPhotoWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  user?: Maybe<UserWhereInput>;
-  photo?: Maybe<PhotoWhereInput>;
-  isProfile?: Maybe<Boolean>;
-  isProfile_not?: Maybe<Boolean>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<UserPhotoWhereInput[] | UserPhotoWhereInput>;
-  OR?: Maybe<UserPhotoWhereInput[] | UserPhotoWhereInput>;
-  NOT?: Maybe<UserPhotoWhereInput[] | UserPhotoWhereInput>;
-}
-
-export interface FixtureUpdateOneRequiredWithoutTeamAInput {
-  create?: Maybe<FixtureCreateWithoutTeamAInput>;
-  update?: Maybe<FixtureUpdateWithoutTeamADataInput>;
-  upsert?: Maybe<FixtureUpsertWithoutTeamAInput>;
-  connect?: Maybe<FixtureWhereUniqueInput>;
-}
-
-export interface CountryWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  iso?: Maybe<String>;
-  iso_not?: Maybe<String>;
-  iso_in?: Maybe<String[] | String>;
-  iso_not_in?: Maybe<String[] | String>;
-  iso_lt?: Maybe<String>;
-  iso_lte?: Maybe<String>;
-  iso_gt?: Maybe<String>;
-  iso_gte?: Maybe<String>;
-  iso_contains?: Maybe<String>;
-  iso_not_contains?: Maybe<String>;
-  iso_starts_with?: Maybe<String>;
-  iso_not_starts_with?: Maybe<String>;
-  iso_ends_with?: Maybe<String>;
-  iso_not_ends_with?: Maybe<String>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  code?: Maybe<String>;
-  code_not?: Maybe<String>;
-  code_in?: Maybe<String[] | String>;
-  code_not_in?: Maybe<String[] | String>;
-  code_lt?: Maybe<String>;
-  code_lte?: Maybe<String>;
-  code_gt?: Maybe<String>;
-  code_gte?: Maybe<String>;
-  code_contains?: Maybe<String>;
-  code_not_contains?: Maybe<String>;
-  code_starts_with?: Maybe<String>;
-  code_not_starts_with?: Maybe<String>;
-  code_ends_with?: Maybe<String>;
-  code_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<CountryWhereInput[] | CountryWhereInput>;
-  OR?: Maybe<CountryWhereInput[] | CountryWhereInput>;
-  NOT?: Maybe<CountryWhereInput[] | CountryWhereInput>;
-}
-
-export interface FixtureUpdateWithoutTeamADataInput {
+export interface FixtureUpdateWithoutTeamHDataInput {
   fplCode?: Maybe<Int>;
-  event?: Maybe<GameweekUpdateOneRequiredInput>;
+  event?: Maybe<GameweekUpdateOneRequiredWithoutFixturesInput>;
   finished?: Maybe<Boolean>;
   finishedProvisional?: Maybe<Boolean>;
   fixtureId?: Maybe<Int>;
@@ -1336,416 +1198,25 @@ export interface FixtureUpdateWithoutTeamADataInput {
   minutes?: Maybe<Int>;
   provisionalStartTime?: Maybe<Boolean>;
   started?: Maybe<Boolean>;
+  teamA?: Maybe<AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
   teamADifficulty?: Maybe<Int>;
   teamAScore?: Maybe<Int>;
-  teamH?: Maybe<HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
   teamHDifficulty?: Maybe<Int>;
   teamHScore?: Maybe<Int>;
 }
 
-export interface FandemSubscriptionWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<FandemSubscriptionWhereInput[] | FandemSubscriptionWhereInput>;
-  OR?: Maybe<FandemSubscriptionWhereInput[] | FandemSubscriptionWhereInput>;
-  NOT?: Maybe<FandemSubscriptionWhereInput[] | FandemSubscriptionWhereInput>;
-}
-
-export interface HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput {
-  create?: Maybe<HomeTeamFixtureCreateWithoutFixtureInput>;
-  update?: Maybe<HomeTeamFixtureUpdateWithoutFixtureDataInput>;
-  upsert?: Maybe<HomeTeamFixtureUpsertWithoutFixtureInput>;
-  connect?: Maybe<HomeTeamFixtureWhereUniqueInput>;
-}
-
-export interface UserStatusWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  status?: Maybe<StatusWhereInput>;
-  currentStatus?: Maybe<Boolean>;
-  currentStatus_not?: Maybe<Boolean>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<UserStatusWhereInput[] | UserStatusWhereInput>;
-  OR?: Maybe<UserStatusWhereInput[] | UserStatusWhereInput>;
-  NOT?: Maybe<UserStatusWhereInput[] | UserStatusWhereInput>;
-}
-
-export interface HomeTeamFixtureUpdateWithoutFixtureDataInput {
-  homeTeam?: Maybe<TeamUpdateOneRequiredWithoutHomeFixturesInput>;
-}
-
-export interface UserFollowersWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  followers_every?: Maybe<FollowerWhereInput>;
-  followers_some?: Maybe<FollowerWhereInput>;
-  followers_none?: Maybe<FollowerWhereInput>;
-  user?: Maybe<UserWhereInput>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<UserFollowersWhereInput[] | UserFollowersWhereInput>;
-  OR?: Maybe<UserFollowersWhereInput[] | UserFollowersWhereInput>;
-  NOT?: Maybe<UserFollowersWhereInput[] | UserFollowersWhereInput>;
-}
-
-export interface TeamUpdateOneRequiredWithoutHomeFixturesInput {
-  create?: Maybe<TeamCreateWithoutHomeFixturesInput>;
-  update?: Maybe<TeamUpdateWithoutHomeFixturesDataInput>;
-  upsert?: Maybe<TeamUpsertWithoutHomeFixturesInput>;
-  connect?: Maybe<TeamWhereUniqueInput>;
-}
-
-export interface UserInfluencersWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  user?: Maybe<UserWhereInput>;
-  influencers_every?: Maybe<InfluencerWhereInput>;
-  influencers_some?: Maybe<InfluencerWhereInput>;
-  influencers_none?: Maybe<InfluencerWhereInput>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<UserInfluencersWhereInput[] | UserInfluencersWhereInput>;
-  OR?: Maybe<UserInfluencersWhereInput[] | UserInfluencersWhereInput>;
-  NOT?: Maybe<UserInfluencersWhereInput[] | UserInfluencersWhereInput>;
-}
-
-export interface TeamUpdateWithoutHomeFixturesDataInput {
-  code?: Maybe<Int>;
-  season?: Maybe<SeasonUpdateOneRequiredInput>;
-  fplTeamId?: Maybe<Int>;
-  name?: Maybe<String>;
-  shortName?: Maybe<String>;
-  strength?: Maybe<Int>;
-  strengthAttackAway?: Maybe<Int>;
-  strengthAttackHome?: Maybe<Int>;
-  strengthDefenceAway?: Maybe<Int>;
-  strengthDefenceHome?: Maybe<Int>;
-  strengthOverallAway?: Maybe<Int>;
-  strengthOverallHome?: Maybe<Int>;
-  teamDivision?: Maybe<Int>;
-  awayFixtures?: Maybe<AwayTeamFixtureUpdateManyWithoutAwayTeamInput>;
-}
-
-export interface PhotoWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  image?: Maybe<String>;
-  image_not?: Maybe<String>;
-  image_in?: Maybe<String[] | String>;
-  image_not_in?: Maybe<String[] | String>;
-  image_lt?: Maybe<String>;
-  image_lte?: Maybe<String>;
-  image_gt?: Maybe<String>;
-  image_gte?: Maybe<String>;
-  image_contains?: Maybe<String>;
-  image_not_contains?: Maybe<String>;
-  image_starts_with?: Maybe<String>;
-  image_not_starts_with?: Maybe<String>;
-  image_ends_with?: Maybe<String>;
-  image_not_ends_with?: Maybe<String>;
-  largeImage?: Maybe<String>;
-  largeImage_not?: Maybe<String>;
-  largeImage_in?: Maybe<String[] | String>;
-  largeImage_not_in?: Maybe<String[] | String>;
-  largeImage_lt?: Maybe<String>;
-  largeImage_lte?: Maybe<String>;
-  largeImage_gt?: Maybe<String>;
-  largeImage_gte?: Maybe<String>;
-  largeImage_contains?: Maybe<String>;
-  largeImage_not_contains?: Maybe<String>;
-  largeImage_starts_with?: Maybe<String>;
-  largeImage_not_starts_with?: Maybe<String>;
-  largeImage_ends_with?: Maybe<String>;
-  largeImage_not_ends_with?: Maybe<String>;
-  smallImage?: Maybe<String>;
-  smallImage_not?: Maybe<String>;
-  smallImage_in?: Maybe<String[] | String>;
-  smallImage_not_in?: Maybe<String[] | String>;
-  smallImage_lt?: Maybe<String>;
-  smallImage_lte?: Maybe<String>;
-  smallImage_gt?: Maybe<String>;
-  smallImage_gte?: Maybe<String>;
-  smallImage_contains?: Maybe<String>;
-  smallImage_not_contains?: Maybe<String>;
-  smallImage_starts_with?: Maybe<String>;
-  smallImage_not_starts_with?: Maybe<String>;
-  smallImage_ends_with?: Maybe<String>;
-  smallImage_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<PhotoWhereInput[] | PhotoWhereInput>;
-  OR?: Maybe<PhotoWhereInput[] | PhotoWhereInput>;
-  NOT?: Maybe<PhotoWhereInput[] | PhotoWhereInput>;
-}
-
-export interface FixtureCreateOneWithoutTeamAInput {
-  create?: Maybe<FixtureCreateWithoutTeamAInput>;
-  connect?: Maybe<FixtureWhereUniqueInput>;
-}
-
-export interface InfluencerScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<InfluencerScalarWhereInput[] | InfluencerScalarWhereInput>;
-  OR?: Maybe<InfluencerScalarWhereInput[] | InfluencerScalarWhereInput>;
-  NOT?: Maybe<InfluencerScalarWhereInput[] | InfluencerScalarWhereInput>;
-}
-
-export interface FixtureCreateWithoutTeamAInput {
-  id?: Maybe<ID_Input>;
-  fplCode: Int;
-  event: GameweekCreateOneInput;
-  finished: Boolean;
-  finishedProvisional: Boolean;
-  fixtureId: Int;
-  kickoffTime?: Maybe<DateTimeInput>;
-  minutes: Int;
-  provisionalStartTime: Boolean;
-  started: Boolean;
-  teamADifficulty: Int;
-  teamAScore?: Maybe<Int>;
-  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput;
-  teamHDifficulty: Int;
-  teamHScore?: Maybe<Int>;
-}
-
-export interface TeamUpsertWithoutHomeFixturesInput {
-  update: TeamUpdateWithoutHomeFixturesDataInput;
-  create: TeamCreateWithoutHomeFixturesInput;
-}
-
-export interface HomeTeamFixtureCreateOneWithoutFixtureInput {
-  create?: Maybe<HomeTeamFixtureCreateWithoutFixtureInput>;
-  connect?: Maybe<HomeTeamFixtureWhereUniqueInput>;
-}
-
-export interface UserRoleSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserRoleWhereInput>;
-  AND?: Maybe<
-    UserRoleSubscriptionWhereInput[] | UserRoleSubscriptionWhereInput
-  >;
-  OR?: Maybe<UserRoleSubscriptionWhereInput[] | UserRoleSubscriptionWhereInput>;
-  NOT?: Maybe<
-    UserRoleSubscriptionWhereInput[] | UserRoleSubscriptionWhereInput
-  >;
-}
+export type ActiveSubscriptionsWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface HomeTeamFixtureCreateWithoutFixtureInput {
   id?: Maybe<ID_Input>;
   homeTeam: TeamCreateOneWithoutHomeFixturesInput;
 }
 
-export interface UserInfluencersSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserInfluencersWhereInput>;
-  AND?: Maybe<
-    | UserInfluencersSubscriptionWhereInput[]
-    | UserInfluencersSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    | UserInfluencersSubscriptionWhereInput[]
-    | UserInfluencersSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    | UserInfluencersSubscriptionWhereInput[]
-    | UserInfluencersSubscriptionWhereInput
-  >;
+export interface UserInfluencersUpsertWithoutUserInput {
+  update: UserInfluencersUpdateWithoutUserDataInput;
+  create: UserInfluencersCreateWithoutUserInput;
 }
 
 export interface TeamCreateOneWithoutHomeFixturesInput {
@@ -1753,24 +1224,11 @@ export interface TeamCreateOneWithoutHomeFixturesInput {
   connect?: Maybe<TeamWhereUniqueInput>;
 }
 
-export interface UserAssignedRoleSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserAssignedRoleWhereInput>;
-  AND?: Maybe<
-    | UserAssignedRoleSubscriptionWhereInput[]
-    | UserAssignedRoleSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    | UserAssignedRoleSubscriptionWhereInput[]
-    | UserAssignedRoleSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    | UserAssignedRoleSubscriptionWhereInput[]
-    | UserAssignedRoleSubscriptionWhereInput
-  >;
+export interface HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput {
+  create?: Maybe<HomeTeamFixtureCreateWithoutFixtureInput>;
+  update?: Maybe<HomeTeamFixtureUpdateWithoutFixtureDataInput>;
+  upsert?: Maybe<HomeTeamFixtureUpsertWithoutFixtureInput>;
+  connect?: Maybe<HomeTeamFixtureWhereUniqueInput>;
 }
 
 export interface TeamCreateWithoutHomeFixturesInput {
@@ -1789,1281 +1247,6 @@ export interface TeamCreateWithoutHomeFixturesInput {
   strengthOverallHome: Int;
   teamDivision?: Maybe<Int>;
   awayFixtures?: Maybe<AwayTeamFixtureCreateManyWithoutAwayTeamInput>;
-}
-
-export interface TeamSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<TeamWhereInput>;
-  AND?: Maybe<TeamSubscriptionWhereInput[] | TeamSubscriptionWhereInput>;
-  OR?: Maybe<TeamSubscriptionWhereInput[] | TeamSubscriptionWhereInput>;
-  NOT?: Maybe<TeamSubscriptionWhereInput[] | TeamSubscriptionWhereInput>;
-}
-
-export interface CountryCreateOneInput {
-  create?: Maybe<CountryCreateInput>;
-  connect?: Maybe<CountryWhereUniqueInput>;
-}
-
-export interface TeamWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  code?: Maybe<Int>;
-  code_not?: Maybe<Int>;
-  code_in?: Maybe<Int[] | Int>;
-  code_not_in?: Maybe<Int[] | Int>;
-  code_lt?: Maybe<Int>;
-  code_lte?: Maybe<Int>;
-  code_gt?: Maybe<Int>;
-  code_gte?: Maybe<Int>;
-  season?: Maybe<SeasonWhereInput>;
-  fplTeamId?: Maybe<Int>;
-  fplTeamId_not?: Maybe<Int>;
-  fplTeamId_in?: Maybe<Int[] | Int>;
-  fplTeamId_not_in?: Maybe<Int[] | Int>;
-  fplTeamId_lt?: Maybe<Int>;
-  fplTeamId_lte?: Maybe<Int>;
-  fplTeamId_gt?: Maybe<Int>;
-  fplTeamId_gte?: Maybe<Int>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  shortName?: Maybe<String>;
-  shortName_not?: Maybe<String>;
-  shortName_in?: Maybe<String[] | String>;
-  shortName_not_in?: Maybe<String[] | String>;
-  shortName_lt?: Maybe<String>;
-  shortName_lte?: Maybe<String>;
-  shortName_gt?: Maybe<String>;
-  shortName_gte?: Maybe<String>;
-  shortName_contains?: Maybe<String>;
-  shortName_not_contains?: Maybe<String>;
-  shortName_starts_with?: Maybe<String>;
-  shortName_not_starts_with?: Maybe<String>;
-  shortName_ends_with?: Maybe<String>;
-  shortName_not_ends_with?: Maybe<String>;
-  strength?: Maybe<Int>;
-  strength_not?: Maybe<Int>;
-  strength_in?: Maybe<Int[] | Int>;
-  strength_not_in?: Maybe<Int[] | Int>;
-  strength_lt?: Maybe<Int>;
-  strength_lte?: Maybe<Int>;
-  strength_gt?: Maybe<Int>;
-  strength_gte?: Maybe<Int>;
-  strengthAttackAway?: Maybe<Int>;
-  strengthAttackAway_not?: Maybe<Int>;
-  strengthAttackAway_in?: Maybe<Int[] | Int>;
-  strengthAttackAway_not_in?: Maybe<Int[] | Int>;
-  strengthAttackAway_lt?: Maybe<Int>;
-  strengthAttackAway_lte?: Maybe<Int>;
-  strengthAttackAway_gt?: Maybe<Int>;
-  strengthAttackAway_gte?: Maybe<Int>;
-  strengthAttackHome?: Maybe<Int>;
-  strengthAttackHome_not?: Maybe<Int>;
-  strengthAttackHome_in?: Maybe<Int[] | Int>;
-  strengthAttackHome_not_in?: Maybe<Int[] | Int>;
-  strengthAttackHome_lt?: Maybe<Int>;
-  strengthAttackHome_lte?: Maybe<Int>;
-  strengthAttackHome_gt?: Maybe<Int>;
-  strengthAttackHome_gte?: Maybe<Int>;
-  strengthDefenceAway?: Maybe<Int>;
-  strengthDefenceAway_not?: Maybe<Int>;
-  strengthDefenceAway_in?: Maybe<Int[] | Int>;
-  strengthDefenceAway_not_in?: Maybe<Int[] | Int>;
-  strengthDefenceAway_lt?: Maybe<Int>;
-  strengthDefenceAway_lte?: Maybe<Int>;
-  strengthDefenceAway_gt?: Maybe<Int>;
-  strengthDefenceAway_gte?: Maybe<Int>;
-  strengthDefenceHome?: Maybe<Int>;
-  strengthDefenceHome_not?: Maybe<Int>;
-  strengthDefenceHome_in?: Maybe<Int[] | Int>;
-  strengthDefenceHome_not_in?: Maybe<Int[] | Int>;
-  strengthDefenceHome_lt?: Maybe<Int>;
-  strengthDefenceHome_lte?: Maybe<Int>;
-  strengthDefenceHome_gt?: Maybe<Int>;
-  strengthDefenceHome_gte?: Maybe<Int>;
-  strengthOverallAway?: Maybe<Int>;
-  strengthOverallAway_not?: Maybe<Int>;
-  strengthOverallAway_in?: Maybe<Int[] | Int>;
-  strengthOverallAway_not_in?: Maybe<Int[] | Int>;
-  strengthOverallAway_lt?: Maybe<Int>;
-  strengthOverallAway_lte?: Maybe<Int>;
-  strengthOverallAway_gt?: Maybe<Int>;
-  strengthOverallAway_gte?: Maybe<Int>;
-  strengthOverallHome?: Maybe<Int>;
-  strengthOverallHome_not?: Maybe<Int>;
-  strengthOverallHome_in?: Maybe<Int[] | Int>;
-  strengthOverallHome_not_in?: Maybe<Int[] | Int>;
-  strengthOverallHome_lt?: Maybe<Int>;
-  strengthOverallHome_lte?: Maybe<Int>;
-  strengthOverallHome_gt?: Maybe<Int>;
-  strengthOverallHome_gte?: Maybe<Int>;
-  teamDivision?: Maybe<Int>;
-  teamDivision_not?: Maybe<Int>;
-  teamDivision_in?: Maybe<Int[] | Int>;
-  teamDivision_not_in?: Maybe<Int[] | Int>;
-  teamDivision_lt?: Maybe<Int>;
-  teamDivision_lte?: Maybe<Int>;
-  teamDivision_gt?: Maybe<Int>;
-  teamDivision_gte?: Maybe<Int>;
-  homeFixtures_every?: Maybe<HomeTeamFixtureWhereInput>;
-  homeFixtures_some?: Maybe<HomeTeamFixtureWhereInput>;
-  homeFixtures_none?: Maybe<HomeTeamFixtureWhereInput>;
-  awayFixtures_every?: Maybe<AwayTeamFixtureWhereInput>;
-  awayFixtures_some?: Maybe<AwayTeamFixtureWhereInput>;
-  awayFixtures_none?: Maybe<AwayTeamFixtureWhereInput>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<TeamWhereInput[] | TeamWhereInput>;
-  OR?: Maybe<TeamWhereInput[] | TeamWhereInput>;
-  NOT?: Maybe<TeamWhereInput[] | TeamWhereInput>;
-}
-
-export interface CountryCreateInput {
-  id?: Maybe<ID_Input>;
-  iso: String;
-  name: String;
-  code: String;
-}
-
-export interface PhotoSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PhotoWhereInput>;
-  AND?: Maybe<PhotoSubscriptionWhereInput[] | PhotoSubscriptionWhereInput>;
-  OR?: Maybe<PhotoSubscriptionWhereInput[] | PhotoSubscriptionWhereInput>;
-  NOT?: Maybe<PhotoSubscriptionWhereInput[] | PhotoSubscriptionWhereInput>;
-}
-
-export interface UserPhotoCreateManyWithoutUserInput {
-  create?: Maybe<
-    UserPhotoCreateWithoutUserInput[] | UserPhotoCreateWithoutUserInput
-  >;
-  connect?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
-}
-
-export interface InfluencerSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<InfluencerWhereInput>;
-  AND?: Maybe<
-    InfluencerSubscriptionWhereInput[] | InfluencerSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    InfluencerSubscriptionWhereInput[] | InfluencerSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    InfluencerSubscriptionWhereInput[] | InfluencerSubscriptionWhereInput
-  >;
-}
-
-export interface UserPhotoCreateWithoutUserInput {
-  id?: Maybe<ID_Input>;
-  photo: PhotoCreateOneInput;
-  isProfile?: Maybe<Boolean>;
-}
-
-export interface SeasonWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  fplId?: Maybe<Int>;
-  fplId_not?: Maybe<Int>;
-  fplId_in?: Maybe<Int[] | Int>;
-  fplId_not_in?: Maybe<Int[] | Int>;
-  fplId_lt?: Maybe<Int>;
-  fplId_lte?: Maybe<Int>;
-  fplId_gt?: Maybe<Int>;
-  fplId_gte?: Maybe<Int>;
-  label?: Maybe<String>;
-  label_not?: Maybe<String>;
-  label_in?: Maybe<String[] | String>;
-  label_not_in?: Maybe<String[] | String>;
-  label_lt?: Maybe<String>;
-  label_lte?: Maybe<String>;
-  label_gt?: Maybe<String>;
-  label_gte?: Maybe<String>;
-  label_contains?: Maybe<String>;
-  label_not_contains?: Maybe<String>;
-  label_starts_with?: Maybe<String>;
-  label_not_starts_with?: Maybe<String>;
-  label_ends_with?: Maybe<String>;
-  label_not_ends_with?: Maybe<String>;
-  competition?: Maybe<String>;
-  competition_not?: Maybe<String>;
-  competition_in?: Maybe<String[] | String>;
-  competition_not_in?: Maybe<String[] | String>;
-  competition_lt?: Maybe<String>;
-  competition_lte?: Maybe<String>;
-  competition_gt?: Maybe<String>;
-  competition_gte?: Maybe<String>;
-  competition_contains?: Maybe<String>;
-  competition_not_contains?: Maybe<String>;
-  competition_starts_with?: Maybe<String>;
-  competition_not_starts_with?: Maybe<String>;
-  competition_ends_with?: Maybe<String>;
-  competition_not_ends_with?: Maybe<String>;
-  startYear?: Maybe<Int>;
-  startYear_not?: Maybe<Int>;
-  startYear_in?: Maybe<Int[] | Int>;
-  startYear_not_in?: Maybe<Int[] | Int>;
-  startYear_lt?: Maybe<Int>;
-  startYear_lte?: Maybe<Int>;
-  startYear_gt?: Maybe<Int>;
-  startYear_gte?: Maybe<Int>;
-  endYear?: Maybe<Int>;
-  endYear_not?: Maybe<Int>;
-  endYear_in?: Maybe<Int[] | Int>;
-  endYear_not_in?: Maybe<Int[] | Int>;
-  endYear_lt?: Maybe<Int>;
-  endYear_lte?: Maybe<Int>;
-  endYear_gt?: Maybe<Int>;
-  endYear_gte?: Maybe<Int>;
-  isCurrent?: Maybe<Boolean>;
-  isCurrent_not?: Maybe<Boolean>;
-  isPrevious?: Maybe<Boolean>;
-  isPrevious_not?: Maybe<Boolean>;
-  isNext?: Maybe<Boolean>;
-  isNext_not?: Maybe<Boolean>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<SeasonWhereInput[] | SeasonWhereInput>;
-  OR?: Maybe<SeasonWhereInput[] | SeasonWhereInput>;
-  NOT?: Maybe<SeasonWhereInput[] | SeasonWhereInput>;
-}
-
-export interface PhotoCreateOneInput {
-  create?: Maybe<PhotoCreateInput>;
-  connect?: Maybe<PhotoWhereUniqueInput>;
-}
-
-export interface GameweekSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<GameweekWhereInput>;
-  AND?: Maybe<
-    GameweekSubscriptionWhereInput[] | GameweekSubscriptionWhereInput
-  >;
-  OR?: Maybe<GameweekSubscriptionWhereInput[] | GameweekSubscriptionWhereInput>;
-  NOT?: Maybe<
-    GameweekSubscriptionWhereInput[] | GameweekSubscriptionWhereInput
-  >;
-}
-
-export interface PhotoCreateInput {
-  id?: Maybe<ID_Input>;
-  image: String;
-  largeImage?: Maybe<String>;
-  smallImage?: Maybe<String>;
-}
-
-export interface FixtureSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<FixtureWhereInput>;
-  AND?: Maybe<FixtureSubscriptionWhereInput[] | FixtureSubscriptionWhereInput>;
-  OR?: Maybe<FixtureSubscriptionWhereInput[] | FixtureSubscriptionWhereInput>;
-  NOT?: Maybe<FixtureSubscriptionWhereInput[] | FixtureSubscriptionWhereInput>;
-}
-
-export interface FandemSubscriptionCreateManyInput {
-  create?: Maybe<
-    FandemSubscriptionCreateInput[] | FandemSubscriptionCreateInput
-  >;
-  connect?: Maybe<
-    FandemSubscriptionWhereUniqueInput[] | FandemSubscriptionWhereUniqueInput
-  >;
-}
-
-export interface FandemSubscriptionSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<FandemSubscriptionWhereInput>;
-  AND?: Maybe<
-    | FandemSubscriptionSubscriptionWhereInput[]
-    | FandemSubscriptionSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    | FandemSubscriptionSubscriptionWhereInput[]
-    | FandemSubscriptionSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    | FandemSubscriptionSubscriptionWhereInput[]
-    | FandemSubscriptionSubscriptionWhereInput
-  >;
-}
-
-export interface FandemSubscriptionCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  description: String;
-}
-
-export interface AwayTeamFixtureSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<AwayTeamFixtureWhereInput>;
-  AND?: Maybe<
-    | AwayTeamFixtureSubscriptionWhereInput[]
-    | AwayTeamFixtureSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    | AwayTeamFixtureSubscriptionWhereInput[]
-    | AwayTeamFixtureSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    | AwayTeamFixtureSubscriptionWhereInput[]
-    | AwayTeamFixtureSubscriptionWhereInput
-  >;
-}
-
-export interface UserRoleCreateManyInput {
-  create?: Maybe<UserRoleCreateInput[] | UserRoleCreateInput>;
-  connect?: Maybe<UserRoleWhereUniqueInput[] | UserRoleWhereUniqueInput>;
-}
-
-export interface GameweekWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  season?: Maybe<SeasonWhereInput>;
-  averageEntryScore?: Maybe<Int>;
-  averageEntryScore_not?: Maybe<Int>;
-  averageEntryScore_in?: Maybe<Int[] | Int>;
-  averageEntryScore_not_in?: Maybe<Int[] | Int>;
-  averageEntryScore_lt?: Maybe<Int>;
-  averageEntryScore_lte?: Maybe<Int>;
-  averageEntryScore_gt?: Maybe<Int>;
-  averageEntryScore_gte?: Maybe<Int>;
-  dataChecked?: Maybe<Boolean>;
-  dataChecked_not?: Maybe<Boolean>;
-  deadlineTime?: Maybe<DateTimeInput>;
-  deadlineTime_not?: Maybe<DateTimeInput>;
-  deadlineTime_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  deadlineTime_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  deadlineTime_lt?: Maybe<DateTimeInput>;
-  deadlineTime_lte?: Maybe<DateTimeInput>;
-  deadlineTime_gt?: Maybe<DateTimeInput>;
-  deadlineTime_gte?: Maybe<DateTimeInput>;
-  deadlineTimeEpoch?: Maybe<Int>;
-  deadlineTimeEpoch_not?: Maybe<Int>;
-  deadlineTimeEpoch_in?: Maybe<Int[] | Int>;
-  deadlineTimeEpoch_not_in?: Maybe<Int[] | Int>;
-  deadlineTimeEpoch_lt?: Maybe<Int>;
-  deadlineTimeEpoch_lte?: Maybe<Int>;
-  deadlineTimeEpoch_gt?: Maybe<Int>;
-  deadlineTimeEpoch_gte?: Maybe<Int>;
-  deadlineTimeGameOffset?: Maybe<Int>;
-  deadlineTimeGameOffset_not?: Maybe<Int>;
-  deadlineTimeGameOffset_in?: Maybe<Int[] | Int>;
-  deadlineTimeGameOffset_not_in?: Maybe<Int[] | Int>;
-  deadlineTimeGameOffset_lt?: Maybe<Int>;
-  deadlineTimeGameOffset_lte?: Maybe<Int>;
-  deadlineTimeGameOffset_gt?: Maybe<Int>;
-  deadlineTimeGameOffset_gte?: Maybe<Int>;
-  finished?: Maybe<Boolean>;
-  finished_not?: Maybe<Boolean>;
-  highestScore?: Maybe<Int>;
-  highestScore_not?: Maybe<Int>;
-  highestScore_in?: Maybe<Int[] | Int>;
-  highestScore_not_in?: Maybe<Int[] | Int>;
-  highestScore_lt?: Maybe<Int>;
-  highestScore_lte?: Maybe<Int>;
-  highestScore_gt?: Maybe<Int>;
-  highestScore_gte?: Maybe<Int>;
-  highestScoringEntry?: Maybe<Int>;
-  highestScoringEntry_not?: Maybe<Int>;
-  highestScoringEntry_in?: Maybe<Int[] | Int>;
-  highestScoringEntry_not_in?: Maybe<Int[] | Int>;
-  highestScoringEntry_lt?: Maybe<Int>;
-  highestScoringEntry_lte?: Maybe<Int>;
-  highestScoringEntry_gt?: Maybe<Int>;
-  highestScoringEntry_gte?: Maybe<Int>;
-  fplEventId?: Maybe<Int>;
-  fplEventId_not?: Maybe<Int>;
-  fplEventId_in?: Maybe<Int[] | Int>;
-  fplEventId_not_in?: Maybe<Int[] | Int>;
-  fplEventId_lt?: Maybe<Int>;
-  fplEventId_lte?: Maybe<Int>;
-  fplEventId_gt?: Maybe<Int>;
-  fplEventId_gte?: Maybe<Int>;
-  isCurrent?: Maybe<Boolean>;
-  isCurrent_not?: Maybe<Boolean>;
-  isNext?: Maybe<Boolean>;
-  isNext_not?: Maybe<Boolean>;
-  isPrevious?: Maybe<Boolean>;
-  isPrevious_not?: Maybe<Boolean>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<GameweekWhereInput[] | GameweekWhereInput>;
-  OR?: Maybe<GameweekWhereInput[] | GameweekWhereInput>;
-  NOT?: Maybe<GameweekWhereInput[] | GameweekWhereInput>;
-}
-
-export interface UserRoleCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  description: String;
-}
-
-export interface UserStatusUpdateManyMutationInput {
-  currentStatus?: Maybe<Boolean>;
-}
-
-export interface UserStatusCreateManyInput {
-  create?: Maybe<UserStatusCreateInput[] | UserStatusCreateInput>;
-  connect?: Maybe<UserStatusWhereUniqueInput[] | UserStatusWhereUniqueInput>;
-}
-
-export type FandemSubscriptionWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface UserStatusCreateInput {
-  id?: Maybe<ID_Input>;
-  status?: Maybe<StatusCreateOneWithoutAuthorInput>;
-  currentStatus?: Maybe<Boolean>;
-}
-
-export interface UserRoleUpdateInput {
-  name?: Maybe<String>;
-  description?: Maybe<String>;
-}
-
-export interface StatusCreateOneWithoutAuthorInput {
-  create?: Maybe<StatusCreateWithoutAuthorInput>;
-  connect?: Maybe<StatusWhereUniqueInput>;
-}
-
-export type FixtureWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  fplCode?: Maybe<Int>;
-}>;
-
-export interface StatusCreateWithoutAuthorInput {
-  id?: Maybe<ID_Input>;
-  content: String;
-  likes?: Maybe<UserCreateManyInput>;
-}
-
-export interface UserUpsertWithoutPhotosInput {
-  update: UserUpdateWithoutPhotosDataInput;
-  create: UserCreateWithoutPhotosInput;
-}
-
-export interface UserCreateManyInput {
-  create?: Maybe<UserCreateInput[] | UserCreateInput>;
-  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
-}
-
-export interface UserUpdateOneRequiredWithoutPhotosInput {
-  create?: Maybe<UserCreateWithoutPhotosInput>;
-  update?: Maybe<UserUpdateWithoutPhotosDataInput>;
-  upsert?: Maybe<UserUpsertWithoutPhotosInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserFollowersCreateOneWithoutUserInput {
-  create?: Maybe<UserFollowersCreateWithoutUserInput>;
-  connect?: Maybe<UserFollowersWhereUniqueInput>;
-}
-
-export interface UserPhotoUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutPhotosInput>;
-  photo?: Maybe<PhotoUpdateOneRequiredInput>;
-  isProfile?: Maybe<Boolean>;
-}
-
-export interface UserFollowersCreateWithoutUserInput {
-  id?: Maybe<ID_Input>;
-  followers?: Maybe<FollowerCreateManyInput>;
-}
-
-export interface UserCreateOneWithoutPhotosInput {
-  create?: Maybe<UserCreateWithoutPhotosInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface FollowerCreateManyInput {
-  create?: Maybe<FollowerCreateInput[] | FollowerCreateInput>;
-  connect?: Maybe<FollowerWhereUniqueInput[] | FollowerWhereUniqueInput>;
-}
-
-export interface HomeTeamFixtureWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  fixture?: Maybe<FixtureWhereInput>;
-  homeTeam?: Maybe<TeamWhereInput>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<HomeTeamFixtureWhereInput[] | HomeTeamFixtureWhereInput>;
-  OR?: Maybe<HomeTeamFixtureWhereInput[] | HomeTeamFixtureWhereInput>;
-  NOT?: Maybe<HomeTeamFixtureWhereInput[] | HomeTeamFixtureWhereInput>;
-}
-
-export interface FollowerCreateInput {
-  id?: Maybe<ID_Input>;
-  user: UserCreateOneInput;
-  blocked?: Maybe<Boolean>;
-  accepted?: Maybe<Boolean>;
-}
-
-export interface UserUpsertWithoutInfluencersInput {
-  update: UserUpdateWithoutInfluencersDataInput;
-  create: UserCreateWithoutInfluencersInput;
-}
-
-export interface UserInfluencersCreateOneWithoutUserInput {
-  create?: Maybe<UserInfluencersCreateWithoutUserInput>;
-  connect?: Maybe<UserInfluencersWhereUniqueInput>;
-}
-
-export type HomeTeamFixtureWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface UserInfluencersCreateWithoutUserInput {
-  id?: Maybe<ID_Input>;
-  influencers?: Maybe<InfluencerCreateManyInput>;
-}
-
-export interface UserInfluencersUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutInfluencersInput>;
-  influencers?: Maybe<InfluencerUpdateManyInput>;
-}
-
-export interface InfluencerCreateManyInput {
-  create?: Maybe<InfluencerCreateInput[] | InfluencerCreateInput>;
-  connect?: Maybe<InfluencerWhereUniqueInput[] | InfluencerWhereUniqueInput>;
-}
-
-export type InfluencerWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface InfluencerCreateInput {
-  id?: Maybe<ID_Input>;
-  user: UserCreateOneInput;
-}
-
-export interface UserInfluencersCreateInput {
-  id?: Maybe<ID_Input>;
-  user: UserCreateOneWithoutInfluencersInput;
-  influencers?: Maybe<InfluencerCreateManyInput>;
-}
-
-export interface UserRoleCreateOneInput {
-  create?: Maybe<UserRoleCreateInput>;
-  connect?: Maybe<UserRoleWhereUniqueInput>;
-}
-
-export type PhotoWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface ActiveSubscriptionsUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredInput>;
-  subscription?: Maybe<UserRoleUpdateOneRequiredInput>;
-  startDate?: Maybe<DateTimeInput>;
-  endDate?: Maybe<DateTimeInput>;
-}
-
-export interface UserUpdateOneRequiredWithoutFollowersInput {
-  create?: Maybe<UserCreateWithoutFollowersInput>;
-  update?: Maybe<UserUpdateWithoutFollowersDataInput>;
-  upsert?: Maybe<UserUpsertWithoutFollowersInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserUpdateOneRequiredInput {
-  create?: Maybe<UserCreateInput>;
-  update?: Maybe<UserUpdateDataInput>;
-  upsert?: Maybe<UserUpsertNestedInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserCreateWithoutFollowersInput {
-  id?: Maybe<ID_Input>;
-  email: String;
-  name: String;
-  countryCode?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  favoriteTeam?: Maybe<TeamCreateOneInput>;
-  country?: Maybe<CountryCreateOneInput>;
-  displayName: String;
-  isPrivate?: Maybe<Boolean>;
-  password: String;
-  photos?: Maybe<UserPhotoCreateManyWithoutUserInput>;
-  emailValidationToken?: Maybe<String>;
-  emailValidationTokenExpiry?: Maybe<Float>;
-  emailValidated?: Maybe<Boolean>;
-  emailValidationDate?: Maybe<DateTimeInput>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  subscriptions?: Maybe<FandemSubscriptionCreateManyInput>;
-  userRoles?: Maybe<UserRoleCreateManyInput>;
-  status?: Maybe<UserStatusCreateManyInput>;
-  influencers?: Maybe<UserInfluencersCreateOneWithoutUserInput>;
-}
-
-export interface UserUpdateDataInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-  countryCode?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  favoriteTeam?: Maybe<TeamUpdateOneInput>;
-  country?: Maybe<CountryUpdateOneInput>;
-  displayName?: Maybe<String>;
-  isPrivate?: Maybe<Boolean>;
-  password?: Maybe<String>;
-  photos?: Maybe<UserPhotoUpdateManyWithoutUserInput>;
-  emailValidationToken?: Maybe<String>;
-  emailValidationTokenExpiry?: Maybe<Float>;
-  emailValidated?: Maybe<Boolean>;
-  emailValidationDate?: Maybe<DateTimeInput>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  subscriptions?: Maybe<FandemSubscriptionUpdateManyInput>;
-  userRoles?: Maybe<UserRoleUpdateManyInput>;
-  status?: Maybe<UserStatusUpdateManyInput>;
-  followers?: Maybe<UserFollowersUpdateOneWithoutUserInput>;
-  influencers?: Maybe<UserInfluencersUpdateOneWithoutUserInput>;
-}
-
-export interface UserCreateOneWithoutFollowersInput {
-  create?: Maybe<UserCreateWithoutFollowersInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface TeamUpdateOneInput {
-  create?: Maybe<TeamCreateInput>;
-  update?: Maybe<TeamUpdateDataInput>;
-  upsert?: Maybe<TeamUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<TeamWhereUniqueInput>;
-}
-
-export interface UserAssignedRoleUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredInput>;
-  userRole?: Maybe<UserRoleUpdateOneRequiredInput>;
-}
-
-export interface TeamUpdateDataInput {
-  code?: Maybe<Int>;
-  season?: Maybe<SeasonUpdateOneRequiredInput>;
-  fplTeamId?: Maybe<Int>;
-  name?: Maybe<String>;
-  shortName?: Maybe<String>;
-  strength?: Maybe<Int>;
-  strengthAttackAway?: Maybe<Int>;
-  strengthAttackHome?: Maybe<Int>;
-  strengthDefenceAway?: Maybe<Int>;
-  strengthDefenceHome?: Maybe<Int>;
-  strengthOverallAway?: Maybe<Int>;
-  strengthOverallHome?: Maybe<Int>;
-  teamDivision?: Maybe<Int>;
-  homeFixtures?: Maybe<HomeTeamFixtureUpdateManyWithoutHomeTeamInput>;
-  awayFixtures?: Maybe<AwayTeamFixtureUpdateManyWithoutAwayTeamInput>;
-}
-
-export type StatusWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface SeasonUpdateOneRequiredInput {
-  create?: Maybe<SeasonCreateInput>;
-  update?: Maybe<SeasonUpdateDataInput>;
-  upsert?: Maybe<SeasonUpsertNestedInput>;
-  connect?: Maybe<SeasonWhereUniqueInput>;
-}
-
-export interface UserUpdateInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-  countryCode?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  favoriteTeam?: Maybe<TeamUpdateOneInput>;
-  country?: Maybe<CountryUpdateOneInput>;
-  displayName?: Maybe<String>;
-  isPrivate?: Maybe<Boolean>;
-  password?: Maybe<String>;
-  photos?: Maybe<UserPhotoUpdateManyWithoutUserInput>;
-  emailValidationToken?: Maybe<String>;
-  emailValidationTokenExpiry?: Maybe<Float>;
-  emailValidated?: Maybe<Boolean>;
-  emailValidationDate?: Maybe<DateTimeInput>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  subscriptions?: Maybe<FandemSubscriptionUpdateManyInput>;
-  userRoles?: Maybe<UserRoleUpdateManyInput>;
-  status?: Maybe<UserStatusUpdateManyInput>;
-  followers?: Maybe<UserFollowersUpdateOneWithoutUserInput>;
-  influencers?: Maybe<UserInfluencersUpdateOneWithoutUserInput>;
-}
-
-export interface SeasonUpdateDataInput {
-  fplId?: Maybe<Int>;
-  label?: Maybe<String>;
-  competition?: Maybe<String>;
-  startYear?: Maybe<Int>;
-  endYear?: Maybe<Int>;
-  isCurrent?: Maybe<Boolean>;
-  isPrevious?: Maybe<Boolean>;
-  isNext?: Maybe<Boolean>;
-}
-
-export interface TeamUpdateInput {
-  code?: Maybe<Int>;
-  season?: Maybe<SeasonUpdateOneRequiredInput>;
-  fplTeamId?: Maybe<Int>;
-  name?: Maybe<String>;
-  shortName?: Maybe<String>;
-  strength?: Maybe<Int>;
-  strengthAttackAway?: Maybe<Int>;
-  strengthAttackHome?: Maybe<Int>;
-  strengthDefenceAway?: Maybe<Int>;
-  strengthDefenceHome?: Maybe<Int>;
-  strengthOverallAway?: Maybe<Int>;
-  strengthOverallHome?: Maybe<Int>;
-  teamDivision?: Maybe<Int>;
-  homeFixtures?: Maybe<HomeTeamFixtureUpdateManyWithoutHomeTeamInput>;
-  awayFixtures?: Maybe<AwayTeamFixtureUpdateManyWithoutAwayTeamInput>;
-}
-
-export interface SeasonUpsertNestedInput {
-  update: SeasonUpdateDataInput;
-  create: SeasonCreateInput;
-}
-
-export interface StatusUpdateManyMutationInput {
-  content?: Maybe<String>;
-}
-
-export interface HomeTeamFixtureUpdateManyWithoutHomeTeamInput {
-  create?: Maybe<
-    | HomeTeamFixtureCreateWithoutHomeTeamInput[]
-    | HomeTeamFixtureCreateWithoutHomeTeamInput
-  >;
-  delete?: Maybe<
-    HomeTeamFixtureWhereUniqueInput[] | HomeTeamFixtureWhereUniqueInput
-  >;
-  connect?: Maybe<
-    HomeTeamFixtureWhereUniqueInput[] | HomeTeamFixtureWhereUniqueInput
-  >;
-  set?: Maybe<
-    HomeTeamFixtureWhereUniqueInput[] | HomeTeamFixtureWhereUniqueInput
-  >;
-  disconnect?: Maybe<
-    HomeTeamFixtureWhereUniqueInput[] | HomeTeamFixtureWhereUniqueInput
-  >;
-  update?: Maybe<
-    | HomeTeamFixtureUpdateWithWhereUniqueWithoutHomeTeamInput[]
-    | HomeTeamFixtureUpdateWithWhereUniqueWithoutHomeTeamInput
-  >;
-  upsert?: Maybe<
-    | HomeTeamFixtureUpsertWithWhereUniqueWithoutHomeTeamInput[]
-    | HomeTeamFixtureUpsertWithWhereUniqueWithoutHomeTeamInput
-  >;
-  deleteMany?: Maybe<
-    HomeTeamFixtureScalarWhereInput[] | HomeTeamFixtureScalarWhereInput
-  >;
-}
-
-export interface UserStatusUpdateWithoutStatusDataInput {
-  currentStatus?: Maybe<Boolean>;
-}
-
-export interface HomeTeamFixtureUpdateWithWhereUniqueWithoutHomeTeamInput {
-  where: HomeTeamFixtureWhereUniqueInput;
-  data: HomeTeamFixtureUpdateWithoutHomeTeamDataInput;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  displayName?: Maybe<String>;
-}>;
-
-export interface HomeTeamFixtureUpdateWithoutHomeTeamDataInput {
-  fixture?: Maybe<FixtureUpdateOneRequiredWithoutTeamHInput>;
-}
-
-export interface UserStatusCreateWithoutStatusInput {
-  id?: Maybe<ID_Input>;
-  currentStatus?: Maybe<Boolean>;
-}
-
-export interface FixtureUpdateOneRequiredWithoutTeamHInput {
-  create?: Maybe<FixtureCreateWithoutTeamHInput>;
-  update?: Maybe<FixtureUpdateWithoutTeamHDataInput>;
-  upsert?: Maybe<FixtureUpsertWithoutTeamHInput>;
-  connect?: Maybe<FixtureWhereUniqueInput>;
-}
-
-export type UserAssignedRoleWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface FixtureUpdateWithoutTeamHDataInput {
-  fplCode?: Maybe<Int>;
-  event?: Maybe<GameweekUpdateOneRequiredInput>;
-  finished?: Maybe<Boolean>;
-  finishedProvisional?: Maybe<Boolean>;
-  fixtureId?: Maybe<Int>;
-  kickoffTime?: Maybe<DateTimeInput>;
-  minutes?: Maybe<Int>;
-  provisionalStartTime?: Maybe<Boolean>;
-  started?: Maybe<Boolean>;
-  teamA?: Maybe<AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
-  teamADifficulty?: Maybe<Int>;
-  teamAScore?: Maybe<Int>;
-  teamHDifficulty?: Maybe<Int>;
-  teamHScore?: Maybe<Int>;
-}
-
-export interface UserAssignedRoleWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  user?: Maybe<UserWhereInput>;
-  userRole?: Maybe<UserRoleWhereInput>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<UserAssignedRoleWhereInput[] | UserAssignedRoleWhereInput>;
-  OR?: Maybe<UserAssignedRoleWhereInput[] | UserAssignedRoleWhereInput>;
-  NOT?: Maybe<UserAssignedRoleWhereInput[] | UserAssignedRoleWhereInput>;
-}
-
-export interface GameweekUpdateOneRequiredInput {
-  create?: Maybe<GameweekCreateInput>;
-  update?: Maybe<GameweekUpdateDataInput>;
-  upsert?: Maybe<GameweekUpsertNestedInput>;
-  connect?: Maybe<GameweekWhereUniqueInput>;
-}
-
-export interface SeasonUpdateInput {
-  fplId?: Maybe<Int>;
-  label?: Maybe<String>;
-  competition?: Maybe<String>;
-  startYear?: Maybe<Int>;
-  endYear?: Maybe<Int>;
-  isCurrent?: Maybe<Boolean>;
-  isPrevious?: Maybe<Boolean>;
-  isNext?: Maybe<Boolean>;
-}
-
-export interface GameweekUpdateDataInput {
-  season?: Maybe<SeasonUpdateOneRequiredInput>;
-  averageEntryScore?: Maybe<Int>;
-  dataChecked?: Maybe<Boolean>;
-  deadlineTime?: Maybe<DateTimeInput>;
-  deadlineTimeEpoch?: Maybe<Int>;
-  deadlineTimeGameOffset?: Maybe<Int>;
-  finished?: Maybe<Boolean>;
-  highestScore?: Maybe<Int>;
-  highestScoringEntry?: Maybe<Int>;
-  fplEventId?: Maybe<Int>;
-  isCurrent?: Maybe<Boolean>;
-  isNext?: Maybe<Boolean>;
-  isPrevious?: Maybe<Boolean>;
-  name?: Maybe<String>;
-}
-
-export interface PhotoUpdateInput {
-  image?: Maybe<String>;
-  largeImage?: Maybe<String>;
-  smallImage?: Maybe<String>;
-}
-
-export interface UserRoleUpsertNestedInput {
-  update: UserRoleUpdateDataInput;
-  create: UserRoleCreateInput;
-}
-
-export interface InfluencerUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredInput>;
-}
-
-export interface AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput {
-  create?: Maybe<AwayTeamFixtureCreateWithoutFixtureInput>;
-  update?: Maybe<AwayTeamFixtureUpdateWithoutFixtureDataInput>;
-  upsert?: Maybe<AwayTeamFixtureUpsertWithoutFixtureInput>;
-  connect?: Maybe<AwayTeamFixtureWhereUniqueInput>;
-}
-
-export interface HomeTeamFixtureCreateInput {
-  id?: Maybe<ID_Input>;
-  fixture: FixtureCreateOneWithoutTeamHInput;
-  homeTeam: TeamCreateOneWithoutHomeFixturesInput;
-}
-
-export interface AwayTeamFixtureUpdateWithoutFixtureDataInput {
-  awayTeam?: Maybe<TeamUpdateOneRequiredWithoutAwayFixturesInput>;
-}
-
-export type UserInfluencersWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface TeamUpdateOneRequiredWithoutAwayFixturesInput {
-  create?: Maybe<TeamCreateWithoutAwayFixturesInput>;
-  update?: Maybe<TeamUpdateWithoutAwayFixturesDataInput>;
-  upsert?: Maybe<TeamUpsertWithoutAwayFixturesInput>;
-  connect?: Maybe<TeamWhereUniqueInput>;
-}
-
-export interface FollowerUpdateManyMutationInput {
-  blocked?: Maybe<Boolean>;
-  accepted?: Maybe<Boolean>;
-}
-
-export interface TeamUpdateWithoutAwayFixturesDataInput {
-  code?: Maybe<Int>;
-  season?: Maybe<SeasonUpdateOneRequiredInput>;
-  fplTeamId?: Maybe<Int>;
-  name?: Maybe<String>;
-  shortName?: Maybe<String>;
-  strength?: Maybe<Int>;
-  strengthAttackAway?: Maybe<Int>;
-  strengthAttackHome?: Maybe<Int>;
-  strengthDefenceAway?: Maybe<Int>;
-  strengthDefenceHome?: Maybe<Int>;
-  strengthOverallAway?: Maybe<Int>;
-  strengthOverallHome?: Maybe<Int>;
-  teamDivision?: Maybe<Int>;
-  homeFixtures?: Maybe<HomeTeamFixtureUpdateManyWithoutHomeTeamInput>;
-}
-
-export interface FixtureUpdateManyMutationInput {
-  fplCode?: Maybe<Int>;
-  finished?: Maybe<Boolean>;
-  finishedProvisional?: Maybe<Boolean>;
-  fixtureId?: Maybe<Int>;
-  kickoffTime?: Maybe<DateTimeInput>;
-  minutes?: Maybe<Int>;
-  provisionalStartTime?: Maybe<Boolean>;
-  started?: Maybe<Boolean>;
-  teamADifficulty?: Maybe<Int>;
-  teamAScore?: Maybe<Int>;
-  teamHDifficulty?: Maybe<Int>;
-  teamHScore?: Maybe<Int>;
-}
-
-export interface TeamUpsertWithoutAwayFixturesInput {
-  update: TeamUpdateWithoutAwayFixturesDataInput;
-  create: TeamCreateWithoutAwayFixturesInput;
-}
-
-export interface FixtureUpdateInput {
-  fplCode?: Maybe<Int>;
-  event?: Maybe<GameweekUpdateOneRequiredInput>;
-  finished?: Maybe<Boolean>;
-  finishedProvisional?: Maybe<Boolean>;
-  fixtureId?: Maybe<Int>;
-  kickoffTime?: Maybe<DateTimeInput>;
-  minutes?: Maybe<Int>;
-  provisionalStartTime?: Maybe<Boolean>;
-  started?: Maybe<Boolean>;
-  teamA?: Maybe<AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
-  teamADifficulty?: Maybe<Int>;
-  teamAScore?: Maybe<Int>;
-  teamH?: Maybe<HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
-  teamHDifficulty?: Maybe<Int>;
-  teamHScore?: Maybe<Int>;
-}
-
-export interface AwayTeamFixtureUpsertWithoutFixtureInput {
-  update: AwayTeamFixtureUpdateWithoutFixtureDataInput;
-  create: AwayTeamFixtureCreateWithoutFixtureInput;
-}
-
-export interface FandemSubscriptionUpdateManyMutationInput {
-  name?: Maybe<String>;
-  description?: Maybe<String>;
-}
-
-export interface FixtureUpsertWithoutTeamHInput {
-  update: FixtureUpdateWithoutTeamHDataInput;
-  create: FixtureCreateWithoutTeamHInput;
-}
-
-export interface FandemSubscriptionUpdateInput {
-  name?: Maybe<String>;
-  description?: Maybe<String>;
-}
-
-export interface HomeTeamFixtureUpsertWithWhereUniqueWithoutHomeTeamInput {
-  where: HomeTeamFixtureWhereUniqueInput;
-  update: HomeTeamFixtureUpdateWithoutHomeTeamDataInput;
-  create: HomeTeamFixtureCreateWithoutHomeTeamInput;
-}
-
-export interface CountryUpdateInput {
-  iso?: Maybe<String>;
-  name?: Maybe<String>;
-  code?: Maybe<String>;
-}
-
-export interface HomeTeamFixtureScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<
-    HomeTeamFixtureScalarWhereInput[] | HomeTeamFixtureScalarWhereInput
-  >;
-  OR?: Maybe<
-    HomeTeamFixtureScalarWhereInput[] | HomeTeamFixtureScalarWhereInput
-  >;
-  NOT?: Maybe<
-    HomeTeamFixtureScalarWhereInput[] | HomeTeamFixtureScalarWhereInput
-  >;
-}
-
-export interface AwayTeamFixtureUpdateInput {
-  fixture?: Maybe<FixtureUpdateOneRequiredWithoutTeamAInput>;
-  awayTeam?: Maybe<TeamUpdateOneRequiredWithoutAwayFixturesInput>;
-}
-
-export interface AwayTeamFixtureUpdateManyWithoutAwayTeamInput {
-  create?: Maybe<
-    | AwayTeamFixtureCreateWithoutAwayTeamInput[]
-    | AwayTeamFixtureCreateWithoutAwayTeamInput
-  >;
-  delete?: Maybe<
-    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
-  >;
-  connect?: Maybe<
-    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
-  >;
-  set?: Maybe<
-    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
-  >;
-  disconnect?: Maybe<
-    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
-  >;
-  update?: Maybe<
-    | AwayTeamFixtureUpdateWithWhereUniqueWithoutAwayTeamInput[]
-    | AwayTeamFixtureUpdateWithWhereUniqueWithoutAwayTeamInput
-  >;
-  upsert?: Maybe<
-    | AwayTeamFixtureUpsertWithWhereUniqueWithoutAwayTeamInput[]
-    | AwayTeamFixtureUpsertWithWhereUniqueWithoutAwayTeamInput
-  >;
-  deleteMany?: Maybe<
-    AwayTeamFixtureScalarWhereInput[] | AwayTeamFixtureScalarWhereInput
-  >;
-}
-
-export interface ActiveSubscriptionsUpdateManyMutationInput {
-  startDate?: Maybe<DateTimeInput>;
-  endDate?: Maybe<DateTimeInput>;
-}
-
-export interface AwayTeamFixtureUpdateWithWhereUniqueWithoutAwayTeamInput {
-  where: AwayTeamFixtureWhereUniqueInput;
-  data: AwayTeamFixtureUpdateWithoutAwayTeamDataInput;
-}
-
-export interface ActiveSubscriptionsCreateInput {
-  id?: Maybe<ID_Input>;
-  user: UserCreateOneInput;
-  subscription: UserRoleCreateOneInput;
-  startDate: DateTimeInput;
-  endDate: DateTimeInput;
 }
 
 export interface UserWhereInput {
@@ -3258,55 +1441,36 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email: String;
-  name: String;
-  countryCode?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  favoriteTeam?: Maybe<TeamCreateOneInput>;
-  country?: Maybe<CountryCreateOneInput>;
-  displayName: String;
-  isPrivate?: Maybe<Boolean>;
-  password: String;
-  photos?: Maybe<UserPhotoCreateManyWithoutUserInput>;
-  emailValidationToken?: Maybe<String>;
-  emailValidationTokenExpiry?: Maybe<Float>;
-  emailValidated?: Maybe<Boolean>;
-  emailValidationDate?: Maybe<DateTimeInput>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  subscriptions?: Maybe<FandemSubscriptionCreateManyInput>;
-  userRoles?: Maybe<UserRoleCreateManyInput>;
-  status?: Maybe<UserStatusCreateManyInput>;
-  followers?: Maybe<UserFollowersCreateOneWithoutUserInput>;
-  influencers?: Maybe<UserInfluencersCreateOneWithoutUserInput>;
+export interface AwayTeamFixtureCreateManyWithoutAwayTeamInput {
+  create?: Maybe<
+    | AwayTeamFixtureCreateWithoutAwayTeamInput[]
+    | AwayTeamFixtureCreateWithoutAwayTeamInput
+  >;
+  connect?: Maybe<
+    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
+  >;
 }
 
-export interface UserRoleUpdateOneRequiredInput {
-  create?: Maybe<UserRoleCreateInput>;
-  update?: Maybe<UserRoleUpdateDataInput>;
-  upsert?: Maybe<UserRoleUpsertNestedInput>;
-  connect?: Maybe<UserRoleWhereUniqueInput>;
+export interface UserStatusSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserStatusWhereInput>;
+  AND?: Maybe<
+    UserStatusSubscriptionWhereInput[] | UserStatusSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    UserStatusSubscriptionWhereInput[] | UserStatusSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    UserStatusSubscriptionWhereInput[] | UserStatusSubscriptionWhereInput
+  >;
 }
 
-export interface TeamCreateInput {
+export interface AwayTeamFixtureCreateWithoutAwayTeamInput {
   id?: Maybe<ID_Input>;
-  code: Int;
-  season: SeasonCreateOneInput;
-  fplTeamId: Int;
-  name: String;
-  shortName: String;
-  strength: Int;
-  strengthAttackAway: Int;
-  strengthAttackHome: Int;
-  strengthDefenceAway: Int;
-  strengthDefenceHome: Int;
-  strengthOverallAway: Int;
-  strengthOverallHome: Int;
-  teamDivision?: Maybe<Int>;
-  homeFixtures?: Maybe<HomeTeamFixtureCreateManyWithoutHomeTeamInput>;
-  awayFixtures?: Maybe<AwayTeamFixtureCreateManyWithoutAwayTeamInput>;
+  fixture: FixtureCreateOneWithoutTeamAInput;
 }
 
 export interface UserRoleWhereInput {
@@ -3373,16 +1537,9 @@ export interface UserRoleWhereInput {
   NOT?: Maybe<UserRoleWhereInput[] | UserRoleWhereInput>;
 }
 
-export interface SeasonCreateInput {
-  id?: Maybe<ID_Input>;
-  fplId: Int;
-  label: String;
-  competition: String;
-  startYear: Int;
-  endYear: Int;
-  isCurrent: Boolean;
-  isPrevious: Boolean;
-  isNext: Boolean;
+export interface FixtureCreateOneWithoutTeamAInput {
+  create?: Maybe<FixtureCreateWithoutTeamAInput>;
+  connect?: Maybe<FixtureWhereUniqueInput>;
 }
 
 export interface StatusWhereInput {
@@ -3439,9 +1596,22 @@ export interface StatusWhereInput {
   NOT?: Maybe<StatusWhereInput[] | StatusWhereInput>;
 }
 
-export interface HomeTeamFixtureCreateWithoutHomeTeamInput {
+export interface FixtureCreateWithoutTeamAInput {
   id?: Maybe<ID_Input>;
-  fixture: FixtureCreateOneWithoutTeamHInput;
+  fplCode: Int;
+  event: GameweekCreateOneWithoutFixturesInput;
+  finished: Boolean;
+  finishedProvisional: Boolean;
+  fixtureId: Int;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes: Int;
+  provisionalStartTime: Boolean;
+  started: Boolean;
+  teamADifficulty: Int;
+  teamAScore?: Maybe<Int>;
+  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput;
+  teamHDifficulty: Int;
+  teamHScore?: Maybe<Int>;
 }
 
 export interface FollowerWhereInput {
@@ -3485,22 +1655,9 @@ export interface FollowerWhereInput {
   NOT?: Maybe<FollowerWhereInput[] | FollowerWhereInput>;
 }
 
-export interface FixtureCreateWithoutTeamHInput {
-  id?: Maybe<ID_Input>;
-  fplCode: Int;
-  event: GameweekCreateOneInput;
-  finished: Boolean;
-  finishedProvisional: Boolean;
-  fixtureId: Int;
-  kickoffTime?: Maybe<DateTimeInput>;
-  minutes: Int;
-  provisionalStartTime: Boolean;
-  started: Boolean;
-  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput;
-  teamADifficulty: Int;
-  teamAScore?: Maybe<Int>;
-  teamHDifficulty: Int;
-  teamHScore?: Maybe<Int>;
+export interface CountryCreateOneInput {
+  create?: Maybe<CountryCreateInput>;
+  connect?: Maybe<CountryWhereUniqueInput>;
 }
 
 export interface InfluencerWhereInput {
@@ -3540,9 +1697,1450 @@ export interface InfluencerWhereInput {
   NOT?: Maybe<InfluencerWhereInput[] | InfluencerWhereInput>;
 }
 
-export interface GameweekCreateInput {
+export interface CountryCreateInput {
   id?: Maybe<ID_Input>;
+  iso: String;
+  name: String;
+  code: String;
+}
+
+export interface UserRoleSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserRoleWhereInput>;
+  AND?: Maybe<
+    UserRoleSubscriptionWhereInput[] | UserRoleSubscriptionWhereInput
+  >;
+  OR?: Maybe<UserRoleSubscriptionWhereInput[] | UserRoleSubscriptionWhereInput>;
+  NOT?: Maybe<
+    UserRoleSubscriptionWhereInput[] | UserRoleSubscriptionWhereInput
+  >;
+}
+
+export interface UserPhotoCreateManyWithoutUserInput {
+  create?: Maybe<
+    UserPhotoCreateWithoutUserInput[] | UserPhotoCreateWithoutUserInput
+  >;
+  connect?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
+}
+
+export interface UserInfluencersSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserInfluencersWhereInput>;
+  AND?: Maybe<
+    | UserInfluencersSubscriptionWhereInput[]
+    | UserInfluencersSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | UserInfluencersSubscriptionWhereInput[]
+    | UserInfluencersSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | UserInfluencersSubscriptionWhereInput[]
+    | UserInfluencersSubscriptionWhereInput
+  >;
+}
+
+export interface UserPhotoCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  photo: PhotoCreateOneInput;
+  isProfile?: Maybe<Boolean>;
+}
+
+export interface UserAssignedRoleSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserAssignedRoleWhereInput>;
+  AND?: Maybe<
+    | UserAssignedRoleSubscriptionWhereInput[]
+    | UserAssignedRoleSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | UserAssignedRoleSubscriptionWhereInput[]
+    | UserAssignedRoleSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | UserAssignedRoleSubscriptionWhereInput[]
+    | UserAssignedRoleSubscriptionWhereInput
+  >;
+}
+
+export interface PhotoCreateOneInput {
+  create?: Maybe<PhotoCreateInput>;
+  connect?: Maybe<PhotoWhereUniqueInput>;
+}
+
+export interface TeamSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TeamWhereInput>;
+  AND?: Maybe<TeamSubscriptionWhereInput[] | TeamSubscriptionWhereInput>;
+  OR?: Maybe<TeamSubscriptionWhereInput[] | TeamSubscriptionWhereInput>;
+  NOT?: Maybe<TeamSubscriptionWhereInput[] | TeamSubscriptionWhereInput>;
+}
+
+export interface PhotoCreateInput {
+  id?: Maybe<ID_Input>;
+  image: String;
+  largeImage?: Maybe<String>;
+  smallImage?: Maybe<String>;
+}
+
+export interface StatusSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<StatusWhereInput>;
+  AND?: Maybe<StatusSubscriptionWhereInput[] | StatusSubscriptionWhereInput>;
+  OR?: Maybe<StatusSubscriptionWhereInput[] | StatusSubscriptionWhereInput>;
+  NOT?: Maybe<StatusSubscriptionWhereInput[] | StatusSubscriptionWhereInput>;
+}
+
+export interface FandemSubscriptionCreateManyInput {
+  create?: Maybe<
+    FandemSubscriptionCreateInput[] | FandemSubscriptionCreateInput
+  >;
+  connect?: Maybe<
+    FandemSubscriptionWhereUniqueInput[] | FandemSubscriptionWhereUniqueInput
+  >;
+}
+
+export interface TeamWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  code?: Maybe<Int>;
+  code_not?: Maybe<Int>;
+  code_in?: Maybe<Int[] | Int>;
+  code_not_in?: Maybe<Int[] | Int>;
+  code_lt?: Maybe<Int>;
+  code_lte?: Maybe<Int>;
+  code_gt?: Maybe<Int>;
+  code_gte?: Maybe<Int>;
+  season?: Maybe<SeasonWhereInput>;
+  fplTeamId?: Maybe<Int>;
+  fplTeamId_not?: Maybe<Int>;
+  fplTeamId_in?: Maybe<Int[] | Int>;
+  fplTeamId_not_in?: Maybe<Int[] | Int>;
+  fplTeamId_lt?: Maybe<Int>;
+  fplTeamId_lte?: Maybe<Int>;
+  fplTeamId_gt?: Maybe<Int>;
+  fplTeamId_gte?: Maybe<Int>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  shortName?: Maybe<String>;
+  shortName_not?: Maybe<String>;
+  shortName_in?: Maybe<String[] | String>;
+  shortName_not_in?: Maybe<String[] | String>;
+  shortName_lt?: Maybe<String>;
+  shortName_lte?: Maybe<String>;
+  shortName_gt?: Maybe<String>;
+  shortName_gte?: Maybe<String>;
+  shortName_contains?: Maybe<String>;
+  shortName_not_contains?: Maybe<String>;
+  shortName_starts_with?: Maybe<String>;
+  shortName_not_starts_with?: Maybe<String>;
+  shortName_ends_with?: Maybe<String>;
+  shortName_not_ends_with?: Maybe<String>;
+  strength?: Maybe<Int>;
+  strength_not?: Maybe<Int>;
+  strength_in?: Maybe<Int[] | Int>;
+  strength_not_in?: Maybe<Int[] | Int>;
+  strength_lt?: Maybe<Int>;
+  strength_lte?: Maybe<Int>;
+  strength_gt?: Maybe<Int>;
+  strength_gte?: Maybe<Int>;
+  strengthAttackAway?: Maybe<Int>;
+  strengthAttackAway_not?: Maybe<Int>;
+  strengthAttackAway_in?: Maybe<Int[] | Int>;
+  strengthAttackAway_not_in?: Maybe<Int[] | Int>;
+  strengthAttackAway_lt?: Maybe<Int>;
+  strengthAttackAway_lte?: Maybe<Int>;
+  strengthAttackAway_gt?: Maybe<Int>;
+  strengthAttackAway_gte?: Maybe<Int>;
+  strengthAttackHome?: Maybe<Int>;
+  strengthAttackHome_not?: Maybe<Int>;
+  strengthAttackHome_in?: Maybe<Int[] | Int>;
+  strengthAttackHome_not_in?: Maybe<Int[] | Int>;
+  strengthAttackHome_lt?: Maybe<Int>;
+  strengthAttackHome_lte?: Maybe<Int>;
+  strengthAttackHome_gt?: Maybe<Int>;
+  strengthAttackHome_gte?: Maybe<Int>;
+  strengthDefenceAway?: Maybe<Int>;
+  strengthDefenceAway_not?: Maybe<Int>;
+  strengthDefenceAway_in?: Maybe<Int[] | Int>;
+  strengthDefenceAway_not_in?: Maybe<Int[] | Int>;
+  strengthDefenceAway_lt?: Maybe<Int>;
+  strengthDefenceAway_lte?: Maybe<Int>;
+  strengthDefenceAway_gt?: Maybe<Int>;
+  strengthDefenceAway_gte?: Maybe<Int>;
+  strengthDefenceHome?: Maybe<Int>;
+  strengthDefenceHome_not?: Maybe<Int>;
+  strengthDefenceHome_in?: Maybe<Int[] | Int>;
+  strengthDefenceHome_not_in?: Maybe<Int[] | Int>;
+  strengthDefenceHome_lt?: Maybe<Int>;
+  strengthDefenceHome_lte?: Maybe<Int>;
+  strengthDefenceHome_gt?: Maybe<Int>;
+  strengthDefenceHome_gte?: Maybe<Int>;
+  strengthOverallAway?: Maybe<Int>;
+  strengthOverallAway_not?: Maybe<Int>;
+  strengthOverallAway_in?: Maybe<Int[] | Int>;
+  strengthOverallAway_not_in?: Maybe<Int[] | Int>;
+  strengthOverallAway_lt?: Maybe<Int>;
+  strengthOverallAway_lte?: Maybe<Int>;
+  strengthOverallAway_gt?: Maybe<Int>;
+  strengthOverallAway_gte?: Maybe<Int>;
+  strengthOverallHome?: Maybe<Int>;
+  strengthOverallHome_not?: Maybe<Int>;
+  strengthOverallHome_in?: Maybe<Int[] | Int>;
+  strengthOverallHome_not_in?: Maybe<Int[] | Int>;
+  strengthOverallHome_lt?: Maybe<Int>;
+  strengthOverallHome_lte?: Maybe<Int>;
+  strengthOverallHome_gt?: Maybe<Int>;
+  strengthOverallHome_gte?: Maybe<Int>;
+  teamDivision?: Maybe<Int>;
+  teamDivision_not?: Maybe<Int>;
+  teamDivision_in?: Maybe<Int[] | Int>;
+  teamDivision_not_in?: Maybe<Int[] | Int>;
+  teamDivision_lt?: Maybe<Int>;
+  teamDivision_lte?: Maybe<Int>;
+  teamDivision_gt?: Maybe<Int>;
+  teamDivision_gte?: Maybe<Int>;
+  homeFixtures_every?: Maybe<HomeTeamFixtureWhereInput>;
+  homeFixtures_some?: Maybe<HomeTeamFixtureWhereInput>;
+  homeFixtures_none?: Maybe<HomeTeamFixtureWhereInput>;
+  awayFixtures_every?: Maybe<AwayTeamFixtureWhereInput>;
+  awayFixtures_some?: Maybe<AwayTeamFixtureWhereInput>;
+  awayFixtures_none?: Maybe<AwayTeamFixtureWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<TeamWhereInput[] | TeamWhereInput>;
+  OR?: Maybe<TeamWhereInput[] | TeamWhereInput>;
+  NOT?: Maybe<TeamWhereInput[] | TeamWhereInput>;
+}
+
+export interface FandemSubscriptionCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  description: String;
+}
+
+export interface AwayTeamFixtureWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  fixture?: Maybe<FixtureWhereInput>;
+  awayTeam?: Maybe<TeamWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<AwayTeamFixtureWhereInput[] | AwayTeamFixtureWhereInput>;
+  OR?: Maybe<AwayTeamFixtureWhereInput[] | AwayTeamFixtureWhereInput>;
+  NOT?: Maybe<AwayTeamFixtureWhereInput[] | AwayTeamFixtureWhereInput>;
+}
+
+export interface UserRoleCreateManyInput {
+  create?: Maybe<UserRoleCreateInput[] | UserRoleCreateInput>;
+  connect?: Maybe<UserRoleWhereUniqueInput[] | UserRoleWhereUniqueInput>;
+}
+
+export interface HomeTeamFixtureSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<HomeTeamFixtureWhereInput>;
+  AND?: Maybe<
+    | HomeTeamFixtureSubscriptionWhereInput[]
+    | HomeTeamFixtureSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | HomeTeamFixtureSubscriptionWhereInput[]
+    | HomeTeamFixtureSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | HomeTeamFixtureSubscriptionWhereInput[]
+    | HomeTeamFixtureSubscriptionWhereInput
+  >;
+}
+
+export interface UserRoleCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  description: String;
+}
+
+export interface GameweekSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<GameweekWhereInput>;
+  AND?: Maybe<
+    GameweekSubscriptionWhereInput[] | GameweekSubscriptionWhereInput
+  >;
+  OR?: Maybe<GameweekSubscriptionWhereInput[] | GameweekSubscriptionWhereInput>;
+  NOT?: Maybe<
+    GameweekSubscriptionWhereInput[] | GameweekSubscriptionWhereInput
+  >;
+}
+
+export interface UserStatusCreateManyInput {
+  create?: Maybe<UserStatusCreateInput[] | UserStatusCreateInput>;
+  connect?: Maybe<UserStatusWhereUniqueInput[] | UserStatusWhereUniqueInput>;
+}
+
+export interface FollowerSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<FollowerWhereInput>;
+  AND?: Maybe<
+    FollowerSubscriptionWhereInput[] | FollowerSubscriptionWhereInput
+  >;
+  OR?: Maybe<FollowerSubscriptionWhereInput[] | FollowerSubscriptionWhereInput>;
+  NOT?: Maybe<
+    FollowerSubscriptionWhereInput[] | FollowerSubscriptionWhereInput
+  >;
+}
+
+export interface UserStatusCreateInput {
+  id?: Maybe<ID_Input>;
+  status?: Maybe<StatusCreateOneWithoutAuthorInput>;
+  currentStatus?: Maybe<Boolean>;
+}
+
+export interface FandemSubscriptionSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<FandemSubscriptionWhereInput>;
+  AND?: Maybe<
+    | FandemSubscriptionSubscriptionWhereInput[]
+    | FandemSubscriptionSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | FandemSubscriptionSubscriptionWhereInput[]
+    | FandemSubscriptionSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | FandemSubscriptionSubscriptionWhereInput[]
+    | FandemSubscriptionSubscriptionWhereInput
+  >;
+}
+
+export interface StatusCreateOneWithoutAuthorInput {
+  create?: Maybe<StatusCreateWithoutAuthorInput>;
+  connect?: Maybe<StatusWhereUniqueInput>;
+}
+
+export interface AwayTeamFixtureSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<AwayTeamFixtureWhereInput>;
+  AND?: Maybe<
+    | AwayTeamFixtureSubscriptionWhereInput[]
+    | AwayTeamFixtureSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | AwayTeamFixtureSubscriptionWhereInput[]
+    | AwayTeamFixtureSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | AwayTeamFixtureSubscriptionWhereInput[]
+    | AwayTeamFixtureSubscriptionWhereInput
+  >;
+}
+
+export interface StatusCreateWithoutAuthorInput {
+  id?: Maybe<ID_Input>;
+  content: String;
+  likes?: Maybe<UserCreateManyInput>;
+}
+
+export interface ActiveSubscriptionsSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ActiveSubscriptionsWhereInput>;
+  AND?: Maybe<
+    | ActiveSubscriptionsSubscriptionWhereInput[]
+    | ActiveSubscriptionsSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | ActiveSubscriptionsSubscriptionWhereInput[]
+    | ActiveSubscriptionsSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | ActiveSubscriptionsSubscriptionWhereInput[]
+    | ActiveSubscriptionsSubscriptionWhereInput
+  >;
+}
+
+export interface UserCreateManyInput {
+  create?: Maybe<UserCreateInput[] | UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+}
+
+export interface UserStatusUpdateInput {
+  status?: Maybe<StatusUpdateOneWithoutAuthorInput>;
+  currentStatus?: Maybe<Boolean>;
+}
+
+export interface UserFollowersCreateOneWithoutUserInput {
+  create?: Maybe<UserFollowersCreateWithoutUserInput>;
+  connect?: Maybe<UserFollowersWhereUniqueInput>;
+}
+
+export interface SeasonWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  fplId?: Maybe<Int>;
+  fplId_not?: Maybe<Int>;
+  fplId_in?: Maybe<Int[] | Int>;
+  fplId_not_in?: Maybe<Int[] | Int>;
+  fplId_lt?: Maybe<Int>;
+  fplId_lte?: Maybe<Int>;
+  fplId_gt?: Maybe<Int>;
+  fplId_gte?: Maybe<Int>;
+  label?: Maybe<String>;
+  label_not?: Maybe<String>;
+  label_in?: Maybe<String[] | String>;
+  label_not_in?: Maybe<String[] | String>;
+  label_lt?: Maybe<String>;
+  label_lte?: Maybe<String>;
+  label_gt?: Maybe<String>;
+  label_gte?: Maybe<String>;
+  label_contains?: Maybe<String>;
+  label_not_contains?: Maybe<String>;
+  label_starts_with?: Maybe<String>;
+  label_not_starts_with?: Maybe<String>;
+  label_ends_with?: Maybe<String>;
+  label_not_ends_with?: Maybe<String>;
+  competition?: Maybe<String>;
+  competition_not?: Maybe<String>;
+  competition_in?: Maybe<String[] | String>;
+  competition_not_in?: Maybe<String[] | String>;
+  competition_lt?: Maybe<String>;
+  competition_lte?: Maybe<String>;
+  competition_gt?: Maybe<String>;
+  competition_gte?: Maybe<String>;
+  competition_contains?: Maybe<String>;
+  competition_not_contains?: Maybe<String>;
+  competition_starts_with?: Maybe<String>;
+  competition_not_starts_with?: Maybe<String>;
+  competition_ends_with?: Maybe<String>;
+  competition_not_ends_with?: Maybe<String>;
+  startYear?: Maybe<Int>;
+  startYear_not?: Maybe<Int>;
+  startYear_in?: Maybe<Int[] | Int>;
+  startYear_not_in?: Maybe<Int[] | Int>;
+  startYear_lt?: Maybe<Int>;
+  startYear_lte?: Maybe<Int>;
+  startYear_gt?: Maybe<Int>;
+  startYear_gte?: Maybe<Int>;
+  endYear?: Maybe<Int>;
+  endYear_not?: Maybe<Int>;
+  endYear_in?: Maybe<Int[] | Int>;
+  endYear_not_in?: Maybe<Int[] | Int>;
+  endYear_lt?: Maybe<Int>;
+  endYear_lte?: Maybe<Int>;
+  endYear_gt?: Maybe<Int>;
+  endYear_gte?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isCurrent_not?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  isPrevious_not?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  isNext_not?: Maybe<Boolean>;
+  events_every?: Maybe<GameweekWhereInput>;
+  events_some?: Maybe<GameweekWhereInput>;
+  events_none?: Maybe<GameweekWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<SeasonWhereInput[] | SeasonWhereInput>;
+  OR?: Maybe<SeasonWhereInput[] | SeasonWhereInput>;
+  NOT?: Maybe<SeasonWhereInput[] | SeasonWhereInput>;
+}
+
+export interface UserFollowersCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  followers?: Maybe<FollowerCreateManyInput>;
+}
+
+export interface UserRoleUpdateInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface FollowerCreateManyInput {
+  create?: Maybe<FollowerCreateInput[] | FollowerCreateInput>;
+  connect?: Maybe<FollowerWhereUniqueInput[] | FollowerWhereUniqueInput>;
+}
+
+export type FandemSubscriptionWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface FollowerCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneInput;
+  blocked?: Maybe<Boolean>;
+  accepted?: Maybe<Boolean>;
+}
+
+export interface UserUpdateWithoutPhotosDataInput {
+  email?: Maybe<String>;
+  name?: Maybe<String>;
+  countryCode?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  favoriteTeam?: Maybe<TeamUpdateOneInput>;
+  country?: Maybe<CountryUpdateOneInput>;
+  displayName?: Maybe<String>;
+  isPrivate?: Maybe<Boolean>;
+  password?: Maybe<String>;
+  emailValidationToken?: Maybe<String>;
+  emailValidationTokenExpiry?: Maybe<Float>;
+  emailValidated?: Maybe<Boolean>;
+  emailValidationDate?: Maybe<DateTimeInput>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  subscriptions?: Maybe<FandemSubscriptionUpdateManyInput>;
+  userRoles?: Maybe<UserRoleUpdateManyInput>;
+  status?: Maybe<UserStatusUpdateManyInput>;
+  followers?: Maybe<UserFollowersUpdateOneWithoutUserInput>;
+  influencers?: Maybe<UserInfluencersUpdateOneWithoutUserInput>;
+}
+
+export interface UserInfluencersCreateOneWithoutUserInput {
+  create?: Maybe<UserInfluencersCreateWithoutUserInput>;
+  connect?: Maybe<UserInfluencersWhereUniqueInput>;
+}
+
+export type FixtureWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  fplCode?: Maybe<Int>;
+}>;
+
+export interface UserInfluencersCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  influencers?: Maybe<InfluencerCreateManyInput>;
+}
+
+export interface UserCreateWithoutPhotosInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  name: String;
+  countryCode?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  favoriteTeam?: Maybe<TeamCreateOneInput>;
+  country?: Maybe<CountryCreateOneInput>;
+  displayName: String;
+  isPrivate?: Maybe<Boolean>;
+  password: String;
+  emailValidationToken?: Maybe<String>;
+  emailValidationTokenExpiry?: Maybe<Float>;
+  emailValidated?: Maybe<Boolean>;
+  emailValidationDate?: Maybe<DateTimeInput>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  subscriptions?: Maybe<FandemSubscriptionCreateManyInput>;
+  userRoles?: Maybe<UserRoleCreateManyInput>;
+  status?: Maybe<UserStatusCreateManyInput>;
+  followers?: Maybe<UserFollowersCreateOneWithoutUserInput>;
+  influencers?: Maybe<UserInfluencersCreateOneWithoutUserInput>;
+}
+
+export interface InfluencerCreateManyInput {
+  create?: Maybe<InfluencerCreateInput[] | InfluencerCreateInput>;
+  connect?: Maybe<InfluencerWhereUniqueInput[] | InfluencerWhereUniqueInput>;
+}
+
+export type FollowerWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface InfluencerCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneInput;
+}
+
+export interface UserUpsertWithoutInfluencersInput {
+  update: UserUpdateWithoutInfluencersDataInput;
+  create: UserCreateWithoutInfluencersInput;
+}
+
+export interface UserRoleCreateOneInput {
+  create?: Maybe<UserRoleCreateInput>;
+  connect?: Maybe<UserRoleWhereUniqueInput>;
+}
+
+export type GameweekWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  fplEventId?: Maybe<Int>;
+}>;
+
+export interface ActiveSubscriptionsUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredInput>;
+  subscription?: Maybe<UserRoleUpdateOneRequiredInput>;
+  startDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+}
+
+export interface UserInfluencersUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutInfluencersInput>;
+  influencers?: Maybe<InfluencerUpdateManyInput>;
+}
+
+export interface UserUpdateOneRequiredInput {
+  create?: Maybe<UserCreateInput>;
+  update?: Maybe<UserUpdateDataInput>;
+  upsert?: Maybe<UserUpsertNestedInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export type HomeTeamFixtureWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface UserUpdateDataInput {
+  email?: Maybe<String>;
+  name?: Maybe<String>;
+  countryCode?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  favoriteTeam?: Maybe<TeamUpdateOneInput>;
+  country?: Maybe<CountryUpdateOneInput>;
+  displayName?: Maybe<String>;
+  isPrivate?: Maybe<Boolean>;
+  password?: Maybe<String>;
+  photos?: Maybe<UserPhotoUpdateManyWithoutUserInput>;
+  emailValidationToken?: Maybe<String>;
+  emailValidationTokenExpiry?: Maybe<Float>;
+  emailValidated?: Maybe<Boolean>;
+  emailValidationDate?: Maybe<DateTimeInput>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  subscriptions?: Maybe<FandemSubscriptionUpdateManyInput>;
+  userRoles?: Maybe<UserRoleUpdateManyInput>;
+  status?: Maybe<UserStatusUpdateManyInput>;
+  followers?: Maybe<UserFollowersUpdateOneWithoutUserInput>;
+  influencers?: Maybe<UserInfluencersUpdateOneWithoutUserInput>;
+}
+
+export interface UserInfluencersCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneWithoutInfluencersInput;
+  influencers?: Maybe<InfluencerCreateManyInput>;
+}
+
+export interface TeamUpdateOneInput {
+  create?: Maybe<TeamCreateInput>;
+  update?: Maybe<TeamUpdateDataInput>;
+  upsert?: Maybe<TeamUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<TeamWhereUniqueInput>;
+}
+
+export type InfluencerWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface TeamUpdateDataInput {
+  code?: Maybe<Int>;
+  season?: Maybe<SeasonUpdateOneRequiredInput>;
+  fplTeamId?: Maybe<Int>;
+  name?: Maybe<String>;
+  shortName?: Maybe<String>;
+  strength?: Maybe<Int>;
+  strengthAttackAway?: Maybe<Int>;
+  strengthAttackHome?: Maybe<Int>;
+  strengthDefenceAway?: Maybe<Int>;
+  strengthDefenceHome?: Maybe<Int>;
+  strengthOverallAway?: Maybe<Int>;
+  strengthOverallHome?: Maybe<Int>;
+  teamDivision?: Maybe<Int>;
+  homeFixtures?: Maybe<HomeTeamFixtureUpdateManyWithoutHomeTeamInput>;
+  awayFixtures?: Maybe<AwayTeamFixtureUpdateManyWithoutAwayTeamInput>;
+}
+
+export interface UserUpdateOneRequiredWithoutFollowersInput {
+  create?: Maybe<UserCreateWithoutFollowersInput>;
+  update?: Maybe<UserUpdateWithoutFollowersDataInput>;
+  upsert?: Maybe<UserUpsertWithoutFollowersInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface SeasonUpdateOneRequiredInput {
+  create?: Maybe<SeasonCreateInput>;
+  update?: Maybe<SeasonUpdateDataInput>;
+  upsert?: Maybe<SeasonUpsertNestedInput>;
+  connect?: Maybe<SeasonWhereUniqueInput>;
+}
+
+export type PhotoWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SeasonUpdateDataInput {
+  fplId?: Maybe<Int>;
+  label?: Maybe<String>;
+  competition?: Maybe<String>;
+  startYear?: Maybe<Int>;
+  endYear?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  events?: Maybe<GameweekUpdateManyWithoutSeasonInput>;
+}
+
+export interface UserCreateWithoutFollowersInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  name: String;
+  countryCode?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  favoriteTeam?: Maybe<TeamCreateOneInput>;
+  country?: Maybe<CountryCreateOneInput>;
+  displayName: String;
+  isPrivate?: Maybe<Boolean>;
+  password: String;
+  photos?: Maybe<UserPhotoCreateManyWithoutUserInput>;
+  emailValidationToken?: Maybe<String>;
+  emailValidationTokenExpiry?: Maybe<Float>;
+  emailValidated?: Maybe<Boolean>;
+  emailValidationDate?: Maybe<DateTimeInput>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  subscriptions?: Maybe<FandemSubscriptionCreateManyInput>;
+  userRoles?: Maybe<UserRoleCreateManyInput>;
+  status?: Maybe<UserStatusCreateManyInput>;
+  influencers?: Maybe<UserInfluencersCreateOneWithoutUserInput>;
+}
+
+export interface GameweekUpdateManyWithoutSeasonInput {
+  create?: Maybe<
+    GameweekCreateWithoutSeasonInput[] | GameweekCreateWithoutSeasonInput
+  >;
+  delete?: Maybe<GameweekWhereUniqueInput[] | GameweekWhereUniqueInput>;
+  connect?: Maybe<GameweekWhereUniqueInput[] | GameweekWhereUniqueInput>;
+  set?: Maybe<GameweekWhereUniqueInput[] | GameweekWhereUniqueInput>;
+  disconnect?: Maybe<GameweekWhereUniqueInput[] | GameweekWhereUniqueInput>;
+  update?: Maybe<
+    | GameweekUpdateWithWhereUniqueWithoutSeasonInput[]
+    | GameweekUpdateWithWhereUniqueWithoutSeasonInput
+  >;
+  upsert?: Maybe<
+    | GameweekUpsertWithWhereUniqueWithoutSeasonInput[]
+    | GameweekUpsertWithWhereUniqueWithoutSeasonInput
+  >;
+  deleteMany?: Maybe<GameweekScalarWhereInput[] | GameweekScalarWhereInput>;
+  updateMany?: Maybe<
+    | GameweekUpdateManyWithWhereNestedInput[]
+    | GameweekUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UserFollowersCreateInput {
+  id?: Maybe<ID_Input>;
+  followers?: Maybe<FollowerCreateManyInput>;
+  user: UserCreateOneWithoutFollowersInput;
+}
+
+export interface GameweekUpdateWithWhereUniqueWithoutSeasonInput {
+  where: GameweekWhereUniqueInput;
+  data: GameweekUpdateWithoutSeasonDataInput;
+}
+
+export interface UserAssignedRoleUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredInput>;
+  userRole?: Maybe<UserRoleUpdateOneRequiredInput>;
+}
+
+export interface GameweekUpdateWithoutSeasonDataInput {
+  averageEntryScore?: Maybe<Int>;
+  dataChecked?: Maybe<Boolean>;
+  deadlineTime?: Maybe<DateTimeInput>;
+  deadlineTimeEpoch?: Maybe<Int>;
+  deadlineTimeGameOffset?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  highestScore?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  fplEventId?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  name?: Maybe<String>;
+  fixtures?: Maybe<FixtureUpdateManyWithoutEventInput>;
+}
+
+export interface UserUpdateManyMutationInput {
+  email?: Maybe<String>;
+  name?: Maybe<String>;
+  countryCode?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  displayName?: Maybe<String>;
+  isPrivate?: Maybe<Boolean>;
+  password?: Maybe<String>;
+  emailValidationToken?: Maybe<String>;
+  emailValidationTokenExpiry?: Maybe<Float>;
+  emailValidated?: Maybe<Boolean>;
+  emailValidationDate?: Maybe<DateTimeInput>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+}
+
+export interface FixtureUpdateManyWithoutEventInput {
+  create?: Maybe<
+    FixtureCreateWithoutEventInput[] | FixtureCreateWithoutEventInput
+  >;
+  delete?: Maybe<FixtureWhereUniqueInput[] | FixtureWhereUniqueInput>;
+  connect?: Maybe<FixtureWhereUniqueInput[] | FixtureWhereUniqueInput>;
+  set?: Maybe<FixtureWhereUniqueInput[] | FixtureWhereUniqueInput>;
+  disconnect?: Maybe<FixtureWhereUniqueInput[] | FixtureWhereUniqueInput>;
+  update?: Maybe<
+    | FixtureUpdateWithWhereUniqueWithoutEventInput[]
+    | FixtureUpdateWithWhereUniqueWithoutEventInput
+  >;
+  upsert?: Maybe<
+    | FixtureUpsertWithWhereUniqueWithoutEventInput[]
+    | FixtureUpsertWithWhereUniqueWithoutEventInput
+  >;
+  deleteMany?: Maybe<FixtureScalarWhereInput[] | FixtureScalarWhereInput>;
+  updateMany?: Maybe<
+    | FixtureUpdateManyWithWhereNestedInput[]
+    | FixtureUpdateManyWithWhereNestedInput
+  >;
+}
+
+export type StatusWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface FixtureUpdateWithWhereUniqueWithoutEventInput {
+  where: FixtureWhereUniqueInput;
+  data: FixtureUpdateWithoutEventDataInput;
+}
+
+export interface TeamUpdateInput {
+  code?: Maybe<Int>;
+  season?: Maybe<SeasonUpdateOneRequiredInput>;
+  fplTeamId?: Maybe<Int>;
+  name?: Maybe<String>;
+  shortName?: Maybe<String>;
+  strength?: Maybe<Int>;
+  strengthAttackAway?: Maybe<Int>;
+  strengthAttackHome?: Maybe<Int>;
+  strengthDefenceAway?: Maybe<Int>;
+  strengthDefenceHome?: Maybe<Int>;
+  strengthOverallAway?: Maybe<Int>;
+  strengthOverallHome?: Maybe<Int>;
+  teamDivision?: Maybe<Int>;
+  homeFixtures?: Maybe<HomeTeamFixtureUpdateManyWithoutHomeTeamInput>;
+  awayFixtures?: Maybe<AwayTeamFixtureUpdateManyWithoutAwayTeamInput>;
+}
+
+export interface FixtureUpdateWithoutEventDataInput {
+  fplCode?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  finishedProvisional?: Maybe<Boolean>;
+  fixtureId?: Maybe<Int>;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes?: Maybe<Int>;
+  provisionalStartTime?: Maybe<Boolean>;
+  started?: Maybe<Boolean>;
+  teamA?: Maybe<AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
+  teamADifficulty?: Maybe<Int>;
+  teamAScore?: Maybe<Int>;
+  teamH?: Maybe<HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
+  teamHDifficulty?: Maybe<Int>;
+  teamHScore?: Maybe<Int>;
+}
+
+export interface UserStatusUpsertWithoutStatusInput {
+  update: UserStatusUpdateWithoutStatusDataInput;
+  create: UserStatusCreateWithoutStatusInput;
+}
+
+export interface AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput {
+  create?: Maybe<AwayTeamFixtureCreateWithoutFixtureInput>;
+  update?: Maybe<AwayTeamFixtureUpdateWithoutFixtureDataInput>;
+  upsert?: Maybe<AwayTeamFixtureUpsertWithoutFixtureInput>;
+  connect?: Maybe<AwayTeamFixtureWhereUniqueInput>;
+}
+
+export interface UserStatusUpdateWithoutStatusDataInput {
+  currentStatus?: Maybe<Boolean>;
+}
+
+export interface AwayTeamFixtureUpdateWithoutFixtureDataInput {
+  awayTeam?: Maybe<TeamUpdateOneRequiredWithoutAwayFixturesInput>;
+}
+
+export interface StatusUpdateInput {
+  author?: Maybe<UserStatusUpdateOneWithoutStatusInput>;
+  content?: Maybe<String>;
+  likes?: Maybe<UserUpdateManyInput>;
+}
+
+export interface TeamUpdateOneRequiredWithoutAwayFixturesInput {
+  create?: Maybe<TeamCreateWithoutAwayFixturesInput>;
+  update?: Maybe<TeamUpdateWithoutAwayFixturesDataInput>;
+  upsert?: Maybe<TeamUpsertWithoutAwayFixturesInput>;
+  connect?: Maybe<TeamWhereUniqueInput>;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  displayName?: Maybe<String>;
+}>;
+
+export interface TeamUpdateWithoutAwayFixturesDataInput {
+  code?: Maybe<Int>;
+  season?: Maybe<SeasonUpdateOneRequiredInput>;
+  fplTeamId?: Maybe<Int>;
+  name?: Maybe<String>;
+  shortName?: Maybe<String>;
+  strength?: Maybe<Int>;
+  strengthAttackAway?: Maybe<Int>;
+  strengthAttackHome?: Maybe<Int>;
+  strengthDefenceAway?: Maybe<Int>;
+  strengthDefenceHome?: Maybe<Int>;
+  strengthOverallAway?: Maybe<Int>;
+  strengthOverallHome?: Maybe<Int>;
+  teamDivision?: Maybe<Int>;
+  homeFixtures?: Maybe<HomeTeamFixtureUpdateManyWithoutHomeTeamInput>;
+}
+
+export interface StatusCreateInput {
+  id?: Maybe<ID_Input>;
+  author?: Maybe<UserStatusCreateOneWithoutStatusInput>;
+  content: String;
+  likes?: Maybe<UserCreateManyInput>;
+}
+
+export interface HomeTeamFixtureUpdateManyWithoutHomeTeamInput {
+  create?: Maybe<
+    | HomeTeamFixtureCreateWithoutHomeTeamInput[]
+    | HomeTeamFixtureCreateWithoutHomeTeamInput
+  >;
+  delete?: Maybe<
+    HomeTeamFixtureWhereUniqueInput[] | HomeTeamFixtureWhereUniqueInput
+  >;
+  connect?: Maybe<
+    HomeTeamFixtureWhereUniqueInput[] | HomeTeamFixtureWhereUniqueInput
+  >;
+  set?: Maybe<
+    HomeTeamFixtureWhereUniqueInput[] | HomeTeamFixtureWhereUniqueInput
+  >;
+  disconnect?: Maybe<
+    HomeTeamFixtureWhereUniqueInput[] | HomeTeamFixtureWhereUniqueInput
+  >;
+  update?: Maybe<
+    | HomeTeamFixtureUpdateWithWhereUniqueWithoutHomeTeamInput[]
+    | HomeTeamFixtureUpdateWithWhereUniqueWithoutHomeTeamInput
+  >;
+  upsert?: Maybe<
+    | HomeTeamFixtureUpsertWithWhereUniqueWithoutHomeTeamInput[]
+    | HomeTeamFixtureUpsertWithWhereUniqueWithoutHomeTeamInput
+  >;
+  deleteMany?: Maybe<
+    HomeTeamFixtureScalarWhereInput[] | HomeTeamFixtureScalarWhereInput
+  >;
+}
+
+export type UserAssignedRoleWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface HomeTeamFixtureUpdateWithWhereUniqueWithoutHomeTeamInput {
+  where: HomeTeamFixtureWhereUniqueInput;
+  data: HomeTeamFixtureUpdateWithoutHomeTeamDataInput;
+}
+
+export interface UserAssignedRoleWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  user?: Maybe<UserWhereInput>;
+  userRole?: Maybe<UserRoleWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<UserAssignedRoleWhereInput[] | UserAssignedRoleWhereInput>;
+  OR?: Maybe<UserAssignedRoleWhereInput[] | UserAssignedRoleWhereInput>;
+  NOT?: Maybe<UserAssignedRoleWhereInput[] | UserAssignedRoleWhereInput>;
+}
+
+export interface HomeTeamFixtureUpdateWithoutHomeTeamDataInput {
+  fixture?: Maybe<FixtureUpdateOneRequiredWithoutTeamHInput>;
+}
+
+export interface PhotoUpdateInput {
+  image?: Maybe<String>;
+  largeImage?: Maybe<String>;
+  smallImage?: Maybe<String>;
+}
+
+export interface FixtureUpdateOneRequiredWithoutTeamHInput {
+  create?: Maybe<FixtureCreateWithoutTeamHInput>;
+  update?: Maybe<FixtureUpdateWithoutTeamHDataInput>;
+  upsert?: Maybe<FixtureUpsertWithoutTeamHInput>;
+  connect?: Maybe<FixtureWhereUniqueInput>;
+}
+
+export interface HomeTeamFixtureUpdateInput {
+  fixture?: Maybe<FixtureUpdateOneRequiredWithoutTeamHInput>;
+  homeTeam?: Maybe<TeamUpdateOneRequiredWithoutHomeFixturesInput>;
+}
+
+export interface UserRoleUpdateOneRequiredInput {
+  create?: Maybe<UserRoleCreateInput>;
+  update?: Maybe<UserRoleUpdateDataInput>;
+  upsert?: Maybe<UserRoleUpsertNestedInput>;
+  connect?: Maybe<UserRoleWhereUniqueInput>;
+}
+
+export interface HomeTeamFixtureCreateInput {
+  id?: Maybe<ID_Input>;
+  fixture: FixtureCreateOneWithoutTeamHInput;
+  homeTeam: TeamCreateOneWithoutHomeFixturesInput;
+}
+
+export interface GameweekUpdateOneRequiredWithoutFixturesInput {
+  create?: Maybe<GameweekCreateWithoutFixturesInput>;
+  update?: Maybe<GameweekUpdateWithoutFixturesDataInput>;
+  upsert?: Maybe<GameweekUpsertWithoutFixturesInput>;
+  connect?: Maybe<GameweekWhereUniqueInput>;
+}
+
+export interface GameweekUpdateInput {
+  season?: Maybe<SeasonUpdateOneRequiredWithoutEventsInput>;
+  averageEntryScore?: Maybe<Int>;
+  dataChecked?: Maybe<Boolean>;
+  deadlineTime?: Maybe<DateTimeInput>;
+  deadlineTimeEpoch?: Maybe<Int>;
+  deadlineTimeGameOffset?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  highestScore?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  fplEventId?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  name?: Maybe<String>;
+  fixtures?: Maybe<FixtureUpdateManyWithoutEventInput>;
+}
+
+export interface GameweekUpdateWithoutFixturesDataInput {
+  season?: Maybe<SeasonUpdateOneRequiredWithoutEventsInput>;
+  averageEntryScore?: Maybe<Int>;
+  dataChecked?: Maybe<Boolean>;
+  deadlineTime?: Maybe<DateTimeInput>;
+  deadlineTimeEpoch?: Maybe<Int>;
+  deadlineTimeGameOffset?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  highestScore?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  fplEventId?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  name?: Maybe<String>;
+}
+
+export type UserInfluencersWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SeasonUpdateOneRequiredWithoutEventsInput {
+  create?: Maybe<SeasonCreateWithoutEventsInput>;
+  update?: Maybe<SeasonUpdateWithoutEventsDataInput>;
+  upsert?: Maybe<SeasonUpsertWithoutEventsInput>;
+  connect?: Maybe<SeasonWhereUniqueInput>;
+}
+
+export interface FollowerUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredInput>;
+  blocked?: Maybe<Boolean>;
+  accepted?: Maybe<Boolean>;
+}
+
+export interface SeasonUpdateWithoutEventsDataInput {
+  fplId?: Maybe<Int>;
+  label?: Maybe<String>;
+  competition?: Maybe<String>;
+  startYear?: Maybe<Int>;
+  endYear?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+}
+
+export interface FixtureUpdateInput {
+  fplCode?: Maybe<Int>;
+  event?: Maybe<GameweekUpdateOneRequiredWithoutFixturesInput>;
+  finished?: Maybe<Boolean>;
+  finishedProvisional?: Maybe<Boolean>;
+  fixtureId?: Maybe<Int>;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes?: Maybe<Int>;
+  provisionalStartTime?: Maybe<Boolean>;
+  started?: Maybe<Boolean>;
+  teamA?: Maybe<AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
+  teamADifficulty?: Maybe<Int>;
+  teamAScore?: Maybe<Int>;
+  teamH?: Maybe<HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
+  teamHDifficulty?: Maybe<Int>;
+  teamHScore?: Maybe<Int>;
+}
+
+export interface SeasonUpsertWithoutEventsInput {
+  update: SeasonUpdateWithoutEventsDataInput;
+  create: SeasonCreateWithoutEventsInput;
+}
+
+export interface FixtureCreateInput {
+  id?: Maybe<ID_Input>;
+  fplCode: Int;
+  event: GameweekCreateOneWithoutFixturesInput;
+  finished: Boolean;
+  finishedProvisional: Boolean;
+  fixtureId: Int;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes: Int;
+  provisionalStartTime: Boolean;
+  started: Boolean;
+  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput;
+  teamADifficulty: Int;
+  teamAScore?: Maybe<Int>;
+  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput;
+  teamHDifficulty: Int;
+  teamHScore?: Maybe<Int>;
+}
+
+export interface GameweekUpsertWithoutFixturesInput {
+  update: GameweekUpdateWithoutFixturesDataInput;
+  create: GameweekCreateWithoutFixturesInput;
+}
+
+export interface FandemSubscriptionUpdateInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface FixtureUpsertWithoutTeamHInput {
+  update: FixtureUpdateWithoutTeamHDataInput;
+  create: FixtureCreateWithoutTeamHInput;
+}
+
+export interface CountryUpdateManyMutationInput {
+  iso?: Maybe<String>;
+  name?: Maybe<String>;
+  code?: Maybe<String>;
+}
+
+export interface HomeTeamFixtureUpsertWithWhereUniqueWithoutHomeTeamInput {
+  where: HomeTeamFixtureWhereUniqueInput;
+  update: HomeTeamFixtureUpdateWithoutHomeTeamDataInput;
+  create: HomeTeamFixtureCreateWithoutHomeTeamInput;
+}
+
+export interface AwayTeamFixtureUpdateInput {
+  fixture?: Maybe<FixtureUpdateOneRequiredWithoutTeamAInput>;
+  awayTeam?: Maybe<TeamUpdateOneRequiredWithoutAwayFixturesInput>;
+}
+
+export interface HomeTeamFixtureScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<
+    HomeTeamFixtureScalarWhereInput[] | HomeTeamFixtureScalarWhereInput
+  >;
+  OR?: Maybe<
+    HomeTeamFixtureScalarWhereInput[] | HomeTeamFixtureScalarWhereInput
+  >;
+  NOT?: Maybe<
+    HomeTeamFixtureScalarWhereInput[] | HomeTeamFixtureScalarWhereInput
+  >;
+}
+
+export interface AwayTeamFixtureCreateInput {
+  id?: Maybe<ID_Input>;
+  fixture: FixtureCreateOneWithoutTeamAInput;
+  awayTeam: TeamCreateOneWithoutAwayFixturesInput;
+}
+
+export interface TeamUpsertWithoutAwayFixturesInput {
+  update: TeamUpdateWithoutAwayFixturesDataInput;
+  create: TeamCreateWithoutAwayFixturesInput;
+}
+
+export interface UserRoleUpsertNestedInput {
+  update: UserRoleUpdateDataInput;
+  create: UserRoleCreateInput;
+}
+
+export interface AwayTeamFixtureUpsertWithoutFixtureInput {
+  update: AwayTeamFixtureUpdateWithoutFixtureDataInput;
+  create: AwayTeamFixtureCreateWithoutFixtureInput;
+}
+
+export interface ActiveSubscriptionsCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneInput;
+  subscription: UserRoleCreateOneInput;
+  startDate: DateTimeInput;
+  endDate: DateTimeInput;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  name: String;
+  countryCode?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  favoriteTeam?: Maybe<TeamCreateOneInput>;
+  country?: Maybe<CountryCreateOneInput>;
+  displayName: String;
+  isPrivate?: Maybe<Boolean>;
+  password: String;
+  photos?: Maybe<UserPhotoCreateManyWithoutUserInput>;
+  emailValidationToken?: Maybe<String>;
+  emailValidationTokenExpiry?: Maybe<Float>;
+  emailValidated?: Maybe<Boolean>;
+  emailValidationDate?: Maybe<DateTimeInput>;
+  resetToken?: Maybe<String>;
+  resetTokenExpiry?: Maybe<Float>;
+  subscriptions?: Maybe<FandemSubscriptionCreateManyInput>;
+  userRoles?: Maybe<UserRoleCreateManyInput>;
+  status?: Maybe<UserStatusCreateManyInput>;
+  followers?: Maybe<UserFollowersCreateOneWithoutUserInput>;
+  influencers?: Maybe<UserInfluencersCreateOneWithoutUserInput>;
+}
+
+export interface HomeTeamFixtureUpdateWithoutFixtureDataInput {
+  homeTeam?: Maybe<TeamUpdateOneRequiredWithoutHomeFixturesInput>;
+}
+
+export interface TeamCreateInput {
+  id?: Maybe<ID_Input>;
+  code: Int;
   season: SeasonCreateOneInput;
+  fplTeamId: Int;
+  name: String;
+  shortName: String;
+  strength: Int;
+  strengthAttackAway: Int;
+  strengthAttackHome: Int;
+  strengthDefenceAway: Int;
+  strengthDefenceHome: Int;
+  strengthOverallAway: Int;
+  strengthOverallHome: Int;
+  teamDivision?: Maybe<Int>;
+  homeFixtures?: Maybe<HomeTeamFixtureCreateManyWithoutHomeTeamInput>;
+  awayFixtures?: Maybe<AwayTeamFixtureCreateManyWithoutAwayTeamInput>;
+}
+
+export interface TeamUpdateOneRequiredWithoutHomeFixturesInput {
+  create?: Maybe<TeamCreateWithoutHomeFixturesInput>;
+  update?: Maybe<TeamUpdateWithoutHomeFixturesDataInput>;
+  upsert?: Maybe<TeamUpsertWithoutHomeFixturesInput>;
+  connect?: Maybe<TeamWhereUniqueInput>;
+}
+
+export interface SeasonCreateInput {
+  id?: Maybe<ID_Input>;
+  fplId: Int;
+  label: String;
+  competition: String;
+  startYear: Int;
+  endYear: Int;
+  isCurrent: Boolean;
+  isPrevious: Boolean;
+  isNext: Boolean;
+  events?: Maybe<GameweekCreateManyWithoutSeasonInput>;
+}
+
+export interface TeamUpdateWithoutHomeFixturesDataInput {
+  code?: Maybe<Int>;
+  season?: Maybe<SeasonUpdateOneRequiredInput>;
+  fplTeamId?: Maybe<Int>;
+  name?: Maybe<String>;
+  shortName?: Maybe<String>;
+  strength?: Maybe<Int>;
+  strengthAttackAway?: Maybe<Int>;
+  strengthAttackHome?: Maybe<Int>;
+  strengthDefenceAway?: Maybe<Int>;
+  strengthDefenceHome?: Maybe<Int>;
+  strengthOverallAway?: Maybe<Int>;
+  strengthOverallHome?: Maybe<Int>;
+  teamDivision?: Maybe<Int>;
+  awayFixtures?: Maybe<AwayTeamFixtureUpdateManyWithoutAwayTeamInput>;
+}
+
+export interface GameweekCreateWithoutSeasonInput {
+  id?: Maybe<ID_Input>;
   averageEntryScore?: Maybe<Int>;
   dataChecked: Boolean;
   deadlineTime: DateTimeInput;
@@ -3556,11 +3154,60 @@ export interface GameweekCreateInput {
   isNext: Boolean;
   isPrevious: Boolean;
   name: String;
+  fixtures?: Maybe<FixtureCreateManyWithoutEventInput>;
 }
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
+export interface AwayTeamFixtureUpdateManyWithoutAwayTeamInput {
+  create?: Maybe<
+    | AwayTeamFixtureCreateWithoutAwayTeamInput[]
+    | AwayTeamFixtureCreateWithoutAwayTeamInput
+  >;
+  delete?: Maybe<
+    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
+  >;
+  connect?: Maybe<
+    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
+  >;
+  set?: Maybe<
+    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
+  >;
+  disconnect?: Maybe<
+    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
+  >;
+  update?: Maybe<
+    | AwayTeamFixtureUpdateWithWhereUniqueWithoutAwayTeamInput[]
+    | AwayTeamFixtureUpdateWithWhereUniqueWithoutAwayTeamInput
+  >;
+  upsert?: Maybe<
+    | AwayTeamFixtureUpsertWithWhereUniqueWithoutAwayTeamInput[]
+    | AwayTeamFixtureUpsertWithWhereUniqueWithoutAwayTeamInput
+  >;
+  deleteMany?: Maybe<
+    AwayTeamFixtureScalarWhereInput[] | AwayTeamFixtureScalarWhereInput
+  >;
+}
+
+export interface FixtureCreateWithoutEventInput {
+  id?: Maybe<ID_Input>;
+  fplCode: Int;
+  finished: Boolean;
+  finishedProvisional: Boolean;
+  fixtureId: Int;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes: Int;
+  provisionalStartTime: Boolean;
+  started: Boolean;
+  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput;
+  teamADifficulty: Int;
+  teamAScore?: Maybe<Int>;
+  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput;
+  teamHDifficulty: Int;
+  teamHScore?: Maybe<Int>;
+}
+
+export interface AwayTeamFixtureUpdateWithWhereUniqueWithoutAwayTeamInput {
+  where: AwayTeamFixtureWhereUniqueInput;
+  data: AwayTeamFixtureUpdateWithoutAwayTeamDataInput;
 }
 
 export interface AwayTeamFixtureCreateWithoutFixtureInput {
@@ -3568,9 +3215,8 @@ export interface AwayTeamFixtureCreateWithoutFixtureInput {
   awayTeam: TeamCreateOneWithoutAwayFixturesInput;
 }
 
-export interface UserInfluencersUpsertWithoutUserInput {
-  update: UserInfluencersUpdateWithoutUserDataInput;
-  create: UserInfluencersCreateWithoutUserInput;
+export interface AwayTeamFixtureUpdateWithoutAwayTeamDataInput {
+  fixture?: Maybe<FixtureUpdateOneRequiredWithoutTeamAInput>;
 }
 
 export interface TeamCreateWithoutAwayFixturesInput {
@@ -3591,14 +3237,51 @@ export interface TeamCreateWithoutAwayFixturesInput {
   homeFixtures?: Maybe<HomeTeamFixtureCreateManyWithoutHomeTeamInput>;
 }
 
-export interface HomeTeamFixtureUpsertWithoutFixtureInput {
-  update: HomeTeamFixtureUpdateWithoutFixtureDataInput;
-  create: HomeTeamFixtureCreateWithoutFixtureInput;
+export interface FixtureUpdateOneRequiredWithoutTeamAInput {
+  create?: Maybe<FixtureCreateWithoutTeamAInput>;
+  update?: Maybe<FixtureUpdateWithoutTeamADataInput>;
+  upsert?: Maybe<FixtureUpsertWithoutTeamAInput>;
+  connect?: Maybe<FixtureWhereUniqueInput>;
 }
 
-export interface AwayTeamFixtureCreateWithoutAwayTeamInput {
+export interface HomeTeamFixtureCreateWithoutHomeTeamInput {
   id?: Maybe<ID_Input>;
-  fixture: FixtureCreateOneWithoutTeamAInput;
+  fixture: FixtureCreateOneWithoutTeamHInput;
+}
+
+export interface FixtureUpdateWithoutTeamADataInput {
+  fplCode?: Maybe<Int>;
+  event?: Maybe<GameweekUpdateOneRequiredWithoutFixturesInput>;
+  finished?: Maybe<Boolean>;
+  finishedProvisional?: Maybe<Boolean>;
+  fixtureId?: Maybe<Int>;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes?: Maybe<Int>;
+  provisionalStartTime?: Maybe<Boolean>;
+  started?: Maybe<Boolean>;
+  teamADifficulty?: Maybe<Int>;
+  teamAScore?: Maybe<Int>;
+  teamH?: Maybe<HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput>;
+  teamHDifficulty?: Maybe<Int>;
+  teamHScore?: Maybe<Int>;
+}
+
+export interface FixtureCreateWithoutTeamHInput {
+  id?: Maybe<ID_Input>;
+  fplCode: Int;
+  event: GameweekCreateOneWithoutFixturesInput;
+  finished: Boolean;
+  finishedProvisional: Boolean;
+  fixtureId: Int;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes: Int;
+  provisionalStartTime: Boolean;
+  started: Boolean;
+  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput;
+  teamADifficulty: Int;
+  teamAScore?: Maybe<Int>;
+  teamHDifficulty: Int;
+  teamHScore?: Maybe<Int>;
 }
 
 export interface FixtureUpsertWithoutTeamAInput {
@@ -3606,21 +3289,22 @@ export interface FixtureUpsertWithoutTeamAInput {
   create: FixtureCreateWithoutTeamAInput;
 }
 
-export interface UserPhotoSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserPhotoWhereInput>;
-  AND?: Maybe<
-    UserPhotoSubscriptionWhereInput[] | UserPhotoSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    UserPhotoSubscriptionWhereInput[] | UserPhotoSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    UserPhotoSubscriptionWhereInput[] | UserPhotoSubscriptionWhereInput
-  >;
+export interface GameweekCreateWithoutFixturesInput {
+  id?: Maybe<ID_Input>;
+  season: SeasonCreateOneWithoutEventsInput;
+  averageEntryScore?: Maybe<Int>;
+  dataChecked: Boolean;
+  deadlineTime: DateTimeInput;
+  deadlineTimeEpoch: Int;
+  deadlineTimeGameOffset: Int;
+  finished: Boolean;
+  highestScore?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  fplEventId: Int;
+  isCurrent: Boolean;
+  isNext: Boolean;
+  isPrevious: Boolean;
+  name: String;
 }
 
 export interface AwayTeamFixtureUpsertWithWhereUniqueWithoutAwayTeamInput {
@@ -3629,15 +3313,16 @@ export interface AwayTeamFixtureUpsertWithWhereUniqueWithoutAwayTeamInput {
   create: AwayTeamFixtureCreateWithoutAwayTeamInput;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+export interface SeasonCreateWithoutEventsInput {
+  id?: Maybe<ID_Input>;
+  fplId: Int;
+  label: String;
+  competition: String;
+  startYear: Int;
+  endYear: Int;
+  isCurrent: Boolean;
+  isPrevious: Boolean;
+  isNext: Boolean;
 }
 
 export interface AwayTeamFixtureScalarWhereInput {
@@ -3682,23 +3367,7 @@ export interface AwayTeamFixtureScalarWhereInput {
   >;
 }
 
-export interface SeasonSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SeasonWhereInput>;
-  AND?: Maybe<SeasonSubscriptionWhereInput[] | SeasonSubscriptionWhereInput>;
-  OR?: Maybe<SeasonSubscriptionWhereInput[] | SeasonSubscriptionWhereInput>;
-  NOT?: Maybe<SeasonSubscriptionWhereInput[] | SeasonSubscriptionWhereInput>;
-}
-
-export interface TeamUpsertNestedInput {
-  update: TeamUpdateDataInput;
-  create: TeamCreateInput;
-}
-
-export interface ActiveSubscriptionsWhereInput {
+export interface UserPhotoWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -3714,23 +3383,9 @@ export interface ActiveSubscriptionsWhereInput {
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
   user?: Maybe<UserWhereInput>;
-  subscription?: Maybe<UserRoleWhereInput>;
-  startDate?: Maybe<DateTimeInput>;
-  startDate_not?: Maybe<DateTimeInput>;
-  startDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  startDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  startDate_lt?: Maybe<DateTimeInput>;
-  startDate_lte?: Maybe<DateTimeInput>;
-  startDate_gt?: Maybe<DateTimeInput>;
-  startDate_gte?: Maybe<DateTimeInput>;
-  endDate?: Maybe<DateTimeInput>;
-  endDate_not?: Maybe<DateTimeInput>;
-  endDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  endDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  endDate_lt?: Maybe<DateTimeInput>;
-  endDate_lte?: Maybe<DateTimeInput>;
-  endDate_gt?: Maybe<DateTimeInput>;
-  endDate_gte?: Maybe<DateTimeInput>;
+  photo?: Maybe<PhotoWhereInput>;
+  isProfile?: Maybe<Boolean>;
+  isProfile_not?: Maybe<Boolean>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -3747,108 +3402,407 @@ export interface ActiveSubscriptionsWhereInput {
   updatedAt_lte?: Maybe<DateTimeInput>;
   updatedAt_gt?: Maybe<DateTimeInput>;
   updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<ActiveSubscriptionsWhereInput[] | ActiveSubscriptionsWhereInput>;
-  OR?: Maybe<ActiveSubscriptionsWhereInput[] | ActiveSubscriptionsWhereInput>;
-  NOT?: Maybe<ActiveSubscriptionsWhereInput[] | ActiveSubscriptionsWhereInput>;
+  AND?: Maybe<UserPhotoWhereInput[] | UserPhotoWhereInput>;
+  OR?: Maybe<UserPhotoWhereInput[] | UserPhotoWhereInput>;
+  NOT?: Maybe<UserPhotoWhereInput[] | UserPhotoWhereInput>;
 }
 
-export interface CountryUpdateOneInput {
-  create?: Maybe<CountryCreateInput>;
-  update?: Maybe<CountryUpdateDataInput>;
-  upsert?: Maybe<CountryUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<CountryWhereUniqueInput>;
+export interface TeamUpsertWithoutHomeFixturesInput {
+  update: TeamUpdateWithoutHomeFixturesDataInput;
+  create: TeamCreateWithoutHomeFixturesInput;
 }
 
-export interface FollowerSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<FollowerWhereInput>;
-  AND?: Maybe<
-    FollowerSubscriptionWhereInput[] | FollowerSubscriptionWhereInput
-  >;
-  OR?: Maybe<FollowerSubscriptionWhereInput[] | FollowerSubscriptionWhereInput>;
-  NOT?: Maybe<
-    FollowerSubscriptionWhereInput[] | FollowerSubscriptionWhereInput
-  >;
-}
-
-export interface CountryUpdateDataInput {
-  iso?: Maybe<String>;
+export interface FandemSubscriptionWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
   name?: Maybe<String>;
-  code?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<FandemSubscriptionWhereInput[] | FandemSubscriptionWhereInput>;
+  OR?: Maybe<FandemSubscriptionWhereInput[] | FandemSubscriptionWhereInput>;
+  NOT?: Maybe<FandemSubscriptionWhereInput[] | FandemSubscriptionWhereInput>;
 }
 
-export interface CountrySubscriptionWhereInput {
+export interface HomeTeamFixtureUpsertWithoutFixtureInput {
+  update: HomeTeamFixtureUpdateWithoutFixtureDataInput;
+  create: HomeTeamFixtureCreateWithoutFixtureInput;
+}
+
+export interface UserFollowersWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  followers_every?: Maybe<FollowerWhereInput>;
+  followers_some?: Maybe<FollowerWhereInput>;
+  followers_none?: Maybe<FollowerWhereInput>;
+  user?: Maybe<UserWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<UserFollowersWhereInput[] | UserFollowersWhereInput>;
+  OR?: Maybe<UserFollowersWhereInput[] | UserFollowersWhereInput>;
+  NOT?: Maybe<UserFollowersWhereInput[] | UserFollowersWhereInput>;
+}
+
+export interface FixtureUpsertWithWhereUniqueWithoutEventInput {
+  where: FixtureWhereUniqueInput;
+  update: FixtureUpdateWithoutEventDataInput;
+  create: FixtureCreateWithoutEventInput;
+}
+
+export interface PhotoWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  image?: Maybe<String>;
+  image_not?: Maybe<String>;
+  image_in?: Maybe<String[] | String>;
+  image_not_in?: Maybe<String[] | String>;
+  image_lt?: Maybe<String>;
+  image_lte?: Maybe<String>;
+  image_gt?: Maybe<String>;
+  image_gte?: Maybe<String>;
+  image_contains?: Maybe<String>;
+  image_not_contains?: Maybe<String>;
+  image_starts_with?: Maybe<String>;
+  image_not_starts_with?: Maybe<String>;
+  image_ends_with?: Maybe<String>;
+  image_not_ends_with?: Maybe<String>;
+  largeImage?: Maybe<String>;
+  largeImage_not?: Maybe<String>;
+  largeImage_in?: Maybe<String[] | String>;
+  largeImage_not_in?: Maybe<String[] | String>;
+  largeImage_lt?: Maybe<String>;
+  largeImage_lte?: Maybe<String>;
+  largeImage_gt?: Maybe<String>;
+  largeImage_gte?: Maybe<String>;
+  largeImage_contains?: Maybe<String>;
+  largeImage_not_contains?: Maybe<String>;
+  largeImage_starts_with?: Maybe<String>;
+  largeImage_not_starts_with?: Maybe<String>;
+  largeImage_ends_with?: Maybe<String>;
+  largeImage_not_ends_with?: Maybe<String>;
+  smallImage?: Maybe<String>;
+  smallImage_not?: Maybe<String>;
+  smallImage_in?: Maybe<String[] | String>;
+  smallImage_not_in?: Maybe<String[] | String>;
+  smallImage_lt?: Maybe<String>;
+  smallImage_lte?: Maybe<String>;
+  smallImage_gt?: Maybe<String>;
+  smallImage_gte?: Maybe<String>;
+  smallImage_contains?: Maybe<String>;
+  smallImage_not_contains?: Maybe<String>;
+  smallImage_starts_with?: Maybe<String>;
+  smallImage_not_starts_with?: Maybe<String>;
+  smallImage_ends_with?: Maybe<String>;
+  smallImage_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<PhotoWhereInput[] | PhotoWhereInput>;
+  OR?: Maybe<PhotoWhereInput[] | PhotoWhereInput>;
+  NOT?: Maybe<PhotoWhereInput[] | PhotoWhereInput>;
+}
+
+export interface FixtureScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  fplCode?: Maybe<Int>;
+  fplCode_not?: Maybe<Int>;
+  fplCode_in?: Maybe<Int[] | Int>;
+  fplCode_not_in?: Maybe<Int[] | Int>;
+  fplCode_lt?: Maybe<Int>;
+  fplCode_lte?: Maybe<Int>;
+  fplCode_gt?: Maybe<Int>;
+  fplCode_gte?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  finished_not?: Maybe<Boolean>;
+  finishedProvisional?: Maybe<Boolean>;
+  finishedProvisional_not?: Maybe<Boolean>;
+  fixtureId?: Maybe<Int>;
+  fixtureId_not?: Maybe<Int>;
+  fixtureId_in?: Maybe<Int[] | Int>;
+  fixtureId_not_in?: Maybe<Int[] | Int>;
+  fixtureId_lt?: Maybe<Int>;
+  fixtureId_lte?: Maybe<Int>;
+  fixtureId_gt?: Maybe<Int>;
+  fixtureId_gte?: Maybe<Int>;
+  kickoffTime?: Maybe<DateTimeInput>;
+  kickoffTime_not?: Maybe<DateTimeInput>;
+  kickoffTime_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  kickoffTime_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  kickoffTime_lt?: Maybe<DateTimeInput>;
+  kickoffTime_lte?: Maybe<DateTimeInput>;
+  kickoffTime_gt?: Maybe<DateTimeInput>;
+  kickoffTime_gte?: Maybe<DateTimeInput>;
+  minutes?: Maybe<Int>;
+  minutes_not?: Maybe<Int>;
+  minutes_in?: Maybe<Int[] | Int>;
+  minutes_not_in?: Maybe<Int[] | Int>;
+  minutes_lt?: Maybe<Int>;
+  minutes_lte?: Maybe<Int>;
+  minutes_gt?: Maybe<Int>;
+  minutes_gte?: Maybe<Int>;
+  provisionalStartTime?: Maybe<Boolean>;
+  provisionalStartTime_not?: Maybe<Boolean>;
+  started?: Maybe<Boolean>;
+  started_not?: Maybe<Boolean>;
+  teamADifficulty?: Maybe<Int>;
+  teamADifficulty_not?: Maybe<Int>;
+  teamADifficulty_in?: Maybe<Int[] | Int>;
+  teamADifficulty_not_in?: Maybe<Int[] | Int>;
+  teamADifficulty_lt?: Maybe<Int>;
+  teamADifficulty_lte?: Maybe<Int>;
+  teamADifficulty_gt?: Maybe<Int>;
+  teamADifficulty_gte?: Maybe<Int>;
+  teamAScore?: Maybe<Int>;
+  teamAScore_not?: Maybe<Int>;
+  teamAScore_in?: Maybe<Int[] | Int>;
+  teamAScore_not_in?: Maybe<Int[] | Int>;
+  teamAScore_lt?: Maybe<Int>;
+  teamAScore_lte?: Maybe<Int>;
+  teamAScore_gt?: Maybe<Int>;
+  teamAScore_gte?: Maybe<Int>;
+  teamHDifficulty?: Maybe<Int>;
+  teamHDifficulty_not?: Maybe<Int>;
+  teamHDifficulty_in?: Maybe<Int[] | Int>;
+  teamHDifficulty_not_in?: Maybe<Int[] | Int>;
+  teamHDifficulty_lt?: Maybe<Int>;
+  teamHDifficulty_lte?: Maybe<Int>;
+  teamHDifficulty_gt?: Maybe<Int>;
+  teamHDifficulty_gte?: Maybe<Int>;
+  teamHScore?: Maybe<Int>;
+  teamHScore_not?: Maybe<Int>;
+  teamHScore_in?: Maybe<Int[] | Int>;
+  teamHScore_not_in?: Maybe<Int[] | Int>;
+  teamHScore_lt?: Maybe<Int>;
+  teamHScore_lte?: Maybe<Int>;
+  teamHScore_gt?: Maybe<Int>;
+  teamHScore_gte?: Maybe<Int>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<FixtureScalarWhereInput[] | FixtureScalarWhereInput>;
+  OR?: Maybe<FixtureScalarWhereInput[] | FixtureScalarWhereInput>;
+  NOT?: Maybe<FixtureScalarWhereInput[] | FixtureScalarWhereInput>;
+}
+
+export interface UserFollowersSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<CountryWhereInput>;
-  AND?: Maybe<CountrySubscriptionWhereInput[] | CountrySubscriptionWhereInput>;
-  OR?: Maybe<CountrySubscriptionWhereInput[] | CountrySubscriptionWhereInput>;
-  NOT?: Maybe<CountrySubscriptionWhereInput[] | CountrySubscriptionWhereInput>;
-}
-
-export interface CountryUpsertNestedInput {
-  update: CountryUpdateDataInput;
-  create: CountryCreateInput;
-}
-
-export interface ActiveSubscriptionsSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ActiveSubscriptionsWhereInput>;
+  node?: Maybe<UserFollowersWhereInput>;
   AND?: Maybe<
-    | ActiveSubscriptionsSubscriptionWhereInput[]
-    | ActiveSubscriptionsSubscriptionWhereInput
+    UserFollowersSubscriptionWhereInput[] | UserFollowersSubscriptionWhereInput
   >;
   OR?: Maybe<
-    | ActiveSubscriptionsSubscriptionWhereInput[]
-    | ActiveSubscriptionsSubscriptionWhereInput
+    UserFollowersSubscriptionWhereInput[] | UserFollowersSubscriptionWhereInput
   >;
   NOT?: Maybe<
-    | ActiveSubscriptionsSubscriptionWhereInput[]
-    | ActiveSubscriptionsSubscriptionWhereInput
+    UserFollowersSubscriptionWhereInput[] | UserFollowersSubscriptionWhereInput
   >;
 }
 
-export interface UserPhotoUpdateManyWithoutUserInput {
-  create?: Maybe<
-    UserPhotoCreateWithoutUserInput[] | UserPhotoCreateWithoutUserInput
-  >;
-  delete?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
-  connect?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
-  set?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
-  disconnect?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
-  update?: Maybe<
-    | UserPhotoUpdateWithWhereUniqueWithoutUserInput[]
-    | UserPhotoUpdateWithWhereUniqueWithoutUserInput
-  >;
-  upsert?: Maybe<
-    | UserPhotoUpsertWithWhereUniqueWithoutUserInput[]
-    | UserPhotoUpsertWithWhereUniqueWithoutUserInput
-  >;
-  deleteMany?: Maybe<UserPhotoScalarWhereInput[] | UserPhotoScalarWhereInput>;
-  updateMany?: Maybe<
-    | UserPhotoUpdateManyWithWhereNestedInput[]
-    | UserPhotoUpdateManyWithWhereNestedInput
-  >;
+export interface FixtureUpdateManyWithWhereNestedInput {
+  where: FixtureScalarWhereInput;
+  data: FixtureUpdateManyDataInput;
 }
 
-export interface UserRoleUpdateManyMutationInput {
-  name?: Maybe<String>;
-  description?: Maybe<String>;
+export interface HomeTeamFixtureWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  fixture?: Maybe<FixtureWhereInput>;
+  homeTeam?: Maybe<TeamWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<HomeTeamFixtureWhereInput[] | HomeTeamFixtureWhereInput>;
+  OR?: Maybe<HomeTeamFixtureWhereInput[] | HomeTeamFixtureWhereInput>;
+  NOT?: Maybe<HomeTeamFixtureWhereInput[] | HomeTeamFixtureWhereInput>;
 }
 
-export interface UserPhotoUpdateWithWhereUniqueWithoutUserInput {
-  where: UserPhotoWhereUniqueInput;
-  data: UserPhotoUpdateWithoutUserDataInput;
+export interface FixtureUpdateManyDataInput {
+  fplCode?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  finishedProvisional?: Maybe<Boolean>;
+  fixtureId?: Maybe<Int>;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes?: Maybe<Int>;
+  provisionalStartTime?: Maybe<Boolean>;
+  started?: Maybe<Boolean>;
+  teamADifficulty?: Maybe<Int>;
+  teamAScore?: Maybe<Int>;
+  teamHDifficulty?: Maybe<Int>;
+  teamHScore?: Maybe<Int>;
+}
+
+export interface PhotoSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<PhotoWhereInput>;
+  AND?: Maybe<PhotoSubscriptionWhereInput[] | PhotoSubscriptionWhereInput>;
+  OR?: Maybe<PhotoSubscriptionWhereInput[] | PhotoSubscriptionWhereInput>;
+  NOT?: Maybe<PhotoSubscriptionWhereInput[] | PhotoSubscriptionWhereInput>;
+}
+
+export interface GameweekUpsertWithWhereUniqueWithoutSeasonInput {
+  where: GameweekWhereUniqueInput;
+  update: GameweekUpdateWithoutSeasonDataInput;
+  create: GameweekCreateWithoutSeasonInput;
 }
 
 export interface FixtureWhereInput {
@@ -3962,31 +3916,201 @@ export interface FixtureWhereInput {
   NOT?: Maybe<FixtureWhereInput[] | FixtureWhereInput>;
 }
 
-export interface UserPhotoUpdateWithoutUserDataInput {
-  photo?: Maybe<PhotoUpdateOneRequiredInput>;
+export interface GameweekScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  averageEntryScore?: Maybe<Int>;
+  averageEntryScore_not?: Maybe<Int>;
+  averageEntryScore_in?: Maybe<Int[] | Int>;
+  averageEntryScore_not_in?: Maybe<Int[] | Int>;
+  averageEntryScore_lt?: Maybe<Int>;
+  averageEntryScore_lte?: Maybe<Int>;
+  averageEntryScore_gt?: Maybe<Int>;
+  averageEntryScore_gte?: Maybe<Int>;
+  dataChecked?: Maybe<Boolean>;
+  dataChecked_not?: Maybe<Boolean>;
+  deadlineTime?: Maybe<DateTimeInput>;
+  deadlineTime_not?: Maybe<DateTimeInput>;
+  deadlineTime_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  deadlineTime_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  deadlineTime_lt?: Maybe<DateTimeInput>;
+  deadlineTime_lte?: Maybe<DateTimeInput>;
+  deadlineTime_gt?: Maybe<DateTimeInput>;
+  deadlineTime_gte?: Maybe<DateTimeInput>;
+  deadlineTimeEpoch?: Maybe<Int>;
+  deadlineTimeEpoch_not?: Maybe<Int>;
+  deadlineTimeEpoch_in?: Maybe<Int[] | Int>;
+  deadlineTimeEpoch_not_in?: Maybe<Int[] | Int>;
+  deadlineTimeEpoch_lt?: Maybe<Int>;
+  deadlineTimeEpoch_lte?: Maybe<Int>;
+  deadlineTimeEpoch_gt?: Maybe<Int>;
+  deadlineTimeEpoch_gte?: Maybe<Int>;
+  deadlineTimeGameOffset?: Maybe<Int>;
+  deadlineTimeGameOffset_not?: Maybe<Int>;
+  deadlineTimeGameOffset_in?: Maybe<Int[] | Int>;
+  deadlineTimeGameOffset_not_in?: Maybe<Int[] | Int>;
+  deadlineTimeGameOffset_lt?: Maybe<Int>;
+  deadlineTimeGameOffset_lte?: Maybe<Int>;
+  deadlineTimeGameOffset_gt?: Maybe<Int>;
+  deadlineTimeGameOffset_gte?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  finished_not?: Maybe<Boolean>;
+  highestScore?: Maybe<Int>;
+  highestScore_not?: Maybe<Int>;
+  highestScore_in?: Maybe<Int[] | Int>;
+  highestScore_not_in?: Maybe<Int[] | Int>;
+  highestScore_lt?: Maybe<Int>;
+  highestScore_lte?: Maybe<Int>;
+  highestScore_gt?: Maybe<Int>;
+  highestScore_gte?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  highestScoringEntry_not?: Maybe<Int>;
+  highestScoringEntry_in?: Maybe<Int[] | Int>;
+  highestScoringEntry_not_in?: Maybe<Int[] | Int>;
+  highestScoringEntry_lt?: Maybe<Int>;
+  highestScoringEntry_lte?: Maybe<Int>;
+  highestScoringEntry_gt?: Maybe<Int>;
+  highestScoringEntry_gte?: Maybe<Int>;
+  fplEventId?: Maybe<Int>;
+  fplEventId_not?: Maybe<Int>;
+  fplEventId_in?: Maybe<Int[] | Int>;
+  fplEventId_not_in?: Maybe<Int[] | Int>;
+  fplEventId_lt?: Maybe<Int>;
+  fplEventId_lte?: Maybe<Int>;
+  fplEventId_gt?: Maybe<Int>;
+  fplEventId_gte?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isCurrent_not?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  isNext_not?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  isPrevious_not?: Maybe<Boolean>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<GameweekScalarWhereInput[] | GameweekScalarWhereInput>;
+  OR?: Maybe<GameweekScalarWhereInput[] | GameweekScalarWhereInput>;
+  NOT?: Maybe<GameweekScalarWhereInput[] | GameweekScalarWhereInput>;
+}
+
+export interface FixtureSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<FixtureWhereInput>;
+  AND?: Maybe<FixtureSubscriptionWhereInput[] | FixtureSubscriptionWhereInput>;
+  OR?: Maybe<FixtureSubscriptionWhereInput[] | FixtureSubscriptionWhereInput>;
+  NOT?: Maybe<FixtureSubscriptionWhereInput[] | FixtureSubscriptionWhereInput>;
+}
+
+export interface GameweekUpdateManyWithWhereNestedInput {
+  where: GameweekScalarWhereInput;
+  data: GameweekUpdateManyDataInput;
+}
+
+export type AwayTeamFixtureWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface GameweekUpdateManyDataInput {
+  averageEntryScore?: Maybe<Int>;
+  dataChecked?: Maybe<Boolean>;
+  deadlineTime?: Maybe<DateTimeInput>;
+  deadlineTimeEpoch?: Maybe<Int>;
+  deadlineTimeGameOffset?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  highestScore?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  fplEventId?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  name?: Maybe<String>;
+}
+
+export type CountryWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface SeasonUpsertNestedInput {
+  update: SeasonUpdateDataInput;
+  create: SeasonCreateInput;
+}
+
+export interface UserPhotoUpdateManyMutationInput {
   isProfile?: Maybe<Boolean>;
 }
 
-export type FollowerWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface PhotoUpdateOneRequiredInput {
-  create?: Maybe<PhotoCreateInput>;
-  update?: Maybe<PhotoUpdateDataInput>;
-  upsert?: Maybe<PhotoUpsertNestedInput>;
-  connect?: Maybe<PhotoWhereUniqueInput>;
+export interface TeamUpsertNestedInput {
+  update: TeamUpdateDataInput;
+  create: TeamCreateInput;
 }
 
-export type GameweekWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  fplEventId?: Maybe<Int>;
-}>;
+export interface UserUpdateOneRequiredWithoutPhotosInput {
+  create?: Maybe<UserCreateWithoutPhotosInput>;
+  update?: Maybe<UserUpdateWithoutPhotosDataInput>;
+  upsert?: Maybe<UserUpsertWithoutPhotosInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
 
-export interface PhotoUpdateDataInput {
-  image?: Maybe<String>;
-  largeImage?: Maybe<String>;
-  smallImage?: Maybe<String>;
+export interface CountryUpdateOneInput {
+  create?: Maybe<CountryCreateInput>;
+  update?: Maybe<CountryUpdateDataInput>;
+  upsert?: Maybe<CountryUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<CountryWhereUniqueInput>;
+}
+
+export interface UserCreateOneWithoutPhotosInput {
+  create?: Maybe<UserCreateWithoutPhotosInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface CountryUpdateDataInput {
+  iso?: Maybe<String>;
+  name?: Maybe<String>;
+  code?: Maybe<String>;
 }
 
 export interface UserUpdateWithoutInfluencersDataInput {
@@ -4012,9 +4136,9 @@ export interface UserUpdateWithoutInfluencersDataInput {
   followers?: Maybe<UserFollowersUpdateOneWithoutUserInput>;
 }
 
-export interface PhotoUpsertNestedInput {
-  update: PhotoUpdateDataInput;
-  create: PhotoCreateInput;
+export interface CountryUpsertNestedInput {
+  update: CountryUpdateDataInput;
+  create: CountryCreateInput;
 }
 
 export interface UserCreateWithoutInfluencersInput {
@@ -4041,15 +4165,107 @@ export interface UserCreateWithoutInfluencersInput {
   followers?: Maybe<UserFollowersCreateOneWithoutUserInput>;
 }
 
+export interface UserPhotoUpdateManyWithoutUserInput {
+  create?: Maybe<
+    UserPhotoCreateWithoutUserInput[] | UserPhotoCreateWithoutUserInput
+  >;
+  delete?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
+  connect?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
+  set?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
+  disconnect?: Maybe<UserPhotoWhereUniqueInput[] | UserPhotoWhereUniqueInput>;
+  update?: Maybe<
+    | UserPhotoUpdateWithWhereUniqueWithoutUserInput[]
+    | UserPhotoUpdateWithWhereUniqueWithoutUserInput
+  >;
+  upsert?: Maybe<
+    | UserPhotoUpsertWithWhereUniqueWithoutUserInput[]
+    | UserPhotoUpsertWithWhereUniqueWithoutUserInput
+  >;
+  deleteMany?: Maybe<UserPhotoScalarWhereInput[] | UserPhotoScalarWhereInput>;
+  updateMany?: Maybe<
+    | UserPhotoUpdateManyWithWhereNestedInput[]
+    | UserPhotoUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UserUpsertWithoutFollowersInput {
+  update: UserUpdateWithoutFollowersDataInput;
+  create: UserCreateWithoutFollowersInput;
+}
+
+export interface UserPhotoUpdateWithWhereUniqueWithoutUserInput {
+  where: UserPhotoWhereUniqueInput;
+  data: UserPhotoUpdateWithoutUserDataInput;
+}
+
+export interface UserFollowersUpdateInput {
+  followers?: Maybe<FollowerUpdateManyInput>;
+  user?: Maybe<UserUpdateOneRequiredWithoutFollowersInput>;
+}
+
+export interface UserPhotoUpdateWithoutUserDataInput {
+  photo?: Maybe<PhotoUpdateOneRequiredInput>;
+  isProfile?: Maybe<Boolean>;
+}
+
+export interface UserCreateOneWithoutFollowersInput {
+  create?: Maybe<UserCreateWithoutFollowersInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface PhotoUpdateOneRequiredInput {
+  create?: Maybe<PhotoCreateInput>;
+  update?: Maybe<PhotoUpdateDataInput>;
+  upsert?: Maybe<PhotoUpsertNestedInput>;
+  connect?: Maybe<PhotoWhereUniqueInput>;
+}
+
+export interface UserAssignedRoleCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneInput;
+  userRole: UserRoleCreateOneInput;
+}
+
+export interface PhotoUpdateDataInput {
+  image?: Maybe<String>;
+  largeImage?: Maybe<String>;
+  smallImage?: Maybe<String>;
+}
+
+export interface TeamUpdateManyMutationInput {
+  code?: Maybe<Int>;
+  fplTeamId?: Maybe<Int>;
+  name?: Maybe<String>;
+  shortName?: Maybe<String>;
+  strength?: Maybe<Int>;
+  strengthAttackAway?: Maybe<Int>;
+  strengthAttackHome?: Maybe<Int>;
+  strengthDefenceAway?: Maybe<Int>;
+  strengthDefenceHome?: Maybe<Int>;
+  strengthOverallAway?: Maybe<Int>;
+  strengthOverallHome?: Maybe<Int>;
+  teamDivision?: Maybe<Int>;
+}
+
+export interface PhotoUpsertNestedInput {
+  update: PhotoUpdateDataInput;
+  create: PhotoCreateInput;
+}
+
+export type TeamWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  code?: Maybe<Int>;
+}>;
+
 export interface UserPhotoUpsertWithWhereUniqueWithoutUserInput {
   where: UserPhotoWhereUniqueInput;
   update: UserPhotoUpdateWithoutUserDataInput;
   create: UserPhotoCreateWithoutUserInput;
 }
 
-export interface UserUpsertWithoutFollowersInput {
-  update: UserUpdateWithoutFollowersDataInput;
-  create: UserCreateWithoutFollowersInput;
+export interface UserStatusCreateWithoutStatusInput {
+  id?: Maybe<ID_Input>;
+  currentStatus?: Maybe<Boolean>;
 }
 
 export interface UserPhotoScalarWhereInput {
@@ -4090,9 +4306,15 @@ export interface UserPhotoScalarWhereInput {
   NOT?: Maybe<UserPhotoScalarWhereInput[] | UserPhotoScalarWhereInput>;
 }
 
-export interface UserFollowersUpdateInput {
-  followers?: Maybe<FollowerUpdateManyInput>;
-  user?: Maybe<UserUpdateOneRequiredWithoutFollowersInput>;
+export interface SeasonUpdateManyMutationInput {
+  fplId?: Maybe<Int>;
+  label?: Maybe<String>;
+  competition?: Maybe<String>;
+  startYear?: Maybe<Int>;
+  endYear?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
 }
 
 export interface UserPhotoUpdateManyWithWhereNestedInput {
@@ -4100,31 +4322,19 @@ export interface UserPhotoUpdateManyWithWhereNestedInput {
   data: UserPhotoUpdateManyDataInput;
 }
 
-export interface UserFollowersCreateInput {
-  id?: Maybe<ID_Input>;
-  followers?: Maybe<FollowerCreateManyInput>;
-  user: UserCreateOneWithoutFollowersInput;
+export interface PhotoUpdateManyMutationInput {
+  image?: Maybe<String>;
+  largeImage?: Maybe<String>;
+  smallImage?: Maybe<String>;
 }
 
 export interface UserPhotoUpdateManyDataInput {
   isProfile?: Maybe<Boolean>;
 }
 
-export interface UserUpdateManyMutationInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-  countryCode?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  displayName?: Maybe<String>;
-  isPrivate?: Maybe<Boolean>;
-  password?: Maybe<String>;
-  emailValidationToken?: Maybe<String>;
-  emailValidationTokenExpiry?: Maybe<Float>;
-  emailValidated?: Maybe<Boolean>;
-  emailValidationDate?: Maybe<DateTimeInput>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-}
+export type UserFollowersWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface FandemSubscriptionUpdateManyInput {
   create?: Maybe<
@@ -4159,23 +4369,43 @@ export interface FandemSubscriptionUpdateManyInput {
   >;
 }
 
-export type TeamWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  code?: Maybe<Int>;
-}>;
+export interface GameweekCreateInput {
+  id?: Maybe<ID_Input>;
+  season: SeasonCreateOneWithoutEventsInput;
+  averageEntryScore?: Maybe<Int>;
+  dataChecked: Boolean;
+  deadlineTime: DateTimeInput;
+  deadlineTimeEpoch: Int;
+  deadlineTimeGameOffset: Int;
+  finished: Boolean;
+  highestScore?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  fplEventId: Int;
+  isCurrent: Boolean;
+  isNext: Boolean;
+  isPrevious: Boolean;
+  name: String;
+  fixtures?: Maybe<FixtureCreateManyWithoutEventInput>;
+}
 
 export interface FandemSubscriptionUpdateWithWhereUniqueNestedInput {
   where: FandemSubscriptionWhereUniqueInput;
   data: FandemSubscriptionUpdateDataInput;
 }
 
-export interface UserStatusUpdateOneWithoutStatusInput {
-  create?: Maybe<UserStatusCreateWithoutStatusInput>;
-  update?: Maybe<UserStatusUpdateWithoutStatusDataInput>;
-  upsert?: Maybe<UserStatusUpsertWithoutStatusInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<UserStatusWhereUniqueInput>;
+export interface FixtureUpdateManyMutationInput {
+  fplCode?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  finishedProvisional?: Maybe<Boolean>;
+  fixtureId?: Maybe<Int>;
+  kickoffTime?: Maybe<DateTimeInput>;
+  minutes?: Maybe<Int>;
+  provisionalStartTime?: Maybe<Boolean>;
+  started?: Maybe<Boolean>;
+  teamADifficulty?: Maybe<Int>;
+  teamAScore?: Maybe<Int>;
+  teamHDifficulty?: Maybe<Int>;
+  teamHScore?: Maybe<Int>;
 }
 
 export interface FandemSubscriptionUpdateDataInput {
@@ -4183,9 +4413,9 @@ export interface FandemSubscriptionUpdateDataInput {
   description?: Maybe<String>;
 }
 
-export interface UserStatusCreateOneWithoutStatusInput {
-  create?: Maybe<UserStatusCreateWithoutStatusInput>;
-  connect?: Maybe<UserStatusWhereUniqueInput>;
+export interface FandemSubscriptionUpdateManyMutationInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
 }
 
 export interface FandemSubscriptionUpsertWithWhereUniqueNestedInput {
@@ -4194,15 +4424,10 @@ export interface FandemSubscriptionUpsertWithWhereUniqueNestedInput {
   create: FandemSubscriptionCreateInput;
 }
 
-export interface SeasonUpdateManyMutationInput {
-  fplId?: Maybe<Int>;
-  label?: Maybe<String>;
-  competition?: Maybe<String>;
-  startYear?: Maybe<Int>;
-  endYear?: Maybe<Int>;
-  isCurrent?: Maybe<Boolean>;
-  isPrevious?: Maybe<Boolean>;
-  isNext?: Maybe<Boolean>;
+export interface CountryUpdateInput {
+  iso?: Maybe<String>;
+  name?: Maybe<String>;
+  code?: Maybe<String>;
 }
 
 export interface FandemSubscriptionScalarWhereInput {
@@ -4275,29 +4500,19 @@ export interface FandemSubscriptionScalarWhereInput {
   >;
 }
 
-export type UserFollowersWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface ActiveSubscriptionsUpdateManyMutationInput {
+  startDate?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+}
 
 export interface FandemSubscriptionUpdateManyWithWhereNestedInput {
   where: FandemSubscriptionScalarWhereInput;
   data: FandemSubscriptionUpdateManyDataInput;
 }
 
-export interface GameweekUpdateManyMutationInput {
-  averageEntryScore?: Maybe<Int>;
-  dataChecked?: Maybe<Boolean>;
-  deadlineTime?: Maybe<DateTimeInput>;
-  deadlineTimeEpoch?: Maybe<Int>;
-  deadlineTimeGameOffset?: Maybe<Int>;
-  finished?: Maybe<Boolean>;
-  highestScore?: Maybe<Int>;
-  highestScoringEntry?: Maybe<Int>;
-  fplEventId?: Maybe<Int>;
-  isCurrent?: Maybe<Boolean>;
-  isNext?: Maybe<Boolean>;
-  isPrevious?: Maybe<Boolean>;
-  name?: Maybe<String>;
+export interface UserCreateOneInput {
+  create?: Maybe<UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
 export interface FandemSubscriptionUpdateManyDataInput {
@@ -4305,10 +4520,9 @@ export interface FandemSubscriptionUpdateManyDataInput {
   description?: Maybe<String>;
 }
 
-export interface FollowerUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredInput>;
-  blocked?: Maybe<Boolean>;
-  accepted?: Maybe<Boolean>;
+export interface SeasonCreateOneInput {
+  create?: Maybe<SeasonCreateInput>;
+  connect?: Maybe<SeasonWhereUniqueInput>;
 }
 
 export interface UserRoleUpdateManyInput {
@@ -4332,23 +4546,11 @@ export interface UserRoleUpdateManyInput {
   >;
 }
 
-export interface FixtureCreateInput {
-  id?: Maybe<ID_Input>;
-  fplCode: Int;
-  event: GameweekCreateOneInput;
-  finished: Boolean;
-  finishedProvisional: Boolean;
-  fixtureId: Int;
-  kickoffTime?: Maybe<DateTimeInput>;
-  minutes: Int;
-  provisionalStartTime: Boolean;
-  started: Boolean;
-  teamA: AwayTeamFixtureCreateOneWithoutFixtureInput;
-  teamADifficulty: Int;
-  teamAScore?: Maybe<Int>;
-  teamH: HomeTeamFixtureCreateOneWithoutFixtureInput;
-  teamHDifficulty: Int;
-  teamHScore?: Maybe<Int>;
+export interface FixtureCreateManyWithoutEventInput {
+  create?: Maybe<
+    FixtureCreateWithoutEventInput[] | FixtureCreateWithoutEventInput
+  >;
+  connect?: Maybe<FixtureWhereUniqueInput[] | FixtureWhereUniqueInput>;
 }
 
 export interface UserRoleUpdateWithWhereUniqueNestedInput {
@@ -4356,10 +4558,9 @@ export interface UserRoleUpdateWithWhereUniqueNestedInput {
   data: UserRoleUpdateDataInput;
 }
 
-export interface CountryUpdateManyMutationInput {
-  iso?: Maybe<String>;
-  name?: Maybe<String>;
-  code?: Maybe<String>;
+export interface TeamCreateOneWithoutAwayFixturesInput {
+  create?: Maybe<TeamCreateWithoutAwayFixturesInput>;
+  connect?: Maybe<TeamWhereUniqueInput>;
 }
 
 export interface UserRoleUpdateDataInput {
@@ -4367,10 +4568,9 @@ export interface UserRoleUpdateDataInput {
   description?: Maybe<String>;
 }
 
-export interface AwayTeamFixtureCreateInput {
-  id?: Maybe<ID_Input>;
-  fixture: FixtureCreateOneWithoutTeamAInput;
-  awayTeam: TeamCreateOneWithoutAwayFixturesInput;
+export interface FixtureCreateOneWithoutTeamHInput {
+  create?: Maybe<FixtureCreateWithoutTeamHInput>;
+  connect?: Maybe<FixtureWhereUniqueInput>;
 }
 
 export interface UserRoleUpsertWithWhereUniqueNestedInput {
@@ -4379,9 +4579,9 @@ export interface UserRoleUpsertWithWhereUniqueNestedInput {
   create: UserRoleCreateInput;
 }
 
-export interface UserCreateOneInput {
-  create?: Maybe<UserCreateInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface SeasonCreateOneWithoutEventsInput {
+  create?: Maybe<SeasonCreateWithoutEventsInput>;
+  connect?: Maybe<SeasonWhereUniqueInput>;
 }
 
 export interface UserRoleScalarWhereInput {
@@ -4448,9 +4648,82 @@ export interface UserRoleScalarWhereInput {
   NOT?: Maybe<UserRoleScalarWhereInput[] | UserRoleScalarWhereInput>;
 }
 
-export interface SeasonCreateOneInput {
-  create?: Maybe<SeasonCreateInput>;
-  connect?: Maybe<SeasonWhereUniqueInput>;
+export interface CountryWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  iso?: Maybe<String>;
+  iso_not?: Maybe<String>;
+  iso_in?: Maybe<String[] | String>;
+  iso_not_in?: Maybe<String[] | String>;
+  iso_lt?: Maybe<String>;
+  iso_lte?: Maybe<String>;
+  iso_gt?: Maybe<String>;
+  iso_gte?: Maybe<String>;
+  iso_contains?: Maybe<String>;
+  iso_not_contains?: Maybe<String>;
+  iso_starts_with?: Maybe<String>;
+  iso_not_starts_with?: Maybe<String>;
+  iso_ends_with?: Maybe<String>;
+  iso_not_ends_with?: Maybe<String>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  code?: Maybe<String>;
+  code_not?: Maybe<String>;
+  code_in?: Maybe<String[] | String>;
+  code_not_in?: Maybe<String[] | String>;
+  code_lt?: Maybe<String>;
+  code_lte?: Maybe<String>;
+  code_gt?: Maybe<String>;
+  code_gte?: Maybe<String>;
+  code_contains?: Maybe<String>;
+  code_not_contains?: Maybe<String>;
+  code_starts_with?: Maybe<String>;
+  code_not_starts_with?: Maybe<String>;
+  code_ends_with?: Maybe<String>;
+  code_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<CountryWhereInput[] | CountryWhereInput>;
+  OR?: Maybe<CountryWhereInput[] | CountryWhereInput>;
+  NOT?: Maybe<CountryWhereInput[] | CountryWhereInput>;
 }
 
 export interface UserRoleUpdateManyWithWhereNestedInput {
@@ -4458,9 +4731,44 @@ export interface UserRoleUpdateManyWithWhereNestedInput {
   data: UserRoleUpdateManyDataInput;
 }
 
-export interface FixtureCreateOneWithoutTeamHInput {
-  create?: Maybe<FixtureCreateWithoutTeamHInput>;
-  connect?: Maybe<FixtureWhereUniqueInput>;
+export interface UserInfluencersWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  user?: Maybe<UserWhereInput>;
+  influencers_every?: Maybe<InfluencerWhereInput>;
+  influencers_some?: Maybe<InfluencerWhereInput>;
+  influencers_none?: Maybe<InfluencerWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<UserInfluencersWhereInput[] | UserInfluencersWhereInput>;
+  OR?: Maybe<UserInfluencersWhereInput[] | UserInfluencersWhereInput>;
+  NOT?: Maybe<UserInfluencersWhereInput[] | UserInfluencersWhereInput>;
 }
 
 export interface UserRoleUpdateManyDataInput {
@@ -4468,9 +4776,15 @@ export interface UserRoleUpdateManyDataInput {
   description?: Maybe<String>;
 }
 
-export interface AwayTeamFixtureCreateOneWithoutFixtureInput {
-  create?: Maybe<AwayTeamFixtureCreateWithoutFixtureInput>;
-  connect?: Maybe<AwayTeamFixtureWhereUniqueInput>;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface UserStatusUpdateManyInput {
@@ -4494,13 +4808,20 @@ export interface UserStatusUpdateManyInput {
   >;
 }
 
-export interface AwayTeamFixtureCreateManyWithoutAwayTeamInput {
-  create?: Maybe<
-    | AwayTeamFixtureCreateWithoutAwayTeamInput[]
-    | AwayTeamFixtureCreateWithoutAwayTeamInput
+export interface InfluencerSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<InfluencerWhereInput>;
+  AND?: Maybe<
+    InfluencerSubscriptionWhereInput[] | InfluencerSubscriptionWhereInput
   >;
-  connect?: Maybe<
-    AwayTeamFixtureWhereUniqueInput[] | AwayTeamFixtureWhereUniqueInput
+  OR?: Maybe<
+    InfluencerSubscriptionWhereInput[] | InfluencerSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    InfluencerSubscriptionWhereInput[] | InfluencerSubscriptionWhereInput
   >;
 }
 
@@ -4509,21 +4830,15 @@ export interface UserStatusUpdateWithWhereUniqueNestedInput {
   data: UserStatusUpdateDataInput;
 }
 
-export interface UserFollowersSubscriptionWhereInput {
+export interface CountrySubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserFollowersWhereInput>;
-  AND?: Maybe<
-    UserFollowersSubscriptionWhereInput[] | UserFollowersSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    UserFollowersSubscriptionWhereInput[] | UserFollowersSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    UserFollowersSubscriptionWhereInput[] | UserFollowersSubscriptionWhereInput
-  >;
+  node?: Maybe<CountryWhereInput>;
+  AND?: Maybe<CountrySubscriptionWhereInput[] | CountrySubscriptionWhereInput>;
+  OR?: Maybe<CountrySubscriptionWhereInput[] | CountrySubscriptionWhereInput>;
+  NOT?: Maybe<CountrySubscriptionWhereInput[] | CountrySubscriptionWhereInput>;
 }
 
 export interface UserStatusUpdateDataInput {
@@ -4531,42 +4846,9 @@ export interface UserStatusUpdateDataInput {
   currentStatus?: Maybe<Boolean>;
 }
 
-export interface AwayTeamFixtureWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  fixture?: Maybe<FixtureWhereInput>;
-  awayTeam?: Maybe<TeamWhereInput>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<AwayTeamFixtureWhereInput[] | AwayTeamFixtureWhereInput>;
-  OR?: Maybe<AwayTeamFixtureWhereInput[] | AwayTeamFixtureWhereInput>;
-  NOT?: Maybe<AwayTeamFixtureWhereInput[] | AwayTeamFixtureWhereInput>;
+export interface UserRoleUpdateManyMutationInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
 }
 
 export interface StatusUpdateOneWithoutAuthorInput {
@@ -4578,18 +4860,22 @@ export interface StatusUpdateOneWithoutAuthorInput {
   connect?: Maybe<StatusWhereUniqueInput>;
 }
 
-export type AwayTeamFixtureWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface UserPhotoUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutPhotosInput>;
+  photo?: Maybe<PhotoUpdateOneRequiredInput>;
+  isProfile?: Maybe<Boolean>;
+}
 
 export interface StatusUpdateWithoutAuthorDataInput {
   content?: Maybe<String>;
   likes?: Maybe<UserUpdateManyInput>;
 }
 
-export interface UserStatusUpdateInput {
-  status?: Maybe<StatusUpdateOneWithoutAuthorInput>;
-  currentStatus?: Maybe<Boolean>;
+export interface UserUpdateOneRequiredWithoutInfluencersInput {
+  create?: Maybe<UserCreateWithoutInfluencersInput>;
+  update?: Maybe<UserUpdateWithoutInfluencersDataInput>;
+  upsert?: Maybe<UserUpsertWithoutInfluencersInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
 export interface UserUpdateManyInput {
@@ -4612,7 +4898,7 @@ export interface UserUpdateManyInput {
   >;
 }
 
-export interface UserUpdateWithoutPhotosDataInput {
+export interface UserUpdateWithoutFollowersDataInput {
   email?: Maybe<String>;
   name?: Maybe<String>;
   countryCode?: Maybe<String>;
@@ -4622,6 +4908,7 @@ export interface UserUpdateWithoutPhotosDataInput {
   displayName?: Maybe<String>;
   isPrivate?: Maybe<Boolean>;
   password?: Maybe<String>;
+  photos?: Maybe<UserPhotoUpdateManyWithoutUserInput>;
   emailValidationToken?: Maybe<String>;
   emailValidationTokenExpiry?: Maybe<Float>;
   emailValidated?: Maybe<Boolean>;
@@ -4631,7 +4918,6 @@ export interface UserUpdateWithoutPhotosDataInput {
   subscriptions?: Maybe<FandemSubscriptionUpdateManyInput>;
   userRoles?: Maybe<UserRoleUpdateManyInput>;
   status?: Maybe<UserStatusUpdateManyInput>;
-  followers?: Maybe<UserFollowersUpdateOneWithoutUserInput>;
   influencers?: Maybe<UserInfluencersUpdateOneWithoutUserInput>;
 }
 
@@ -4640,12 +4926,10 @@ export interface UserUpdateWithWhereUniqueNestedInput {
   data: UserUpdateDataInput;
 }
 
-export interface UserPhotoCreateInput {
-  id?: Maybe<ID_Input>;
-  user: UserCreateOneWithoutPhotosInput;
-  photo: PhotoCreateOneInput;
-  isProfile?: Maybe<Boolean>;
-}
+export type SeasonWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  fplId?: Maybe<Int>;
+}>;
 
 export interface UserUpsertWithWhereUniqueNestedInput {
   where: UserWhereUniqueInput;
@@ -4653,9 +4937,8 @@ export interface UserUpsertWithWhereUniqueNestedInput {
   create: UserCreateInput;
 }
 
-export interface UserCreateOneWithoutInfluencersInput {
-  create?: Maybe<UserCreateWithoutInfluencersInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface StatusUpdateManyMutationInput {
+  content?: Maybe<String>;
 }
 
 export interface UserScalarWhereInput {
@@ -4834,29 +5117,18 @@ export interface UserScalarWhereInput {
   NOT?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
 }
 
-export type SeasonWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  fplId?: Maybe<Int>;
-}>;
+export interface UserStatusCreateOneWithoutStatusInput {
+  create?: Maybe<UserStatusCreateWithoutStatusInput>;
+  connect?: Maybe<UserStatusWhereUniqueInput>;
+}
 
 export interface UserUpdateManyWithWhereNestedInput {
   where: UserScalarWhereInput;
   data: UserUpdateManyDataInput;
 }
 
-export interface TeamUpdateManyMutationInput {
-  code?: Maybe<Int>;
-  fplTeamId?: Maybe<Int>;
-  name?: Maybe<String>;
-  shortName?: Maybe<String>;
-  strength?: Maybe<Int>;
-  strengthAttackAway?: Maybe<Int>;
-  strengthAttackHome?: Maybe<Int>;
-  strengthDefenceAway?: Maybe<Int>;
-  strengthDefenceHome?: Maybe<Int>;
-  strengthOverallAway?: Maybe<Int>;
-  strengthOverallHome?: Maybe<Int>;
-  teamDivision?: Maybe<Int>;
+export interface InfluencerUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredInput>;
 }
 
 export interface UserUpdateManyDataInput {
@@ -4875,10 +5147,9 @@ export interface UserUpdateManyDataInput {
   resetTokenExpiry?: Maybe<Float>;
 }
 
-export interface StatusUpdateInput {
-  author?: Maybe<UserStatusUpdateOneWithoutStatusInput>;
-  content?: Maybe<String>;
-  likes?: Maybe<UserUpdateManyInput>;
+export interface FollowerUpdateManyMutationInput {
+  blocked?: Maybe<Boolean>;
+  accepted?: Maybe<Boolean>;
 }
 
 export interface StatusUpsertWithoutAuthorInput {
@@ -4886,11 +5157,9 @@ export interface StatusUpsertWithoutAuthorInput {
   create: StatusCreateWithoutAuthorInput;
 }
 
-export interface PhotoUpdateManyMutationInput {
-  image?: Maybe<String>;
-  largeImage?: Maybe<String>;
-  smallImage?: Maybe<String>;
-}
+export type UserRoleWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface UserStatusUpsertWithWhereUniqueNestedInput {
   where: UserStatusWhereUniqueInput;
@@ -4898,21 +5167,11 @@ export interface UserStatusUpsertWithWhereUniqueNestedInput {
   create: UserStatusCreateInput;
 }
 
-export interface GameweekUpdateInput {
-  season?: Maybe<SeasonUpdateOneRequiredInput>;
-  averageEntryScore?: Maybe<Int>;
-  dataChecked?: Maybe<Boolean>;
-  deadlineTime?: Maybe<DateTimeInput>;
-  deadlineTimeEpoch?: Maybe<Int>;
-  deadlineTimeGameOffset?: Maybe<Int>;
-  finished?: Maybe<Boolean>;
-  highestScore?: Maybe<Int>;
-  highestScoringEntry?: Maybe<Int>;
-  fplEventId?: Maybe<Int>;
-  isCurrent?: Maybe<Boolean>;
-  isNext?: Maybe<Boolean>;
-  isPrevious?: Maybe<Boolean>;
-  name?: Maybe<String>;
+export interface GameweekCreateManyWithoutSeasonInput {
+  create?: Maybe<
+    GameweekCreateWithoutSeasonInput[] | GameweekCreateWithoutSeasonInput
+  >;
+  connect?: Maybe<GameweekWhereUniqueInput[] | GameweekWhereUniqueInput>;
 }
 
 export interface UserStatusScalarWhereInput {
@@ -4953,15 +5212,6 @@ export interface UserStatusScalarWhereInput {
   NOT?: Maybe<UserStatusScalarWhereInput[] | UserStatusScalarWhereInput>;
 }
 
-export type UserRoleWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface UserStatusUpdateManyWithWhereNestedInput {
-  where: UserStatusScalarWhereInput;
-  data: UserStatusUpdateManyDataInput;
-}
-
 export interface HomeTeamFixtureCreateManyWithoutHomeTeamInput {
   create?: Maybe<
     | HomeTeamFixtureCreateWithoutHomeTeamInput[]
@@ -4972,13 +5222,35 @@ export interface HomeTeamFixtureCreateManyWithoutHomeTeamInput {
   >;
 }
 
+export interface UserStatusUpdateManyWithWhereNestedInput {
+  where: UserStatusScalarWhereInput;
+  data: UserStatusUpdateManyDataInput;
+}
+
+export interface HomeTeamFixtureCreateOneWithoutFixtureInput {
+  create?: Maybe<HomeTeamFixtureCreateWithoutFixtureInput>;
+  connect?: Maybe<HomeTeamFixtureWhereUniqueInput>;
+}
+
 export interface UserStatusUpdateManyDataInput {
   currentStatus?: Maybe<Boolean>;
 }
 
-export interface TeamCreateOneWithoutAwayFixturesInput {
-  create?: Maybe<TeamCreateWithoutAwayFixturesInput>;
-  connect?: Maybe<TeamWhereUniqueInput>;
+export interface UserPhotoSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserPhotoWhereInput>;
+  AND?: Maybe<
+    UserPhotoSubscriptionWhereInput[] | UserPhotoSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    UserPhotoSubscriptionWhereInput[] | UserPhotoSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    UserPhotoSubscriptionWhereInput[] | UserPhotoSubscriptionWhereInput
+  >;
 }
 
 export interface UserFollowersUpdateOneWithoutUserInput {
@@ -4990,24 +5262,68 @@ export interface UserFollowersUpdateOneWithoutUserInput {
   connect?: Maybe<UserFollowersWhereUniqueInput>;
 }
 
-export interface StatusSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<StatusWhereInput>;
-  AND?: Maybe<StatusSubscriptionWhereInput[] | StatusSubscriptionWhereInput>;
-  OR?: Maybe<StatusSubscriptionWhereInput[] | StatusSubscriptionWhereInput>;
-  NOT?: Maybe<StatusSubscriptionWhereInput[] | StatusSubscriptionWhereInput>;
+export interface ActiveSubscriptionsWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  user?: Maybe<UserWhereInput>;
+  subscription?: Maybe<UserRoleWhereInput>;
+  startDate?: Maybe<DateTimeInput>;
+  startDate_not?: Maybe<DateTimeInput>;
+  startDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_lt?: Maybe<DateTimeInput>;
+  startDate_lte?: Maybe<DateTimeInput>;
+  startDate_gt?: Maybe<DateTimeInput>;
+  startDate_gte?: Maybe<DateTimeInput>;
+  endDate?: Maybe<DateTimeInput>;
+  endDate_not?: Maybe<DateTimeInput>;
+  endDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  endDate_lt?: Maybe<DateTimeInput>;
+  endDate_lte?: Maybe<DateTimeInput>;
+  endDate_gt?: Maybe<DateTimeInput>;
+  endDate_gte?: Maybe<DateTimeInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<ActiveSubscriptionsWhereInput[] | ActiveSubscriptionsWhereInput>;
+  OR?: Maybe<ActiveSubscriptionsWhereInput[] | ActiveSubscriptionsWhereInput>;
+  NOT?: Maybe<ActiveSubscriptionsWhereInput[] | ActiveSubscriptionsWhereInput>;
 }
 
 export interface UserFollowersUpdateWithoutUserDataInput {
   followers?: Maybe<FollowerUpdateManyInput>;
 }
 
-export type CountryWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface UserUpsertWithoutPhotosInput {
+  update: UserUpdateWithoutPhotosDataInput;
+  create: UserCreateWithoutPhotosInput;
+}
 
 export interface FollowerUpdateManyInput {
   create?: Maybe<FollowerCreateInput[] | FollowerCreateInput>;
@@ -5030,28 +5346,9 @@ export interface FollowerUpdateManyInput {
   >;
 }
 
-export interface UserCreateWithoutPhotosInput {
-  id?: Maybe<ID_Input>;
-  email: String;
-  name: String;
-  countryCode?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  favoriteTeam?: Maybe<TeamCreateOneInput>;
-  country?: Maybe<CountryCreateOneInput>;
-  displayName: String;
-  isPrivate?: Maybe<Boolean>;
-  password: String;
-  emailValidationToken?: Maybe<String>;
-  emailValidationTokenExpiry?: Maybe<Float>;
-  emailValidated?: Maybe<Boolean>;
-  emailValidationDate?: Maybe<DateTimeInput>;
-  resetToken?: Maybe<String>;
-  resetTokenExpiry?: Maybe<Float>;
-  subscriptions?: Maybe<FandemSubscriptionCreateManyInput>;
-  userRoles?: Maybe<UserRoleCreateManyInput>;
-  status?: Maybe<UserStatusCreateManyInput>;
-  followers?: Maybe<UserFollowersCreateOneWithoutUserInput>;
-  influencers?: Maybe<UserInfluencersCreateOneWithoutUserInput>;
+export interface UserCreateOneWithoutInfluencersInput {
+  create?: Maybe<UserCreateWithoutInfluencersInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
 export interface FollowerUpdateWithWhereUniqueNestedInput {
@@ -5059,7 +5356,7 @@ export interface FollowerUpdateWithWhereUniqueNestedInput {
   data: FollowerUpdateDataInput;
 }
 
-export interface UserUpdateWithoutFollowersDataInput {
+export interface UserUpdateInput {
   email?: Maybe<String>;
   name?: Maybe<String>;
   countryCode?: Maybe<String>;
@@ -5079,6 +5376,7 @@ export interface UserUpdateWithoutFollowersDataInput {
   subscriptions?: Maybe<FandemSubscriptionUpdateManyInput>;
   userRoles?: Maybe<UserRoleUpdateManyInput>;
   status?: Maybe<UserStatusUpdateManyInput>;
+  followers?: Maybe<UserFollowersUpdateOneWithoutUserInput>;
   influencers?: Maybe<UserInfluencersUpdateOneWithoutUserInput>;
 }
 
@@ -5088,9 +5386,16 @@ export interface FollowerUpdateDataInput {
   accepted?: Maybe<Boolean>;
 }
 
-export interface UserStatusUpsertWithoutStatusInput {
-  update: UserStatusUpdateWithoutStatusDataInput;
-  create: UserStatusCreateWithoutStatusInput;
+export interface SeasonUpdateInput {
+  fplId?: Maybe<Int>;
+  label?: Maybe<String>;
+  competition?: Maybe<String>;
+  startYear?: Maybe<Int>;
+  endYear?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  events?: Maybe<GameweekUpdateManyWithoutSeasonInput>;
 }
 
 export interface FollowerUpsertWithWhereUniqueNestedInput {
@@ -5099,10 +5404,9 @@ export interface FollowerUpsertWithWhereUniqueNestedInput {
   create: FollowerCreateInput;
 }
 
-export interface HomeTeamFixtureUpdateInput {
-  fixture?: Maybe<FixtureUpdateOneRequiredWithoutTeamHInput>;
-  homeTeam?: Maybe<TeamUpdateOneRequiredWithoutHomeFixturesInput>;
-}
+export type UserPhotoWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface FollowerScalarWhereInput {
   id?: Maybe<ID_Input>;
@@ -5144,17 +5448,18 @@ export interface FollowerScalarWhereInput {
   NOT?: Maybe<FollowerScalarWhereInput[] | FollowerScalarWhereInput>;
 }
 
-export type UserStatusWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface TeamCreateOneInput {
+  create?: Maybe<TeamCreateInput>;
+  connect?: Maybe<TeamWhereUniqueInput>;
+}
 
 export interface FollowerUpdateManyWithWhereNestedInput {
   where: FollowerScalarWhereInput;
   data: FollowerUpdateManyDataInput;
 }
 
-export interface GameweekCreateOneInput {
-  create?: Maybe<GameweekCreateInput>;
+export interface GameweekCreateOneWithoutFixturesInput {
+  create?: Maybe<GameweekCreateWithoutFixturesInput>;
   connect?: Maybe<GameweekWhereUniqueInput>;
 }
 
@@ -5163,24 +5468,15 @@ export interface FollowerUpdateManyDataInput {
   accepted?: Maybe<Boolean>;
 }
 
-export interface HomeTeamFixtureSubscriptionWhereInput {
+export interface SeasonSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<HomeTeamFixtureWhereInput>;
-  AND?: Maybe<
-    | HomeTeamFixtureSubscriptionWhereInput[]
-    | HomeTeamFixtureSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    | HomeTeamFixtureSubscriptionWhereInput[]
-    | HomeTeamFixtureSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    | HomeTeamFixtureSubscriptionWhereInput[]
-    | HomeTeamFixtureSubscriptionWhereInput
-  >;
+  node?: Maybe<SeasonWhereInput>;
+  AND?: Maybe<SeasonSubscriptionWhereInput[] | SeasonSubscriptionWhereInput>;
+  OR?: Maybe<SeasonSubscriptionWhereInput[] | SeasonSubscriptionWhereInput>;
+  NOT?: Maybe<SeasonSubscriptionWhereInput[] | SeasonSubscriptionWhereInput>;
 }
 
 export interface UserFollowersUpsertWithoutUserInput {
@@ -5188,11 +5484,11 @@ export interface UserFollowersUpsertWithoutUserInput {
   create: UserFollowersCreateWithoutUserInput;
 }
 
-export interface UserUpdateOneRequiredWithoutInfluencersInput {
-  create?: Maybe<UserCreateWithoutInfluencersInput>;
-  update?: Maybe<UserUpdateWithoutInfluencersDataInput>;
-  upsert?: Maybe<UserUpsertWithoutInfluencersInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface UserPhotoCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneWithoutPhotosInput;
+  photo: PhotoCreateOneInput;
+  isProfile?: Maybe<Boolean>;
 }
 
 export interface UserInfluencersUpdateOneWithoutUserInput {
@@ -5204,36 +5500,22 @@ export interface UserInfluencersUpdateOneWithoutUserInput {
   connect?: Maybe<UserInfluencersWhereUniqueInput>;
 }
 
-export interface StatusCreateInput {
-  id?: Maybe<ID_Input>;
-  author?: Maybe<UserStatusCreateOneWithoutStatusInput>;
-  content: String;
-  likes?: Maybe<UserCreateManyInput>;
+export interface UserStatusUpdateOneWithoutStatusInput {
+  create?: Maybe<UserStatusCreateWithoutStatusInput>;
+  update?: Maybe<UserStatusUpdateWithoutStatusDataInput>;
+  upsert?: Maybe<UserStatusUpsertWithoutStatusInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserStatusWhereUniqueInput>;
 }
 
 export interface UserInfluencersUpdateWithoutUserDataInput {
   influencers?: Maybe<InfluencerUpdateManyInput>;
 }
 
-export interface TeamCreateOneInput {
-  create?: Maybe<TeamCreateInput>;
-  connect?: Maybe<TeamWhereUniqueInput>;
-}
-
-export interface InfluencerUpsertWithWhereUniqueNestedInput {
-  where: InfluencerWhereUniqueInput;
-  update: InfluencerUpdateDataInput;
-  create: InfluencerCreateInput;
-}
-
-export interface InfluencerUpdateDataInput {
-  user?: Maybe<UserUpdateOneRequiredInput>;
-}
-
-export interface InfluencerUpdateWithWhereUniqueNestedInput {
-  where: InfluencerWhereUniqueInput;
-  data: InfluencerUpdateDataInput;
-}
+export type UserStatusWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface InfluencerUpdateManyInput {
   create?: Maybe<InfluencerCreateInput[] | InfluencerCreateInput>;
@@ -5252,35 +5534,239 @@ export interface InfluencerUpdateManyInput {
   deleteMany?: Maybe<InfluencerScalarWhereInput[] | InfluencerScalarWhereInput>;
 }
 
-export interface UserStatusSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserStatusWhereInput>;
-  AND?: Maybe<
-    UserStatusSubscriptionWhereInput[] | UserStatusSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    UserStatusSubscriptionWhereInput[] | UserStatusSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    UserStatusSubscriptionWhereInput[] | UserStatusSubscriptionWhereInput
-  >;
-}
-
-export type UserPhotoWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface UserAssignedRoleCreateInput {
+export interface UserStatusWhereInput {
   id?: Maybe<ID_Input>;
-  user: UserCreateOneInput;
-  userRole: UserRoleCreateOneInput;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  status?: Maybe<StatusWhereInput>;
+  currentStatus?: Maybe<Boolean>;
+  currentStatus_not?: Maybe<Boolean>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<UserStatusWhereInput[] | UserStatusWhereInput>;
+  OR?: Maybe<UserStatusWhereInput[] | UserStatusWhereInput>;
+  NOT?: Maybe<UserStatusWhereInput[] | UserStatusWhereInput>;
 }
 
-export interface UserPhotoUpdateManyMutationInput {
-  isProfile?: Maybe<Boolean>;
+export interface InfluencerScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<InfluencerScalarWhereInput[] | InfluencerScalarWhereInput>;
+  OR?: Maybe<InfluencerScalarWhereInput[] | InfluencerScalarWhereInput>;
+  NOT?: Maybe<InfluencerScalarWhereInput[] | InfluencerScalarWhereInput>;
+}
+
+export interface InfluencerUpsertWithWhereUniqueNestedInput {
+  where: InfluencerWhereUniqueInput;
+  update: InfluencerUpdateDataInput;
+  create: InfluencerCreateInput;
+}
+
+export interface InfluencerUpdateDataInput {
+  user?: Maybe<UserUpdateOneRequiredInput>;
+}
+
+export interface InfluencerUpdateWithWhereUniqueNestedInput {
+  where: InfluencerWhereUniqueInput;
+  data: InfluencerUpdateDataInput;
+}
+
+export interface UserStatusUpdateManyMutationInput {
+  currentStatus?: Maybe<Boolean>;
+}
+
+export interface AwayTeamFixtureCreateOneWithoutFixtureInput {
+  create?: Maybe<AwayTeamFixtureCreateWithoutFixtureInput>;
+  connect?: Maybe<AwayTeamFixtureWhereUniqueInput>;
+}
+
+export interface GameweekUpdateManyMutationInput {
+  averageEntryScore?: Maybe<Int>;
+  dataChecked?: Maybe<Boolean>;
+  deadlineTime?: Maybe<DateTimeInput>;
+  deadlineTimeEpoch?: Maybe<Int>;
+  deadlineTimeGameOffset?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  highestScore?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  fplEventId?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  name?: Maybe<String>;
+}
+
+export interface GameweekWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  season?: Maybe<SeasonWhereInput>;
+  averageEntryScore?: Maybe<Int>;
+  averageEntryScore_not?: Maybe<Int>;
+  averageEntryScore_in?: Maybe<Int[] | Int>;
+  averageEntryScore_not_in?: Maybe<Int[] | Int>;
+  averageEntryScore_lt?: Maybe<Int>;
+  averageEntryScore_lte?: Maybe<Int>;
+  averageEntryScore_gt?: Maybe<Int>;
+  averageEntryScore_gte?: Maybe<Int>;
+  dataChecked?: Maybe<Boolean>;
+  dataChecked_not?: Maybe<Boolean>;
+  deadlineTime?: Maybe<DateTimeInput>;
+  deadlineTime_not?: Maybe<DateTimeInput>;
+  deadlineTime_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  deadlineTime_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  deadlineTime_lt?: Maybe<DateTimeInput>;
+  deadlineTime_lte?: Maybe<DateTimeInput>;
+  deadlineTime_gt?: Maybe<DateTimeInput>;
+  deadlineTime_gte?: Maybe<DateTimeInput>;
+  deadlineTimeEpoch?: Maybe<Int>;
+  deadlineTimeEpoch_not?: Maybe<Int>;
+  deadlineTimeEpoch_in?: Maybe<Int[] | Int>;
+  deadlineTimeEpoch_not_in?: Maybe<Int[] | Int>;
+  deadlineTimeEpoch_lt?: Maybe<Int>;
+  deadlineTimeEpoch_lte?: Maybe<Int>;
+  deadlineTimeEpoch_gt?: Maybe<Int>;
+  deadlineTimeEpoch_gte?: Maybe<Int>;
+  deadlineTimeGameOffset?: Maybe<Int>;
+  deadlineTimeGameOffset_not?: Maybe<Int>;
+  deadlineTimeGameOffset_in?: Maybe<Int[] | Int>;
+  deadlineTimeGameOffset_not_in?: Maybe<Int[] | Int>;
+  deadlineTimeGameOffset_lt?: Maybe<Int>;
+  deadlineTimeGameOffset_lte?: Maybe<Int>;
+  deadlineTimeGameOffset_gt?: Maybe<Int>;
+  deadlineTimeGameOffset_gte?: Maybe<Int>;
+  finished?: Maybe<Boolean>;
+  finished_not?: Maybe<Boolean>;
+  highestScore?: Maybe<Int>;
+  highestScore_not?: Maybe<Int>;
+  highestScore_in?: Maybe<Int[] | Int>;
+  highestScore_not_in?: Maybe<Int[] | Int>;
+  highestScore_lt?: Maybe<Int>;
+  highestScore_lte?: Maybe<Int>;
+  highestScore_gt?: Maybe<Int>;
+  highestScore_gte?: Maybe<Int>;
+  highestScoringEntry?: Maybe<Int>;
+  highestScoringEntry_not?: Maybe<Int>;
+  highestScoringEntry_in?: Maybe<Int[] | Int>;
+  highestScoringEntry_not_in?: Maybe<Int[] | Int>;
+  highestScoringEntry_lt?: Maybe<Int>;
+  highestScoringEntry_lte?: Maybe<Int>;
+  highestScoringEntry_gt?: Maybe<Int>;
+  highestScoringEntry_gte?: Maybe<Int>;
+  fplEventId?: Maybe<Int>;
+  fplEventId_not?: Maybe<Int>;
+  fplEventId_in?: Maybe<Int[] | Int>;
+  fplEventId_not_in?: Maybe<Int[] | Int>;
+  fplEventId_lt?: Maybe<Int>;
+  fplEventId_lte?: Maybe<Int>;
+  fplEventId_gt?: Maybe<Int>;
+  fplEventId_gte?: Maybe<Int>;
+  isCurrent?: Maybe<Boolean>;
+  isCurrent_not?: Maybe<Boolean>;
+  isNext?: Maybe<Boolean>;
+  isNext_not?: Maybe<Boolean>;
+  isPrevious?: Maybe<Boolean>;
+  isPrevious_not?: Maybe<Boolean>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  fixtures_every?: Maybe<FixtureWhereInput>;
+  fixtures_some?: Maybe<FixtureWhereInput>;
+  fixtures_none?: Maybe<FixtureWhereInput>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<GameweekWhereInput[] | GameweekWhereInput>;
+  OR?: Maybe<GameweekWhereInput[] | GameweekWhereInput>;
+  NOT?: Maybe<GameweekWhereInput[] | GameweekWhereInput>;
 }
 
 export interface NodeNode {
@@ -5312,152 +5798,75 @@ export interface UserStatusPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface FandemSubscriptionConnection {
+export interface CountryConnection {
   pageInfo: PageInfo;
-  edges: FandemSubscriptionEdge[];
+  edges: CountryEdge[];
 }
 
-export interface FandemSubscriptionConnectionPromise
-  extends Promise<FandemSubscriptionConnection>,
+export interface CountryConnectionPromise
+  extends Promise<CountryConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<FandemSubscriptionEdge>>() => T;
-  aggregate: <T = AggregateFandemSubscriptionPromise>() => T;
+  edges: <T = FragmentableArray<CountryEdge>>() => T;
+  aggregate: <T = AggregateCountryPromise>() => T;
 }
 
-export interface FandemSubscriptionConnectionSubscription
-  extends Promise<AsyncIterator<FandemSubscriptionConnection>>,
+export interface CountryConnectionSubscription
+  extends Promise<AsyncIterator<CountryConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<AsyncIterator<FandemSubscriptionEdgeSubscription>>
-  >() => T;
-  aggregate: <T = AggregateFandemSubscriptionSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CountryEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCountrySubscription>() => T;
 }
 
-export interface UserPhoto {
+export interface HomeTeamFixture {
   id: ID_Output;
-  isProfile?: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface UserPhotoPromise extends Promise<UserPhoto>, Fragmentable {
+export interface HomeTeamFixturePromise
+  extends Promise<HomeTeamFixture>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  photo: <T = PhotoPromise>() => T;
-  isProfile: () => Promise<Boolean>;
+  fixture: <T = FixturePromise>() => T;
+  homeTeam: <T = TeamPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface UserPhotoSubscription
-  extends Promise<AsyncIterator<UserPhoto>>,
+export interface HomeTeamFixtureSubscription
+  extends Promise<AsyncIterator<HomeTeamFixture>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
-  photo: <T = PhotoSubscription>() => T;
-  isProfile: () => Promise<AsyncIterator<Boolean>>;
+  fixture: <T = FixtureSubscription>() => T;
+  homeTeam: <T = TeamSubscription>() => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface UserPhotoNullablePromise
-  extends Promise<UserPhoto | null>,
+export interface HomeTeamFixtureNullablePromise
+  extends Promise<HomeTeamFixture | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  photo: <T = PhotoPromise>() => T;
-  isProfile: () => Promise<Boolean>;
+  fixture: <T = FixturePromise>() => T;
+  homeTeam: <T = TeamPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface AggregateCountry {
+export interface AggregateAwayTeamFixture {
   count: Int;
 }
 
-export interface AggregateCountryPromise
-  extends Promise<AggregateCountry>,
+export interface AggregateAwayTeamFixturePromise
+  extends Promise<AggregateAwayTeamFixture>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateCountrySubscription
-  extends Promise<AsyncIterator<AggregateCountry>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Photo {
-  id: ID_Output;
-  image: String;
-  largeImage?: String;
-  smallImage?: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface PhotoPromise extends Promise<Photo>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  image: () => Promise<String>;
-  largeImage: () => Promise<String>;
-  smallImage: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface PhotoSubscription
-  extends Promise<AsyncIterator<Photo>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  image: () => Promise<AsyncIterator<String>>;
-  largeImage: () => Promise<AsyncIterator<String>>;
-  smallImage: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface PhotoNullablePromise
-  extends Promise<Photo | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  image: () => Promise<String>;
-  largeImage: () => Promise<String>;
-  smallImage: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface CountryEdge {
-  node: Country;
-  cursor: String;
-}
-
-export interface CountryEdgePromise extends Promise<CountryEdge>, Fragmentable {
-  node: <T = CountryPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CountryEdgeSubscription
-  extends Promise<AsyncIterator<CountryEdge>>,
-    Fragmentable {
-  node: <T = CountrySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateUserStatus {
-  count: Int;
-}
-
-export interface AggregateUserStatusPromise
-  extends Promise<AggregateUserStatus>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserStatusSubscription
-  extends Promise<AsyncIterator<AggregateUserStatus>>,
+export interface AggregateAwayTeamFixtureSubscription
+  extends Promise<AsyncIterator<AggregateAwayTeamFixture>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -5502,88 +5911,60 @@ export interface CountryNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface UserPhotoPreviousValues {
-  id: ID_Output;
-  isProfile?: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
+export interface AwayTeamFixtureEdge {
+  node: AwayTeamFixture;
+  cursor: String;
 }
 
-export interface UserPhotoPreviousValuesPromise
-  extends Promise<UserPhotoPreviousValues>,
+export interface AwayTeamFixtureEdgePromise
+  extends Promise<AwayTeamFixtureEdge>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  isProfile: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
+  node: <T = AwayTeamFixturePromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface UserPhotoPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPhotoPreviousValues>>,
+export interface AwayTeamFixtureEdgeSubscription
+  extends Promise<AsyncIterator<AwayTeamFixtureEdge>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  isProfile: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  node: <T = AwayTeamFixtureSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface FandemSubscription {
-  id: ID_Output;
-  name: String;
-  description: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
+export interface AggregateUserStatus {
+  count: Int;
 }
 
-export interface FandemSubscriptionPromise
-  extends Promise<FandemSubscription>,
+export interface AggregateUserStatusPromise
+  extends Promise<AggregateUserStatus>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
+  count: () => Promise<Int>;
 }
 
-export interface FandemSubscriptionSubscription
-  extends Promise<AsyncIterator<FandemSubscription>>,
+export interface AggregateUserStatusSubscription
+  extends Promise<AsyncIterator<AggregateUserStatus>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface FandemSubscriptionNullablePromise
-  extends Promise<FandemSubscription | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface CountryConnection {
+export interface AwayTeamFixtureConnection {
   pageInfo: PageInfo;
-  edges: CountryEdge[];
+  edges: AwayTeamFixtureEdge[];
 }
 
-export interface CountryConnectionPromise
-  extends Promise<CountryConnection>,
+export interface AwayTeamFixtureConnectionPromise
+  extends Promise<AwayTeamFixtureConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CountryEdge>>() => T;
-  aggregate: <T = AggregateCountryPromise>() => T;
+  edges: <T = FragmentableArray<AwayTeamFixtureEdge>>() => T;
+  aggregate: <T = AggregateAwayTeamFixturePromise>() => T;
 }
 
-export interface CountryConnectionSubscription
-  extends Promise<AsyncIterator<CountryConnection>>,
+export interface AwayTeamFixtureConnectionSubscription
+  extends Promise<AsyncIterator<AwayTeamFixtureConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CountryEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCountrySubscription>() => T;
+  edges: <T = Promise<AsyncIterator<AwayTeamFixtureEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateAwayTeamFixtureSubscription>() => T;
 }
 
 export interface BatchPayload {
@@ -5600,62 +5981,6 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface AggregateUserRole {
-  count: Int;
-}
-
-export interface AggregateUserRolePromise
-  extends Promise<AggregateUserRole>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserRoleSubscription
-  extends Promise<AsyncIterator<AggregateUserRole>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface UserStatusEdge {
-  node: UserStatus;
-  cursor: String;
-}
-
-export interface UserStatusEdgePromise
-  extends Promise<UserStatusEdge>,
-    Fragmentable {
-  node: <T = UserStatusPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserStatusEdgeSubscription
-  extends Promise<AsyncIterator<UserStatusEdge>>,
-    Fragmentable {
-  node: <T = UserStatusSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserRoleConnection {
-  pageInfo: PageInfo;
-  edges: UserRoleEdge[];
-}
-
-export interface UserRoleConnectionPromise
-  extends Promise<UserRoleConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserRoleEdge>>() => T;
-  aggregate: <T = AggregateUserRolePromise>() => T;
-}
-
-export interface UserRoleConnectionSubscription
-  extends Promise<AsyncIterator<UserRoleConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserRoleEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserRoleSubscription>() => T;
 }
 
 export interface ActiveSubscriptions {
@@ -5702,23 +6027,25 @@ export interface ActiveSubscriptionsNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface UserPhotoEdge {
-  node: UserPhoto;
-  cursor: String;
+export interface UserStatusConnection {
+  pageInfo: PageInfo;
+  edges: UserStatusEdge[];
 }
 
-export interface UserPhotoEdgePromise
-  extends Promise<UserPhotoEdge>,
+export interface UserStatusConnectionPromise
+  extends Promise<UserStatusConnection>,
     Fragmentable {
-  node: <T = UserPhotoPromise>() => T;
-  cursor: () => Promise<String>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserStatusEdge>>() => T;
+  aggregate: <T = AggregateUserStatusPromise>() => T;
 }
 
-export interface UserPhotoEdgeSubscription
-  extends Promise<AsyncIterator<UserPhotoEdge>>,
+export interface UserStatusConnectionSubscription
+  extends Promise<AsyncIterator<UserStatusConnection>>,
     Fragmentable {
-  node: <T = UserPhotoSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserStatusEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserStatusSubscription>() => T;
 }
 
 export interface ActiveSubscriptionsSubscriptionPayload {
@@ -5746,20 +6073,23 @@ export interface ActiveSubscriptionsSubscriptionPayloadSubscription
   previousValues: <T = ActiveSubscriptionsPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateUserInfluencers {
-  count: Int;
+export interface UserRoleEdge {
+  node: UserRole;
+  cursor: String;
 }
 
-export interface AggregateUserInfluencersPromise
-  extends Promise<AggregateUserInfluencers>,
+export interface UserRoleEdgePromise
+  extends Promise<UserRoleEdge>,
     Fragmentable {
-  count: () => Promise<Int>;
+  node: <T = UserRolePromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface AggregateUserInfluencersSubscription
-  extends Promise<AsyncIterator<AggregateUserInfluencers>>,
+export interface UserRoleEdgeSubscription
+  extends Promise<AsyncIterator<UserRoleEdge>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  node: <T = UserRoleSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ActiveSubscriptionsPreviousValues {
@@ -5790,57 +6120,57 @@ export interface ActiveSubscriptionsPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface UserInfluencersConnection {
-  pageInfo: PageInfo;
-  edges: UserInfluencersEdge[];
+export interface AggregateUserPhoto {
+  count: Int;
 }
 
-export interface UserInfluencersConnectionPromise
-  extends Promise<UserInfluencersConnection>,
+export interface AggregateUserPhotoPromise
+  extends Promise<AggregateUserPhoto>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserPhotoSubscription
+  extends Promise<AsyncIterator<AggregateUserPhoto>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateActiveSubscriptions {
+  count: Int;
+}
+
+export interface AggregateActiveSubscriptionsPromise
+  extends Promise<AggregateActiveSubscriptions>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateActiveSubscriptionsSubscription
+  extends Promise<AsyncIterator<AggregateActiveSubscriptions>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserPhotoConnection {
+  pageInfo: PageInfo;
+  edges: UserPhotoEdge[];
+}
+
+export interface UserPhotoConnectionPromise
+  extends Promise<UserPhotoConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserInfluencersEdge>>() => T;
-  aggregate: <T = AggregateUserInfluencersPromise>() => T;
+  edges: <T = FragmentableArray<UserPhotoEdge>>() => T;
+  aggregate: <T = AggregateUserPhotoPromise>() => T;
 }
 
-export interface UserInfluencersConnectionSubscription
-  extends Promise<AsyncIterator<UserInfluencersConnection>>,
+export interface UserPhotoConnectionSubscription
+  extends Promise<AsyncIterator<UserPhotoConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserInfluencersEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserInfluencersSubscription>() => T;
-}
-
-export interface AggregateAwayTeamFixture {
-  count: Int;
-}
-
-export interface AggregateAwayTeamFixturePromise
-  extends Promise<AggregateAwayTeamFixture>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateAwayTeamFixtureSubscription
-  extends Promise<AsyncIterator<AggregateAwayTeamFixture>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateUserFollowers {
-  count: Int;
-}
-
-export interface AggregateUserFollowersPromise
-  extends Promise<AggregateUserFollowers>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserFollowersSubscription
-  extends Promise<AsyncIterator<AggregateUserFollowers>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  edges: <T = Promise<AsyncIterator<UserPhotoEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserPhotoSubscription>() => T;
 }
 
 export interface AwayTeamFixtureSubscriptionPayload {
@@ -5868,25 +6198,23 @@ export interface AwayTeamFixtureSubscriptionPayloadSubscription
   previousValues: <T = AwayTeamFixturePreviousValuesSubscription>() => T;
 }
 
-export interface UserFollowersConnection {
-  pageInfo: PageInfo;
-  edges: UserFollowersEdge[];
+export interface UserInfluencersEdge {
+  node: UserInfluencers;
+  cursor: String;
 }
 
-export interface UserFollowersConnectionPromise
-  extends Promise<UserFollowersConnection>,
+export interface UserInfluencersEdgePromise
+  extends Promise<UserInfluencersEdge>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserFollowersEdge>>() => T;
-  aggregate: <T = AggregateUserFollowersPromise>() => T;
+  node: <T = UserInfluencersPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface UserFollowersConnectionSubscription
-  extends Promise<AsyncIterator<UserFollowersConnection>>,
+export interface UserInfluencersEdgeSubscription
+  extends Promise<AsyncIterator<UserInfluencersEdge>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserFollowersEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserFollowersSubscription>() => T;
+  node: <T = UserInfluencersSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AwayTeamFixturePreviousValues {
@@ -5909,1114 +6237,6 @@ export interface AwayTeamFixturePreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface AggregateUserAssignedRole {
-  count: Int;
-}
-
-export interface AggregateUserAssignedRolePromise
-  extends Promise<AggregateUserAssignedRole>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserAssignedRoleSubscription
-  extends Promise<AsyncIterator<AggregateUserAssignedRole>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AwayTeamFixtureEdge {
-  node: AwayTeamFixture;
-  cursor: String;
-}
-
-export interface AwayTeamFixtureEdgePromise
-  extends Promise<AwayTeamFixtureEdge>,
-    Fragmentable {
-  node: <T = AwayTeamFixturePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface AwayTeamFixtureEdgeSubscription
-  extends Promise<AsyncIterator<AwayTeamFixtureEdge>>,
-    Fragmentable {
-  node: <T = AwayTeamFixtureSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserAssignedRoleConnection {
-  pageInfo: PageInfo;
-  edges: UserAssignedRoleEdge[];
-}
-
-export interface UserAssignedRoleConnectionPromise
-  extends Promise<UserAssignedRoleConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserAssignedRoleEdge>>() => T;
-  aggregate: <T = AggregateUserAssignedRolePromise>() => T;
-}
-
-export interface UserAssignedRoleConnectionSubscription
-  extends Promise<AsyncIterator<UserAssignedRoleConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserAssignedRoleEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserAssignedRoleSubscription>() => T;
-}
-
-export interface CountrySubscriptionPayload {
-  mutation: MutationType;
-  node: Country;
-  updatedFields: String[];
-  previousValues: CountryPreviousValues;
-}
-
-export interface CountrySubscriptionPayloadPromise
-  extends Promise<CountrySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CountryPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CountryPreviousValuesPromise>() => T;
-}
-
-export interface CountrySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CountrySubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CountrySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CountryPreviousValuesSubscription>() => T;
-}
-
-export interface UserAssignedRole {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface UserAssignedRolePromise
-  extends Promise<UserAssignedRole>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  userRole: <T = UserRolePromise>() => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface UserAssignedRoleSubscription
-  extends Promise<AsyncIterator<UserAssignedRole>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
-  userRole: <T = UserRoleSubscription>() => T;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface UserAssignedRoleNullablePromise
-  extends Promise<UserAssignedRole | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  userRole: <T = UserRolePromise>() => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface CountryPreviousValues {
-  id: ID_Output;
-  iso: String;
-  name: String;
-  code: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface CountryPreviousValuesPromise
-  extends Promise<CountryPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  iso: () => Promise<String>;
-  name: () => Promise<String>;
-  code: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface CountryPreviousValuesSubscription
-  extends Promise<AsyncIterator<CountryPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  iso: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-  code: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AwayTeamFixtureConnection {
-  pageInfo: PageInfo;
-  edges: AwayTeamFixtureEdge[];
-}
-
-export interface AwayTeamFixtureConnectionPromise
-  extends Promise<AwayTeamFixtureConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<AwayTeamFixtureEdge>>() => T;
-  aggregate: <T = AggregateAwayTeamFixturePromise>() => T;
-}
-
-export interface AwayTeamFixtureConnectionSubscription
-  extends Promise<AsyncIterator<AwayTeamFixtureConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<AwayTeamFixtureEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateAwayTeamFixtureSubscription>() => T;
-}
-
-export interface AggregateTeam {
-  count: Int;
-}
-
-export interface AggregateTeamPromise
-  extends Promise<AggregateTeam>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateTeamSubscription
-  extends Promise<AsyncIterator<AggregateTeam>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface FandemSubscriptionSubscriptionPayload {
-  mutation: MutationType;
-  node: FandemSubscription;
-  updatedFields: String[];
-  previousValues: FandemSubscriptionPreviousValues;
-}
-
-export interface FandemSubscriptionSubscriptionPayloadPromise
-  extends Promise<FandemSubscriptionSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = FandemSubscriptionPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = FandemSubscriptionPreviousValuesPromise>() => T;
-}
-
-export interface FandemSubscriptionSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<FandemSubscriptionSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = FandemSubscriptionSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = FandemSubscriptionPreviousValuesSubscription>() => T;
-}
-
-export interface TeamConnection {
-  pageInfo: PageInfo;
-  edges: TeamEdge[];
-}
-
-export interface TeamConnectionPromise
-  extends Promise<TeamConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<TeamEdge>>() => T;
-  aggregate: <T = AggregateTeamPromise>() => T;
-}
-
-export interface TeamConnectionSubscription
-  extends Promise<AsyncIterator<TeamConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<TeamEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateTeamSubscription>() => T;
-}
-
-export interface FandemSubscriptionPreviousValues {
-  id: ID_Output;
-  name: String;
-  description: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface FandemSubscriptionPreviousValuesPromise
-  extends Promise<FandemSubscriptionPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface FandemSubscriptionPreviousValuesSubscription
-  extends Promise<AsyncIterator<FandemSubscriptionPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface AggregateStatus {
-  count: Int;
-}
-
-export interface AggregateStatusPromise
-  extends Promise<AggregateStatus>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateStatusSubscription
-  extends Promise<AsyncIterator<AggregateStatus>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateActiveSubscriptions {
-  count: Int;
-}
-
-export interface AggregateActiveSubscriptionsPromise
-  extends Promise<AggregateActiveSubscriptions>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateActiveSubscriptionsSubscription
-  extends Promise<AsyncIterator<AggregateActiveSubscriptions>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface StatusConnection {
-  pageInfo: PageInfo;
-  edges: StatusEdge[];
-}
-
-export interface StatusConnectionPromise
-  extends Promise<StatusConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<StatusEdge>>() => T;
-  aggregate: <T = AggregateStatusPromise>() => T;
-}
-
-export interface StatusConnectionSubscription
-  extends Promise<AsyncIterator<StatusConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<StatusEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateStatusSubscription>() => T;
-}
-
-export interface FixtureSubscriptionPayload {
-  mutation: MutationType;
-  node: Fixture;
-  updatedFields: String[];
-  previousValues: FixturePreviousValues;
-}
-
-export interface FixtureSubscriptionPayloadPromise
-  extends Promise<FixtureSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = FixturePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = FixturePreviousValuesPromise>() => T;
-}
-
-export interface FixtureSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<FixtureSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = FixtureSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = FixturePreviousValuesSubscription>() => T;
-}
-
-export interface AggregateSeason {
-  count: Int;
-}
-
-export interface AggregateSeasonPromise
-  extends Promise<AggregateSeason>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateSeasonSubscription
-  extends Promise<AsyncIterator<AggregateSeason>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface FixturePreviousValues {
-  id: ID_Output;
-  fplCode: Int;
-  finished: Boolean;
-  finishedProvisional: Boolean;
-  fixtureId: Int;
-  kickoffTime?: DateTimeOutput;
-  minutes: Int;
-  provisionalStartTime: Boolean;
-  started: Boolean;
-  teamADifficulty: Int;
-  teamAScore?: Int;
-  teamHDifficulty: Int;
-  teamHScore?: Int;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface FixturePreviousValuesPromise
-  extends Promise<FixturePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  fplCode: () => Promise<Int>;
-  finished: () => Promise<Boolean>;
-  finishedProvisional: () => Promise<Boolean>;
-  fixtureId: () => Promise<Int>;
-  kickoffTime: () => Promise<DateTimeOutput>;
-  minutes: () => Promise<Int>;
-  provisionalStartTime: () => Promise<Boolean>;
-  started: () => Promise<Boolean>;
-  teamADifficulty: () => Promise<Int>;
-  teamAScore: () => Promise<Int>;
-  teamHDifficulty: () => Promise<Int>;
-  teamHScore: () => Promise<Int>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface FixturePreviousValuesSubscription
-  extends Promise<AsyncIterator<FixturePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  fplCode: () => Promise<AsyncIterator<Int>>;
-  finished: () => Promise<AsyncIterator<Boolean>>;
-  finishedProvisional: () => Promise<AsyncIterator<Boolean>>;
-  fixtureId: () => Promise<AsyncIterator<Int>>;
-  kickoffTime: () => Promise<AsyncIterator<DateTimeOutput>>;
-  minutes: () => Promise<AsyncIterator<Int>>;
-  provisionalStartTime: () => Promise<AsyncIterator<Boolean>>;
-  started: () => Promise<AsyncIterator<Boolean>>;
-  teamADifficulty: () => Promise<AsyncIterator<Int>>;
-  teamAScore: () => Promise<AsyncIterator<Int>>;
-  teamHDifficulty: () => Promise<AsyncIterator<Int>>;
-  teamHScore: () => Promise<AsyncIterator<Int>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface SeasonConnection {
-  pageInfo: PageInfo;
-  edges: SeasonEdge[];
-}
-
-export interface SeasonConnectionPromise
-  extends Promise<SeasonConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SeasonEdge>>() => T;
-  aggregate: <T = AggregateSeasonPromise>() => T;
-}
-
-export interface SeasonConnectionSubscription
-  extends Promise<AsyncIterator<SeasonConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SeasonEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSeasonSubscription>() => T;
-}
-
-export interface ActiveSubscriptionsEdge {
-  node: ActiveSubscriptions;
-  cursor: String;
-}
-
-export interface ActiveSubscriptionsEdgePromise
-  extends Promise<ActiveSubscriptionsEdge>,
-    Fragmentable {
-  node: <T = ActiveSubscriptionsPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ActiveSubscriptionsEdgeSubscription
-  extends Promise<AsyncIterator<ActiveSubscriptionsEdge>>,
-    Fragmentable {
-  node: <T = ActiveSubscriptionsSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregatePhoto {
-  count: Int;
-}
-
-export interface AggregatePhotoPromise
-  extends Promise<AggregatePhoto>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregatePhotoSubscription
-  extends Promise<AsyncIterator<AggregatePhoto>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface FollowerSubscriptionPayload {
-  mutation: MutationType;
-  node: Follower;
-  updatedFields: String[];
-  previousValues: FollowerPreviousValues;
-}
-
-export interface FollowerSubscriptionPayloadPromise
-  extends Promise<FollowerSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = FollowerPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = FollowerPreviousValuesPromise>() => T;
-}
-
-export interface FollowerSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<FollowerSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = FollowerSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = FollowerPreviousValuesSubscription>() => T;
-}
-
-export interface PhotoConnection {
-  pageInfo: PageInfo;
-  edges: PhotoEdge[];
-}
-
-export interface PhotoConnectionPromise
-  extends Promise<PhotoConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PhotoEdge>>() => T;
-  aggregate: <T = AggregatePhotoPromise>() => T;
-}
-
-export interface PhotoConnectionSubscription
-  extends Promise<AsyncIterator<PhotoConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PhotoEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePhotoSubscription>() => T;
-}
-
-export interface FollowerPreviousValues {
-  id: ID_Output;
-  blocked: Boolean;
-  accepted: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface FollowerPreviousValuesPromise
-  extends Promise<FollowerPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  blocked: () => Promise<Boolean>;
-  accepted: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface FollowerPreviousValuesSubscription
-  extends Promise<AsyncIterator<FollowerPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  blocked: () => Promise<AsyncIterator<Boolean>>;
-  accepted: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface AggregateInfluencer {
-  count: Int;
-}
-
-export interface AggregateInfluencerPromise
-  extends Promise<AggregateInfluencer>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateInfluencerSubscription
-  extends Promise<AsyncIterator<AggregateInfluencer>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface InfluencerConnection {
-  pageInfo: PageInfo;
-  edges: InfluencerEdge[];
-}
-
-export interface InfluencerConnectionPromise
-  extends Promise<InfluencerConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<InfluencerEdge>>() => T;
-  aggregate: <T = AggregateInfluencerPromise>() => T;
-}
-
-export interface InfluencerConnectionSubscription
-  extends Promise<AsyncIterator<InfluencerConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<InfluencerEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateInfluencerSubscription>() => T;
-}
-
-export interface GameweekSubscriptionPayload {
-  mutation: MutationType;
-  node: Gameweek;
-  updatedFields: String[];
-  previousValues: GameweekPreviousValues;
-}
-
-export interface GameweekSubscriptionPayloadPromise
-  extends Promise<GameweekSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = GameweekPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = GameweekPreviousValuesPromise>() => T;
-}
-
-export interface GameweekSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<GameweekSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = GameweekSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = GameweekPreviousValuesSubscription>() => T;
-}
-
-export interface HomeTeamFixtureEdge {
-  node: HomeTeamFixture;
-  cursor: String;
-}
-
-export interface HomeTeamFixtureEdgePromise
-  extends Promise<HomeTeamFixtureEdge>,
-    Fragmentable {
-  node: <T = HomeTeamFixturePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface HomeTeamFixtureEdgeSubscription
-  extends Promise<AsyncIterator<HomeTeamFixtureEdge>>,
-    Fragmentable {
-  node: <T = HomeTeamFixtureSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface GameweekPreviousValues {
-  id: ID_Output;
-  averageEntryScore?: Int;
-  dataChecked: Boolean;
-  deadlineTime: DateTimeOutput;
-  deadlineTimeEpoch: Int;
-  deadlineTimeGameOffset: Int;
-  finished: Boolean;
-  highestScore?: Int;
-  highestScoringEntry?: Int;
-  fplEventId: Int;
-  isCurrent: Boolean;
-  isNext: Boolean;
-  isPrevious: Boolean;
-  name: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface GameweekPreviousValuesPromise
-  extends Promise<GameweekPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  averageEntryScore: () => Promise<Int>;
-  dataChecked: () => Promise<Boolean>;
-  deadlineTime: () => Promise<DateTimeOutput>;
-  deadlineTimeEpoch: () => Promise<Int>;
-  deadlineTimeGameOffset: () => Promise<Int>;
-  finished: () => Promise<Boolean>;
-  highestScore: () => Promise<Int>;
-  highestScoringEntry: () => Promise<Int>;
-  fplEventId: () => Promise<Int>;
-  isCurrent: () => Promise<Boolean>;
-  isNext: () => Promise<Boolean>;
-  isPrevious: () => Promise<Boolean>;
-  name: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface GameweekPreviousValuesSubscription
-  extends Promise<AsyncIterator<GameweekPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  averageEntryScore: () => Promise<AsyncIterator<Int>>;
-  dataChecked: () => Promise<AsyncIterator<Boolean>>;
-  deadlineTime: () => Promise<AsyncIterator<DateTimeOutput>>;
-  deadlineTimeEpoch: () => Promise<AsyncIterator<Int>>;
-  deadlineTimeGameOffset: () => Promise<AsyncIterator<Int>>;
-  finished: () => Promise<AsyncIterator<Boolean>>;
-  highestScore: () => Promise<AsyncIterator<Int>>;
-  highestScoringEntry: () => Promise<AsyncIterator<Int>>;
-  fplEventId: () => Promise<AsyncIterator<Int>>;
-  isCurrent: () => Promise<AsyncIterator<Boolean>>;
-  isNext: () => Promise<AsyncIterator<Boolean>>;
-  isPrevious: () => Promise<AsyncIterator<Boolean>>;
-  name: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface AggregateGameweek {
-  count: Int;
-}
-
-export interface AggregateGameweekPromise
-  extends Promise<AggregateGameweek>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateGameweekSubscription
-  extends Promise<AsyncIterator<AggregateGameweek>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ActiveSubscriptionsConnection {
-  pageInfo: PageInfo;
-  edges: ActiveSubscriptionsEdge[];
-}
-
-export interface ActiveSubscriptionsConnectionPromise
-  extends Promise<ActiveSubscriptionsConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ActiveSubscriptionsEdge>>() => T;
-  aggregate: <T = AggregateActiveSubscriptionsPromise>() => T;
-}
-
-export interface ActiveSubscriptionsConnectionSubscription
-  extends Promise<AsyncIterator<ActiveSubscriptionsConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <
-    T = Promise<AsyncIterator<ActiveSubscriptionsEdgeSubscription>>
-  >() => T;
-  aggregate: <T = AggregateActiveSubscriptionsSubscription>() => T;
-}
-
-export interface GameweekConnection {
-  pageInfo: PageInfo;
-  edges: GameweekEdge[];
-}
-
-export interface GameweekConnectionPromise
-  extends Promise<GameweekConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<GameweekEdge>>() => T;
-  aggregate: <T = AggregateGameweekPromise>() => T;
-}
-
-export interface GameweekConnectionSubscription
-  extends Promise<AsyncIterator<GameweekConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<GameweekEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateGameweekSubscription>() => T;
-}
-
-export interface HomeTeamFixtureSubscriptionPayload {
-  mutation: MutationType;
-  node: HomeTeamFixture;
-  updatedFields: String[];
-  previousValues: HomeTeamFixturePreviousValues;
-}
-
-export interface HomeTeamFixtureSubscriptionPayloadPromise
-  extends Promise<HomeTeamFixtureSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = HomeTeamFixturePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = HomeTeamFixturePreviousValuesPromise>() => T;
-}
-
-export interface HomeTeamFixtureSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<HomeTeamFixtureSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = HomeTeamFixtureSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = HomeTeamFixturePreviousValuesSubscription>() => T;
-}
-
-export interface FollowerEdge {
-  node: Follower;
-  cursor: String;
-}
-
-export interface FollowerEdgePromise
-  extends Promise<FollowerEdge>,
-    Fragmentable {
-  node: <T = FollowerPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface FollowerEdgeSubscription
-  extends Promise<AsyncIterator<FollowerEdge>>,
-    Fragmentable {
-  node: <T = FollowerSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface HomeTeamFixturePreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface HomeTeamFixturePreviousValuesPromise
-  extends Promise<HomeTeamFixturePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface HomeTeamFixturePreviousValuesSubscription
-  extends Promise<AsyncIterator<HomeTeamFixturePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface AggregateFixture {
-  count: Int;
-}
-
-export interface AggregateFixturePromise
-  extends Promise<AggregateFixture>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateFixtureSubscription
-  extends Promise<AsyncIterator<AggregateFixture>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface Influencer {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface InfluencerPromise extends Promise<Influencer>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface InfluencerSubscription
-  extends Promise<AsyncIterator<Influencer>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface InfluencerNullablePromise
-  extends Promise<Influencer | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface FixtureConnection {
-  pageInfo: PageInfo;
-  edges: FixtureEdge[];
-}
-
-export interface FixtureConnectionPromise
-  extends Promise<FixtureConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<FixtureEdge>>() => T;
-  aggregate: <T = AggregateFixturePromise>() => T;
-}
-
-export interface FixtureConnectionSubscription
-  extends Promise<AsyncIterator<FixtureConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<FixtureEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateFixtureSubscription>() => T;
-}
-
-export interface InfluencerSubscriptionPayload {
-  mutation: MutationType;
-  node: Influencer;
-  updatedFields: String[];
-  previousValues: InfluencerPreviousValues;
-}
-
-export interface InfluencerSubscriptionPayloadPromise
-  extends Promise<InfluencerSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = InfluencerPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = InfluencerPreviousValuesPromise>() => T;
-}
-
-export interface InfluencerSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<InfluencerSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = InfluencerSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = InfluencerPreviousValuesSubscription>() => T;
-}
-
-export interface FandemSubscriptionEdge {
-  node: FandemSubscription;
-  cursor: String;
-}
-
-export interface FandemSubscriptionEdgePromise
-  extends Promise<FandemSubscriptionEdge>,
-    Fragmentable {
-  node: <T = FandemSubscriptionPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface FandemSubscriptionEdgeSubscription
-  extends Promise<AsyncIterator<FandemSubscriptionEdge>>,
-    Fragmentable {
-  node: <T = FandemSubscriptionSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface InfluencerPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface InfluencerPreviousValuesPromise
-  extends Promise<InfluencerPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface InfluencerPreviousValuesSubscription
-  extends Promise<AsyncIterator<InfluencerPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface UserRoleEdge {
-  node: UserRole;
-  cursor: String;
-}
-
-export interface UserRoleEdgePromise
-  extends Promise<UserRoleEdge>,
-    Fragmentable {
-  node: <T = UserRolePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserRoleEdgeSubscription
-  extends Promise<AsyncIterator<UserRoleEdge>>,
-    Fragmentable {
-  node: <T = UserRoleSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserInfluencers {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface UserInfluencersPromise
-  extends Promise<UserInfluencers>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  influencers: <T = FragmentableArray<Influencer>>(args?: {
-    where?: InfluencerWhereInput;
-    orderBy?: InfluencerOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface UserInfluencersSubscription
-  extends Promise<AsyncIterator<UserInfluencers>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
-  influencers: <T = Promise<AsyncIterator<InfluencerSubscription>>>(args?: {
-    where?: InfluencerWhereInput;
-    orderBy?: InfluencerOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface UserInfluencersNullablePromise
-  extends Promise<UserInfluencers | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  influencers: <T = FragmentableArray<Influencer>>(args?: {
-    where?: InfluencerWhereInput;
-    orderBy?: InfluencerOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface UserPhotoConnection {
-  pageInfo: PageInfo;
-  edges: UserPhotoEdge[];
-}
-
-export interface UserPhotoConnectionPromise
-  extends Promise<UserPhotoConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserPhotoEdge>>() => T;
-  aggregate: <T = AggregateUserPhotoPromise>() => T;
-}
-
-export interface UserPhotoConnectionSubscription
-  extends Promise<AsyncIterator<UserPhotoConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserPhotoEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserPhotoSubscription>() => T;
-}
-
-export interface PhotoSubscriptionPayload {
-  mutation: MutationType;
-  node: Photo;
-  updatedFields: String[];
-  previousValues: PhotoPreviousValues;
-}
-
-export interface PhotoSubscriptionPayloadPromise
-  extends Promise<PhotoSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PhotoPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PhotoPreviousValuesPromise>() => T;
-}
-
-export interface PhotoSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PhotoSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PhotoSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PhotoPreviousValuesSubscription>() => T;
 }
 
 export interface User {
@@ -7221,99 +6441,117 @@ export interface UserNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface PhotoPreviousValues {
-  id: ID_Output;
-  image: String;
-  largeImage?: String;
-  smallImage?: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
+export interface ActiveSubscriptionsEdge {
+  node: ActiveSubscriptions;
+  cursor: String;
 }
 
-export interface PhotoPreviousValuesPromise
-  extends Promise<PhotoPreviousValues>,
+export interface ActiveSubscriptionsEdgePromise
+  extends Promise<ActiveSubscriptionsEdge>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  image: () => Promise<String>;
-  largeImage: () => Promise<String>;
-  smallImage: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
+  node: <T = ActiveSubscriptionsPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface PhotoPreviousValuesSubscription
-  extends Promise<AsyncIterator<PhotoPreviousValues>>,
+export interface ActiveSubscriptionsEdgeSubscription
+  extends Promise<AsyncIterator<ActiveSubscriptionsEdge>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  image: () => Promise<AsyncIterator<String>>;
-  largeImage: () => Promise<AsyncIterator<String>>;
-  smallImage: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  node: <T = ActiveSubscriptionsSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserStatusSubscriptionPayload {
+export interface UserFollowersEdge {
+  node: UserFollowers;
+  cursor: String;
+}
+
+export interface UserFollowersEdgePromise
+  extends Promise<UserFollowersEdge>,
+    Fragmentable {
+  node: <T = UserFollowersPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserFollowersEdgeSubscription
+  extends Promise<AsyncIterator<UserFollowersEdge>>,
+    Fragmentable {
+  node: <T = UserFollowersSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CountrySubscriptionPayload {
   mutation: MutationType;
-  node: UserStatus;
+  node: Country;
   updatedFields: String[];
-  previousValues: UserStatusPreviousValues;
+  previousValues: CountryPreviousValues;
 }
 
-export interface UserStatusSubscriptionPayloadPromise
-  extends Promise<UserStatusSubscriptionPayload>,
+export interface CountrySubscriptionPayloadPromise
+  extends Promise<CountrySubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = UserStatusPromise>() => T;
+  node: <T = CountryPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserStatusPreviousValuesPromise>() => T;
+  previousValues: <T = CountryPreviousValuesPromise>() => T;
 }
 
-export interface UserStatusSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserStatusSubscriptionPayload>>,
+export interface CountrySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CountrySubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserStatusSubscription>() => T;
+  node: <T = CountrySubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserStatusPreviousValuesSubscription>() => T;
+  previousValues: <T = CountryPreviousValuesSubscription>() => T;
 }
 
-export interface Follower {
+export interface UserAssignedRoleEdge {
+  node: UserAssignedRole;
+  cursor: String;
+}
+
+export interface UserAssignedRoleEdgePromise
+  extends Promise<UserAssignedRoleEdge>,
+    Fragmentable {
+  node: <T = UserAssignedRolePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserAssignedRoleEdgeSubscription
+  extends Promise<AsyncIterator<UserAssignedRoleEdge>>,
+    Fragmentable {
+  node: <T = UserAssignedRoleSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CountryPreviousValues {
   id: ID_Output;
-  blocked: Boolean;
-  accepted: Boolean;
+  iso: String;
+  name: String;
+  code: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface FollowerPromise extends Promise<Follower>, Fragmentable {
+export interface CountryPreviousValuesPromise
+  extends Promise<CountryPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  blocked: () => Promise<Boolean>;
-  accepted: () => Promise<Boolean>;
+  iso: () => Promise<String>;
+  name: () => Promise<String>;
+  code: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface FollowerSubscription
-  extends Promise<AsyncIterator<Follower>>,
+export interface CountryPreviousValuesSubscription
+  extends Promise<AsyncIterator<CountryPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
-  blocked: () => Promise<AsyncIterator<Boolean>>;
-  accepted: () => Promise<AsyncIterator<Boolean>>;
+  iso: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  code: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface FollowerNullablePromise
-  extends Promise<Follower | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
-  blocked: () => Promise<Boolean>;
-  accepted: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface Team {
@@ -7453,29 +6691,68 @@ export interface TeamNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface SeasonSubscriptionPayload {
-  mutation: MutationType;
-  node: Season;
-  updatedFields: String[];
-  previousValues: SeasonPreviousValues;
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface SeasonSubscriptionPayloadPromise
-  extends Promise<SeasonSubscriptionPayload>,
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface FandemSubscriptionSubscriptionPayload {
+  mutation: MutationType;
+  node: FandemSubscription;
+  updatedFields: String[];
+  previousValues: FandemSubscriptionPreviousValues;
+}
+
+export interface FandemSubscriptionSubscriptionPayloadPromise
+  extends Promise<FandemSubscriptionSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = SeasonPromise>() => T;
+  node: <T = FandemSubscriptionPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = SeasonPreviousValuesPromise>() => T;
+  previousValues: <T = FandemSubscriptionPreviousValuesPromise>() => T;
 }
 
-export interface SeasonSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SeasonSubscriptionPayload>>,
+export interface FandemSubscriptionSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<FandemSubscriptionSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SeasonSubscription>() => T;
+  node: <T = FandemSubscriptionSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SeasonPreviousValuesSubscription>() => T;
+  previousValues: <T = FandemSubscriptionPreviousValuesSubscription>() => T;
 }
 
 export interface UserConnection {
@@ -7499,50 +6776,324 @@ export interface UserConnectionSubscription
   aggregate: <T = AggregateUserSubscription>() => T;
 }
 
-export interface SeasonPreviousValues {
+export interface FandemSubscriptionPreviousValues {
   id: ID_Output;
-  fplId: Int;
-  label: String;
-  competition: String;
-  startYear: Int;
-  endYear: Int;
-  isCurrent: Boolean;
-  isPrevious: Boolean;
-  isNext: Boolean;
+  name: String;
+  description: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface SeasonPreviousValuesPromise
-  extends Promise<SeasonPreviousValues>,
+export interface FandemSubscriptionPreviousValuesPromise
+  extends Promise<FandemSubscriptionPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  fplId: () => Promise<Int>;
-  label: () => Promise<String>;
-  competition: () => Promise<String>;
-  startYear: () => Promise<Int>;
-  endYear: () => Promise<Int>;
-  isCurrent: () => Promise<Boolean>;
-  isPrevious: () => Promise<Boolean>;
-  isNext: () => Promise<Boolean>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface SeasonPreviousValuesSubscription
-  extends Promise<AsyncIterator<SeasonPreviousValues>>,
+export interface FandemSubscriptionPreviousValuesSubscription
+  extends Promise<AsyncIterator<FandemSubscriptionPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  fplId: () => Promise<AsyncIterator<Int>>;
-  label: () => Promise<AsyncIterator<String>>;
-  competition: () => Promise<AsyncIterator<String>>;
-  startYear: () => Promise<AsyncIterator<Int>>;
-  endYear: () => Promise<AsyncIterator<Int>>;
-  isCurrent: () => Promise<AsyncIterator<Boolean>>;
-  isPrevious: () => Promise<AsyncIterator<Boolean>>;
-  isNext: () => Promise<AsyncIterator<Boolean>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface TeamEdge {
+  node: Team;
+  cursor: String;
+}
+
+export interface TeamEdgePromise extends Promise<TeamEdge>, Fragmentable {
+  node: <T = TeamPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TeamEdgeSubscription
+  extends Promise<AsyncIterator<TeamEdge>>,
+    Fragmentable {
+  node: <T = TeamSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserPhotoPreviousValues {
+  id: ID_Output;
+  isProfile?: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface UserPhotoPreviousValuesPromise
+  extends Promise<UserPhotoPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  isProfile: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserPhotoPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPhotoPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  isProfile: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateTeam {
+  count: Int;
+}
+
+export interface AggregateTeamPromise
+  extends Promise<AggregateTeam>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTeamSubscription
+  extends Promise<AsyncIterator<AggregateTeam>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ActiveSubscriptionsConnection {
+  pageInfo: PageInfo;
+  edges: ActiveSubscriptionsEdge[];
+}
+
+export interface ActiveSubscriptionsConnectionPromise
+  extends Promise<ActiveSubscriptionsConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ActiveSubscriptionsEdge>>() => T;
+  aggregate: <T = AggregateActiveSubscriptionsPromise>() => T;
+}
+
+export interface ActiveSubscriptionsConnectionSubscription
+  extends Promise<AsyncIterator<ActiveSubscriptionsConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<ActiveSubscriptionsEdgeSubscription>>
+  >() => T;
+  aggregate: <T = AggregateActiveSubscriptionsSubscription>() => T;
+}
+
+export interface TeamConnection {
+  pageInfo: PageInfo;
+  edges: TeamEdge[];
+}
+
+export interface TeamConnectionPromise
+  extends Promise<TeamConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TeamEdge>>() => T;
+  aggregate: <T = AggregateTeamPromise>() => T;
+}
+
+export interface TeamConnectionSubscription
+  extends Promise<AsyncIterator<TeamConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TeamEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTeamSubscription>() => T;
+}
+
+export interface StatusConnection {
+  pageInfo: PageInfo;
+  edges: StatusEdge[];
+}
+
+export interface StatusConnectionPromise
+  extends Promise<StatusConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<StatusEdge>>() => T;
+  aggregate: <T = AggregateStatusPromise>() => T;
+}
+
+export interface StatusConnectionSubscription
+  extends Promise<AsyncIterator<StatusConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<StatusEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateStatusSubscription>() => T;
+}
+
+export interface AggregateStatus {
+  count: Int;
+}
+
+export interface AggregateStatusPromise
+  extends Promise<AggregateStatus>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateStatusSubscription
+  extends Promise<AsyncIterator<AggregateStatus>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateSeason {
+  count: Int;
+}
+
+export interface AggregateSeasonPromise
+  extends Promise<AggregateSeason>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSeasonSubscription
+  extends Promise<AsyncIterator<AggregateSeason>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface FixtureSubscriptionPayload {
+  mutation: MutationType;
+  node: Fixture;
+  updatedFields: String[];
+  previousValues: FixturePreviousValues;
+}
+
+export interface FixtureSubscriptionPayloadPromise
+  extends Promise<FixtureSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = FixturePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = FixturePreviousValuesPromise>() => T;
+}
+
+export interface FixtureSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<FixtureSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = FixtureSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = FixturePreviousValuesSubscription>() => T;
+}
+
+export interface SeasonConnection {
+  pageInfo: PageInfo;
+  edges: SeasonEdge[];
+}
+
+export interface SeasonConnectionPromise
+  extends Promise<SeasonConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<SeasonEdge>>() => T;
+  aggregate: <T = AggregateSeasonPromise>() => T;
+}
+
+export interface SeasonConnectionSubscription
+  extends Promise<AsyncIterator<SeasonConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SeasonEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSeasonSubscription>() => T;
+}
+
+export interface FixturePreviousValues {
+  id: ID_Output;
+  fplCode: Int;
+  finished: Boolean;
+  finishedProvisional: Boolean;
+  fixtureId: Int;
+  kickoffTime?: DateTimeOutput;
+  minutes: Int;
+  provisionalStartTime: Boolean;
+  started: Boolean;
+  teamADifficulty: Int;
+  teamAScore?: Int;
+  teamHDifficulty: Int;
+  teamHScore?: Int;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface FixturePreviousValuesPromise
+  extends Promise<FixturePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  fplCode: () => Promise<Int>;
+  finished: () => Promise<Boolean>;
+  finishedProvisional: () => Promise<Boolean>;
+  fixtureId: () => Promise<Int>;
+  kickoffTime: () => Promise<DateTimeOutput>;
+  minutes: () => Promise<Int>;
+  provisionalStartTime: () => Promise<Boolean>;
+  started: () => Promise<Boolean>;
+  teamADifficulty: () => Promise<Int>;
+  teamAScore: () => Promise<Int>;
+  teamHDifficulty: () => Promise<Int>;
+  teamHScore: () => Promise<Int>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface FixturePreviousValuesSubscription
+  extends Promise<AsyncIterator<FixturePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  fplCode: () => Promise<AsyncIterator<Int>>;
+  finished: () => Promise<AsyncIterator<Boolean>>;
+  finishedProvisional: () => Promise<AsyncIterator<Boolean>>;
+  fixtureId: () => Promise<AsyncIterator<Int>>;
+  kickoffTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  minutes: () => Promise<AsyncIterator<Int>>;
+  provisionalStartTime: () => Promise<AsyncIterator<Boolean>>;
+  started: () => Promise<AsyncIterator<Boolean>>;
+  teamADifficulty: () => Promise<AsyncIterator<Int>>;
+  teamAScore: () => Promise<AsyncIterator<Int>>;
+  teamHDifficulty: () => Promise<AsyncIterator<Int>>;
+  teamHScore: () => Promise<AsyncIterator<Int>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregatePhoto {
+  count: Int;
+}
+
+export interface AggregatePhotoPromise
+  extends Promise<AggregatePhoto>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePhotoSubscription
+  extends Promise<AsyncIterator<AggregatePhoto>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface AwayTeamFixture {
@@ -7579,6 +7130,594 @@ export interface AwayTeamFixtureNullablePromise
   awayTeam: <T = TeamPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface PhotoConnection {
+  pageInfo: PageInfo;
+  edges: PhotoEdge[];
+}
+
+export interface PhotoConnectionPromise
+  extends Promise<PhotoConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PhotoEdge>>() => T;
+  aggregate: <T = AggregatePhotoPromise>() => T;
+}
+
+export interface PhotoConnectionSubscription
+  extends Promise<AsyncIterator<PhotoConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PhotoEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePhotoSubscription>() => T;
+}
+
+export interface FollowerSubscriptionPayload {
+  mutation: MutationType;
+  node: Follower;
+  updatedFields: String[];
+  previousValues: FollowerPreviousValues;
+}
+
+export interface FollowerSubscriptionPayloadPromise
+  extends Promise<FollowerSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = FollowerPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = FollowerPreviousValuesPromise>() => T;
+}
+
+export interface FollowerSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<FollowerSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = FollowerSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = FollowerPreviousValuesSubscription>() => T;
+}
+
+export interface InfluencerEdge {
+  node: Influencer;
+  cursor: String;
+}
+
+export interface InfluencerEdgePromise
+  extends Promise<InfluencerEdge>,
+    Fragmentable {
+  node: <T = InfluencerPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface InfluencerEdgeSubscription
+  extends Promise<AsyncIterator<InfluencerEdge>>,
+    Fragmentable {
+  node: <T = InfluencerSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface FollowerPreviousValues {
+  id: ID_Output;
+  blocked: Boolean;
+  accepted: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface FollowerPreviousValuesPromise
+  extends Promise<FollowerPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  blocked: () => Promise<Boolean>;
+  accepted: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface FollowerPreviousValuesSubscription
+  extends Promise<AsyncIterator<FollowerPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  blocked: () => Promise<AsyncIterator<Boolean>>;
+  accepted: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateHomeTeamFixture {
+  count: Int;
+}
+
+export interface AggregateHomeTeamFixturePromise
+  extends Promise<AggregateHomeTeamFixture>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateHomeTeamFixtureSubscription
+  extends Promise<AsyncIterator<AggregateHomeTeamFixture>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Influencer {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface InfluencerPromise extends Promise<Influencer>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface InfluencerSubscription
+  extends Promise<AsyncIterator<Influencer>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface InfluencerNullablePromise
+  extends Promise<Influencer | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface HomeTeamFixtureConnection {
+  pageInfo: PageInfo;
+  edges: HomeTeamFixtureEdge[];
+}
+
+export interface HomeTeamFixtureConnectionPromise
+  extends Promise<HomeTeamFixtureConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<HomeTeamFixtureEdge>>() => T;
+  aggregate: <T = AggregateHomeTeamFixturePromise>() => T;
+}
+
+export interface HomeTeamFixtureConnectionSubscription
+  extends Promise<AsyncIterator<HomeTeamFixtureConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<HomeTeamFixtureEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateHomeTeamFixtureSubscription>() => T;
+}
+
+export interface GameweekSubscriptionPayload {
+  mutation: MutationType;
+  node: Gameweek;
+  updatedFields: String[];
+  previousValues: GameweekPreviousValues;
+}
+
+export interface GameweekSubscriptionPayloadPromise
+  extends Promise<GameweekSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = GameweekPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = GameweekPreviousValuesPromise>() => T;
+}
+
+export interface GameweekSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<GameweekSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = GameweekSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = GameweekPreviousValuesSubscription>() => T;
+}
+
+export interface GameweekEdge {
+  node: Gameweek;
+  cursor: String;
+}
+
+export interface GameweekEdgePromise
+  extends Promise<GameweekEdge>,
+    Fragmentable {
+  node: <T = GameweekPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface GameweekEdgeSubscription
+  extends Promise<AsyncIterator<GameweekEdge>>,
+    Fragmentable {
+  node: <T = GameweekSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface GameweekPreviousValues {
+  id: ID_Output;
+  averageEntryScore?: Int;
+  dataChecked: Boolean;
+  deadlineTime: DateTimeOutput;
+  deadlineTimeEpoch: Int;
+  deadlineTimeGameOffset: Int;
+  finished: Boolean;
+  highestScore?: Int;
+  highestScoringEntry?: Int;
+  fplEventId: Int;
+  isCurrent: Boolean;
+  isNext: Boolean;
+  isPrevious: Boolean;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface GameweekPreviousValuesPromise
+  extends Promise<GameweekPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  averageEntryScore: () => Promise<Int>;
+  dataChecked: () => Promise<Boolean>;
+  deadlineTime: () => Promise<DateTimeOutput>;
+  deadlineTimeEpoch: () => Promise<Int>;
+  deadlineTimeGameOffset: () => Promise<Int>;
+  finished: () => Promise<Boolean>;
+  highestScore: () => Promise<Int>;
+  highestScoringEntry: () => Promise<Int>;
+  fplEventId: () => Promise<Int>;
+  isCurrent: () => Promise<Boolean>;
+  isNext: () => Promise<Boolean>;
+  isPrevious: () => Promise<Boolean>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface GameweekPreviousValuesSubscription
+  extends Promise<AsyncIterator<GameweekPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  averageEntryScore: () => Promise<AsyncIterator<Int>>;
+  dataChecked: () => Promise<AsyncIterator<Boolean>>;
+  deadlineTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deadlineTimeEpoch: () => Promise<AsyncIterator<Int>>;
+  deadlineTimeGameOffset: () => Promise<AsyncIterator<Int>>;
+  finished: () => Promise<AsyncIterator<Boolean>>;
+  highestScore: () => Promise<AsyncIterator<Int>>;
+  highestScoringEntry: () => Promise<AsyncIterator<Int>>;
+  fplEventId: () => Promise<AsyncIterator<Int>>;
+  isCurrent: () => Promise<AsyncIterator<Boolean>>;
+  isNext: () => Promise<AsyncIterator<Boolean>>;
+  isPrevious: () => Promise<AsyncIterator<Boolean>>;
+  name: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateFollower {
+  count: Int;
+}
+
+export interface AggregateFollowerPromise
+  extends Promise<AggregateFollower>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateFollowerSubscription
+  extends Promise<AsyncIterator<AggregateFollower>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserInfluencers {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface UserInfluencersPromise
+  extends Promise<UserInfluencers>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  influencers: <T = FragmentableArray<Influencer>>(args?: {
+    where?: InfluencerWhereInput;
+    orderBy?: InfluencerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserInfluencersSubscription
+  extends Promise<AsyncIterator<UserInfluencers>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  influencers: <T = Promise<AsyncIterator<InfluencerSubscription>>>(args?: {
+    where?: InfluencerWhereInput;
+    orderBy?: InfluencerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface UserInfluencersNullablePromise
+  extends Promise<UserInfluencers | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  influencers: <T = FragmentableArray<Influencer>>(args?: {
+    where?: InfluencerWhereInput;
+    orderBy?: InfluencerOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface FollowerConnection {
+  pageInfo: PageInfo;
+  edges: FollowerEdge[];
+}
+
+export interface FollowerConnectionPromise
+  extends Promise<FollowerConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FollowerEdge>>() => T;
+  aggregate: <T = AggregateFollowerPromise>() => T;
+}
+
+export interface FollowerConnectionSubscription
+  extends Promise<AsyncIterator<FollowerConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FollowerEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFollowerSubscription>() => T;
+}
+
+export interface HomeTeamFixtureSubscriptionPayload {
+  mutation: MutationType;
+  node: HomeTeamFixture;
+  updatedFields: String[];
+  previousValues: HomeTeamFixturePreviousValues;
+}
+
+export interface HomeTeamFixtureSubscriptionPayloadPromise
+  extends Promise<HomeTeamFixtureSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = HomeTeamFixturePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = HomeTeamFixturePreviousValuesPromise>() => T;
+}
+
+export interface HomeTeamFixtureSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<HomeTeamFixtureSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = HomeTeamFixtureSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = HomeTeamFixturePreviousValuesSubscription>() => T;
+}
+
+export interface FixtureEdge {
+  node: Fixture;
+  cursor: String;
+}
+
+export interface FixtureEdgePromise extends Promise<FixtureEdge>, Fragmentable {
+  node: <T = FixturePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FixtureEdgeSubscription
+  extends Promise<AsyncIterator<FixtureEdge>>,
+    Fragmentable {
+  node: <T = FixtureSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface HomeTeamFixturePreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface HomeTeamFixturePreviousValuesPromise
+  extends Promise<HomeTeamFixturePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface HomeTeamFixturePreviousValuesSubscription
+  extends Promise<AsyncIterator<HomeTeamFixturePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AggregateFandemSubscription {
+  count: Int;
+}
+
+export interface AggregateFandemSubscriptionPromise
+  extends Promise<AggregateFandemSubscription>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateFandemSubscriptionSubscription
+  extends Promise<AsyncIterator<AggregateFandemSubscription>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Follower {
+  id: ID_Output;
+  blocked: Boolean;
+  accepted: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface FollowerPromise extends Promise<Follower>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  blocked: () => Promise<Boolean>;
+  accepted: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface FollowerSubscription
+  extends Promise<AsyncIterator<Follower>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  blocked: () => Promise<AsyncIterator<Boolean>>;
+  accepted: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface FollowerNullablePromise
+  extends Promise<Follower | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  blocked: () => Promise<Boolean>;
+  accepted: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface FandemSubscriptionConnection {
+  pageInfo: PageInfo;
+  edges: FandemSubscriptionEdge[];
+}
+
+export interface FandemSubscriptionConnectionPromise
+  extends Promise<FandemSubscriptionConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FandemSubscriptionEdge>>() => T;
+  aggregate: <T = AggregateFandemSubscriptionPromise>() => T;
+}
+
+export interface FandemSubscriptionConnectionSubscription
+  extends Promise<AsyncIterator<FandemSubscriptionConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<FandemSubscriptionEdgeSubscription>>
+  >() => T;
+  aggregate: <T = AggregateFandemSubscriptionSubscription>() => T;
+}
+
+export interface InfluencerSubscriptionPayload {
+  mutation: MutationType;
+  node: Influencer;
+  updatedFields: String[];
+  previousValues: InfluencerPreviousValues;
+}
+
+export interface InfluencerSubscriptionPayloadPromise
+  extends Promise<InfluencerSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = InfluencerPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = InfluencerPreviousValuesPromise>() => T;
+}
+
+export interface InfluencerSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<InfluencerSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = InfluencerSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = InfluencerPreviousValuesSubscription>() => T;
+}
+
+export interface CountryEdge {
+  node: Country;
+  cursor: String;
+}
+
+export interface CountryEdgePromise extends Promise<CountryEdge>, Fragmentable {
+  node: <T = CountryPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CountryEdgeSubscription
+  extends Promise<AsyncIterator<CountryEdge>>,
+    Fragmentable {
+  node: <T = CountrySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface InfluencerPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface InfluencerPreviousValuesPromise
+  extends Promise<InfluencerPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface InfluencerPreviousValuesSubscription
+  extends Promise<AsyncIterator<InfluencerPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface UserStatusEdge {
+  node: UserStatus;
+  cursor: String;
+}
+
+export interface UserStatusEdgePromise
+  extends Promise<UserStatusEdge>,
+    Fragmentable {
+  node: <T = UserStatusPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserStatusEdgeSubscription
+  extends Promise<AsyncIterator<UserStatusEdge>>,
+    Fragmentable {
+  node: <T = UserStatusSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserFollowers {
@@ -7641,342 +7780,116 @@ export interface UserFollowersNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface Season {
-  id: ID_Output;
-  fplId: Int;
-  label: String;
-  competition: String;
-  startYear: Int;
-  endYear: Int;
-  isCurrent: Boolean;
-  isPrevious: Boolean;
-  isNext: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface SeasonPromise extends Promise<Season>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  fplId: () => Promise<Int>;
-  label: () => Promise<String>;
-  competition: () => Promise<String>;
-  startYear: () => Promise<Int>;
-  endYear: () => Promise<Int>;
-  isCurrent: () => Promise<Boolean>;
-  isPrevious: () => Promise<Boolean>;
-  isNext: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface SeasonSubscription
-  extends Promise<AsyncIterator<Season>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  fplId: () => Promise<AsyncIterator<Int>>;
-  label: () => Promise<AsyncIterator<String>>;
-  competition: () => Promise<AsyncIterator<String>>;
-  startYear: () => Promise<AsyncIterator<Int>>;
-  endYear: () => Promise<AsyncIterator<Int>>;
-  isCurrent: () => Promise<AsyncIterator<Boolean>>;
-  isPrevious: () => Promise<AsyncIterator<Boolean>>;
-  isNext: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface SeasonNullablePromise
-  extends Promise<Season | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  fplId: () => Promise<Int>;
-  label: () => Promise<String>;
-  competition: () => Promise<String>;
-  startYear: () => Promise<Int>;
-  endYear: () => Promise<Int>;
-  isCurrent: () => Promise<Boolean>;
-  isPrevious: () => Promise<Boolean>;
-  isNext: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface StatusSubscriptionPayload {
-  mutation: MutationType;
-  node: Status;
-  updatedFields: String[];
-  previousValues: StatusPreviousValues;
-}
-
-export interface StatusSubscriptionPayloadPromise
-  extends Promise<StatusSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = StatusPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = StatusPreviousValuesPromise>() => T;
-}
-
-export interface StatusSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<StatusSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = StatusSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = StatusPreviousValuesSubscription>() => T;
-}
-
-export interface UserRolePreviousValues {
-  id: ID_Output;
-  name: String;
-  description: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface UserRolePreviousValuesPromise
-  extends Promise<UserRolePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface UserRolePreviousValuesSubscription
-  extends Promise<AsyncIterator<UserRolePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface StatusPreviousValues {
-  id: ID_Output;
-  content: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface StatusPreviousValuesPromise
-  extends Promise<StatusPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  content: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface StatusPreviousValuesSubscription
-  extends Promise<AsyncIterator<StatusPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  content: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface UserRoleSubscriptionPayload {
-  mutation: MutationType;
-  node: UserRole;
-  updatedFields: String[];
-  previousValues: UserRolePreviousValues;
-}
-
-export interface UserRoleSubscriptionPayloadPromise
-  extends Promise<UserRoleSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserRolePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserRolePreviousValuesPromise>() => T;
-}
-
-export interface UserRoleSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserRoleSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserRoleSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserRolePreviousValuesSubscription>() => T;
-}
-
-export interface HomeTeamFixture {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface HomeTeamFixturePromise
-  extends Promise<HomeTeamFixture>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  fixture: <T = FixturePromise>() => T;
-  homeTeam: <T = TeamPromise>() => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface HomeTeamFixtureSubscription
-  extends Promise<AsyncIterator<HomeTeamFixture>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  fixture: <T = FixtureSubscription>() => T;
-  homeTeam: <T = TeamSubscription>() => T;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface HomeTeamFixtureNullablePromise
-  extends Promise<HomeTeamFixture | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  fixture: <T = FixturePromise>() => T;
-  homeTeam: <T = TeamPromise>() => T;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface AggregateHomeTeamFixture {
+export interface AggregateUserRole {
   count: Int;
 }
 
-export interface AggregateHomeTeamFixturePromise
-  extends Promise<AggregateHomeTeamFixture>,
+export interface AggregateUserRolePromise
+  extends Promise<AggregateUserRole>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateHomeTeamFixtureSubscription
-  extends Promise<AsyncIterator<AggregateHomeTeamFixture>>,
+export interface AggregateUserRoleSubscription
+  extends Promise<AsyncIterator<AggregateUserRole>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface TeamSubscriptionPayload {
+export interface PhotoSubscriptionPayload {
   mutation: MutationType;
-  node: Team;
+  node: Photo;
   updatedFields: String[];
-  previousValues: TeamPreviousValues;
+  previousValues: PhotoPreviousValues;
 }
 
-export interface TeamSubscriptionPayloadPromise
-  extends Promise<TeamSubscriptionPayload>,
+export interface PhotoSubscriptionPayloadPromise
+  extends Promise<PhotoSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = TeamPromise>() => T;
+  node: <T = PhotoPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = TeamPreviousValuesPromise>() => T;
+  previousValues: <T = PhotoPreviousValuesPromise>() => T;
 }
 
-export interface TeamSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<TeamSubscriptionPayload>>,
+export interface PhotoSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PhotoSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = TeamSubscription>() => T;
+  node: <T = PhotoSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = TeamPreviousValuesSubscription>() => T;
+  previousValues: <T = PhotoPreviousValuesSubscription>() => T;
 }
 
-export interface GameweekEdge {
-  node: Gameweek;
+export interface UserPhotoEdge {
+  node: UserPhoto;
   cursor: String;
 }
 
-export interface GameweekEdgePromise
-  extends Promise<GameweekEdge>,
+export interface UserPhotoEdgePromise
+  extends Promise<UserPhotoEdge>,
     Fragmentable {
-  node: <T = GameweekPromise>() => T;
+  node: <T = UserPhotoPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface GameweekEdgeSubscription
-  extends Promise<AsyncIterator<GameweekEdge>>,
+export interface UserPhotoEdgeSubscription
+  extends Promise<AsyncIterator<UserPhotoEdge>>,
     Fragmentable {
-  node: <T = GameweekSubscription>() => T;
+  node: <T = UserPhotoSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface TeamPreviousValues {
+export interface PhotoPreviousValues {
   id: ID_Output;
-  code: Int;
-  fplTeamId: Int;
-  name: String;
-  shortName: String;
-  strength: Int;
-  strengthAttackAway: Int;
-  strengthAttackHome: Int;
-  strengthDefenceAway: Int;
-  strengthDefenceHome: Int;
-  strengthOverallAway: Int;
-  strengthOverallHome: Int;
-  teamDivision?: Int;
+  image: String;
+  largeImage?: String;
+  smallImage?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface TeamPreviousValuesPromise
-  extends Promise<TeamPreviousValues>,
+export interface PhotoPreviousValuesPromise
+  extends Promise<PhotoPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  code: () => Promise<Int>;
-  fplTeamId: () => Promise<Int>;
-  name: () => Promise<String>;
-  shortName: () => Promise<String>;
-  strength: () => Promise<Int>;
-  strengthAttackAway: () => Promise<Int>;
-  strengthAttackHome: () => Promise<Int>;
-  strengthDefenceAway: () => Promise<Int>;
-  strengthDefenceHome: () => Promise<Int>;
-  strengthOverallAway: () => Promise<Int>;
-  strengthOverallHome: () => Promise<Int>;
-  teamDivision: () => Promise<Int>;
+  image: () => Promise<String>;
+  largeImage: () => Promise<String>;
+  smallImage: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface TeamPreviousValuesSubscription
-  extends Promise<AsyncIterator<TeamPreviousValues>>,
+export interface PhotoPreviousValuesSubscription
+  extends Promise<AsyncIterator<PhotoPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  code: () => Promise<AsyncIterator<Int>>;
-  fplTeamId: () => Promise<AsyncIterator<Int>>;
-  name: () => Promise<AsyncIterator<String>>;
-  shortName: () => Promise<AsyncIterator<String>>;
-  strength: () => Promise<AsyncIterator<Int>>;
-  strengthAttackAway: () => Promise<AsyncIterator<Int>>;
-  strengthAttackHome: () => Promise<AsyncIterator<Int>>;
-  strengthDefenceAway: () => Promise<AsyncIterator<Int>>;
-  strengthDefenceHome: () => Promise<AsyncIterator<Int>>;
-  strengthOverallAway: () => Promise<AsyncIterator<Int>>;
-  strengthOverallHome: () => Promise<AsyncIterator<Int>>;
-  teamDivision: () => Promise<AsyncIterator<Int>>;
+  image: () => Promise<AsyncIterator<String>>;
+  largeImage: () => Promise<AsyncIterator<String>>;
+  smallImage: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface FollowerConnection {
+export interface UserInfluencersConnection {
   pageInfo: PageInfo;
-  edges: FollowerEdge[];
+  edges: UserInfluencersEdge[];
 }
 
-export interface FollowerConnectionPromise
-  extends Promise<FollowerConnection>,
+export interface UserInfluencersConnectionPromise
+  extends Promise<UserInfluencersConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<FollowerEdge>>() => T;
-  aggregate: <T = AggregateFollowerPromise>() => T;
+  edges: <T = FragmentableArray<UserInfluencersEdge>>() => T;
+  aggregate: <T = AggregateUserInfluencersPromise>() => T;
 }
 
-export interface FollowerConnectionSubscription
-  extends Promise<AsyncIterator<FollowerConnection>>,
+export interface UserInfluencersConnectionSubscription
+  extends Promise<AsyncIterator<UserInfluencersConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<FollowerEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateFollowerSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserInfluencersEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserInfluencersSubscription>() => T;
 }
 
 export interface Status {
@@ -8041,18 +7954,573 @@ export interface StatusNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface AggregateFandemSubscription {
+export interface UserFollowersConnection {
+  pageInfo: PageInfo;
+  edges: UserFollowersEdge[];
+}
+
+export interface UserFollowersConnectionPromise
+  extends Promise<UserFollowersConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserFollowersEdge>>() => T;
+  aggregate: <T = AggregateUserFollowersPromise>() => T;
+}
+
+export interface UserFollowersConnectionSubscription
+  extends Promise<AsyncIterator<UserFollowersConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserFollowersEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserFollowersSubscription>() => T;
+}
+
+export interface SeasonSubscriptionPayload {
+  mutation: MutationType;
+  node: Season;
+  updatedFields: String[];
+  previousValues: SeasonPreviousValues;
+}
+
+export interface SeasonSubscriptionPayloadPromise
+  extends Promise<SeasonSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SeasonPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SeasonPreviousValuesPromise>() => T;
+}
+
+export interface SeasonSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SeasonSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SeasonSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SeasonPreviousValuesSubscription>() => T;
+}
+
+export interface UserAssignedRoleConnection {
+  pageInfo: PageInfo;
+  edges: UserAssignedRoleEdge[];
+}
+
+export interface UserAssignedRoleConnectionPromise
+  extends Promise<UserAssignedRoleConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserAssignedRoleEdge>>() => T;
+  aggregate: <T = AggregateUserAssignedRolePromise>() => T;
+}
+
+export interface UserAssignedRoleConnectionSubscription
+  extends Promise<AsyncIterator<UserAssignedRoleConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserAssignedRoleEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserAssignedRoleSubscription>() => T;
+}
+
+export interface SeasonPreviousValues {
+  id: ID_Output;
+  fplId: Int;
+  label: String;
+  competition: String;
+  startYear: Int;
+  endYear: Int;
+  isCurrent: Boolean;
+  isPrevious: Boolean;
+  isNext: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface SeasonPreviousValuesPromise
+  extends Promise<SeasonPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  fplId: () => Promise<Int>;
+  label: () => Promise<String>;
+  competition: () => Promise<String>;
+  startYear: () => Promise<Int>;
+  endYear: () => Promise<Int>;
+  isCurrent: () => Promise<Boolean>;
+  isPrevious: () => Promise<Boolean>;
+  isNext: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SeasonPreviousValuesSubscription
+  extends Promise<AsyncIterator<SeasonPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  fplId: () => Promise<AsyncIterator<Int>>;
+  label: () => Promise<AsyncIterator<String>>;
+  competition: () => Promise<AsyncIterator<String>>;
+  startYear: () => Promise<AsyncIterator<Int>>;
+  endYear: () => Promise<AsyncIterator<Int>>;
+  isCurrent: () => Promise<AsyncIterator<Boolean>>;
+  isPrevious: () => Promise<AsyncIterator<Boolean>>;
+  isNext: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface StatusEdge {
+  node: Status;
+  cursor: String;
+}
+
+export interface StatusEdgePromise extends Promise<StatusEdge>, Fragmentable {
+  node: <T = StatusPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface StatusEdgeSubscription
+  extends Promise<AsyncIterator<StatusEdge>>,
+    Fragmentable {
+  node: <T = StatusSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserStatus {
+  id: ID_Output;
+  currentStatus?: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface UserStatusPromise extends Promise<UserStatus>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  status: <T = StatusPromise>() => T;
+  currentStatus: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserStatusSubscription
+  extends Promise<AsyncIterator<UserStatus>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  status: <T = StatusSubscription>() => T;
+  currentStatus: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface UserStatusNullablePromise
+  extends Promise<UserStatus | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  status: <T = StatusPromise>() => T;
+  currentStatus: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface SeasonEdge {
+  node: Season;
+  cursor: String;
+}
+
+export interface SeasonEdgePromise extends Promise<SeasonEdge>, Fragmentable {
+  node: <T = SeasonPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SeasonEdgeSubscription
+  extends Promise<AsyncIterator<SeasonEdge>>,
+    Fragmentable {
+  node: <T = SeasonSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface StatusSubscriptionPayload {
+  mutation: MutationType;
+  node: Status;
+  updatedFields: String[];
+  previousValues: StatusPreviousValues;
+}
+
+export interface StatusSubscriptionPayloadPromise
+  extends Promise<StatusSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = StatusPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = StatusPreviousValuesPromise>() => T;
+}
+
+export interface StatusSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<StatusSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = StatusSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = StatusPreviousValuesSubscription>() => T;
+}
+
+export interface PhotoEdge {
+  node: Photo;
+  cursor: String;
+}
+
+export interface PhotoEdgePromise extends Promise<PhotoEdge>, Fragmentable {
+  node: <T = PhotoPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PhotoEdgeSubscription
+  extends Promise<AsyncIterator<PhotoEdge>>,
+    Fragmentable {
+  node: <T = PhotoSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface StatusPreviousValues {
+  id: ID_Output;
+  content: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface StatusPreviousValuesPromise
+  extends Promise<StatusPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  content: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface StatusPreviousValuesSubscription
+  extends Promise<AsyncIterator<StatusPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  content: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface InfluencerConnection {
+  pageInfo: PageInfo;
+  edges: InfluencerEdge[];
+}
+
+export interface InfluencerConnectionPromise
+  extends Promise<InfluencerConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<InfluencerEdge>>() => T;
+  aggregate: <T = AggregateInfluencerPromise>() => T;
+}
+
+export interface InfluencerConnectionSubscription
+  extends Promise<AsyncIterator<InfluencerConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<InfluencerEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateInfluencerSubscription>() => T;
+}
+
+export interface UserRole {
+  id: ID_Output;
+  name: String;
+  description: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface UserRolePromise extends Promise<UserRole>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserRoleSubscription
+  extends Promise<AsyncIterator<UserRole>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface UserRoleNullablePromise
+  extends Promise<UserRole | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AggregateGameweek {
   count: Int;
 }
 
-export interface AggregateFandemSubscriptionPromise
-  extends Promise<AggregateFandemSubscription>,
+export interface AggregateGameweekPromise
+  extends Promise<AggregateGameweek>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateFandemSubscriptionSubscription
-  extends Promise<AsyncIterator<AggregateFandemSubscription>>,
+export interface AggregateGameweekSubscription
+  extends Promise<AsyncIterator<AggregateGameweek>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface TeamSubscriptionPayload {
+  mutation: MutationType;
+  node: Team;
+  updatedFields: String[];
+  previousValues: TeamPreviousValues;
+}
+
+export interface TeamSubscriptionPayloadPromise
+  extends Promise<TeamSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TeamPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TeamPreviousValuesPromise>() => T;
+}
+
+export interface TeamSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TeamSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TeamSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TeamPreviousValuesSubscription>() => T;
+}
+
+export interface FollowerEdge {
+  node: Follower;
+  cursor: String;
+}
+
+export interface FollowerEdgePromise
+  extends Promise<FollowerEdge>,
+    Fragmentable {
+  node: <T = FollowerPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FollowerEdgeSubscription
+  extends Promise<AsyncIterator<FollowerEdge>>,
+    Fragmentable {
+  node: <T = FollowerSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TeamPreviousValues {
+  id: ID_Output;
+  code: Int;
+  fplTeamId: Int;
+  name: String;
+  shortName: String;
+  strength: Int;
+  strengthAttackAway: Int;
+  strengthAttackHome: Int;
+  strengthDefenceAway: Int;
+  strengthDefenceHome: Int;
+  strengthOverallAway: Int;
+  strengthOverallHome: Int;
+  teamDivision?: Int;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface TeamPreviousValuesPromise
+  extends Promise<TeamPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  code: () => Promise<Int>;
+  fplTeamId: () => Promise<Int>;
+  name: () => Promise<String>;
+  shortName: () => Promise<String>;
+  strength: () => Promise<Int>;
+  strengthAttackAway: () => Promise<Int>;
+  strengthAttackHome: () => Promise<Int>;
+  strengthDefenceAway: () => Promise<Int>;
+  strengthDefenceHome: () => Promise<Int>;
+  strengthOverallAway: () => Promise<Int>;
+  strengthOverallHome: () => Promise<Int>;
+  teamDivision: () => Promise<Int>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface TeamPreviousValuesSubscription
+  extends Promise<AsyncIterator<TeamPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  code: () => Promise<AsyncIterator<Int>>;
+  fplTeamId: () => Promise<AsyncIterator<Int>>;
+  name: () => Promise<AsyncIterator<String>>;
+  shortName: () => Promise<AsyncIterator<String>>;
+  strength: () => Promise<AsyncIterator<Int>>;
+  strengthAttackAway: () => Promise<AsyncIterator<Int>>;
+  strengthAttackHome: () => Promise<AsyncIterator<Int>>;
+  strengthDefenceAway: () => Promise<AsyncIterator<Int>>;
+  strengthDefenceHome: () => Promise<AsyncIterator<Int>>;
+  strengthOverallAway: () => Promise<AsyncIterator<Int>>;
+  strengthOverallHome: () => Promise<AsyncIterator<Int>>;
+  teamDivision: () => Promise<AsyncIterator<Int>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface FixtureConnection {
+  pageInfo: PageInfo;
+  edges: FixtureEdge[];
+}
+
+export interface FixtureConnectionPromise
+  extends Promise<FixtureConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FixtureEdge>>() => T;
+  aggregate: <T = AggregateFixturePromise>() => T;
+}
+
+export interface FixtureConnectionSubscription
+  extends Promise<AsyncIterator<FixtureConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FixtureEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFixtureSubscription>() => T;
+}
+
+export interface Gameweek {
+  id: ID_Output;
+  averageEntryScore?: Int;
+  dataChecked: Boolean;
+  deadlineTime: DateTimeOutput;
+  deadlineTimeEpoch: Int;
+  deadlineTimeGameOffset: Int;
+  finished: Boolean;
+  highestScore?: Int;
+  highestScoringEntry?: Int;
+  fplEventId: Int;
+  isCurrent: Boolean;
+  isNext: Boolean;
+  isPrevious: Boolean;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface GameweekPromise extends Promise<Gameweek>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  season: <T = SeasonPromise>() => T;
+  averageEntryScore: () => Promise<Int>;
+  dataChecked: () => Promise<Boolean>;
+  deadlineTime: () => Promise<DateTimeOutput>;
+  deadlineTimeEpoch: () => Promise<Int>;
+  deadlineTimeGameOffset: () => Promise<Int>;
+  finished: () => Promise<Boolean>;
+  highestScore: () => Promise<Int>;
+  highestScoringEntry: () => Promise<Int>;
+  fplEventId: () => Promise<Int>;
+  isCurrent: () => Promise<Boolean>;
+  isNext: () => Promise<Boolean>;
+  isPrevious: () => Promise<Boolean>;
+  name: () => Promise<String>;
+  fixtures: <T = FragmentableArray<Fixture>>(args?: {
+    where?: FixtureWhereInput;
+    orderBy?: FixtureOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface GameweekSubscription
+  extends Promise<AsyncIterator<Gameweek>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  season: <T = SeasonSubscription>() => T;
+  averageEntryScore: () => Promise<AsyncIterator<Int>>;
+  dataChecked: () => Promise<AsyncIterator<Boolean>>;
+  deadlineTime: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deadlineTimeEpoch: () => Promise<AsyncIterator<Int>>;
+  deadlineTimeGameOffset: () => Promise<AsyncIterator<Int>>;
+  finished: () => Promise<AsyncIterator<Boolean>>;
+  highestScore: () => Promise<AsyncIterator<Int>>;
+  highestScoringEntry: () => Promise<AsyncIterator<Int>>;
+  fplEventId: () => Promise<AsyncIterator<Int>>;
+  isCurrent: () => Promise<AsyncIterator<Boolean>>;
+  isNext: () => Promise<AsyncIterator<Boolean>>;
+  isPrevious: () => Promise<AsyncIterator<Boolean>>;
+  name: () => Promise<AsyncIterator<String>>;
+  fixtures: <T = Promise<AsyncIterator<FixtureSubscription>>>(args?: {
+    where?: FixtureWhereInput;
+    orderBy?: FixtureOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface GameweekNullablePromise
+  extends Promise<Gameweek | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  season: <T = SeasonPromise>() => T;
+  averageEntryScore: () => Promise<Int>;
+  dataChecked: () => Promise<Boolean>;
+  deadlineTime: () => Promise<DateTimeOutput>;
+  deadlineTimeEpoch: () => Promise<Int>;
+  deadlineTimeGameOffset: () => Promise<Int>;
+  finished: () => Promise<Boolean>;
+  highestScore: () => Promise<Int>;
+  highestScoringEntry: () => Promise<Int>;
+  fplEventId: () => Promise<Int>;
+  isCurrent: () => Promise<Boolean>;
+  isNext: () => Promise<Boolean>;
+  isPrevious: () => Promise<Boolean>;
+  name: () => Promise<String>;
+  fixtures: <T = FragmentableArray<Fixture>>(args?: {
+    where?: FixtureWhereInput;
+    orderBy?: FixtureOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AggregateCountry {
+  count: Int;
+}
+
+export interface AggregateCountryPromise
+  extends Promise<AggregateCountry>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCountrySubscription
+  extends Promise<AsyncIterator<AggregateCountry>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -8082,20 +8550,29 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateUserPhoto {
-  count: Int;
+export interface UserRoleSubscriptionPayload {
+  mutation: MutationType;
+  node: UserRole;
+  updatedFields: String[];
+  previousValues: UserRolePreviousValues;
 }
 
-export interface AggregateUserPhotoPromise
-  extends Promise<AggregateUserPhoto>,
+export interface UserRoleSubscriptionPayloadPromise
+  extends Promise<UserRoleSubscriptionPayload>,
     Fragmentable {
-  count: () => Promise<Int>;
+  mutation: () => Promise<MutationType>;
+  node: <T = UserRolePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserRolePreviousValuesPromise>() => T;
 }
 
-export interface AggregateUserPhotoSubscription
-  extends Promise<AsyncIterator<AggregateUserPhoto>>,
+export interface UserRoleSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserRoleSubscriptionPayload>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserRoleSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserRolePreviousValuesSubscription>() => T;
 }
 
 export interface UserPreviousValues {
@@ -8159,72 +8636,72 @@ export interface UserPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface UserFollowersEdge {
-  node: UserFollowers;
-  cursor: String;
-}
-
-export interface UserFollowersEdgePromise
-  extends Promise<UserFollowersEdge>,
-    Fragmentable {
-  node: <T = UserFollowersPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserFollowersEdgeSubscription
-  extends Promise<AsyncIterator<UserFollowersEdge>>,
-    Fragmentable {
-  node: <T = UserFollowersSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserStatus {
-  id: ID_Output;
-  currentStatus?: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface UserStatusPromise extends Promise<UserStatus>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  status: <T = StatusPromise>() => T;
-  currentStatus: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface UserStatusSubscription
-  extends Promise<AsyncIterator<UserStatus>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  status: <T = StatusSubscription>() => T;
-  currentStatus: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface UserStatusNullablePromise
-  extends Promise<UserStatus | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  status: <T = StatusPromise>() => T;
-  currentStatus: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface AggregateUser {
+export interface AggregateUserInfluencers {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface AggregateUserInfluencersPromise
+  extends Promise<AggregateUserInfluencers>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface AggregateUserInfluencersSubscription
+  extends Promise<AsyncIterator<AggregateUserInfluencers>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface FandemSubscription {
+  id: ID_Output;
+  name: String;
+  description: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface FandemSubscriptionPromise
+  extends Promise<FandemSubscription>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface FandemSubscriptionSubscription
+  extends Promise<AsyncIterator<FandemSubscription>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface FandemSubscriptionNullablePromise
+  extends Promise<FandemSubscription | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface AggregateUserAssignedRole {
+  count: Int;
+}
+
+export interface AggregateUserAssignedRolePromise
+  extends Promise<AggregateUserAssignedRole>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserAssignedRoleSubscription
+  extends Promise<AsyncIterator<AggregateUserAssignedRole>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -8254,21 +8731,91 @@ export interface UserAssignedRoleSubscriptionPayloadSubscription
   previousValues: <T = UserAssignedRolePreviousValuesSubscription>() => T;
 }
 
-export interface StatusEdge {
-  node: Status;
-  cursor: String;
+export interface Season {
+  id: ID_Output;
+  fplId: Int;
+  label: String;
+  competition: String;
+  startYear: Int;
+  endYear: Int;
+  isCurrent: Boolean;
+  isPrevious: Boolean;
+  isNext: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
-export interface StatusEdgePromise extends Promise<StatusEdge>, Fragmentable {
-  node: <T = StatusPromise>() => T;
-  cursor: () => Promise<String>;
+export interface SeasonPromise extends Promise<Season>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  fplId: () => Promise<Int>;
+  label: () => Promise<String>;
+  competition: () => Promise<String>;
+  startYear: () => Promise<Int>;
+  endYear: () => Promise<Int>;
+  isCurrent: () => Promise<Boolean>;
+  isPrevious: () => Promise<Boolean>;
+  isNext: () => Promise<Boolean>;
+  events: <T = FragmentableArray<Gameweek>>(args?: {
+    where?: GameweekWhereInput;
+    orderBy?: GameweekOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface StatusEdgeSubscription
-  extends Promise<AsyncIterator<StatusEdge>>,
+export interface SeasonSubscription
+  extends Promise<AsyncIterator<Season>>,
     Fragmentable {
-  node: <T = StatusSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  fplId: () => Promise<AsyncIterator<Int>>;
+  label: () => Promise<AsyncIterator<String>>;
+  competition: () => Promise<AsyncIterator<String>>;
+  startYear: () => Promise<AsyncIterator<Int>>;
+  endYear: () => Promise<AsyncIterator<Int>>;
+  isCurrent: () => Promise<AsyncIterator<Boolean>>;
+  isPrevious: () => Promise<AsyncIterator<Boolean>>;
+  isNext: () => Promise<AsyncIterator<Boolean>>;
+  events: <T = Promise<AsyncIterator<GameweekSubscription>>>(args?: {
+    where?: GameweekWhereInput;
+    orderBy?: GameweekOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface SeasonNullablePromise
+  extends Promise<Season | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  fplId: () => Promise<Int>;
+  label: () => Promise<String>;
+  competition: () => Promise<String>;
+  startYear: () => Promise<Int>;
+  endYear: () => Promise<Int>;
+  isCurrent: () => Promise<Boolean>;
+  isPrevious: () => Promise<Boolean>;
+  isNext: () => Promise<Boolean>;
+  events: <T = FragmentableArray<Gameweek>>(args?: {
+    where?: GameweekWhereInput;
+    orderBy?: GameweekOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserAssignedRolePreviousValues {
@@ -8293,21 +8840,20 @@ export interface UserAssignedRolePreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface PhotoEdge {
-  node: Photo;
-  cursor: String;
+export interface AggregateInfluencer {
+  count: Int;
 }
 
-export interface PhotoEdgePromise extends Promise<PhotoEdge>, Fragmentable {
-  node: <T = PhotoPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PhotoEdgeSubscription
-  extends Promise<AsyncIterator<PhotoEdge>>,
+export interface AggregateInfluencerPromise
+  extends Promise<AggregateInfluencer>,
     Fragmentable {
-  node: <T = PhotoSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
+}
+
+export interface AggregateInfluencerSubscription
+  extends Promise<AsyncIterator<AggregateInfluencer>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface Fixture {
@@ -8395,25 +8941,25 @@ export interface FixtureNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface HomeTeamFixtureConnection {
+export interface GameweekConnection {
   pageInfo: PageInfo;
-  edges: HomeTeamFixtureEdge[];
+  edges: GameweekEdge[];
 }
 
-export interface HomeTeamFixtureConnectionPromise
-  extends Promise<HomeTeamFixtureConnection>,
+export interface GameweekConnectionPromise
+  extends Promise<GameweekConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<HomeTeamFixtureEdge>>() => T;
-  aggregate: <T = AggregateHomeTeamFixturePromise>() => T;
+  edges: <T = FragmentableArray<GameweekEdge>>() => T;
+  aggregate: <T = AggregateGameweekPromise>() => T;
 }
 
-export interface HomeTeamFixtureConnectionSubscription
-  extends Promise<AsyncIterator<HomeTeamFixtureConnection>>,
+export interface GameweekConnectionSubscription
+  extends Promise<AsyncIterator<GameweekConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<HomeTeamFixtureEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateHomeTeamFixtureSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<GameweekEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateGameweekSubscription>() => T;
 }
 
 export interface UserFollowersSubscriptionPayload {
@@ -8441,20 +8987,22 @@ export interface UserFollowersSubscriptionPayloadSubscription
   previousValues: <T = UserFollowersPreviousValuesSubscription>() => T;
 }
 
-export interface FixtureEdge {
-  node: Fixture;
+export interface FandemSubscriptionEdge {
+  node: FandemSubscription;
   cursor: String;
 }
 
-export interface FixtureEdgePromise extends Promise<FixtureEdge>, Fragmentable {
-  node: <T = FixturePromise>() => T;
+export interface FandemSubscriptionEdgePromise
+  extends Promise<FandemSubscriptionEdge>,
+    Fragmentable {
+  node: <T = FandemSubscriptionPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface FixtureEdgeSubscription
-  extends Promise<AsyncIterator<FixtureEdge>>,
+export interface FandemSubscriptionEdgeSubscription
+  extends Promise<AsyncIterator<FandemSubscriptionEdge>>,
     Fragmentable {
-  node: <T = FixtureSubscription>() => T;
+  node: <T = FandemSubscriptionSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
@@ -8480,94 +9028,119 @@ export interface UserFollowersPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface UserInfluencersEdge {
-  node: UserInfluencers;
-  cursor: String;
+export interface UserRoleConnection {
+  pageInfo: PageInfo;
+  edges: UserRoleEdge[];
 }
 
-export interface UserInfluencersEdgePromise
-  extends Promise<UserInfluencersEdge>,
+export interface UserRoleConnectionPromise
+  extends Promise<UserRoleConnection>,
     Fragmentable {
-  node: <T = UserInfluencersPromise>() => T;
-  cursor: () => Promise<String>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserRoleEdge>>() => T;
+  aggregate: <T = AggregateUserRolePromise>() => T;
 }
 
-export interface UserInfluencersEdgeSubscription
-  extends Promise<AsyncIterator<UserInfluencersEdge>>,
+export interface UserRoleConnectionSubscription
+  extends Promise<AsyncIterator<UserRoleConnection>>,
     Fragmentable {
-  node: <T = UserInfluencersSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserRoleEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserRoleSubscription>() => T;
 }
 
-export interface UserRole {
+export interface Photo {
   id: ID_Output;
-  name: String;
-  description: String;
+  image: String;
+  largeImage?: String;
+  smallImage?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface UserRolePromise extends Promise<UserRole>, Fragmentable {
+export interface PhotoPromise extends Promise<Photo>, Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
+  image: () => Promise<String>;
+  largeImage: () => Promise<String>;
+  smallImage: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface UserRoleSubscription
-  extends Promise<AsyncIterator<UserRole>>,
+export interface PhotoSubscription
+  extends Promise<AsyncIterator<Photo>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  largeImage: () => Promise<AsyncIterator<String>>;
+  smallImage: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface UserRoleNullablePromise
-  extends Promise<UserRole | null>,
+export interface PhotoNullablePromise
+  extends Promise<Photo | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
+  image: () => Promise<String>;
+  largeImage: () => Promise<String>;
+  smallImage: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface TeamEdge {
-  node: Team;
+export interface UserAssignedRole {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface UserAssignedRolePromise
+  extends Promise<UserAssignedRole>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  userRole: <T = UserRolePromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface UserAssignedRoleSubscription
+  extends Promise<AsyncIterator<UserAssignedRole>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  userRole: <T = UserRoleSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface UserAssignedRoleNullablePromise
+  extends Promise<UserAssignedRole | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  userRole: <T = UserRolePromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface HomeTeamFixtureEdge {
+  node: HomeTeamFixture;
   cursor: String;
 }
 
-export interface TeamEdgePromise extends Promise<TeamEdge>, Fragmentable {
-  node: <T = TeamPromise>() => T;
+export interface HomeTeamFixtureEdgePromise
+  extends Promise<HomeTeamFixtureEdge>,
+    Fragmentable {
+  node: <T = HomeTeamFixturePromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface TeamEdgeSubscription
-  extends Promise<AsyncIterator<TeamEdge>>,
+export interface HomeTeamFixtureEdgeSubscription
+  extends Promise<AsyncIterator<HomeTeamFixtureEdge>>,
     Fragmentable {
-  node: <T = TeamSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface InfluencerEdge {
-  node: Influencer;
-  cursor: String;
-}
-
-export interface InfluencerEdgePromise
-  extends Promise<InfluencerEdge>,
-    Fragmentable {
-  node: <T = InfluencerPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface InfluencerEdgeSubscription
-  extends Promise<AsyncIterator<InfluencerEdge>>,
-    Fragmentable {
-  node: <T = InfluencerSubscription>() => T;
+  node: <T = HomeTeamFixtureSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
@@ -8596,85 +9169,40 @@ export interface UserPhotoSubscriptionPayloadSubscription
   previousValues: <T = UserPhotoPreviousValuesSubscription>() => T;
 }
 
-export interface Gameweek {
+export interface UserPhoto {
   id: ID_Output;
-  averageEntryScore?: Int;
-  dataChecked: Boolean;
-  deadlineTime: DateTimeOutput;
-  deadlineTimeEpoch: Int;
-  deadlineTimeGameOffset: Int;
-  finished: Boolean;
-  highestScore?: Int;
-  highestScoringEntry?: Int;
-  fplEventId: Int;
-  isCurrent: Boolean;
-  isNext: Boolean;
-  isPrevious: Boolean;
-  name: String;
+  isProfile?: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
 
-export interface GameweekPromise extends Promise<Gameweek>, Fragmentable {
+export interface UserPhotoPromise extends Promise<UserPhoto>, Fragmentable {
   id: () => Promise<ID_Output>;
-  season: <T = SeasonPromise>() => T;
-  averageEntryScore: () => Promise<Int>;
-  dataChecked: () => Promise<Boolean>;
-  deadlineTime: () => Promise<DateTimeOutput>;
-  deadlineTimeEpoch: () => Promise<Int>;
-  deadlineTimeGameOffset: () => Promise<Int>;
-  finished: () => Promise<Boolean>;
-  highestScore: () => Promise<Int>;
-  highestScoringEntry: () => Promise<Int>;
-  fplEventId: () => Promise<Int>;
-  isCurrent: () => Promise<Boolean>;
-  isNext: () => Promise<Boolean>;
-  isPrevious: () => Promise<Boolean>;
-  name: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  photo: <T = PhotoPromise>() => T;
+  isProfile: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface GameweekSubscription
-  extends Promise<AsyncIterator<Gameweek>>,
+export interface UserPhotoSubscription
+  extends Promise<AsyncIterator<UserPhoto>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  season: <T = SeasonSubscription>() => T;
-  averageEntryScore: () => Promise<AsyncIterator<Int>>;
-  dataChecked: () => Promise<AsyncIterator<Boolean>>;
-  deadlineTime: () => Promise<AsyncIterator<DateTimeOutput>>;
-  deadlineTimeEpoch: () => Promise<AsyncIterator<Int>>;
-  deadlineTimeGameOffset: () => Promise<AsyncIterator<Int>>;
-  finished: () => Promise<AsyncIterator<Boolean>>;
-  highestScore: () => Promise<AsyncIterator<Int>>;
-  highestScoringEntry: () => Promise<AsyncIterator<Int>>;
-  fplEventId: () => Promise<AsyncIterator<Int>>;
-  isCurrent: () => Promise<AsyncIterator<Boolean>>;
-  isNext: () => Promise<AsyncIterator<Boolean>>;
-  isPrevious: () => Promise<AsyncIterator<Boolean>>;
-  name: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
+  photo: <T = PhotoSubscription>() => T;
+  isProfile: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface GameweekNullablePromise
-  extends Promise<Gameweek | null>,
+export interface UserPhotoNullablePromise
+  extends Promise<UserPhoto | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  season: <T = SeasonPromise>() => T;
-  averageEntryScore: () => Promise<Int>;
-  dataChecked: () => Promise<Boolean>;
-  deadlineTime: () => Promise<DateTimeOutput>;
-  deadlineTimeEpoch: () => Promise<Int>;
-  deadlineTimeGameOffset: () => Promise<Int>;
-  finished: () => Promise<Boolean>;
-  highestScore: () => Promise<Int>;
-  highestScoringEntry: () => Promise<Int>;
-  fplEventId: () => Promise<Int>;
-  isCurrent: () => Promise<Boolean>;
-  isNext: () => Promise<Boolean>;
-  isPrevious: () => Promise<Boolean>;
-  name: () => Promise<String>;
+  user: <T = UserPromise>() => T;
+  photo: <T = PhotoPromise>() => T;
+  isProfile: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -8726,85 +9254,90 @@ export interface UserInfluencersSubscriptionPayloadSubscription
   previousValues: <T = UserInfluencersPreviousValuesSubscription>() => T;
 }
 
-export interface AggregateFollower {
+export interface AggregateFixture {
   count: Int;
 }
 
-export interface AggregateFollowerPromise
-  extends Promise<AggregateFollower>,
+export interface AggregateFixturePromise
+  extends Promise<AggregateFixture>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateFollowerSubscription
-  extends Promise<AsyncIterator<AggregateFollower>>,
+export interface AggregateFixtureSubscription
+  extends Promise<AsyncIterator<AggregateFixture>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface SeasonEdge {
-  node: Season;
-  cursor: String;
+export interface UserStatusSubscriptionPayload {
+  mutation: MutationType;
+  node: UserStatus;
+  updatedFields: String[];
+  previousValues: UserStatusPreviousValues;
 }
 
-export interface SeasonEdgePromise extends Promise<SeasonEdge>, Fragmentable {
-  node: <T = SeasonPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SeasonEdgeSubscription
-  extends Promise<AsyncIterator<SeasonEdge>>,
+export interface UserStatusSubscriptionPayloadPromise
+  extends Promise<UserStatusSubscriptionPayload>,
     Fragmentable {
-  node: <T = SeasonSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  mutation: () => Promise<MutationType>;
+  node: <T = UserStatusPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserStatusPreviousValuesPromise>() => T;
 }
 
-export interface UserAssignedRoleEdge {
-  node: UserAssignedRole;
-  cursor: String;
-}
-
-export interface UserAssignedRoleEdgePromise
-  extends Promise<UserAssignedRoleEdge>,
+export interface UserStatusSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserStatusSubscriptionPayload>>,
     Fragmentable {
-  node: <T = UserAssignedRolePromise>() => T;
-  cursor: () => Promise<String>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserStatusSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserStatusPreviousValuesSubscription>() => T;
 }
 
-export interface UserAssignedRoleEdgeSubscription
-  extends Promise<AsyncIterator<UserAssignedRoleEdge>>,
+export interface AggregateUserFollowers {
+  count: Int;
+}
+
+export interface AggregateUserFollowersPromise
+  extends Promise<AggregateUserFollowers>,
     Fragmentable {
-  node: <T = UserAssignedRoleSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
 }
 
-export interface UserStatusConnection {
-  pageInfo: PageInfo;
-  edges: UserStatusEdge[];
-}
-
-export interface UserStatusConnectionPromise
-  extends Promise<UserStatusConnection>,
+export interface AggregateUserFollowersSubscription
+  extends Promise<AsyncIterator<AggregateUserFollowers>>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserStatusEdge>>() => T;
-  aggregate: <T = AggregateUserStatusPromise>() => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserStatusConnectionSubscription
-  extends Promise<AsyncIterator<UserStatusConnection>>,
+export interface UserRolePreviousValues {
+  id: ID_Output;
+  name: String;
+  description: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface UserRolePreviousValuesPromise
+  extends Promise<UserRolePreviousValues>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserStatusEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserStatusSubscription>() => T;
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
-/*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
-*/
-export type Float = number;
-
-export type Long = string;
+export interface UserRolePreviousValuesSubscription
+  extends Promise<AsyncIterator<UserRolePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -8822,6 +9355,19 @@ The `Boolean` scalar type represents `true` or `false`.
 export type Boolean = boolean;
 
 /*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+*/
+export type Float = number;
+
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
+
+export type Long = string;
+
+/*
 DateTime scalar input type, allowing Date
 */
 export type DateTimeInput = Date | string;
@@ -8830,12 +9376,6 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
-
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
 
 /**
  * Model Metadata
