@@ -2,33 +2,36 @@ const { EVENT_API } = require("./endpoints");
 const callApi = require("./call-api");
 
 /**
- * @param {number} gameweek - which gameweek (event) to fetch data for
- * @returns {EventAPIResponse} gameweekData
+ * @param {number} gameweekId - which gameweek (event) to fetch data for
+ * @returns {Promise<Array.<SchemaFixture>>} gameweekData
  */
-async function fetchEventData(gameweek) {
+async function fetchEventData(gameweekId) {
   const uri = EVENT_API;
-  const qs = {
-    event: gameweek
+  /**
+   * @type { Object.<string, string>}
+   */
+  const qS = {
+    event: `${gameweekId}`
   };
   /**
-   * @type {SchemaFixture}
+   * @type {Array.<SchemaFixture>}
    */
   let gameweekData;
 
   try {
     /**
-     * @type {EventApiResponse}
+     * @type {EventAPIResponse}
      */
     const apiData = await callApi({
       uri,
-      qs
+      qS
     });
     gameweekData = transformGameweekData(apiData);
   } catch (e) {
     console.error(e);
-    const err = new Error(`Error fetching gameweek ${gameweek}`);
+    const err = new Error(`Error fetching gameweek ${gameweekId}`);
     console.error(err);
-    throw e;
+    throw err;
   }
 
   return gameweekData;
@@ -40,23 +43,23 @@ async function fetchEventData(gameweek) {
  * @returns {Array<SchemaFixture>}
  */
 function transformGameweekData(gameweekData) {
-  return {
-    fplCode: code,
-    event: event,
-    finished: finished,
-    finishedProvisional: finished_provisional,
-    fixtureId: id,
-    kickoffTime: kickoff_time,
-    minutes: minutes,
-    provisionalStartTime: provisional_start_time,
-    started: started,
-    teamA: team_a,
-    teamADifficulty: team_a_difficulty,
-    teamAScore: team_a_score,
-    teamH: team_h,
-    teamHDifficulty: team_h_difficulty,
-    teamHScore: team_h_score
-  };
+  return gameweekData.map(g => ({
+    fplCode: g.code,
+    event: g.event,
+    finished: g.finished,
+    finishedProvisional: g.finished_provisional,
+    fixtureId: g.id,
+    kickoffTime: g.kickoff_time,
+    minutes: g.minutes,
+    provisionalStartTime: g.provisional_start_time,
+    started: g.started,
+    teamA: g.team_a,
+    teamADifficulty: g.team_a_difficulty,
+    teamAScore: g.team_a_score,
+    teamH: g.team_h,
+    teamHDifficulty: g.team_h_difficulty,
+    teamHScore: g.team_h_score
+  }));
 }
 
 /**
@@ -104,4 +107,4 @@ function transformGameweekData(gameweekData) {
  * @typedef {Array<FixtureData>} EventAPIResponse
  */
 
-module.export = fetchEventData;
+module.exports = fetchEventData;

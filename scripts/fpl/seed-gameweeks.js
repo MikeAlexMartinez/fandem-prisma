@@ -2,9 +2,19 @@ const { Prisma } = require("prisma-binding");
 
 /**
  *
+ * @typedef InsertedGameweek
+ * @property {string} id
+ * @property {string} name
+ * @property {number} fplEventId
+ */
+
+/**
+ *
  * @param { Object } param
  * @param { Prisma } param.db
- * @param { import(./fetch-main-data).FplGameweek[] } param.gameweeks
+ * @param { import('./seed-season').InsertedSeason } param.season
+ * @param { Array.<import('./fetch-main-data').FplGameweek> } param.gameweeks
+ * @return { Promise<Array.<InsertedGameweek>> }
  */
 async function seedGameweeks({ db, gameweeks, season }) {
   const transformedGameweeks = transformGameweekData(gameweeks);
@@ -30,8 +40,8 @@ async function seedGameweeks({ db, gameweeks, season }) {
 }
 /**
  *
- * @param { import(./fetch-main-data).FplGameweek[] } teams
- * @returns { FandemGameweek }
+ * @param { Array.<import('./fetch-main-data').FplGameweek> } gameweeks
+ * @returns { Array.<SchemaGameweek> }
  */
 function transformGameweekData(gameweeks) {
   return gameweeks.map(gameweek => ({
@@ -54,10 +64,10 @@ function transformGameweekData(gameweeks) {
 module.exports = { seedGameweeks, transformGameweekData };
 
 /**
- * @typedef {Object} FandemGameweek
+ * @typedef {Object} SchemaGameweek
  * @property {number} averageEntryScore
  * @property {boolean} dataChecked
- * @property {Date} deadlineYime
+ * @property {Date} deadlineTime
  * @property {number} deadlineTimeEpoch
  * @property {number} deadlineTimeGameOffset
  * @property {boolean} finished

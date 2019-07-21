@@ -26,6 +26,9 @@ module.exports = {
   fetchMain: fetchMain
 };
 
+/**
+ * @return {Promise<MainApiData>}
+ */
 async function fetchMain() {
   const TIMEOFUPDATE = new Date();
   console.log(`Update starting: ${TIMEOFUPDATE.toISOString()} `);
@@ -168,7 +171,7 @@ function transformMainData(mainApiResponse) {
  * @typedef {Object} FplTeam
  * @property {number} code: 3
  * @property {number} draw: 0
- * @property {numbre} form: null
+ * @property {number} form: null
  * @property {number} id: 1
  * @property {number} loss: 0
  * @property {string} name: "Arsenal"

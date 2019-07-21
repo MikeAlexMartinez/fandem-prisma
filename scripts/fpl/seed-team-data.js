@@ -1,5 +1,23 @@
+const { Prisma } = require("prisma-binding");
+
+/**
+ *
+ * @typedef InsertedTeam
+ * @property {string} id
+ * @property {string} name
+ * @property {number} fplTeamId
+ */
+
+/**
+ *
+ * @param { Object } param
+ * @param { Prisma } param.db
+ * @param { Array.<import('./fetch-main-data').FplTeam> } param.teams
+ * @param { import('./seed-season').InsertedSeason } param.season
+ * @returns { Promise<Array.<InsertedTeam>> }
+ */
 async function seedTeamData({ db, teams, season }) {
-  const transformedTeams = transformTeamData(teams, season);
+  const transformedTeams = transformTeamData(teams);
 
   return await Promise.all(
     transformedTeams.map(
@@ -17,12 +35,35 @@ async function seedTeamData({ db, teams, season }) {
               awayFixtures: []
             }
           },
-          "{ id name }"
+          "{ id name fplTeamId }"
         )
     )
   );
 }
 
+/**
+ *
+ * @typedef SchemaTeam
+ * @property {string} [id]
+ * @property {number} code
+ * @property {number} fplTeamId
+ * @property {string} name
+ * @property {string} shortName
+ * @property {number} strength
+ * @property {number} strengthAttackAway
+ * @property {number} strengthAttackHome
+ * @property {number} strengthDefenceAway
+ * @property {number} strengthDefenceHome
+ * @property {number} strengthOverallAway
+ * @property {number} strengthOverallHome
+ * @property {number} [teamDivision]
+ */
+
+/**
+ *
+ * @param {Array.<import('./fetch-main-data').FplTeam>} teams
+ * @returns {Array.<SchemaTeam>}
+ */
 function transformTeamData(teams) {
   return teams.map(team => ({
     code: team.code,

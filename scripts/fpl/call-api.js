@@ -12,12 +12,14 @@ const headerFields = {
 /**
  * This function sets the uri of the options object with the required
  * uri and then return a json response or an error.
- * @param {string} uri
- * @param {string} qS
- * @param {object} options - default true
- * @return {promise}
+ * @param { Object } p
+ * @param { string } p.uri
+ * @param { Object.<string, string> } [p.qS]
+ * @param { boolean } [p.logging] - default true
+ * @return { Promise<T> }
+ * @template T
  */
-async function fetchFromAPI({ uri, qS = "", logging = true }) {
+async function fetchFromAPI({ uri, qS = {}, logging = true }) {
   if (logging) {
     console.log("Requesting: " + uri);
   }

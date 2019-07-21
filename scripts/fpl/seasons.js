@@ -1,5 +1,6 @@
 /**
  * @typedef {Object} Season
+ * @property {number} [id]
  * @property {string} label
  * @property {number} fplId
  * @property {string} competition
