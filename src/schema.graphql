@@ -38,6 +38,7 @@ type Query {
   teams(orderBy: TeamOrderByInput): [Team!]!
   currentUser: User
   countries(orderBy: CountryOrderByInput): [Country!]!
+  gameplayData: [Season]!
 }
 
 # hide password and resetToken fields
@@ -52,12 +53,12 @@ type User {
   displayName: String
   isPrivate: Boolean
   emailValidated: Boolean!
-  subscriptions: [Subscription!]!
+  subscriptions: [FandemSubscription!]!
   userRoles: [UserRole!]!
   photos(where: UserPhotoWhereInput): [UserPhoto]
   status: [UserStatus]!
-  followers: UserFollowers!
-  influencers: UserInfluencers!
+  followers: [UserFollowers]
+  influencers: [UserInfluencers]
 }
 
 type Country {
