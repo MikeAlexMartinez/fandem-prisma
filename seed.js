@@ -10,53 +10,55 @@ const seedUsers = require('./scripts/users/seed-users');
 const seedContests = require('./scripts/contest/seed-contests');
 
 const setup = async () => {
-  // // add teams - (Change to All relevant FPL data)
-  // const {
-  //   teams, gameweeks, season, fixtures,
-  // } = await seedFplData({ db });
-  // console.log(`Inserted ${teams.length} teams`);
-  // console.log(`Inserted ${gameweeks.length} gameweeks`);
-  // console.log(`Inserted ${season.competition} ${season.label} season`);
-  // console.log(`Inserted ${fixtures.length} fixtures`);
+  // add teams - (Change to All relevant FPL data)
+  const {
+    teams, gameweeks, season, fixtures,
+  } = await seedFplData({ db });
+  console.log(`Inserted ${teams.length} teams`);
+  console.log(`Inserted ${gameweeks.length} gameweeks`);
+  console.log(`Inserted ${season.competition} ${season.label} season`);
+  console.log(`Inserted ${fixtures.length} fixtures`);
 
-  // // add countries
-  // const countries = await seedCountries({ db });
-  // console.log(`Inserted ${countries.length} countries`);
+  // add countries
+  const countries = await seedCountries({ db });
+  console.log(`Inserted ${countries.length} countries`);
 
-  // // add subscription types
-  // const subs = await seedSubscriptions({ db });
-  // console.log(`Inserted ${subs.length} subscriptions`);
+  // add subscription types
+  const subs = await seedSubscriptions({ db });
+  console.log(`Inserted ${subs.length} subscriptions`);
 
-  // // add roles
-  // const roles = await seedRoles({ db });
-  // console.log(`Inserted ${roles.length} roles`);
+  // add roles
+  const roles = await seedRoles({ db });
+  console.log(`Inserted ${roles.length} roles`);
 
-  // // add super user (ME)
-  // const users = await seedUsers({
-  //   db,
-  //   data: {
-  //     teams,
-  //     countries,
-  //     subs,
-  //     roles,
-  //   },
-  // });
-  // console.log(`created ${users.length} users`);
+  // add super user (ME)
+  const users = await seedUsers({
+    db,
+    data: {
+      teams,
+      countries,
+      subs,
+      roles,
+    },
+  });
+  console.log(`created ${users.length} users`);
 
   // seed contest information
   const {
-    // scoringTypes,
-    // defaultScoringSystemHeader,
+    scoringTypes,
+    defaultScoringSystemHeader,
     contestTypes,
     contestUserTypes,
+    contests,
   } = await seedContests({ db });
-  // console.log(`created ${scoringTypes.length} scoringTypes`);
-  // console.log(`created the default scoring system:
-  //   name: ${defaultScoringSystemHeader.name}
-  //   detailsCount: ${defaultScoringSystemHeader.systemDetail.length}
-  // `);
+  console.log(`created ${scoringTypes.length} scoringTypes`);
+  console.log(`created the default scoring system:
+    name: ${defaultScoringSystemHeader.name}
+    detailsCount: ${defaultScoringSystemHeader.systemDetail.length}
+  `);
   console.log(`created ${contestTypes.length} contestTypes`);
   console.log(`created ${contestUserTypes.length} contestUserTypes`);
+  console.log(`created ${contests.length} contests`);
 };
 
 setup().catch(err => console.error(err));

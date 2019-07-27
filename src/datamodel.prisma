@@ -255,10 +255,10 @@ type Contest {
   contestName: String!
   isActive: Boolean! @default(value: true)
   isDefault: Boolean! @default(value: true)
-  isAll: Boolean!
+  isAll: Boolean! @default(value: false)
   isPublic: Boolean!
   invitationCode: String! @unique
-  startDate: DateTime
+  startDate: DateTime!
   endDate: DateTime
   isPremium: Boolean! @default(value: false)
   playerLimit: Int! @default(value: 50)
@@ -266,7 +266,7 @@ type Contest {
   updatedAt: DateTime! @updatedAt
   createdBy: ContestCreator!
   currentOwner: ContestOwner!
-  contestTypeId: ContestType! @relation(link: INLINE)
+  contestType: ContestType! @relation(link: INLINE)
   scoringSystem: ScoringSystemHeader! @relation(link: INLINE)
   users: [ContestUser!]!
   contestSlates: [ContestSlate]!
@@ -303,26 +303,26 @@ type ContestUser {
 
 type ContestSlate {
   id: Int! @unique @id
-  contest: Contest! @relation(link: INLINE)
-  gameweekId: Gameweek @relation(link: INLINE)
-  fromDefault: Boolean!
+  fromDefault: Boolean! @default(value: true)
   isActive: Boolean! @default(value: false)
   startDate: DateTime!
-  endDate: DateTime!
+  endDate: DateTime
   hasStarted: Boolean! @default(value: false)
   hasFinished: Boolean! @default(value: false)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  contest: Contest! @relation(link: INLINE)
+  gameweekId: Gameweek @relation(link: INLINE)
   entries: [ContestSlateEntry]!
 }
 
 type ContestSlateEntry {
   id: Int! @unique @id
-  slate: ContestSlate! @relation(link: INLINE)
-  prediction: ContestPrediction!
-  fixture: Fixture!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  slate: ContestSlate! @relation(link: INLINE)
+  fixture: Fixture!
+  predictions: [ContestPrediction]!
 }
 
 type ContestPrediction {
@@ -392,15 +392,16 @@ type ScoringSystemDetail {
   id: ID! @unique @id
   name: String!
   description: String
-  scoringType: ScoringType!
   isActive: Boolean! @default(value: true)
   isDefault: Boolean! @default(value: true)
-  lastModifiedBy: User! @relation(link: INLINE)
   startDate: DateTime!
   endDate: DateTime
   points: Int!
+  range: Int!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  scoringType: ScoringType!
+  lastModifiedBy: User! @relation(link: INLINE)
   system: ScoringSystemHeader! @relation(value: INLINE)
   inheritedFrom: DefaultScoringSystemDetail!
 }
