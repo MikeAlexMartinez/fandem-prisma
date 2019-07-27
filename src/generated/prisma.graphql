@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Sat Jul 27 2019 03:08:51 GMT+0100 (BST)
+# timestamp: Sat Jul 27 2019 10:38:32 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -759,22 +759,21 @@ type Contest implements Node {
   contestName: String!
   isActive: Boolean!
   isDefault: Boolean!
+  isAll: Boolean!
   isPublic: Boolean!
-  createdBy: ContestCreator!
-  currentOwner: ContestOwner!
-  contestTypeId: ContestType!
   invitationCode: String!
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean!
   playerLimit: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
-  users(where: ContestUserWhereInput, orderBy: ContestUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestUser!]
+  createdBy: ContestCreator!
+  currentOwner: ContestOwner!
+  contestTypeId: ContestType!
   scoringSystem: ScoringSystemHeader!
+  users(where: ContestUserWhereInput, orderBy: ContestUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestUser!]
+  contestSlates(where: ContestSlateWhereInput, orderBy: ContestSlateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestSlate!]
 }
 
 """A connection to a list of items."""
@@ -792,24 +791,23 @@ input ContestCreateInput {
   contestName: String!
   isActive: Boolean
   isDefault: Boolean
+  isAll: Boolean!
   isPublic: Boolean!
   invitationCode: String!
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean
   playerLimit: Int
   createdBy: ContestCreatorCreateOneInput!
   currentOwner: ContestOwnerCreateOneInput!
   contestTypeId: ContestTypeCreateOneInput!
-  users: ContestUserCreateManyWithoutContestInput
   scoringSystem: ScoringSystemHeaderCreateOneWithoutContestInput!
+  users: ContestUserCreateManyWithoutContestInput
+  contestSlates: ContestSlateCreateManyWithoutContestInput
 }
 
-input ContestCreateOneInput {
-  create: ContestCreateInput
+input ContestCreateOneWithoutContestSlatesInput {
+  create: ContestCreateWithoutContestSlatesInput
   connect: ContestWhereUniqueInput
 }
 
@@ -823,24 +821,42 @@ input ContestCreateOneWithoutUsersInput {
   connect: ContestWhereUniqueInput
 }
 
+input ContestCreateWithoutContestSlatesInput {
+  id: ID
+  contestName: String!
+  isActive: Boolean
+  isDefault: Boolean
+  isAll: Boolean!
+  isPublic: Boolean!
+  invitationCode: String!
+  startDate: DateTime
+  endDate: DateTime
+  isPremium: Boolean
+  playerLimit: Int
+  createdBy: ContestCreatorCreateOneInput!
+  currentOwner: ContestOwnerCreateOneInput!
+  contestTypeId: ContestTypeCreateOneInput!
+  scoringSystem: ScoringSystemHeaderCreateOneWithoutContestInput!
+  users: ContestUserCreateManyWithoutContestInput
+}
+
 input ContestCreateWithoutScoringSystemInput {
   id: ID
   contestName: String!
   isActive: Boolean
   isDefault: Boolean
+  isAll: Boolean!
   isPublic: Boolean!
   invitationCode: String!
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean
   playerLimit: Int
   createdBy: ContestCreatorCreateOneInput!
   currentOwner: ContestOwnerCreateOneInput!
   contestTypeId: ContestTypeCreateOneInput!
   users: ContestUserCreateManyWithoutContestInput
+  contestSlates: ContestSlateCreateManyWithoutContestInput
 }
 
 input ContestCreateWithoutUsersInput {
@@ -848,19 +864,18 @@ input ContestCreateWithoutUsersInput {
   contestName: String!
   isActive: Boolean
   isDefault: Boolean
+  isAll: Boolean!
   isPublic: Boolean!
   invitationCode: String!
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean
   playerLimit: Int
   createdBy: ContestCreatorCreateOneInput!
   currentOwner: ContestOwnerCreateOneInput!
   contestTypeId: ContestTypeCreateOneInput!
   scoringSystem: ScoringSystemHeaderCreateOneWithoutContestInput!
+  contestSlates: ContestSlateCreateManyWithoutContestInput
 }
 
 type ContestCreator implements Node {
@@ -1303,6 +1318,8 @@ enum ContestOrderByInput {
   isActive_DESC
   isDefault_ASC
   isDefault_DESC
+  isAll_ASC
+  isAll_DESC
   isPublic_ASC
   isPublic_DESC
   invitationCode_ASC
@@ -1311,12 +1328,6 @@ enum ContestOrderByInput {
   startDate_DESC
   endDate_ASC
   endDate_DESC
-  nextEvent_ASC
-  nextEvent_DESC
-  currentEvent_ASC
-  currentEvent_DESC
-  totalEvents_ASC
-  totalEvents_DESC
   isPremium_ASC
   isPremium_DESC
   playerLimit_ASC
@@ -1539,8 +1550,6 @@ input ContestOwnerWhereUniqueInput {
 
 type ContestPrediction {
   id: Int!
-  contestSlateEntryId: ContestSlateEntry!
-  contestUser: ContestUser!
   homeScore: Int!
   awayScore: Int!
   expectedResult: String!
@@ -1551,9 +1560,11 @@ type ContestPrediction {
   isBanker: Boolean!
   hasFinished: Boolean!
   deadlineTime: DateTime!
-  predictionResult(where: ContestPredictionScoreWhereInput, orderBy: ContestPredictionScoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestPredictionScore!]
   createdAt: DateTime!
   updatedAt: DateTime!
+  contestSlateEntry: ContestSlateEntry!
+  contestUser: ContestUser!
+  predictionResult(where: ContestPredictionScoreWhereInput, orderBy: ContestPredictionScoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestPredictionScore!]
 }
 
 """A connection to a list of items."""
@@ -1577,13 +1588,13 @@ input ContestPredictionCreateInput {
   isBanker: Boolean
   hasFinished: Boolean
   deadlineTime: DateTime!
-  contestSlateEntryId: ContestSlateEntryCreateOneWithoutPredictionInput!
+  contestSlateEntry: ContestSlateEntryCreateOneWithoutPredictionInput!
   contestUser: ContestUserCreateOneInput!
   predictionResult: ContestPredictionScoreCreateManyWithoutContestPredicitonInput
 }
 
-input ContestPredictionCreateOneWithoutContestSlateEntryIdInput {
-  create: ContestPredictionCreateWithoutContestSlateEntryIdInput
+input ContestPredictionCreateOneWithoutContestSlateEntryInput {
+  create: ContestPredictionCreateWithoutContestSlateEntryInput
   connect: ContestPredictionWhereUniqueInput
 }
 
@@ -1592,7 +1603,7 @@ input ContestPredictionCreateOneWithoutPredictionResultInput {
   connect: ContestPredictionWhereUniqueInput
 }
 
-input ContestPredictionCreateWithoutContestSlateEntryIdInput {
+input ContestPredictionCreateWithoutContestSlateEntryInput {
   homeScore: Int!
   awayScore: Int!
   expectedResult: String!
@@ -1618,7 +1629,7 @@ input ContestPredictionCreateWithoutPredictionResultInput {
   isBanker: Boolean
   hasFinished: Boolean
   deadlineTime: DateTime!
-  contestSlateEntryId: ContestSlateEntryCreateOneWithoutPredictionInput!
+  contestSlateEntry: ContestSlateEntryCreateOneWithoutPredictionInput!
   contestUser: ContestUserCreateOneInput!
 }
 
@@ -1678,12 +1689,12 @@ type ContestPredictionPreviousValues {
 
 type ContestPredictionScore implements Node {
   id: ID!
-  scoringDetail: ScoringSystemDetail!
-  contestPrediciton: ContestPrediction!
   pointsAvailable: Int!
   pointsScored: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
+  scoringDetail: ScoringSystemDetail!
+  contestPrediciton: ContestPrediction!
 }
 
 """A connection to a list of items."""
@@ -2170,7 +2181,7 @@ input ContestPredictionUpdateInput {
   isBanker: Boolean
   hasFinished: Boolean
   deadlineTime: DateTime
-  contestSlateEntryId: ContestSlateEntryUpdateOneRequiredWithoutPredictionInput
+  contestSlateEntry: ContestSlateEntryUpdateOneRequiredWithoutPredictionInput
   contestUser: ContestUserUpdateOneRequiredInput
   predictionResult: ContestPredictionScoreUpdateManyWithoutContestPredicitonInput
 }
@@ -2188,11 +2199,11 @@ input ContestPredictionUpdateManyMutationInput {
   deadlineTime: DateTime
 }
 
-input ContestPredictionUpdateOneRequiredWithoutContestSlateEntryIdInput {
-  create: ContestPredictionCreateWithoutContestSlateEntryIdInput
+input ContestPredictionUpdateOneRequiredWithoutContestSlateEntryInput {
+  create: ContestPredictionCreateWithoutContestSlateEntryInput
   connect: ContestPredictionWhereUniqueInput
-  update: ContestPredictionUpdateWithoutContestSlateEntryIdDataInput
-  upsert: ContestPredictionUpsertWithoutContestSlateEntryIdInput
+  update: ContestPredictionUpdateWithoutContestSlateEntryDataInput
+  upsert: ContestPredictionUpsertWithoutContestSlateEntryInput
 }
 
 input ContestPredictionUpdateOneRequiredWithoutPredictionResultInput {
@@ -2202,7 +2213,7 @@ input ContestPredictionUpdateOneRequiredWithoutPredictionResultInput {
   upsert: ContestPredictionUpsertWithoutPredictionResultInput
 }
 
-input ContestPredictionUpdateWithoutContestSlateEntryIdDataInput {
+input ContestPredictionUpdateWithoutContestSlateEntryDataInput {
   homeScore: Int
   awayScore: Int
   expectedResult: String
@@ -2228,13 +2239,13 @@ input ContestPredictionUpdateWithoutPredictionResultDataInput {
   isBanker: Boolean
   hasFinished: Boolean
   deadlineTime: DateTime
-  contestSlateEntryId: ContestSlateEntryUpdateOneRequiredWithoutPredictionInput
+  contestSlateEntry: ContestSlateEntryUpdateOneRequiredWithoutPredictionInput
   contestUser: ContestUserUpdateOneRequiredInput
 }
 
-input ContestPredictionUpsertWithoutContestSlateEntryIdInput {
-  update: ContestPredictionUpdateWithoutContestSlateEntryIdDataInput!
-  create: ContestPredictionCreateWithoutContestSlateEntryIdInput!
+input ContestPredictionUpsertWithoutContestSlateEntryInput {
+  update: ContestPredictionUpdateWithoutContestSlateEntryDataInput!
+  create: ContestPredictionCreateWithoutContestSlateEntryInput!
 }
 
 input ContestPredictionUpsertWithoutPredictionResultInput {
@@ -2447,7 +2458,7 @@ input ContestPredictionWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
-  contestSlateEntryId: ContestSlateEntryWhereInput
+  contestSlateEntry: ContestSlateEntryWhereInput
   contestUser: ContestUserWhereInput
   predictionResult_every: ContestPredictionScoreWhereInput
   predictionResult_some: ContestPredictionScoreWhereInput
@@ -2463,13 +2474,11 @@ type ContestPreviousValues {
   contestName: String!
   isActive: Boolean!
   isDefault: Boolean!
+  isAll: Boolean!
   isPublic: Boolean!
   invitationCode: String!
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean!
   playerLimit: Int!
   createdAt: DateTime!
@@ -2508,14 +2517,30 @@ input ContestSlateCreateInput {
   endDate: DateTime!
   hasStarted: Boolean
   hasFinished: Boolean
-  contest: ContestCreateOneInput!
+  contest: ContestCreateOneWithoutContestSlatesInput!
   gameweekId: GameweekCreateOneInput
   entries: ContestSlateEntryCreateManyWithoutSlateInput
+}
+
+input ContestSlateCreateManyWithoutContestInput {
+  create: [ContestSlateCreateWithoutContestInput!]
+  connect: [ContestSlateWhereUniqueInput!]
 }
 
 input ContestSlateCreateOneWithoutEntriesInput {
   create: ContestSlateCreateWithoutEntriesInput
   connect: ContestSlateWhereUniqueInput
+}
+
+input ContestSlateCreateWithoutContestInput {
+  fromDefault: Boolean!
+  isActive: Boolean
+  startDate: DateTime!
+  endDate: DateTime!
+  hasStarted: Boolean
+  hasFinished: Boolean
+  gameweekId: GameweekCreateOneInput
+  entries: ContestSlateEntryCreateManyWithoutSlateInput
 }
 
 input ContestSlateCreateWithoutEntriesInput {
@@ -2525,7 +2550,7 @@ input ContestSlateCreateWithoutEntriesInput {
   endDate: DateTime!
   hasStarted: Boolean
   hasFinished: Boolean
-  contest: ContestCreateOneInput!
+  contest: ContestCreateOneWithoutContestSlatesInput!
   gameweekId: GameweekCreateOneInput
 }
 
@@ -2559,7 +2584,7 @@ type ContestSlateEntryConnection {
 
 input ContestSlateEntryCreateInput {
   slate: ContestSlateCreateOneWithoutEntriesInput!
-  prediction: ContestPredictionCreateOneWithoutContestSlateEntryIdInput!
+  prediction: ContestPredictionCreateOneWithoutContestSlateEntryInput!
   fixture: FixtureCreateOneInput!
 }
 
@@ -2579,7 +2604,7 @@ input ContestSlateEntryCreateWithoutPredictionInput {
 }
 
 input ContestSlateEntryCreateWithoutSlateInput {
-  prediction: ContestPredictionCreateOneWithoutContestSlateEntryIdInput!
+  prediction: ContestPredictionCreateOneWithoutContestSlateEntryInput!
   fixture: FixtureCreateOneInput!
 }
 
@@ -2725,7 +2750,7 @@ input ContestSlateEntrySubscriptionWhereInput {
 
 input ContestSlateEntryUpdateInput {
   slate: ContestSlateUpdateOneRequiredWithoutEntriesInput
-  prediction: ContestPredictionUpdateOneRequiredWithoutContestSlateEntryIdInput
+  prediction: ContestPredictionUpdateOneRequiredWithoutContestSlateEntryInput
   fixture: FixtureUpdateOneRequiredInput
 }
 
@@ -2753,7 +2778,7 @@ input ContestSlateEntryUpdateWithoutPredictionDataInput {
 }
 
 input ContestSlateEntryUpdateWithoutSlateDataInput {
-  prediction: ContestPredictionUpdateOneRequiredWithoutContestSlateEntryIdInput
+  prediction: ContestPredictionUpdateOneRequiredWithoutContestSlateEntryInput
   fixture: FixtureUpdateOneRequiredInput
 }
 
@@ -2890,6 +2915,143 @@ type ContestSlatePreviousValues {
   updatedAt: DateTime!
 }
 
+input ContestSlateScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ContestSlateScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ContestSlateScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ContestSlateScalarWhereInput!]
+  id: Int
+
+  """All values that are not equal to given value."""
+  id_not: Int
+
+  """All values that are contained in given list."""
+  id_in: [Int!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [Int!]
+
+  """All values less than the given value."""
+  id_lt: Int
+
+  """All values less than or equal the given value."""
+  id_lte: Int
+
+  """All values greater than the given value."""
+  id_gt: Int
+
+  """All values greater than or equal the given value."""
+  id_gte: Int
+  fromDefault: Boolean
+
+  """All values that are not equal to given value."""
+  fromDefault_not: Boolean
+  isActive: Boolean
+
+  """All values that are not equal to given value."""
+  isActive_not: Boolean
+  startDate: DateTime
+
+  """All values that are not equal to given value."""
+  startDate_not: DateTime
+
+  """All values that are contained in given list."""
+  startDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  startDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  startDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  startDate_lte: DateTime
+
+  """All values greater than the given value."""
+  startDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  startDate_gte: DateTime
+  endDate: DateTime
+
+  """All values that are not equal to given value."""
+  endDate_not: DateTime
+
+  """All values that are contained in given list."""
+  endDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  endDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  endDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  endDate_lte: DateTime
+
+  """All values greater than the given value."""
+  endDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  endDate_gte: DateTime
+  hasStarted: Boolean
+
+  """All values that are not equal to given value."""
+  hasStarted_not: Boolean
+  hasFinished: Boolean
+
+  """All values that are not equal to given value."""
+  hasFinished_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
 type ContestSlateSubscriptionPayload {
   mutation: MutationType!
   node: ContestSlate
@@ -2936,9 +3098,18 @@ input ContestSlateUpdateInput {
   endDate: DateTime
   hasStarted: Boolean
   hasFinished: Boolean
-  contest: ContestUpdateOneRequiredInput
+  contest: ContestUpdateOneRequiredWithoutContestSlatesInput
   gameweekId: GameweekUpdateOneInput
   entries: ContestSlateEntryUpdateManyWithoutSlateInput
+}
+
+input ContestSlateUpdateManyDataInput {
+  fromDefault: Boolean
+  isActive: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  hasStarted: Boolean
+  hasFinished: Boolean
 }
 
 input ContestSlateUpdateManyMutationInput {
@@ -2950,11 +3121,39 @@ input ContestSlateUpdateManyMutationInput {
   hasFinished: Boolean
 }
 
+input ContestSlateUpdateManyWithoutContestInput {
+  create: [ContestSlateCreateWithoutContestInput!]
+  connect: [ContestSlateWhereUniqueInput!]
+  set: [ContestSlateWhereUniqueInput!]
+  disconnect: [ContestSlateWhereUniqueInput!]
+  delete: [ContestSlateWhereUniqueInput!]
+  update: [ContestSlateUpdateWithWhereUniqueWithoutContestInput!]
+  updateMany: [ContestSlateUpdateManyWithWhereNestedInput!]
+  deleteMany: [ContestSlateScalarWhereInput!]
+  upsert: [ContestSlateUpsertWithWhereUniqueWithoutContestInput!]
+}
+
+input ContestSlateUpdateManyWithWhereNestedInput {
+  where: ContestSlateScalarWhereInput!
+  data: ContestSlateUpdateManyDataInput!
+}
+
 input ContestSlateUpdateOneRequiredWithoutEntriesInput {
   create: ContestSlateCreateWithoutEntriesInput
   connect: ContestSlateWhereUniqueInput
   update: ContestSlateUpdateWithoutEntriesDataInput
   upsert: ContestSlateUpsertWithoutEntriesInput
+}
+
+input ContestSlateUpdateWithoutContestDataInput {
+  fromDefault: Boolean
+  isActive: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  hasStarted: Boolean
+  hasFinished: Boolean
+  gameweekId: GameweekUpdateOneInput
+  entries: ContestSlateEntryUpdateManyWithoutSlateInput
 }
 
 input ContestSlateUpdateWithoutEntriesDataInput {
@@ -2964,13 +3163,24 @@ input ContestSlateUpdateWithoutEntriesDataInput {
   endDate: DateTime
   hasStarted: Boolean
   hasFinished: Boolean
-  contest: ContestUpdateOneRequiredInput
+  contest: ContestUpdateOneRequiredWithoutContestSlatesInput
   gameweekId: GameweekUpdateOneInput
+}
+
+input ContestSlateUpdateWithWhereUniqueWithoutContestInput {
+  where: ContestSlateWhereUniqueInput!
+  data: ContestSlateUpdateWithoutContestDataInput!
 }
 
 input ContestSlateUpsertWithoutEntriesInput {
   update: ContestSlateUpdateWithoutEntriesDataInput!
   create: ContestSlateCreateWithoutEntriesInput!
+}
+
+input ContestSlateUpsertWithWhereUniqueWithoutContestInput {
+  where: ContestSlateWhereUniqueInput!
+  update: ContestSlateUpdateWithoutContestDataInput!
+  create: ContestSlateCreateWithoutContestInput!
 }
 
 input ContestSlateWhereInput {
@@ -3415,66 +3625,43 @@ input ContestTypeWhereUniqueInput {
   name: String
 }
 
-input ContestUpdateDataInput {
-  contestName: String
-  isActive: Boolean
-  isDefault: Boolean
-  isPublic: Boolean
-  invitationCode: String
-  startDate: DateTime
-  endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
-  isPremium: Boolean
-  playerLimit: Int
-  createdBy: ContestCreatorUpdateOneRequiredInput
-  currentOwner: ContestOwnerUpdateOneRequiredInput
-  contestTypeId: ContestTypeUpdateOneRequiredInput
-  users: ContestUserUpdateManyWithoutContestInput
-  scoringSystem: ScoringSystemHeaderUpdateOneRequiredWithoutContestInput
-}
-
 input ContestUpdateInput {
   contestName: String
   isActive: Boolean
   isDefault: Boolean
+  isAll: Boolean
   isPublic: Boolean
   invitationCode: String
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean
   playerLimit: Int
   createdBy: ContestCreatorUpdateOneRequiredInput
   currentOwner: ContestOwnerUpdateOneRequiredInput
   contestTypeId: ContestTypeUpdateOneRequiredInput
-  users: ContestUserUpdateManyWithoutContestInput
   scoringSystem: ScoringSystemHeaderUpdateOneRequiredWithoutContestInput
+  users: ContestUserUpdateManyWithoutContestInput
+  contestSlates: ContestSlateUpdateManyWithoutContestInput
 }
 
 input ContestUpdateManyMutationInput {
   contestName: String
   isActive: Boolean
   isDefault: Boolean
+  isAll: Boolean
   isPublic: Boolean
   invitationCode: String
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean
   playerLimit: Int
 }
 
-input ContestUpdateOneRequiredInput {
-  create: ContestCreateInput
+input ContestUpdateOneRequiredWithoutContestSlatesInput {
+  create: ContestCreateWithoutContestSlatesInput
   connect: ContestWhereUniqueInput
-  update: ContestUpdateDataInput
-  upsert: ContestUpsertNestedInput
+  update: ContestUpdateWithoutContestSlatesDataInput
+  upsert: ContestUpsertWithoutContestSlatesInput
 }
 
 input ContestUpdateOneRequiredWithoutScoringSystemInput {
@@ -3491,47 +3678,63 @@ input ContestUpdateOneRequiredWithoutUsersInput {
   upsert: ContestUpsertWithoutUsersInput
 }
 
-input ContestUpdateWithoutScoringSystemDataInput {
+input ContestUpdateWithoutContestSlatesDataInput {
   contestName: String
   isActive: Boolean
   isDefault: Boolean
+  isAll: Boolean
   isPublic: Boolean
   invitationCode: String
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
-  isPremium: Boolean
-  playerLimit: Int
-  createdBy: ContestCreatorUpdateOneRequiredInput
-  currentOwner: ContestOwnerUpdateOneRequiredInput
-  contestTypeId: ContestTypeUpdateOneRequiredInput
-  users: ContestUserUpdateManyWithoutContestInput
-}
-
-input ContestUpdateWithoutUsersDataInput {
-  contestName: String
-  isActive: Boolean
-  isDefault: Boolean
-  isPublic: Boolean
-  invitationCode: String
-  startDate: DateTime
-  endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean
   playerLimit: Int
   createdBy: ContestCreatorUpdateOneRequiredInput
   currentOwner: ContestOwnerUpdateOneRequiredInput
   contestTypeId: ContestTypeUpdateOneRequiredInput
   scoringSystem: ScoringSystemHeaderUpdateOneRequiredWithoutContestInput
+  users: ContestUserUpdateManyWithoutContestInput
 }
 
-input ContestUpsertNestedInput {
-  update: ContestUpdateDataInput!
-  create: ContestCreateInput!
+input ContestUpdateWithoutScoringSystemDataInput {
+  contestName: String
+  isActive: Boolean
+  isDefault: Boolean
+  isAll: Boolean
+  isPublic: Boolean
+  invitationCode: String
+  startDate: DateTime
+  endDate: DateTime
+  isPremium: Boolean
+  playerLimit: Int
+  createdBy: ContestCreatorUpdateOneRequiredInput
+  currentOwner: ContestOwnerUpdateOneRequiredInput
+  contestTypeId: ContestTypeUpdateOneRequiredInput
+  users: ContestUserUpdateManyWithoutContestInput
+  contestSlates: ContestSlateUpdateManyWithoutContestInput
+}
+
+input ContestUpdateWithoutUsersDataInput {
+  contestName: String
+  isActive: Boolean
+  isDefault: Boolean
+  isAll: Boolean
+  isPublic: Boolean
+  invitationCode: String
+  startDate: DateTime
+  endDate: DateTime
+  isPremium: Boolean
+  playerLimit: Int
+  createdBy: ContestCreatorUpdateOneRequiredInput
+  currentOwner: ContestOwnerUpdateOneRequiredInput
+  contestTypeId: ContestTypeUpdateOneRequiredInput
+  scoringSystem: ScoringSystemHeaderUpdateOneRequiredWithoutContestInput
+  contestSlates: ContestSlateUpdateManyWithoutContestInput
+}
+
+input ContestUpsertWithoutContestSlatesInput {
+  update: ContestUpdateWithoutContestSlatesDataInput!
+  create: ContestCreateWithoutContestSlatesInput!
 }
 
 input ContestUpsertWithoutScoringSystemInput {
@@ -4391,6 +4594,10 @@ input ContestWhereInput {
 
   """All values that are not equal to given value."""
   isDefault_not: Boolean
+  isAll: Boolean
+
+  """All values that are not equal to given value."""
+  isAll_not: Boolean
   isPublic: Boolean
 
   """All values that are not equal to given value."""
@@ -4479,72 +4686,6 @@ input ContestWhereInput {
 
   """All values greater than or equal the given value."""
   endDate_gte: DateTime
-  nextEvent: Int
-
-  """All values that are not equal to given value."""
-  nextEvent_not: Int
-
-  """All values that are contained in given list."""
-  nextEvent_in: [Int!]
-
-  """All values that are not contained in given list."""
-  nextEvent_not_in: [Int!]
-
-  """All values less than the given value."""
-  nextEvent_lt: Int
-
-  """All values less than or equal the given value."""
-  nextEvent_lte: Int
-
-  """All values greater than the given value."""
-  nextEvent_gt: Int
-
-  """All values greater than or equal the given value."""
-  nextEvent_gte: Int
-  currentEvent: Int
-
-  """All values that are not equal to given value."""
-  currentEvent_not: Int
-
-  """All values that are contained in given list."""
-  currentEvent_in: [Int!]
-
-  """All values that are not contained in given list."""
-  currentEvent_not_in: [Int!]
-
-  """All values less than the given value."""
-  currentEvent_lt: Int
-
-  """All values less than or equal the given value."""
-  currentEvent_lte: Int
-
-  """All values greater than the given value."""
-  currentEvent_gt: Int
-
-  """All values greater than or equal the given value."""
-  currentEvent_gte: Int
-  totalEvents: Int
-
-  """All values that are not equal to given value."""
-  totalEvents_not: Int
-
-  """All values that are contained in given list."""
-  totalEvents_in: [Int!]
-
-  """All values that are not contained in given list."""
-  totalEvents_not_in: [Int!]
-
-  """All values less than the given value."""
-  totalEvents_lt: Int
-
-  """All values less than or equal the given value."""
-  totalEvents_lte: Int
-
-  """All values greater than the given value."""
-  totalEvents_gt: Int
-
-  """All values greater than or equal the given value."""
-  totalEvents_gte: Int
   isPremium: Boolean
 
   """All values that are not equal to given value."""
@@ -4618,10 +4759,13 @@ input ContestWhereInput {
   createdBy: ContestCreatorWhereInput
   currentOwner: ContestOwnerWhereInput
   contestTypeId: ContestTypeWhereInput
+  scoringSystem: ScoringSystemHeaderWhereInput
   users_every: ContestUserWhereInput
   users_some: ContestUserWhereInput
   users_none: ContestUserWhereInput
-  scoringSystem: ScoringSystemHeaderWhereInput
+  contestSlates_every: ContestSlateWhereInput
+  contestSlates_some: ContestSlateWhereInput
+  contestSlates_none: ContestSlateWhereInput
 }
 
 input ContestWhereUniqueInput {
@@ -4987,17 +5131,18 @@ scalar DateTime
 
 type DefaultScoringSystemDetail implements Node {
   id: ID!
-  scoringSystem: DefaultScoringSystemHeader!
   name: String!
   description: String!
-  scoringType: ScoringType!
   isActive: Boolean!
   isDefault: Boolean!
   startDate: DateTime!
-  endDate: DateTime!
+  endDate: DateTime
   points: Int!
+  range: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
+  scoringSystem: DefaultScoringSystemHeader!
+  scoringType: ScoringType!
 }
 
 """A connection to a list of items."""
@@ -5014,11 +5159,12 @@ input DefaultScoringSystemDetailCreateInput {
   id: ID
   name: String!
   description: String!
-  isActive: Boolean!
-  isDefault: Boolean!
-  startDate: DateTime!
-  endDate: DateTime!
-  points: Int!
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+  range: Int
   scoringSystem: DefaultScoringSystemHeaderCreateOneWithoutSystemDetailInput!
   scoringType: ScoringTypeCreateOneInput!
 }
@@ -5037,11 +5183,12 @@ input DefaultScoringSystemDetailCreateWithoutScoringSystemInput {
   id: ID
   name: String!
   description: String!
-  isActive: Boolean!
-  isDefault: Boolean!
-  startDate: DateTime!
-  endDate: DateTime!
-  points: Int!
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+  range: Int
   scoringType: ScoringTypeCreateOneInput!
 }
 
@@ -5071,6 +5218,8 @@ enum DefaultScoringSystemDetailOrderByInput {
   endDate_DESC
   points_ASC
   points_DESC
+  range_ASC
+  range_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -5084,8 +5233,9 @@ type DefaultScoringSystemDetailPreviousValues {
   isActive: Boolean!
   isDefault: Boolean!
   startDate: DateTime!
-  endDate: DateTime!
+  endDate: DateTime
   points: Int!
+  range: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -5293,6 +5443,28 @@ input DefaultScoringSystemDetailScalarWhereInput {
 
   """All values greater than or equal the given value."""
   points_gte: Int
+  range: Int
+
+  """All values that are not equal to given value."""
+  range_not: Int
+
+  """All values that are contained in given list."""
+  range_in: [Int!]
+
+  """All values that are not contained in given list."""
+  range_not_in: [Int!]
+
+  """All values less than the given value."""
+  range_lt: Int
+
+  """All values less than or equal the given value."""
+  range_lte: Int
+
+  """All values greater than the given value."""
+  range_gt: Int
+
+  """All values greater than or equal the given value."""
+  range_gte: Int
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -5386,6 +5558,7 @@ input DefaultScoringSystemDetailUpdateDataInput {
   startDate: DateTime
   endDate: DateTime
   points: Int
+  range: Int
   scoringSystem: DefaultScoringSystemHeaderUpdateOneRequiredWithoutSystemDetailInput
   scoringType: ScoringTypeUpdateOneRequiredInput
 }
@@ -5398,6 +5571,7 @@ input DefaultScoringSystemDetailUpdateInput {
   startDate: DateTime
   endDate: DateTime
   points: Int
+  range: Int
   scoringSystem: DefaultScoringSystemHeaderUpdateOneRequiredWithoutSystemDetailInput
   scoringType: ScoringTypeUpdateOneRequiredInput
 }
@@ -5410,6 +5584,7 @@ input DefaultScoringSystemDetailUpdateManyDataInput {
   startDate: DateTime
   endDate: DateTime
   points: Int
+  range: Int
 }
 
 input DefaultScoringSystemDetailUpdateManyMutationInput {
@@ -5420,6 +5595,7 @@ input DefaultScoringSystemDetailUpdateManyMutationInput {
   startDate: DateTime
   endDate: DateTime
   points: Int
+  range: Int
 }
 
 input DefaultScoringSystemDetailUpdateManyWithoutScoringSystemInput {
@@ -5454,6 +5630,7 @@ input DefaultScoringSystemDetailUpdateWithoutScoringSystemDataInput {
   startDate: DateTime
   endDate: DateTime
   points: Int
+  range: Int
   scoringType: ScoringTypeUpdateOneRequiredInput
 }
 
@@ -5676,6 +5853,28 @@ input DefaultScoringSystemDetailWhereInput {
 
   """All values greater than or equal the given value."""
   points_gte: Int
+  range: Int
+
+  """All values that are not equal to given value."""
+  range_not: Int
+
+  """All values that are contained in given list."""
+  range_in: [Int!]
+
+  """All values that are not contained in given list."""
+  range_not_in: [Int!]
+
+  """All values less than the given value."""
+  range_lt: Int
+
+  """All values less than or equal the given value."""
+  range_lte: Int
+
+  """All values greater than the given value."""
+  range_gt: Int
+
+  """All values greater than or equal the given value."""
+  range_gte: Int
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -5733,9 +5932,9 @@ type DefaultScoringSystemHeader implements Node {
   name: String!
   description: String
   isCustom: Boolean!
-  systemDetail(where: DefaultScoringSystemDetailWhereInput, orderBy: DefaultScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DefaultScoringSystemDetail!]
   createdAt: DateTime!
   updatedAt: DateTime!
+  systemDetail(where: DefaultScoringSystemDetailWhereInput, orderBy: DefaultScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DefaultScoringSystemDetail!]
 }
 
 """A connection to a list of items."""
@@ -9599,6 +9798,7 @@ type Mutation {
   createActiveSubscriptions(data: ActiveSubscriptionsCreateInput!): ActiveSubscriptions!
   createHomeTeamFixture(data: HomeTeamFixtureCreateInput!): HomeTeamFixture!
   createAwayTeamFixture(data: AwayTeamFixtureCreateInput!): AwayTeamFixture!
+  createContest(data: ContestCreateInput!): Contest!
   createContestSlate(data: ContestSlateCreateInput!): ContestSlate!
   createContestSlateEntry(data: ContestSlateEntryCreateInput!): ContestSlateEntry!
   createContestPrediction(data: ContestPredictionCreateInput!): ContestPrediction!
@@ -9609,7 +9809,6 @@ type Mutation {
   createDefaultScoringSystemDetail(data: DefaultScoringSystemDetailCreateInput!): DefaultScoringSystemDetail!
   createContestType(data: ContestTypeCreateInput!): ContestType!
   createInfluencer(data: InfluencerCreateInput!): Influencer!
-  createContest(data: ContestCreateInput!): Contest!
   createFollower(data: FollowerCreateInput!): Follower!
   createContestUserType(data: ContestUserTypeCreateInput!): ContestUserType!
   createContestCreator(data: ContestCreatorCreateInput!): ContestCreator!
@@ -9635,6 +9834,7 @@ type Mutation {
   updateActiveSubscriptions(data: ActiveSubscriptionsUpdateInput!, where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   updateHomeTeamFixture(data: HomeTeamFixtureUpdateInput!, where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
   updateAwayTeamFixture(data: AwayTeamFixtureUpdateInput!, where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
+  updateContest(data: ContestUpdateInput!, where: ContestWhereUniqueInput!): Contest
   updateContestSlate(data: ContestSlateUpdateInput!, where: ContestSlateWhereUniqueInput!): ContestSlate
   updateContestSlateEntry(data: ContestSlateEntryUpdateInput!, where: ContestSlateEntryWhereUniqueInput!): ContestSlateEntry
   updateContestPrediction(data: ContestPredictionUpdateInput!, where: ContestPredictionWhereUniqueInput!): ContestPrediction
@@ -9645,7 +9845,6 @@ type Mutation {
   updateDefaultScoringSystemDetail(data: DefaultScoringSystemDetailUpdateInput!, where: DefaultScoringSystemDetailWhereUniqueInput!): DefaultScoringSystemDetail
   updateContestType(data: ContestTypeUpdateInput!, where: ContestTypeWhereUniqueInput!): ContestType
   updateInfluencer(data: InfluencerUpdateInput!, where: InfluencerWhereUniqueInput!): Influencer
-  updateContest(data: ContestUpdateInput!, where: ContestWhereUniqueInput!): Contest
   updateFollower(data: FollowerUpdateInput!, where: FollowerWhereUniqueInput!): Follower
   updateContestUserType(data: ContestUserTypeUpdateInput!, where: ContestUserTypeWhereUniqueInput!): ContestUserType
   updateContestCreator(data: ContestCreatorUpdateInput!, where: ContestCreatorWhereUniqueInput!): ContestCreator
@@ -9671,6 +9870,7 @@ type Mutation {
   deleteActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   deleteHomeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
   deleteAwayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
+  deleteContest(where: ContestWhereUniqueInput!): Contest
   deleteContestSlate(where: ContestSlateWhereUniqueInput!): ContestSlate
   deleteContestSlateEntry(where: ContestSlateEntryWhereUniqueInput!): ContestSlateEntry
   deleteContestPrediction(where: ContestPredictionWhereUniqueInput!): ContestPrediction
@@ -9681,7 +9881,6 @@ type Mutation {
   deleteDefaultScoringSystemDetail(where: DefaultScoringSystemDetailWhereUniqueInput!): DefaultScoringSystemDetail
   deleteContestType(where: ContestTypeWhereUniqueInput!): ContestType
   deleteInfluencer(where: InfluencerWhereUniqueInput!): Influencer
-  deleteContest(where: ContestWhereUniqueInput!): Contest
   deleteFollower(where: FollowerWhereUniqueInput!): Follower
   deleteContestUserType(where: ContestUserTypeWhereUniqueInput!): ContestUserType
   deleteContestCreator(where: ContestCreatorWhereUniqueInput!): ContestCreator
@@ -9707,6 +9906,7 @@ type Mutation {
   upsertActiveSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!, create: ActiveSubscriptionsCreateInput!, update: ActiveSubscriptionsUpdateInput!): ActiveSubscriptions!
   upsertHomeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!, create: HomeTeamFixtureCreateInput!, update: HomeTeamFixtureUpdateInput!): HomeTeamFixture!
   upsertAwayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!, create: AwayTeamFixtureCreateInput!, update: AwayTeamFixtureUpdateInput!): AwayTeamFixture!
+  upsertContest(where: ContestWhereUniqueInput!, create: ContestCreateInput!, update: ContestUpdateInput!): Contest!
   upsertContestSlate(where: ContestSlateWhereUniqueInput!, create: ContestSlateCreateInput!, update: ContestSlateUpdateInput!): ContestSlate!
   upsertContestSlateEntry(where: ContestSlateEntryWhereUniqueInput!, create: ContestSlateEntryCreateInput!, update: ContestSlateEntryUpdateInput!): ContestSlateEntry!
   upsertContestPrediction(where: ContestPredictionWhereUniqueInput!, create: ContestPredictionCreateInput!, update: ContestPredictionUpdateInput!): ContestPrediction!
@@ -9717,7 +9917,6 @@ type Mutation {
   upsertDefaultScoringSystemDetail(where: DefaultScoringSystemDetailWhereUniqueInput!, create: DefaultScoringSystemDetailCreateInput!, update: DefaultScoringSystemDetailUpdateInput!): DefaultScoringSystemDetail!
   upsertContestType(where: ContestTypeWhereUniqueInput!, create: ContestTypeCreateInput!, update: ContestTypeUpdateInput!): ContestType!
   upsertInfluencer(where: InfluencerWhereUniqueInput!, create: InfluencerCreateInput!, update: InfluencerUpdateInput!): Influencer!
-  upsertContest(where: ContestWhereUniqueInput!, create: ContestCreateInput!, update: ContestUpdateInput!): Contest!
   upsertFollower(where: FollowerWhereUniqueInput!, create: FollowerCreateInput!, update: FollowerUpdateInput!): Follower!
   upsertContestUserType(where: ContestUserTypeWhereUniqueInput!, create: ContestUserTypeCreateInput!, update: ContestUserTypeUpdateInput!): ContestUserType!
   upsertContestCreator(where: ContestCreatorWhereUniqueInput!, create: ContestCreatorCreateInput!, update: ContestCreatorUpdateInput!): ContestCreator!
@@ -9738,6 +9937,7 @@ type Mutation {
   updateManyUserPhotos(data: UserPhotoUpdateManyMutationInput!, where: UserPhotoWhereInput): BatchPayload!
   updateManyStatuses(data: StatusUpdateManyMutationInput!, where: StatusWhereInput): BatchPayload!
   updateManyActiveSubscriptionses(data: ActiveSubscriptionsUpdateManyMutationInput!, where: ActiveSubscriptionsWhereInput): BatchPayload!
+  updateManyContests(data: ContestUpdateManyMutationInput!, where: ContestWhereInput): BatchPayload!
   updateManyContestSlates(data: ContestSlateUpdateManyMutationInput!, where: ContestSlateWhereInput): BatchPayload!
   updateManyContestPredictions(data: ContestPredictionUpdateManyMutationInput!, where: ContestPredictionWhereInput): BatchPayload!
   updateManyScoringSystemHeaders(data: ScoringSystemHeaderUpdateManyMutationInput!, where: ScoringSystemHeaderWhereInput): BatchPayload!
@@ -9746,7 +9946,6 @@ type Mutation {
   updateManyPhotos(data: PhotoUpdateManyMutationInput!, where: PhotoWhereInput): BatchPayload!
   updateManyDefaultScoringSystemDetails(data: DefaultScoringSystemDetailUpdateManyMutationInput!, where: DefaultScoringSystemDetailWhereInput): BatchPayload!
   updateManyContestTypes(data: ContestTypeUpdateManyMutationInput!, where: ContestTypeWhereInput): BatchPayload!
-  updateManyContests(data: ContestUpdateManyMutationInput!, where: ContestWhereInput): BatchPayload!
   updateManyFollowers(data: FollowerUpdateManyMutationInput!, where: FollowerWhereInput): BatchPayload!
   updateManyContestUserTypes(data: ContestUserTypeUpdateManyMutationInput!, where: ContestUserTypeWhereInput): BatchPayload!
   updateManyDefaultScoringSystemHeaders(data: DefaultScoringSystemHeaderUpdateManyMutationInput!, where: DefaultScoringSystemHeaderWhereInput): BatchPayload!
@@ -9769,6 +9968,7 @@ type Mutation {
   deleteManyActiveSubscriptionses(where: ActiveSubscriptionsWhereInput): BatchPayload!
   deleteManyHomeTeamFixtures(where: HomeTeamFixtureWhereInput): BatchPayload!
   deleteManyAwayTeamFixtures(where: AwayTeamFixtureWhereInput): BatchPayload!
+  deleteManyContests(where: ContestWhereInput): BatchPayload!
   deleteManyContestSlates(where: ContestSlateWhereInput): BatchPayload!
   deleteManyContestSlateEntries(where: ContestSlateEntryWhereInput): BatchPayload!
   deleteManyContestPredictions(where: ContestPredictionWhereInput): BatchPayload!
@@ -9779,7 +9979,6 @@ type Mutation {
   deleteManyDefaultScoringSystemDetails(where: DefaultScoringSystemDetailWhereInput): BatchPayload!
   deleteManyContestTypes(where: ContestTypeWhereInput): BatchPayload!
   deleteManyInfluencers(where: InfluencerWhereInput): BatchPayload!
-  deleteManyContests(where: ContestWhereInput): BatchPayload!
   deleteManyFollowers(where: FollowerWhereInput): BatchPayload!
   deleteManyContestUserTypes(where: ContestUserTypeWhereInput): BatchPayload!
   deleteManyContestCreators(where: ContestCreatorWhereInput): BatchPayload!
@@ -10192,6 +10391,7 @@ type Query {
   activeSubscriptionses(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ActiveSubscriptions]!
   homeTeamFixtures(where: HomeTeamFixtureWhereInput, orderBy: HomeTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HomeTeamFixture]!
   awayTeamFixtures(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AwayTeamFixture]!
+  contests(where: ContestWhereInput, orderBy: ContestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contest]!
   contestSlates(where: ContestSlateWhereInput, orderBy: ContestSlateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestSlate]!
   contestSlateEntries(where: ContestSlateEntryWhereInput, orderBy: ContestSlateEntryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestSlateEntry]!
   contestPredictions(where: ContestPredictionWhereInput, orderBy: ContestPredictionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestPrediction]!
@@ -10202,7 +10402,6 @@ type Query {
   defaultScoringSystemDetails(where: DefaultScoringSystemDetailWhereInput, orderBy: DefaultScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DefaultScoringSystemDetail]!
   contestTypes(where: ContestTypeWhereInput, orderBy: ContestTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestType]!
   influencers(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Influencer]!
-  contests(where: ContestWhereInput, orderBy: ContestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contest]!
   followers(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Follower]!
   contestUserTypes(where: ContestUserTypeWhereInput, orderBy: ContestUserTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestUserType]!
   contestCreators(where: ContestCreatorWhereInput, orderBy: ContestCreatorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestCreator]!
@@ -10228,6 +10427,7 @@ type Query {
   activeSubscriptions(where: ActiveSubscriptionsWhereUniqueInput!): ActiveSubscriptions
   homeTeamFixture(where: HomeTeamFixtureWhereUniqueInput!): HomeTeamFixture
   awayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
+  contest(where: ContestWhereUniqueInput!): Contest
   contestSlate(where: ContestSlateWhereUniqueInput!): ContestSlate
   contestSlateEntry(where: ContestSlateEntryWhereUniqueInput!): ContestSlateEntry
   contestPrediction(where: ContestPredictionWhereUniqueInput!): ContestPrediction
@@ -10238,7 +10438,6 @@ type Query {
   defaultScoringSystemDetail(where: DefaultScoringSystemDetailWhereUniqueInput!): DefaultScoringSystemDetail
   contestType(where: ContestTypeWhereUniqueInput!): ContestType
   influencer(where: InfluencerWhereUniqueInput!): Influencer
-  contest(where: ContestWhereUniqueInput!): Contest
   follower(where: FollowerWhereUniqueInput!): Follower
   contestUserType(where: ContestUserTypeWhereUniqueInput!): ContestUserType
   contestCreator(where: ContestCreatorWhereUniqueInput!): ContestCreator
@@ -10264,6 +10463,7 @@ type Query {
   activeSubscriptionsesConnection(where: ActiveSubscriptionsWhereInput, orderBy: ActiveSubscriptionsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ActiveSubscriptionsConnection!
   homeTeamFixturesConnection(where: HomeTeamFixtureWhereInput, orderBy: HomeTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HomeTeamFixtureConnection!
   awayTeamFixturesConnection(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AwayTeamFixtureConnection!
+  contestsConnection(where: ContestWhereInput, orderBy: ContestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestConnection!
   contestSlatesConnection(where: ContestSlateWhereInput, orderBy: ContestSlateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestSlateConnection!
   contestSlateEntriesConnection(where: ContestSlateEntryWhereInput, orderBy: ContestSlateEntryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestSlateEntryConnection!
   contestPredictionsConnection(where: ContestPredictionWhereInput, orderBy: ContestPredictionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestPredictionConnection!
@@ -10274,7 +10474,6 @@ type Query {
   defaultScoringSystemDetailsConnection(where: DefaultScoringSystemDetailWhereInput, orderBy: DefaultScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DefaultScoringSystemDetailConnection!
   contestTypesConnection(where: ContestTypeWhereInput, orderBy: ContestTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestTypeConnection!
   influencersConnection(where: InfluencerWhereInput, orderBy: InfluencerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InfluencerConnection!
-  contestsConnection(where: ContestWhereInput, orderBy: ContestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestConnection!
   followersConnection(where: FollowerWhereInput, orderBy: FollowerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FollowerConnection!
   contestUserTypesConnection(where: ContestUserTypeWhereInput, orderBy: ContestUserTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestUserTypeConnection!
   contestCreatorsConnection(where: ContestCreatorWhereInput, orderBy: ContestCreatorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestCreatorConnection!
@@ -10302,8 +10501,6 @@ type Query {
 
 type ScoringSystemDetail implements Node {
   id: ID!
-  system: ScoringSystemHeader!
-  inheritedFrom: DefaultScoringSystemDetail!
   name: String!
   description: String
   scoringType: ScoringType!
@@ -10315,6 +10512,8 @@ type ScoringSystemDetail implements Node {
   points: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
+  system: ScoringSystemHeader!
+  inheritedFrom: DefaultScoringSystemDetail!
 }
 
 """A connection to a list of items."""
@@ -10336,10 +10535,10 @@ input ScoringSystemDetailCreateInput {
   startDate: DateTime!
   endDate: DateTime
   points: Int!
-  system: ScoringSystemHeaderCreateOneWithoutDetailInput!
-  inheritedFrom: DefaultScoringSystemDetailCreateOneInput!
   scoringType: ScoringTypeCreateOneInput!
   lastModifiedBy: UserCreateOneInput!
+  system: ScoringSystemHeaderCreateOneWithoutDetailInput!
+  inheritedFrom: DefaultScoringSystemDetailCreateOneInput!
 }
 
 input ScoringSystemDetailCreateManyWithoutSystemInput {
@@ -10361,9 +10560,9 @@ input ScoringSystemDetailCreateWithoutSystemInput {
   startDate: DateTime!
   endDate: DateTime
   points: Int!
-  inheritedFrom: DefaultScoringSystemDetailCreateOneInput!
   scoringType: ScoringTypeCreateOneInput!
   lastModifiedBy: UserCreateOneInput!
+  inheritedFrom: DefaultScoringSystemDetailCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -10707,10 +10906,10 @@ input ScoringSystemDetailUpdateDataInput {
   startDate: DateTime
   endDate: DateTime
   points: Int
-  system: ScoringSystemHeaderUpdateOneRequiredWithoutDetailInput
-  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
   scoringType: ScoringTypeUpdateOneRequiredInput
   lastModifiedBy: UserUpdateOneRequiredInput
+  system: ScoringSystemHeaderUpdateOneRequiredWithoutDetailInput
+  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
 }
 
 input ScoringSystemDetailUpdateInput {
@@ -10721,10 +10920,10 @@ input ScoringSystemDetailUpdateInput {
   startDate: DateTime
   endDate: DateTime
   points: Int
-  system: ScoringSystemHeaderUpdateOneRequiredWithoutDetailInput
-  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
   scoringType: ScoringTypeUpdateOneRequiredInput
   lastModifiedBy: UserUpdateOneRequiredInput
+  system: ScoringSystemHeaderUpdateOneRequiredWithoutDetailInput
+  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
 }
 
 input ScoringSystemDetailUpdateManyDataInput {
@@ -10779,9 +10978,9 @@ input ScoringSystemDetailUpdateWithoutSystemDataInput {
   startDate: DateTime
   endDate: DateTime
   points: Int
-  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
   scoringType: ScoringTypeUpdateOneRequiredInput
   lastModifiedBy: UserUpdateOneRequiredInput
+  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
 }
 
 input ScoringSystemDetailUpdateWithWhereUniqueWithoutSystemInput {
@@ -11047,10 +11246,10 @@ input ScoringSystemDetailWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
-  system: ScoringSystemHeaderWhereInput
-  inheritedFrom: DefaultScoringSystemDetailWhereInput
   scoringType: ScoringTypeWhereInput
   lastModifiedBy: UserWhereInput
+  system: ScoringSystemHeaderWhereInput
+  inheritedFrom: DefaultScoringSystemDetailWhereInput
 }
 
 input ScoringSystemDetailWhereUniqueInput {
@@ -11059,12 +11258,12 @@ input ScoringSystemDetailWhereUniqueInput {
 
 type ScoringSystemHeader implements Node {
   id: ID!
-  contest: Contest!
-  inheritedFrom: DefaultScoringSystemHeader
   isCustom: Boolean!
-  detail(where: ScoringSystemDetailWhereInput, orderBy: ScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ScoringSystemDetail!]
   createdAt: DateTime!
   updatedAt: DateTime!
+  contest: Contest!
+  inheritedFrom: DefaultScoringSystemHeader
+  detail(where: ScoringSystemDetailWhereInput, orderBy: ScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ScoringSystemDetail!]
 }
 
 """A connection to a list of items."""
@@ -11632,6 +11831,7 @@ input ScoringTypeWhereInput {
 
 input ScoringTypeWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type Season implements Node {
@@ -12396,6 +12596,7 @@ type Subscription {
   activeSubscriptions(where: ActiveSubscriptionsSubscriptionWhereInput): ActiveSubscriptionsSubscriptionPayload
   homeTeamFixture(where: HomeTeamFixtureSubscriptionWhereInput): HomeTeamFixtureSubscriptionPayload
   awayTeamFixture(where: AwayTeamFixtureSubscriptionWhereInput): AwayTeamFixtureSubscriptionPayload
+  contest(where: ContestSubscriptionWhereInput): ContestSubscriptionPayload
   contestSlate(where: ContestSlateSubscriptionWhereInput): ContestSlateSubscriptionPayload
   contestSlateEntry(where: ContestSlateEntrySubscriptionWhereInput): ContestSlateEntrySubscriptionPayload
   contestPrediction(where: ContestPredictionSubscriptionWhereInput): ContestPredictionSubscriptionPayload
@@ -12406,7 +12607,6 @@ type Subscription {
   defaultScoringSystemDetail(where: DefaultScoringSystemDetailSubscriptionWhereInput): DefaultScoringSystemDetailSubscriptionPayload
   contestType(where: ContestTypeSubscriptionWhereInput): ContestTypeSubscriptionPayload
   influencer(where: InfluencerSubscriptionWhereInput): InfluencerSubscriptionPayload
-  contest(where: ContestSubscriptionWhereInput): ContestSubscriptionPayload
   follower(where: FollowerSubscriptionWhereInput): FollowerSubscriptionPayload
   contestUserType(where: ContestUserTypeSubscriptionWhereInput): ContestUserTypeSubscriptionPayload
   contestCreator(where: ContestCreatorSubscriptionWhereInput): ContestCreatorSubscriptionPayload

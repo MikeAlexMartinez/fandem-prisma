@@ -1,12 +1,14 @@
-const countryCodes = require("./countries");
-
-module.exports = seedCountryData;
+const countryCodes = require('./countries');
 
 async function seedCountryData({ db }) {
-  return await Promise.all(
+  return Promise.all(
     countryCodes.map(
-      async country =>
-        await db.mutation.createCountry({ data: country }, "{ id, name }")
-    )
+      async country => db.mutation.createCountry(
+        { data: country },
+        '{ id, name }',
+      ),
+    ),
   );
 }
+
+module.exports = seedCountryData;

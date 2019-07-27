@@ -255,22 +255,21 @@ type Contest {
   contestName: String!
   isActive: Boolean! @default(value: true)
   isDefault: Boolean! @default(value: true)
+  isAll: Boolean!
   isPublic: Boolean!
-  createdBy: ContestCreator!
-  currentOwner: ContestOwner!
-  contestTypeId: ContestType! @relation(link: INLINE)
   invitationCode: String! @unique
   startDate: DateTime
   endDate: DateTime
-  nextEvent: Int
-  currentEvent: Int
-  totalEvents: Int
   isPremium: Boolean! @default(value: false)
   playerLimit: Int! @default(value: 50)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
-  users: [ContestUser!]!
+  createdBy: ContestCreator!
+  currentOwner: ContestOwner!
+  contestTypeId: ContestType! @relation(link: INLINE)
   scoringSystem: ScoringSystemHeader! @relation(link: INLINE)
+  users: [ContestUser!]!
+  contestSlates: [ContestSlate]!
 }
 
 type ContestUserType {
@@ -328,8 +327,6 @@ type ContestSlateEntry {
 
 type ContestPrediction {
   id: Int! @unique @id
-  contestSlateEntryId: ContestSlateEntry! @relation(link: INLINE)
-  contestUser: ContestUser! @relation(link: INLINE)
   homeScore: Int!
   awayScore: Int!
   expectedResult: String!
@@ -340,14 +337,16 @@ type ContestPrediction {
   isBanker: Boolean! @default(value: false)
   hasFinished: Boolean! @default(value: false)
   deadlineTime: DateTime!
-  predictionResult: [ContestPredictionScore]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  contestSlateEntry: ContestSlateEntry! @relation(link: INLINE)
+  contestUser: ContestUser! @relation(link: INLINE)
+  predictionResult: [ContestPredictionScore]!
 }
 
 type ScoringType {
   id: ID! @unique @id
-  name: String!
+  name: String! @unique
   description: String!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -358,40 +357,39 @@ type DefaultScoringSystemHeader {
   name: String!
   description: String
   isCustom: Boolean! @default(value: true)
-  systemDetail: [DefaultScoringSystemDetail!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  systemDetail: [DefaultScoringSystemDetail!]!
 }
 
 type DefaultScoringSystemDetail {
   id: ID! @unique @id
-  scoringSystem: DefaultScoringSystemHeader! @relation(link: INLINE)
   name: String!
   description: String!
-  scoringType: ScoringType! @relation(link: INLINE)
-  isActive: Boolean!
-  isDefault: Boolean!
-  startDate: DateTime!
-  endDate: DateTime!
-  points: Int!
+  isActive: Boolean! @default(value: true)
+  isDefault: Boolean! @default(value: true)
+  startDate: DateTime! @default(value: "2019-08-09T19:00:00.000Z")
+  endDate: DateTime
+  points: Int! @default(value: 1)
+  range: Int! @default(value: 0)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  scoringSystem: DefaultScoringSystemHeader! @relation(link: INLINE)
+  scoringType: ScoringType! @relation(link: INLINE)
 }
  
 type ScoringSystemHeader {
   id: ID! @unique @id
-  contest: Contest!
-  inheritedFrom: DefaultScoringSystemHeader
   isCustom: Boolean!
-  detail: [ScoringSystemDetail!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  contest: Contest!
+  inheritedFrom: DefaultScoringSystemHeader
+  detail: [ScoringSystemDetail!]!
 }
 
 type ScoringSystemDetail {
   id: ID! @unique @id
-  system: ScoringSystemHeader! @relation(value: INLINE)
-  inheritedFrom: DefaultScoringSystemDetail!
   name: String!
   description: String
   scoringType: ScoringType!
@@ -403,14 +401,16 @@ type ScoringSystemDetail {
   points: Int!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  system: ScoringSystemHeader! @relation(value: INLINE)
+  inheritedFrom: DefaultScoringSystemDetail!
 }
 
 type ContestPredictionScore {
   id: ID! @unique @id
-  scoringDetail: ScoringSystemDetail! @relation(link: INLINE)
-  contestPrediciton: ContestPrediction! @relation(link: INLINE)
   pointsAvailable: Int! @default(value: 0)
   pointsScored: Int! @default(value: 0)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  scoringDetail: ScoringSystemDetail! @relation(link: INLINE)
+  contestPrediciton: ContestPrediction! @relation(link: INLINE)
 }
