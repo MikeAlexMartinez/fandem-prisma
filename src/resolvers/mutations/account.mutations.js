@@ -314,7 +314,7 @@ const accountMutations = {
       throw new Error(`You must be logged in to do this`);
     }
 
-    const user = ctx.request.user;
+    const { user } = ctx.request;
     const { displayName, isPrivate, name, favoriteTeamId, countryId } = args;
 
     let result;
@@ -343,7 +343,7 @@ const accountMutations = {
       throw new Error(`You must be logged in to do this`);
     }
 
-    const user = ctx.request.user;
+    const { user } = ctx.request;
     const { image } = args;
 
     // mark any photos for this user as isProfile: false
