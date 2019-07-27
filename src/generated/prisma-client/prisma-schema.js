@@ -149,7 +149,59 @@ type AggregateAwayTeamFixture {
   count: Int!
 }
 
+type AggregateContest {
+  count: Int!
+}
+
+type AggregateContestCreator {
+  count: Int!
+}
+
+type AggregateContestInviter {
+  count: Int!
+}
+
+type AggregateContestOwner {
+  count: Int!
+}
+
+type AggregateContestPrediction {
+  count: Int!
+}
+
+type AggregateContestPredictionScore {
+  count: Int!
+}
+
+type AggregateContestSlate {
+  count: Int!
+}
+
+type AggregateContestSlateEntry {
+  count: Int!
+}
+
+type AggregateContestType {
+  count: Int!
+}
+
+type AggregateContestUser {
+  count: Int!
+}
+
+type AggregateContestUserType {
+  count: Int!
+}
+
 type AggregateCountry {
+  count: Int!
+}
+
+type AggregateDefaultScoringSystemDetail {
+  count: Int!
+}
+
+type AggregateDefaultScoringSystemHeader {
   count: Int!
 }
 
@@ -178,6 +230,18 @@ type AggregateInfluencer {
 }
 
 type AggregatePhoto {
+  count: Int!
+}
+
+type AggregateScoringSystemDetail {
+  count: Int!
+}
+
+type AggregateScoringSystemHeader {
+  count: Int!
+}
+
+type AggregateScoringType {
   count: Int!
 }
 
@@ -428,6 +492,2384 @@ type BatchPayload {
   count: Long!
 }
 
+type Contest {
+  id: ID!
+  contestName: String!
+  isActive: Boolean!
+  isDefault: Boolean!
+  isPublic: Boolean!
+  createdBy: ContestCreator!
+  currentOwner: ContestOwner!
+  contestTypeId: ContestType!
+  invitationCode: String!
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean!
+  playerLimit: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  users(where: ContestUserWhereInput, orderBy: ContestUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestUser!]
+  scoringSystem: ScoringSystemHeader!
+}
+
+type ContestConnection {
+  pageInfo: PageInfo!
+  edges: [ContestEdge]!
+  aggregate: AggregateContest!
+}
+
+input ContestCreateInput {
+  id: ID
+  contestName: String!
+  isActive: Boolean
+  isDefault: Boolean
+  isPublic: Boolean!
+  createdBy: ContestCreatorCreateOneInput!
+  currentOwner: ContestOwnerCreateOneInput!
+  contestTypeId: ContestTypeCreateOneInput!
+  invitationCode: String!
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean
+  playerLimit: Int
+  users: ContestUserCreateManyWithoutContestInput
+  scoringSystem: ScoringSystemHeaderCreateOneWithoutContestInput!
+}
+
+input ContestCreateOneInput {
+  create: ContestCreateInput
+  connect: ContestWhereUniqueInput
+}
+
+input ContestCreateOneWithoutScoringSystemInput {
+  create: ContestCreateWithoutScoringSystemInput
+  connect: ContestWhereUniqueInput
+}
+
+input ContestCreateOneWithoutUsersInput {
+  create: ContestCreateWithoutUsersInput
+  connect: ContestWhereUniqueInput
+}
+
+input ContestCreateWithoutScoringSystemInput {
+  id: ID
+  contestName: String!
+  isActive: Boolean
+  isDefault: Boolean
+  isPublic: Boolean!
+  createdBy: ContestCreatorCreateOneInput!
+  currentOwner: ContestOwnerCreateOneInput!
+  contestTypeId: ContestTypeCreateOneInput!
+  invitationCode: String!
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean
+  playerLimit: Int
+  users: ContestUserCreateManyWithoutContestInput
+}
+
+input ContestCreateWithoutUsersInput {
+  id: ID
+  contestName: String!
+  isActive: Boolean
+  isDefault: Boolean
+  isPublic: Boolean!
+  createdBy: ContestCreatorCreateOneInput!
+  currentOwner: ContestOwnerCreateOneInput!
+  contestTypeId: ContestTypeCreateOneInput!
+  invitationCode: String!
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean
+  playerLimit: Int
+  scoringSystem: ScoringSystemHeaderCreateOneWithoutContestInput!
+}
+
+type ContestCreator {
+  id: ID!
+  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestCreatorConnection {
+  pageInfo: PageInfo!
+  edges: [ContestCreatorEdge]!
+  aggregate: AggregateContestCreator!
+}
+
+input ContestCreatorCreateInput {
+  id: ID
+  user: UserCreateOneInput!
+}
+
+input ContestCreatorCreateOneInput {
+  create: ContestCreatorCreateInput
+  connect: ContestCreatorWhereUniqueInput
+}
+
+type ContestCreatorEdge {
+  node: ContestCreator!
+  cursor: String!
+}
+
+enum ContestCreatorOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestCreatorPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestCreatorSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestCreator
+  updatedFields: [String!]
+  previousValues: ContestCreatorPreviousValues
+}
+
+input ContestCreatorSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestCreatorWhereInput
+  AND: [ContestCreatorSubscriptionWhereInput!]
+  OR: [ContestCreatorSubscriptionWhereInput!]
+  NOT: [ContestCreatorSubscriptionWhereInput!]
+}
+
+input ContestCreatorUpdateDataInput {
+  user: UserUpdateOneRequiredInput
+}
+
+input ContestCreatorUpdateInput {
+  user: UserUpdateOneRequiredInput
+}
+
+input ContestCreatorUpdateOneRequiredInput {
+  create: ContestCreatorCreateInput
+  update: ContestCreatorUpdateDataInput
+  upsert: ContestCreatorUpsertNestedInput
+  connect: ContestCreatorWhereUniqueInput
+}
+
+input ContestCreatorUpsertNestedInput {
+  update: ContestCreatorUpdateDataInput!
+  create: ContestCreatorCreateInput!
+}
+
+input ContestCreatorWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestCreatorWhereInput!]
+  OR: [ContestCreatorWhereInput!]
+  NOT: [ContestCreatorWhereInput!]
+}
+
+input ContestCreatorWhereUniqueInput {
+  id: ID
+}
+
+type ContestEdge {
+  node: Contest!
+  cursor: String!
+}
+
+type ContestInviter {
+  id: ID!
+  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestInviterConnection {
+  pageInfo: PageInfo!
+  edges: [ContestInviterEdge]!
+  aggregate: AggregateContestInviter!
+}
+
+input ContestInviterCreateInput {
+  id: ID
+  user: UserCreateOneInput!
+}
+
+input ContestInviterCreateOneInput {
+  create: ContestInviterCreateInput
+  connect: ContestInviterWhereUniqueInput
+}
+
+type ContestInviterEdge {
+  node: ContestInviter!
+  cursor: String!
+}
+
+enum ContestInviterOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestInviterPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestInviterSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestInviter
+  updatedFields: [String!]
+  previousValues: ContestInviterPreviousValues
+}
+
+input ContestInviterSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestInviterWhereInput
+  AND: [ContestInviterSubscriptionWhereInput!]
+  OR: [ContestInviterSubscriptionWhereInput!]
+  NOT: [ContestInviterSubscriptionWhereInput!]
+}
+
+input ContestInviterUpdateDataInput {
+  user: UserUpdateOneRequiredInput
+}
+
+input ContestInviterUpdateInput {
+  user: UserUpdateOneRequiredInput
+}
+
+input ContestInviterUpdateOneInput {
+  create: ContestInviterCreateInput
+  update: ContestInviterUpdateDataInput
+  upsert: ContestInviterUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ContestInviterWhereUniqueInput
+}
+
+input ContestInviterUpsertNestedInput {
+  update: ContestInviterUpdateDataInput!
+  create: ContestInviterCreateInput!
+}
+
+input ContestInviterWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestInviterWhereInput!]
+  OR: [ContestInviterWhereInput!]
+  NOT: [ContestInviterWhereInput!]
+}
+
+input ContestInviterWhereUniqueInput {
+  id: ID
+}
+
+enum ContestOrderByInput {
+  id_ASC
+  id_DESC
+  contestName_ASC
+  contestName_DESC
+  isActive_ASC
+  isActive_DESC
+  isDefault_ASC
+  isDefault_DESC
+  isPublic_ASC
+  isPublic_DESC
+  invitationCode_ASC
+  invitationCode_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  nextEvent_ASC
+  nextEvent_DESC
+  currentEvent_ASC
+  currentEvent_DESC
+  totalEvents_ASC
+  totalEvents_DESC
+  isPremium_ASC
+  isPremium_DESC
+  playerLimit_ASC
+  playerLimit_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestOwner {
+  id: ID!
+  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestOwnerConnection {
+  pageInfo: PageInfo!
+  edges: [ContestOwnerEdge]!
+  aggregate: AggregateContestOwner!
+}
+
+input ContestOwnerCreateInput {
+  id: ID
+  user: UserCreateOneInput!
+}
+
+input ContestOwnerCreateOneInput {
+  create: ContestOwnerCreateInput
+  connect: ContestOwnerWhereUniqueInput
+}
+
+type ContestOwnerEdge {
+  node: ContestOwner!
+  cursor: String!
+}
+
+enum ContestOwnerOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestOwnerPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestOwnerSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestOwner
+  updatedFields: [String!]
+  previousValues: ContestOwnerPreviousValues
+}
+
+input ContestOwnerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestOwnerWhereInput
+  AND: [ContestOwnerSubscriptionWhereInput!]
+  OR: [ContestOwnerSubscriptionWhereInput!]
+  NOT: [ContestOwnerSubscriptionWhereInput!]
+}
+
+input ContestOwnerUpdateDataInput {
+  user: UserUpdateOneRequiredInput
+}
+
+input ContestOwnerUpdateInput {
+  user: UserUpdateOneRequiredInput
+}
+
+input ContestOwnerUpdateOneRequiredInput {
+  create: ContestOwnerCreateInput
+  update: ContestOwnerUpdateDataInput
+  upsert: ContestOwnerUpsertNestedInput
+  connect: ContestOwnerWhereUniqueInput
+}
+
+input ContestOwnerUpsertNestedInput {
+  update: ContestOwnerUpdateDataInput!
+  create: ContestOwnerCreateInput!
+}
+
+input ContestOwnerWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestOwnerWhereInput!]
+  OR: [ContestOwnerWhereInput!]
+  NOT: [ContestOwnerWhereInput!]
+}
+
+input ContestOwnerWhereUniqueInput {
+  id: ID
+}
+
+type ContestPrediction {
+  id: Int!
+  contestSlateEntryId: ContestSlateEntry!
+  contestUser: ContestUser!
+  homeScore: Int!
+  awayScore: Int!
+  expectedResult: String!
+  homeScoreMatches: Boolean!
+  awayScoreMatches: Boolean!
+  scoresMatch: Boolean!
+  resultMatches: Boolean!
+  isBanker: Boolean!
+  hasFinished: Boolean!
+  deadlineTime: DateTime!
+  predictionResult(where: ContestPredictionScoreWhereInput, orderBy: ContestPredictionScoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestPredictionScore!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestPredictionConnection {
+  pageInfo: PageInfo!
+  edges: [ContestPredictionEdge]!
+  aggregate: AggregateContestPrediction!
+}
+
+input ContestPredictionCreateInput {
+  id: Int
+  contestSlateEntryId: ContestSlateEntryCreateOneWithoutPredictionInput!
+  contestUser: ContestUserCreateOneInput!
+  homeScore: Int!
+  awayScore: Int!
+  expectedResult: String!
+  homeScoreMatches: Boolean
+  awayScoreMatches: Boolean
+  scoresMatch: Boolean
+  resultMatches: Boolean
+  isBanker: Boolean
+  hasFinished: Boolean
+  deadlineTime: DateTime!
+  predictionResult: ContestPredictionScoreCreateManyWithoutContestPredicitonInput
+}
+
+input ContestPredictionCreateOneWithoutContestSlateEntryIdInput {
+  create: ContestPredictionCreateWithoutContestSlateEntryIdInput
+  connect: ContestPredictionWhereUniqueInput
+}
+
+input ContestPredictionCreateOneWithoutPredictionResultInput {
+  create: ContestPredictionCreateWithoutPredictionResultInput
+  connect: ContestPredictionWhereUniqueInput
+}
+
+input ContestPredictionCreateWithoutContestSlateEntryIdInput {
+  id: Int
+  contestUser: ContestUserCreateOneInput!
+  homeScore: Int!
+  awayScore: Int!
+  expectedResult: String!
+  homeScoreMatches: Boolean
+  awayScoreMatches: Boolean
+  scoresMatch: Boolean
+  resultMatches: Boolean
+  isBanker: Boolean
+  hasFinished: Boolean
+  deadlineTime: DateTime!
+  predictionResult: ContestPredictionScoreCreateManyWithoutContestPredicitonInput
+}
+
+input ContestPredictionCreateWithoutPredictionResultInput {
+  id: Int
+  contestSlateEntryId: ContestSlateEntryCreateOneWithoutPredictionInput!
+  contestUser: ContestUserCreateOneInput!
+  homeScore: Int!
+  awayScore: Int!
+  expectedResult: String!
+  homeScoreMatches: Boolean
+  awayScoreMatches: Boolean
+  scoresMatch: Boolean
+  resultMatches: Boolean
+  isBanker: Boolean
+  hasFinished: Boolean
+  deadlineTime: DateTime!
+}
+
+type ContestPredictionEdge {
+  node: ContestPrediction!
+  cursor: String!
+}
+
+enum ContestPredictionOrderByInput {
+  id_ASC
+  id_DESC
+  homeScore_ASC
+  homeScore_DESC
+  awayScore_ASC
+  awayScore_DESC
+  expectedResult_ASC
+  expectedResult_DESC
+  homeScoreMatches_ASC
+  homeScoreMatches_DESC
+  awayScoreMatches_ASC
+  awayScoreMatches_DESC
+  scoresMatch_ASC
+  scoresMatch_DESC
+  resultMatches_ASC
+  resultMatches_DESC
+  isBanker_ASC
+  isBanker_DESC
+  hasFinished_ASC
+  hasFinished_DESC
+  deadlineTime_ASC
+  deadlineTime_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestPredictionPreviousValues {
+  id: Int!
+  homeScore: Int!
+  awayScore: Int!
+  expectedResult: String!
+  homeScoreMatches: Boolean!
+  awayScoreMatches: Boolean!
+  scoresMatch: Boolean!
+  resultMatches: Boolean!
+  isBanker: Boolean!
+  hasFinished: Boolean!
+  deadlineTime: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestPredictionScore {
+  id: ID!
+  scoringDetail: ScoringSystemDetail!
+  contestPrediciton: ContestPrediction!
+  pointsAvailable: Int!
+  pointsScored: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestPredictionScoreConnection {
+  pageInfo: PageInfo!
+  edges: [ContestPredictionScoreEdge]!
+  aggregate: AggregateContestPredictionScore!
+}
+
+input ContestPredictionScoreCreateInput {
+  id: ID
+  scoringDetail: ScoringSystemDetailCreateOneInput!
+  contestPrediciton: ContestPredictionCreateOneWithoutPredictionResultInput!
+  pointsAvailable: Int
+  pointsScored: Int
+}
+
+input ContestPredictionScoreCreateManyWithoutContestPredicitonInput {
+  create: [ContestPredictionScoreCreateWithoutContestPredicitonInput!]
+  connect: [ContestPredictionScoreWhereUniqueInput!]
+}
+
+input ContestPredictionScoreCreateWithoutContestPredicitonInput {
+  id: ID
+  scoringDetail: ScoringSystemDetailCreateOneInput!
+  pointsAvailable: Int
+  pointsScored: Int
+}
+
+type ContestPredictionScoreEdge {
+  node: ContestPredictionScore!
+  cursor: String!
+}
+
+enum ContestPredictionScoreOrderByInput {
+  id_ASC
+  id_DESC
+  pointsAvailable_ASC
+  pointsAvailable_DESC
+  pointsScored_ASC
+  pointsScored_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestPredictionScorePreviousValues {
+  id: ID!
+  pointsAvailable: Int!
+  pointsScored: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ContestPredictionScoreScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  pointsAvailable: Int
+  pointsAvailable_not: Int
+  pointsAvailable_in: [Int!]
+  pointsAvailable_not_in: [Int!]
+  pointsAvailable_lt: Int
+  pointsAvailable_lte: Int
+  pointsAvailable_gt: Int
+  pointsAvailable_gte: Int
+  pointsScored: Int
+  pointsScored_not: Int
+  pointsScored_in: [Int!]
+  pointsScored_not_in: [Int!]
+  pointsScored_lt: Int
+  pointsScored_lte: Int
+  pointsScored_gt: Int
+  pointsScored_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestPredictionScoreScalarWhereInput!]
+  OR: [ContestPredictionScoreScalarWhereInput!]
+  NOT: [ContestPredictionScoreScalarWhereInput!]
+}
+
+type ContestPredictionScoreSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestPredictionScore
+  updatedFields: [String!]
+  previousValues: ContestPredictionScorePreviousValues
+}
+
+input ContestPredictionScoreSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestPredictionScoreWhereInput
+  AND: [ContestPredictionScoreSubscriptionWhereInput!]
+  OR: [ContestPredictionScoreSubscriptionWhereInput!]
+  NOT: [ContestPredictionScoreSubscriptionWhereInput!]
+}
+
+input ContestPredictionScoreUpdateInput {
+  scoringDetail: ScoringSystemDetailUpdateOneRequiredInput
+  contestPrediciton: ContestPredictionUpdateOneRequiredWithoutPredictionResultInput
+  pointsAvailable: Int
+  pointsScored: Int
+}
+
+input ContestPredictionScoreUpdateManyDataInput {
+  pointsAvailable: Int
+  pointsScored: Int
+}
+
+input ContestPredictionScoreUpdateManyMutationInput {
+  pointsAvailable: Int
+  pointsScored: Int
+}
+
+input ContestPredictionScoreUpdateManyWithoutContestPredicitonInput {
+  create: [ContestPredictionScoreCreateWithoutContestPredicitonInput!]
+  delete: [ContestPredictionScoreWhereUniqueInput!]
+  connect: [ContestPredictionScoreWhereUniqueInput!]
+  set: [ContestPredictionScoreWhereUniqueInput!]
+  disconnect: [ContestPredictionScoreWhereUniqueInput!]
+  update: [ContestPredictionScoreUpdateWithWhereUniqueWithoutContestPredicitonInput!]
+  upsert: [ContestPredictionScoreUpsertWithWhereUniqueWithoutContestPredicitonInput!]
+  deleteMany: [ContestPredictionScoreScalarWhereInput!]
+  updateMany: [ContestPredictionScoreUpdateManyWithWhereNestedInput!]
+}
+
+input ContestPredictionScoreUpdateManyWithWhereNestedInput {
+  where: ContestPredictionScoreScalarWhereInput!
+  data: ContestPredictionScoreUpdateManyDataInput!
+}
+
+input ContestPredictionScoreUpdateWithoutContestPredicitonDataInput {
+  scoringDetail: ScoringSystemDetailUpdateOneRequiredInput
+  pointsAvailable: Int
+  pointsScored: Int
+}
+
+input ContestPredictionScoreUpdateWithWhereUniqueWithoutContestPredicitonInput {
+  where: ContestPredictionScoreWhereUniqueInput!
+  data: ContestPredictionScoreUpdateWithoutContestPredicitonDataInput!
+}
+
+input ContestPredictionScoreUpsertWithWhereUniqueWithoutContestPredicitonInput {
+  where: ContestPredictionScoreWhereUniqueInput!
+  update: ContestPredictionScoreUpdateWithoutContestPredicitonDataInput!
+  create: ContestPredictionScoreCreateWithoutContestPredicitonInput!
+}
+
+input ContestPredictionScoreWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  scoringDetail: ScoringSystemDetailWhereInput
+  contestPrediciton: ContestPredictionWhereInput
+  pointsAvailable: Int
+  pointsAvailable_not: Int
+  pointsAvailable_in: [Int!]
+  pointsAvailable_not_in: [Int!]
+  pointsAvailable_lt: Int
+  pointsAvailable_lte: Int
+  pointsAvailable_gt: Int
+  pointsAvailable_gte: Int
+  pointsScored: Int
+  pointsScored_not: Int
+  pointsScored_in: [Int!]
+  pointsScored_not_in: [Int!]
+  pointsScored_lt: Int
+  pointsScored_lte: Int
+  pointsScored_gt: Int
+  pointsScored_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestPredictionScoreWhereInput!]
+  OR: [ContestPredictionScoreWhereInput!]
+  NOT: [ContestPredictionScoreWhereInput!]
+}
+
+input ContestPredictionScoreWhereUniqueInput {
+  id: ID
+}
+
+type ContestPredictionSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestPrediction
+  updatedFields: [String!]
+  previousValues: ContestPredictionPreviousValues
+}
+
+input ContestPredictionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestPredictionWhereInput
+  AND: [ContestPredictionSubscriptionWhereInput!]
+  OR: [ContestPredictionSubscriptionWhereInput!]
+  NOT: [ContestPredictionSubscriptionWhereInput!]
+}
+
+input ContestPredictionUpdateInput {
+  contestSlateEntryId: ContestSlateEntryUpdateOneRequiredWithoutPredictionInput
+  contestUser: ContestUserUpdateOneRequiredInput
+  homeScore: Int
+  awayScore: Int
+  expectedResult: String
+  homeScoreMatches: Boolean
+  awayScoreMatches: Boolean
+  scoresMatch: Boolean
+  resultMatches: Boolean
+  isBanker: Boolean
+  hasFinished: Boolean
+  deadlineTime: DateTime
+  predictionResult: ContestPredictionScoreUpdateManyWithoutContestPredicitonInput
+}
+
+input ContestPredictionUpdateManyMutationInput {
+  homeScore: Int
+  awayScore: Int
+  expectedResult: String
+  homeScoreMatches: Boolean
+  awayScoreMatches: Boolean
+  scoresMatch: Boolean
+  resultMatches: Boolean
+  isBanker: Boolean
+  hasFinished: Boolean
+  deadlineTime: DateTime
+}
+
+input ContestPredictionUpdateOneRequiredWithoutContestSlateEntryIdInput {
+  create: ContestPredictionCreateWithoutContestSlateEntryIdInput
+  update: ContestPredictionUpdateWithoutContestSlateEntryIdDataInput
+  upsert: ContestPredictionUpsertWithoutContestSlateEntryIdInput
+  connect: ContestPredictionWhereUniqueInput
+}
+
+input ContestPredictionUpdateOneRequiredWithoutPredictionResultInput {
+  create: ContestPredictionCreateWithoutPredictionResultInput
+  update: ContestPredictionUpdateWithoutPredictionResultDataInput
+  upsert: ContestPredictionUpsertWithoutPredictionResultInput
+  connect: ContestPredictionWhereUniqueInput
+}
+
+input ContestPredictionUpdateWithoutContestSlateEntryIdDataInput {
+  contestUser: ContestUserUpdateOneRequiredInput
+  homeScore: Int
+  awayScore: Int
+  expectedResult: String
+  homeScoreMatches: Boolean
+  awayScoreMatches: Boolean
+  scoresMatch: Boolean
+  resultMatches: Boolean
+  isBanker: Boolean
+  hasFinished: Boolean
+  deadlineTime: DateTime
+  predictionResult: ContestPredictionScoreUpdateManyWithoutContestPredicitonInput
+}
+
+input ContestPredictionUpdateWithoutPredictionResultDataInput {
+  contestSlateEntryId: ContestSlateEntryUpdateOneRequiredWithoutPredictionInput
+  contestUser: ContestUserUpdateOneRequiredInput
+  homeScore: Int
+  awayScore: Int
+  expectedResult: String
+  homeScoreMatches: Boolean
+  awayScoreMatches: Boolean
+  scoresMatch: Boolean
+  resultMatches: Boolean
+  isBanker: Boolean
+  hasFinished: Boolean
+  deadlineTime: DateTime
+}
+
+input ContestPredictionUpsertWithoutContestSlateEntryIdInput {
+  update: ContestPredictionUpdateWithoutContestSlateEntryIdDataInput!
+  create: ContestPredictionCreateWithoutContestSlateEntryIdInput!
+}
+
+input ContestPredictionUpsertWithoutPredictionResultInput {
+  update: ContestPredictionUpdateWithoutPredictionResultDataInput!
+  create: ContestPredictionCreateWithoutPredictionResultInput!
+}
+
+input ContestPredictionWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  contestSlateEntryId: ContestSlateEntryWhereInput
+  contestUser: ContestUserWhereInput
+  homeScore: Int
+  homeScore_not: Int
+  homeScore_in: [Int!]
+  homeScore_not_in: [Int!]
+  homeScore_lt: Int
+  homeScore_lte: Int
+  homeScore_gt: Int
+  homeScore_gte: Int
+  awayScore: Int
+  awayScore_not: Int
+  awayScore_in: [Int!]
+  awayScore_not_in: [Int!]
+  awayScore_lt: Int
+  awayScore_lte: Int
+  awayScore_gt: Int
+  awayScore_gte: Int
+  expectedResult: String
+  expectedResult_not: String
+  expectedResult_in: [String!]
+  expectedResult_not_in: [String!]
+  expectedResult_lt: String
+  expectedResult_lte: String
+  expectedResult_gt: String
+  expectedResult_gte: String
+  expectedResult_contains: String
+  expectedResult_not_contains: String
+  expectedResult_starts_with: String
+  expectedResult_not_starts_with: String
+  expectedResult_ends_with: String
+  expectedResult_not_ends_with: String
+  homeScoreMatches: Boolean
+  homeScoreMatches_not: Boolean
+  awayScoreMatches: Boolean
+  awayScoreMatches_not: Boolean
+  scoresMatch: Boolean
+  scoresMatch_not: Boolean
+  resultMatches: Boolean
+  resultMatches_not: Boolean
+  isBanker: Boolean
+  isBanker_not: Boolean
+  hasFinished: Boolean
+  hasFinished_not: Boolean
+  deadlineTime: DateTime
+  deadlineTime_not: DateTime
+  deadlineTime_in: [DateTime!]
+  deadlineTime_not_in: [DateTime!]
+  deadlineTime_lt: DateTime
+  deadlineTime_lte: DateTime
+  deadlineTime_gt: DateTime
+  deadlineTime_gte: DateTime
+  predictionResult_every: ContestPredictionScoreWhereInput
+  predictionResult_some: ContestPredictionScoreWhereInput
+  predictionResult_none: ContestPredictionScoreWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestPredictionWhereInput!]
+  OR: [ContestPredictionWhereInput!]
+  NOT: [ContestPredictionWhereInput!]
+}
+
+input ContestPredictionWhereUniqueInput {
+  id: Int
+}
+
+type ContestPreviousValues {
+  id: ID!
+  contestName: String!
+  isActive: Boolean!
+  isDefault: Boolean!
+  isPublic: Boolean!
+  invitationCode: String!
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean!
+  playerLimit: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestSlate {
+  id: Int!
+  contest: Contest!
+  gameweekId: Gameweek
+  fromDefault: Boolean!
+  isActive: Boolean!
+  startDate: DateTime!
+  endDate: DateTime!
+  hasStarted: Boolean!
+  hasFinished: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  entries(where: ContestSlateEntryWhereInput, orderBy: ContestSlateEntryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestSlateEntry!]
+}
+
+type ContestSlateConnection {
+  pageInfo: PageInfo!
+  edges: [ContestSlateEdge]!
+  aggregate: AggregateContestSlate!
+}
+
+input ContestSlateCreateInput {
+  id: Int
+  contest: ContestCreateOneInput!
+  gameweekId: GameweekCreateOneInput
+  fromDefault: Boolean!
+  isActive: Boolean
+  startDate: DateTime!
+  endDate: DateTime!
+  hasStarted: Boolean
+  hasFinished: Boolean
+  entries: ContestSlateEntryCreateManyWithoutSlateInput
+}
+
+input ContestSlateCreateOneWithoutEntriesInput {
+  create: ContestSlateCreateWithoutEntriesInput
+  connect: ContestSlateWhereUniqueInput
+}
+
+input ContestSlateCreateWithoutEntriesInput {
+  id: Int
+  contest: ContestCreateOneInput!
+  gameweekId: GameweekCreateOneInput
+  fromDefault: Boolean!
+  isActive: Boolean
+  startDate: DateTime!
+  endDate: DateTime!
+  hasStarted: Boolean
+  hasFinished: Boolean
+}
+
+type ContestSlateEdge {
+  node: ContestSlate!
+  cursor: String!
+}
+
+type ContestSlateEntry {
+  id: Int!
+  slate: ContestSlate!
+  prediction: ContestPrediction!
+  fixture: Fixture!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestSlateEntryConnection {
+  pageInfo: PageInfo!
+  edges: [ContestSlateEntryEdge]!
+  aggregate: AggregateContestSlateEntry!
+}
+
+input ContestSlateEntryCreateInput {
+  id: Int
+  slate: ContestSlateCreateOneWithoutEntriesInput!
+  prediction: ContestPredictionCreateOneWithoutContestSlateEntryIdInput!
+  fixture: FixtureCreateOneInput!
+}
+
+input ContestSlateEntryCreateManyWithoutSlateInput {
+  create: [ContestSlateEntryCreateWithoutSlateInput!]
+  connect: [ContestSlateEntryWhereUniqueInput!]
+}
+
+input ContestSlateEntryCreateOneWithoutPredictionInput {
+  create: ContestSlateEntryCreateWithoutPredictionInput
+  connect: ContestSlateEntryWhereUniqueInput
+}
+
+input ContestSlateEntryCreateWithoutPredictionInput {
+  id: Int
+  slate: ContestSlateCreateOneWithoutEntriesInput!
+  fixture: FixtureCreateOneInput!
+}
+
+input ContestSlateEntryCreateWithoutSlateInput {
+  id: Int
+  prediction: ContestPredictionCreateOneWithoutContestSlateEntryIdInput!
+  fixture: FixtureCreateOneInput!
+}
+
+type ContestSlateEntryEdge {
+  node: ContestSlateEntry!
+  cursor: String!
+}
+
+enum ContestSlateEntryOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestSlateEntryPreviousValues {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ContestSlateEntryScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestSlateEntryScalarWhereInput!]
+  OR: [ContestSlateEntryScalarWhereInput!]
+  NOT: [ContestSlateEntryScalarWhereInput!]
+}
+
+type ContestSlateEntrySubscriptionPayload {
+  mutation: MutationType!
+  node: ContestSlateEntry
+  updatedFields: [String!]
+  previousValues: ContestSlateEntryPreviousValues
+}
+
+input ContestSlateEntrySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestSlateEntryWhereInput
+  AND: [ContestSlateEntrySubscriptionWhereInput!]
+  OR: [ContestSlateEntrySubscriptionWhereInput!]
+  NOT: [ContestSlateEntrySubscriptionWhereInput!]
+}
+
+input ContestSlateEntryUpdateInput {
+  slate: ContestSlateUpdateOneRequiredWithoutEntriesInput
+  prediction: ContestPredictionUpdateOneRequiredWithoutContestSlateEntryIdInput
+  fixture: FixtureUpdateOneRequiredInput
+}
+
+input ContestSlateEntryUpdateManyWithoutSlateInput {
+  create: [ContestSlateEntryCreateWithoutSlateInput!]
+  delete: [ContestSlateEntryWhereUniqueInput!]
+  connect: [ContestSlateEntryWhereUniqueInput!]
+  set: [ContestSlateEntryWhereUniqueInput!]
+  disconnect: [ContestSlateEntryWhereUniqueInput!]
+  update: [ContestSlateEntryUpdateWithWhereUniqueWithoutSlateInput!]
+  upsert: [ContestSlateEntryUpsertWithWhereUniqueWithoutSlateInput!]
+  deleteMany: [ContestSlateEntryScalarWhereInput!]
+}
+
+input ContestSlateEntryUpdateOneRequiredWithoutPredictionInput {
+  create: ContestSlateEntryCreateWithoutPredictionInput
+  update: ContestSlateEntryUpdateWithoutPredictionDataInput
+  upsert: ContestSlateEntryUpsertWithoutPredictionInput
+  connect: ContestSlateEntryWhereUniqueInput
+}
+
+input ContestSlateEntryUpdateWithoutPredictionDataInput {
+  slate: ContestSlateUpdateOneRequiredWithoutEntriesInput
+  fixture: FixtureUpdateOneRequiredInput
+}
+
+input ContestSlateEntryUpdateWithoutSlateDataInput {
+  prediction: ContestPredictionUpdateOneRequiredWithoutContestSlateEntryIdInput
+  fixture: FixtureUpdateOneRequiredInput
+}
+
+input ContestSlateEntryUpdateWithWhereUniqueWithoutSlateInput {
+  where: ContestSlateEntryWhereUniqueInput!
+  data: ContestSlateEntryUpdateWithoutSlateDataInput!
+}
+
+input ContestSlateEntryUpsertWithoutPredictionInput {
+  update: ContestSlateEntryUpdateWithoutPredictionDataInput!
+  create: ContestSlateEntryCreateWithoutPredictionInput!
+}
+
+input ContestSlateEntryUpsertWithWhereUniqueWithoutSlateInput {
+  where: ContestSlateEntryWhereUniqueInput!
+  update: ContestSlateEntryUpdateWithoutSlateDataInput!
+  create: ContestSlateEntryCreateWithoutSlateInput!
+}
+
+input ContestSlateEntryWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  slate: ContestSlateWhereInput
+  prediction: ContestPredictionWhereInput
+  fixture: FixtureWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestSlateEntryWhereInput!]
+  OR: [ContestSlateEntryWhereInput!]
+  NOT: [ContestSlateEntryWhereInput!]
+}
+
+input ContestSlateEntryWhereUniqueInput {
+  id: Int
+}
+
+enum ContestSlateOrderByInput {
+  id_ASC
+  id_DESC
+  fromDefault_ASC
+  fromDefault_DESC
+  isActive_ASC
+  isActive_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  hasStarted_ASC
+  hasStarted_DESC
+  hasFinished_ASC
+  hasFinished_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestSlatePreviousValues {
+  id: Int!
+  fromDefault: Boolean!
+  isActive: Boolean!
+  startDate: DateTime!
+  endDate: DateTime!
+  hasStarted: Boolean!
+  hasFinished: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestSlateSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestSlate
+  updatedFields: [String!]
+  previousValues: ContestSlatePreviousValues
+}
+
+input ContestSlateSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestSlateWhereInput
+  AND: [ContestSlateSubscriptionWhereInput!]
+  OR: [ContestSlateSubscriptionWhereInput!]
+  NOT: [ContestSlateSubscriptionWhereInput!]
+}
+
+input ContestSlateUpdateInput {
+  contest: ContestUpdateOneRequiredInput
+  gameweekId: GameweekUpdateOneInput
+  fromDefault: Boolean
+  isActive: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  hasStarted: Boolean
+  hasFinished: Boolean
+  entries: ContestSlateEntryUpdateManyWithoutSlateInput
+}
+
+input ContestSlateUpdateManyMutationInput {
+  fromDefault: Boolean
+  isActive: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  hasStarted: Boolean
+  hasFinished: Boolean
+}
+
+input ContestSlateUpdateOneRequiredWithoutEntriesInput {
+  create: ContestSlateCreateWithoutEntriesInput
+  update: ContestSlateUpdateWithoutEntriesDataInput
+  upsert: ContestSlateUpsertWithoutEntriesInput
+  connect: ContestSlateWhereUniqueInput
+}
+
+input ContestSlateUpdateWithoutEntriesDataInput {
+  contest: ContestUpdateOneRequiredInput
+  gameweekId: GameweekUpdateOneInput
+  fromDefault: Boolean
+  isActive: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  hasStarted: Boolean
+  hasFinished: Boolean
+}
+
+input ContestSlateUpsertWithoutEntriesInput {
+  update: ContestSlateUpdateWithoutEntriesDataInput!
+  create: ContestSlateCreateWithoutEntriesInput!
+}
+
+input ContestSlateWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  contest: ContestWhereInput
+  gameweekId: GameweekWhereInput
+  fromDefault: Boolean
+  fromDefault_not: Boolean
+  isActive: Boolean
+  isActive_not: Boolean
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  hasStarted: Boolean
+  hasStarted_not: Boolean
+  hasFinished: Boolean
+  hasFinished_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  entries_every: ContestSlateEntryWhereInput
+  entries_some: ContestSlateEntryWhereInput
+  entries_none: ContestSlateEntryWhereInput
+  AND: [ContestSlateWhereInput!]
+  OR: [ContestSlateWhereInput!]
+  NOT: [ContestSlateWhereInput!]
+}
+
+input ContestSlateWhereUniqueInput {
+  id: Int
+}
+
+type ContestSubscriptionPayload {
+  mutation: MutationType!
+  node: Contest
+  updatedFields: [String!]
+  previousValues: ContestPreviousValues
+}
+
+input ContestSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestWhereInput
+  AND: [ContestSubscriptionWhereInput!]
+  OR: [ContestSubscriptionWhereInput!]
+  NOT: [ContestSubscriptionWhereInput!]
+}
+
+type ContestType {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestTypeConnection {
+  pageInfo: PageInfo!
+  edges: [ContestTypeEdge]!
+  aggregate: AggregateContestType!
+}
+
+input ContestTypeCreateInput {
+  id: ID
+  name: String!
+}
+
+input ContestTypeCreateOneInput {
+  create: ContestTypeCreateInput
+  connect: ContestTypeWhereUniqueInput
+}
+
+type ContestTypeEdge {
+  node: ContestType!
+  cursor: String!
+}
+
+enum ContestTypeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestTypePreviousValues {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestTypeSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestType
+  updatedFields: [String!]
+  previousValues: ContestTypePreviousValues
+}
+
+input ContestTypeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestTypeWhereInput
+  AND: [ContestTypeSubscriptionWhereInput!]
+  OR: [ContestTypeSubscriptionWhereInput!]
+  NOT: [ContestTypeSubscriptionWhereInput!]
+}
+
+input ContestTypeUpdateDataInput {
+  name: String
+}
+
+input ContestTypeUpdateInput {
+  name: String
+}
+
+input ContestTypeUpdateManyMutationInput {
+  name: String
+}
+
+input ContestTypeUpdateOneRequiredInput {
+  create: ContestTypeCreateInput
+  update: ContestTypeUpdateDataInput
+  upsert: ContestTypeUpsertNestedInput
+  connect: ContestTypeWhereUniqueInput
+}
+
+input ContestTypeUpsertNestedInput {
+  update: ContestTypeUpdateDataInput!
+  create: ContestTypeCreateInput!
+}
+
+input ContestTypeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestTypeWhereInput!]
+  OR: [ContestTypeWhereInput!]
+  NOT: [ContestTypeWhereInput!]
+}
+
+input ContestTypeWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+input ContestUpdateDataInput {
+  contestName: String
+  isActive: Boolean
+  isDefault: Boolean
+  isPublic: Boolean
+  createdBy: ContestCreatorUpdateOneRequiredInput
+  currentOwner: ContestOwnerUpdateOneRequiredInput
+  contestTypeId: ContestTypeUpdateOneRequiredInput
+  invitationCode: String
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean
+  playerLimit: Int
+  users: ContestUserUpdateManyWithoutContestInput
+  scoringSystem: ScoringSystemHeaderUpdateOneRequiredWithoutContestInput
+}
+
+input ContestUpdateInput {
+  contestName: String
+  isActive: Boolean
+  isDefault: Boolean
+  isPublic: Boolean
+  createdBy: ContestCreatorUpdateOneRequiredInput
+  currentOwner: ContestOwnerUpdateOneRequiredInput
+  contestTypeId: ContestTypeUpdateOneRequiredInput
+  invitationCode: String
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean
+  playerLimit: Int
+  users: ContestUserUpdateManyWithoutContestInput
+  scoringSystem: ScoringSystemHeaderUpdateOneRequiredWithoutContestInput
+}
+
+input ContestUpdateManyMutationInput {
+  contestName: String
+  isActive: Boolean
+  isDefault: Boolean
+  isPublic: Boolean
+  invitationCode: String
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean
+  playerLimit: Int
+}
+
+input ContestUpdateOneRequiredInput {
+  create: ContestCreateInput
+  update: ContestUpdateDataInput
+  upsert: ContestUpsertNestedInput
+  connect: ContestWhereUniqueInput
+}
+
+input ContestUpdateOneRequiredWithoutScoringSystemInput {
+  create: ContestCreateWithoutScoringSystemInput
+  update: ContestUpdateWithoutScoringSystemDataInput
+  upsert: ContestUpsertWithoutScoringSystemInput
+  connect: ContestWhereUniqueInput
+}
+
+input ContestUpdateOneRequiredWithoutUsersInput {
+  create: ContestCreateWithoutUsersInput
+  update: ContestUpdateWithoutUsersDataInput
+  upsert: ContestUpsertWithoutUsersInput
+  connect: ContestWhereUniqueInput
+}
+
+input ContestUpdateWithoutScoringSystemDataInput {
+  contestName: String
+  isActive: Boolean
+  isDefault: Boolean
+  isPublic: Boolean
+  createdBy: ContestCreatorUpdateOneRequiredInput
+  currentOwner: ContestOwnerUpdateOneRequiredInput
+  contestTypeId: ContestTypeUpdateOneRequiredInput
+  invitationCode: String
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean
+  playerLimit: Int
+  users: ContestUserUpdateManyWithoutContestInput
+}
+
+input ContestUpdateWithoutUsersDataInput {
+  contestName: String
+  isActive: Boolean
+  isDefault: Boolean
+  isPublic: Boolean
+  createdBy: ContestCreatorUpdateOneRequiredInput
+  currentOwner: ContestOwnerUpdateOneRequiredInput
+  contestTypeId: ContestTypeUpdateOneRequiredInput
+  invitationCode: String
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean
+  playerLimit: Int
+  scoringSystem: ScoringSystemHeaderUpdateOneRequiredWithoutContestInput
+}
+
+input ContestUpsertNestedInput {
+  update: ContestUpdateDataInput!
+  create: ContestCreateInput!
+}
+
+input ContestUpsertWithoutScoringSystemInput {
+  update: ContestUpdateWithoutScoringSystemDataInput!
+  create: ContestCreateWithoutScoringSystemInput!
+}
+
+input ContestUpsertWithoutUsersInput {
+  update: ContestUpdateWithoutUsersDataInput!
+  create: ContestCreateWithoutUsersInput!
+}
+
+type ContestUser {
+  id: Int!
+  contest: Contest!
+  userType: ContestUserType!
+  user: User!
+  isInvited: Boolean!
+  isActive: Boolean!
+  isBlocked: Boolean!
+  balance: Int!
+  invitedBy: ContestInviter
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestUserConnection {
+  pageInfo: PageInfo!
+  edges: [ContestUserEdge]!
+  aggregate: AggregateContestUser!
+}
+
+input ContestUserCreateInput {
+  id: Int
+  contest: ContestCreateOneWithoutUsersInput!
+  userType: ContestUserTypeCreateOneInput!
+  user: UserCreateOneInput!
+  isInvited: Boolean
+  isActive: Boolean
+  isBlocked: Boolean
+  balance: Int
+  invitedBy: ContestInviterCreateOneInput
+}
+
+input ContestUserCreateManyWithoutContestInput {
+  create: [ContestUserCreateWithoutContestInput!]
+  connect: [ContestUserWhereUniqueInput!]
+}
+
+input ContestUserCreateOneInput {
+  create: ContestUserCreateInput
+  connect: ContestUserWhereUniqueInput
+}
+
+input ContestUserCreateWithoutContestInput {
+  id: Int
+  userType: ContestUserTypeCreateOneInput!
+  user: UserCreateOneInput!
+  isInvited: Boolean
+  isActive: Boolean
+  isBlocked: Boolean
+  balance: Int
+  invitedBy: ContestInviterCreateOneInput
+}
+
+type ContestUserEdge {
+  node: ContestUser!
+  cursor: String!
+}
+
+enum ContestUserOrderByInput {
+  id_ASC
+  id_DESC
+  isInvited_ASC
+  isInvited_DESC
+  isActive_ASC
+  isActive_DESC
+  isBlocked_ASC
+  isBlocked_DESC
+  balance_ASC
+  balance_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestUserPreviousValues {
+  id: Int!
+  isInvited: Boolean!
+  isActive: Boolean!
+  isBlocked: Boolean!
+  balance: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ContestUserScalarWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  isInvited: Boolean
+  isInvited_not: Boolean
+  isActive: Boolean
+  isActive_not: Boolean
+  isBlocked: Boolean
+  isBlocked_not: Boolean
+  balance: Int
+  balance_not: Int
+  balance_in: [Int!]
+  balance_not_in: [Int!]
+  balance_lt: Int
+  balance_lte: Int
+  balance_gt: Int
+  balance_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestUserScalarWhereInput!]
+  OR: [ContestUserScalarWhereInput!]
+  NOT: [ContestUserScalarWhereInput!]
+}
+
+type ContestUserSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestUser
+  updatedFields: [String!]
+  previousValues: ContestUserPreviousValues
+}
+
+input ContestUserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestUserWhereInput
+  AND: [ContestUserSubscriptionWhereInput!]
+  OR: [ContestUserSubscriptionWhereInput!]
+  NOT: [ContestUserSubscriptionWhereInput!]
+}
+
+type ContestUserType {
+  id: ID!
+  name: String!
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestUserTypeConnection {
+  pageInfo: PageInfo!
+  edges: [ContestUserTypeEdge]!
+  aggregate: AggregateContestUserType!
+}
+
+input ContestUserTypeCreateInput {
+  id: ID
+  name: String!
+  description: String
+}
+
+input ContestUserTypeCreateOneInput {
+  create: ContestUserTypeCreateInput
+  connect: ContestUserTypeWhereUniqueInput
+}
+
+type ContestUserTypeEdge {
+  node: ContestUserType!
+  cursor: String!
+}
+
+enum ContestUserTypeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContestUserTypePreviousValues {
+  id: ID!
+  name: String!
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContestUserTypeSubscriptionPayload {
+  mutation: MutationType!
+  node: ContestUserType
+  updatedFields: [String!]
+  previousValues: ContestUserTypePreviousValues
+}
+
+input ContestUserTypeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContestUserTypeWhereInput
+  AND: [ContestUserTypeSubscriptionWhereInput!]
+  OR: [ContestUserTypeSubscriptionWhereInput!]
+  NOT: [ContestUserTypeSubscriptionWhereInput!]
+}
+
+input ContestUserTypeUpdateDataInput {
+  name: String
+  description: String
+}
+
+input ContestUserTypeUpdateInput {
+  name: String
+  description: String
+}
+
+input ContestUserTypeUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input ContestUserTypeUpdateOneRequiredInput {
+  create: ContestUserTypeCreateInput
+  update: ContestUserTypeUpdateDataInput
+  upsert: ContestUserTypeUpsertNestedInput
+  connect: ContestUserTypeWhereUniqueInput
+}
+
+input ContestUserTypeUpsertNestedInput {
+  update: ContestUserTypeUpdateDataInput!
+  create: ContestUserTypeCreateInput!
+}
+
+input ContestUserTypeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestUserTypeWhereInput!]
+  OR: [ContestUserTypeWhereInput!]
+  NOT: [ContestUserTypeWhereInput!]
+}
+
+input ContestUserTypeWhereUniqueInput {
+  id: ID
+}
+
+input ContestUserUpdateDataInput {
+  contest: ContestUpdateOneRequiredWithoutUsersInput
+  userType: ContestUserTypeUpdateOneRequiredInput
+  user: UserUpdateOneRequiredInput
+  isInvited: Boolean
+  isActive: Boolean
+  isBlocked: Boolean
+  balance: Int
+  invitedBy: ContestInviterUpdateOneInput
+}
+
+input ContestUserUpdateInput {
+  contest: ContestUpdateOneRequiredWithoutUsersInput
+  userType: ContestUserTypeUpdateOneRequiredInput
+  user: UserUpdateOneRequiredInput
+  isInvited: Boolean
+  isActive: Boolean
+  isBlocked: Boolean
+  balance: Int
+  invitedBy: ContestInviterUpdateOneInput
+}
+
+input ContestUserUpdateManyDataInput {
+  isInvited: Boolean
+  isActive: Boolean
+  isBlocked: Boolean
+  balance: Int
+}
+
+input ContestUserUpdateManyMutationInput {
+  isInvited: Boolean
+  isActive: Boolean
+  isBlocked: Boolean
+  balance: Int
+}
+
+input ContestUserUpdateManyWithoutContestInput {
+  create: [ContestUserCreateWithoutContestInput!]
+  delete: [ContestUserWhereUniqueInput!]
+  connect: [ContestUserWhereUniqueInput!]
+  set: [ContestUserWhereUniqueInput!]
+  disconnect: [ContestUserWhereUniqueInput!]
+  update: [ContestUserUpdateWithWhereUniqueWithoutContestInput!]
+  upsert: [ContestUserUpsertWithWhereUniqueWithoutContestInput!]
+  deleteMany: [ContestUserScalarWhereInput!]
+  updateMany: [ContestUserUpdateManyWithWhereNestedInput!]
+}
+
+input ContestUserUpdateManyWithWhereNestedInput {
+  where: ContestUserScalarWhereInput!
+  data: ContestUserUpdateManyDataInput!
+}
+
+input ContestUserUpdateOneRequiredInput {
+  create: ContestUserCreateInput
+  update: ContestUserUpdateDataInput
+  upsert: ContestUserUpsertNestedInput
+  connect: ContestUserWhereUniqueInput
+}
+
+input ContestUserUpdateWithoutContestDataInput {
+  userType: ContestUserTypeUpdateOneRequiredInput
+  user: UserUpdateOneRequiredInput
+  isInvited: Boolean
+  isActive: Boolean
+  isBlocked: Boolean
+  balance: Int
+  invitedBy: ContestInviterUpdateOneInput
+}
+
+input ContestUserUpdateWithWhereUniqueWithoutContestInput {
+  where: ContestUserWhereUniqueInput!
+  data: ContestUserUpdateWithoutContestDataInput!
+}
+
+input ContestUserUpsertNestedInput {
+  update: ContestUserUpdateDataInput!
+  create: ContestUserCreateInput!
+}
+
+input ContestUserUpsertWithWhereUniqueWithoutContestInput {
+  where: ContestUserWhereUniqueInput!
+  update: ContestUserUpdateWithoutContestDataInput!
+  create: ContestUserCreateWithoutContestInput!
+}
+
+input ContestUserWhereInput {
+  id: Int
+  id_not: Int
+  id_in: [Int!]
+  id_not_in: [Int!]
+  id_lt: Int
+  id_lte: Int
+  id_gt: Int
+  id_gte: Int
+  contest: ContestWhereInput
+  userType: ContestUserTypeWhereInput
+  user: UserWhereInput
+  isInvited: Boolean
+  isInvited_not: Boolean
+  isActive: Boolean
+  isActive_not: Boolean
+  isBlocked: Boolean
+  isBlocked_not: Boolean
+  balance: Int
+  balance_not: Int
+  balance_in: [Int!]
+  balance_not_in: [Int!]
+  balance_lt: Int
+  balance_lte: Int
+  balance_gt: Int
+  balance_gte: Int
+  invitedBy: ContestInviterWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ContestUserWhereInput!]
+  OR: [ContestUserWhereInput!]
+  NOT: [ContestUserWhereInput!]
+}
+
+input ContestUserWhereUniqueInput {
+  id: Int
+}
+
+input ContestWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  contestName: String
+  contestName_not: String
+  contestName_in: [String!]
+  contestName_not_in: [String!]
+  contestName_lt: String
+  contestName_lte: String
+  contestName_gt: String
+  contestName_gte: String
+  contestName_contains: String
+  contestName_not_contains: String
+  contestName_starts_with: String
+  contestName_not_starts_with: String
+  contestName_ends_with: String
+  contestName_not_ends_with: String
+  isActive: Boolean
+  isActive_not: Boolean
+  isDefault: Boolean
+  isDefault_not: Boolean
+  isPublic: Boolean
+  isPublic_not: Boolean
+  createdBy: ContestCreatorWhereInput
+  currentOwner: ContestOwnerWhereInput
+  contestTypeId: ContestTypeWhereInput
+  invitationCode: String
+  invitationCode_not: String
+  invitationCode_in: [String!]
+  invitationCode_not_in: [String!]
+  invitationCode_lt: String
+  invitationCode_lte: String
+  invitationCode_gt: String
+  invitationCode_gte: String
+  invitationCode_contains: String
+  invitationCode_not_contains: String
+  invitationCode_starts_with: String
+  invitationCode_not_starts_with: String
+  invitationCode_ends_with: String
+  invitationCode_not_ends_with: String
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  nextEvent: Int
+  nextEvent_not: Int
+  nextEvent_in: [Int!]
+  nextEvent_not_in: [Int!]
+  nextEvent_lt: Int
+  nextEvent_lte: Int
+  nextEvent_gt: Int
+  nextEvent_gte: Int
+  currentEvent: Int
+  currentEvent_not: Int
+  currentEvent_in: [Int!]
+  currentEvent_not_in: [Int!]
+  currentEvent_lt: Int
+  currentEvent_lte: Int
+  currentEvent_gt: Int
+  currentEvent_gte: Int
+  totalEvents: Int
+  totalEvents_not: Int
+  totalEvents_in: [Int!]
+  totalEvents_not_in: [Int!]
+  totalEvents_lt: Int
+  totalEvents_lte: Int
+  totalEvents_gt: Int
+  totalEvents_gte: Int
+  isPremium: Boolean
+  isPremium_not: Boolean
+  playerLimit: Int
+  playerLimit_not: Int
+  playerLimit_in: [Int!]
+  playerLimit_not_in: [Int!]
+  playerLimit_lt: Int
+  playerLimit_lte: Int
+  playerLimit_gt: Int
+  playerLimit_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  users_every: ContestUserWhereInput
+  users_some: ContestUserWhereInput
+  users_none: ContestUserWhereInput
+  scoringSystem: ScoringSystemHeaderWhereInput
+  AND: [ContestWhereInput!]
+  OR: [ContestWhereInput!]
+  NOT: [ContestWhereInput!]
+}
+
+input ContestWhereUniqueInput {
+  id: ID
+  invitationCode: String
+}
+
 type Country {
   id: ID!
   iso: String!
@@ -617,6 +3059,619 @@ input CountryWhereUniqueInput {
 }
 
 scalar DateTime
+
+type DefaultScoringSystemDetail {
+  id: ID!
+  scoringSystem: DefaultScoringSystemHeader!
+  name: String!
+  description: String!
+  scoringType: ScoringType!
+  isActive: Boolean!
+  isDefault: Boolean!
+  startDate: DateTime!
+  endDate: DateTime!
+  points: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DefaultScoringSystemDetailConnection {
+  pageInfo: PageInfo!
+  edges: [DefaultScoringSystemDetailEdge]!
+  aggregate: AggregateDefaultScoringSystemDetail!
+}
+
+input DefaultScoringSystemDetailCreateInput {
+  id: ID
+  scoringSystem: DefaultScoringSystemHeaderCreateOneWithoutSystemDetailInput!
+  name: String!
+  description: String!
+  scoringType: ScoringTypeCreateOneInput!
+  isActive: Boolean!
+  isDefault: Boolean!
+  startDate: DateTime!
+  endDate: DateTime!
+  points: Int!
+}
+
+input DefaultScoringSystemDetailCreateManyWithoutScoringSystemInput {
+  create: [DefaultScoringSystemDetailCreateWithoutScoringSystemInput!]
+  connect: [DefaultScoringSystemDetailWhereUniqueInput!]
+}
+
+input DefaultScoringSystemDetailCreateOneInput {
+  create: DefaultScoringSystemDetailCreateInput
+  connect: DefaultScoringSystemDetailWhereUniqueInput
+}
+
+input DefaultScoringSystemDetailCreateWithoutScoringSystemInput {
+  id: ID
+  name: String!
+  description: String!
+  scoringType: ScoringTypeCreateOneInput!
+  isActive: Boolean!
+  isDefault: Boolean!
+  startDate: DateTime!
+  endDate: DateTime!
+  points: Int!
+}
+
+type DefaultScoringSystemDetailEdge {
+  node: DefaultScoringSystemDetail!
+  cursor: String!
+}
+
+enum DefaultScoringSystemDetailOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  isActive_ASC
+  isActive_DESC
+  isDefault_ASC
+  isDefault_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  points_ASC
+  points_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type DefaultScoringSystemDetailPreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  isActive: Boolean!
+  isDefault: Boolean!
+  startDate: DateTime!
+  endDate: DateTime!
+  points: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input DefaultScoringSystemDetailScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  isActive: Boolean
+  isActive_not: Boolean
+  isDefault: Boolean
+  isDefault_not: Boolean
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  points: Int
+  points_not: Int
+  points_in: [Int!]
+  points_not_in: [Int!]
+  points_lt: Int
+  points_lte: Int
+  points_gt: Int
+  points_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [DefaultScoringSystemDetailScalarWhereInput!]
+  OR: [DefaultScoringSystemDetailScalarWhereInput!]
+  NOT: [DefaultScoringSystemDetailScalarWhereInput!]
+}
+
+type DefaultScoringSystemDetailSubscriptionPayload {
+  mutation: MutationType!
+  node: DefaultScoringSystemDetail
+  updatedFields: [String!]
+  previousValues: DefaultScoringSystemDetailPreviousValues
+}
+
+input DefaultScoringSystemDetailSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DefaultScoringSystemDetailWhereInput
+  AND: [DefaultScoringSystemDetailSubscriptionWhereInput!]
+  OR: [DefaultScoringSystemDetailSubscriptionWhereInput!]
+  NOT: [DefaultScoringSystemDetailSubscriptionWhereInput!]
+}
+
+input DefaultScoringSystemDetailUpdateDataInput {
+  scoringSystem: DefaultScoringSystemHeaderUpdateOneRequiredWithoutSystemDetailInput
+  name: String
+  description: String
+  scoringType: ScoringTypeUpdateOneRequiredInput
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input DefaultScoringSystemDetailUpdateInput {
+  scoringSystem: DefaultScoringSystemHeaderUpdateOneRequiredWithoutSystemDetailInput
+  name: String
+  description: String
+  scoringType: ScoringTypeUpdateOneRequiredInput
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input DefaultScoringSystemDetailUpdateManyDataInput {
+  name: String
+  description: String
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input DefaultScoringSystemDetailUpdateManyMutationInput {
+  name: String
+  description: String
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input DefaultScoringSystemDetailUpdateManyWithoutScoringSystemInput {
+  create: [DefaultScoringSystemDetailCreateWithoutScoringSystemInput!]
+  delete: [DefaultScoringSystemDetailWhereUniqueInput!]
+  connect: [DefaultScoringSystemDetailWhereUniqueInput!]
+  set: [DefaultScoringSystemDetailWhereUniqueInput!]
+  disconnect: [DefaultScoringSystemDetailWhereUniqueInput!]
+  update: [DefaultScoringSystemDetailUpdateWithWhereUniqueWithoutScoringSystemInput!]
+  upsert: [DefaultScoringSystemDetailUpsertWithWhereUniqueWithoutScoringSystemInput!]
+  deleteMany: [DefaultScoringSystemDetailScalarWhereInput!]
+  updateMany: [DefaultScoringSystemDetailUpdateManyWithWhereNestedInput!]
+}
+
+input DefaultScoringSystemDetailUpdateManyWithWhereNestedInput {
+  where: DefaultScoringSystemDetailScalarWhereInput!
+  data: DefaultScoringSystemDetailUpdateManyDataInput!
+}
+
+input DefaultScoringSystemDetailUpdateOneRequiredInput {
+  create: DefaultScoringSystemDetailCreateInput
+  update: DefaultScoringSystemDetailUpdateDataInput
+  upsert: DefaultScoringSystemDetailUpsertNestedInput
+  connect: DefaultScoringSystemDetailWhereUniqueInput
+}
+
+input DefaultScoringSystemDetailUpdateWithoutScoringSystemDataInput {
+  name: String
+  description: String
+  scoringType: ScoringTypeUpdateOneRequiredInput
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input DefaultScoringSystemDetailUpdateWithWhereUniqueWithoutScoringSystemInput {
+  where: DefaultScoringSystemDetailWhereUniqueInput!
+  data: DefaultScoringSystemDetailUpdateWithoutScoringSystemDataInput!
+}
+
+input DefaultScoringSystemDetailUpsertNestedInput {
+  update: DefaultScoringSystemDetailUpdateDataInput!
+  create: DefaultScoringSystemDetailCreateInput!
+}
+
+input DefaultScoringSystemDetailUpsertWithWhereUniqueWithoutScoringSystemInput {
+  where: DefaultScoringSystemDetailWhereUniqueInput!
+  update: DefaultScoringSystemDetailUpdateWithoutScoringSystemDataInput!
+  create: DefaultScoringSystemDetailCreateWithoutScoringSystemInput!
+}
+
+input DefaultScoringSystemDetailWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  scoringSystem: DefaultScoringSystemHeaderWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  scoringType: ScoringTypeWhereInput
+  isActive: Boolean
+  isActive_not: Boolean
+  isDefault: Boolean
+  isDefault_not: Boolean
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  points: Int
+  points_not: Int
+  points_in: [Int!]
+  points_not_in: [Int!]
+  points_lt: Int
+  points_lte: Int
+  points_gt: Int
+  points_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [DefaultScoringSystemDetailWhereInput!]
+  OR: [DefaultScoringSystemDetailWhereInput!]
+  NOT: [DefaultScoringSystemDetailWhereInput!]
+}
+
+input DefaultScoringSystemDetailWhereUniqueInput {
+  id: ID
+}
+
+type DefaultScoringSystemHeader {
+  id: ID!
+  name: String!
+  description: String
+  isCustom: Boolean!
+  systemDetail(where: DefaultScoringSystemDetailWhereInput, orderBy: DefaultScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DefaultScoringSystemDetail!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DefaultScoringSystemHeaderConnection {
+  pageInfo: PageInfo!
+  edges: [DefaultScoringSystemHeaderEdge]!
+  aggregate: AggregateDefaultScoringSystemHeader!
+}
+
+input DefaultScoringSystemHeaderCreateInput {
+  id: ID
+  name: String!
+  description: String
+  isCustom: Boolean
+  systemDetail: DefaultScoringSystemDetailCreateManyWithoutScoringSystemInput
+}
+
+input DefaultScoringSystemHeaderCreateOneInput {
+  create: DefaultScoringSystemHeaderCreateInput
+  connect: DefaultScoringSystemHeaderWhereUniqueInput
+}
+
+input DefaultScoringSystemHeaderCreateOneWithoutSystemDetailInput {
+  create: DefaultScoringSystemHeaderCreateWithoutSystemDetailInput
+  connect: DefaultScoringSystemHeaderWhereUniqueInput
+}
+
+input DefaultScoringSystemHeaderCreateWithoutSystemDetailInput {
+  id: ID
+  name: String!
+  description: String
+  isCustom: Boolean
+}
+
+type DefaultScoringSystemHeaderEdge {
+  node: DefaultScoringSystemHeader!
+  cursor: String!
+}
+
+enum DefaultScoringSystemHeaderOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  isCustom_ASC
+  isCustom_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type DefaultScoringSystemHeaderPreviousValues {
+  id: ID!
+  name: String!
+  description: String
+  isCustom: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DefaultScoringSystemHeaderSubscriptionPayload {
+  mutation: MutationType!
+  node: DefaultScoringSystemHeader
+  updatedFields: [String!]
+  previousValues: DefaultScoringSystemHeaderPreviousValues
+}
+
+input DefaultScoringSystemHeaderSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DefaultScoringSystemHeaderWhereInput
+  AND: [DefaultScoringSystemHeaderSubscriptionWhereInput!]
+  OR: [DefaultScoringSystemHeaderSubscriptionWhereInput!]
+  NOT: [DefaultScoringSystemHeaderSubscriptionWhereInput!]
+}
+
+input DefaultScoringSystemHeaderUpdateDataInput {
+  name: String
+  description: String
+  isCustom: Boolean
+  systemDetail: DefaultScoringSystemDetailUpdateManyWithoutScoringSystemInput
+}
+
+input DefaultScoringSystemHeaderUpdateInput {
+  name: String
+  description: String
+  isCustom: Boolean
+  systemDetail: DefaultScoringSystemDetailUpdateManyWithoutScoringSystemInput
+}
+
+input DefaultScoringSystemHeaderUpdateManyMutationInput {
+  name: String
+  description: String
+  isCustom: Boolean
+}
+
+input DefaultScoringSystemHeaderUpdateOneInput {
+  create: DefaultScoringSystemHeaderCreateInput
+  update: DefaultScoringSystemHeaderUpdateDataInput
+  upsert: DefaultScoringSystemHeaderUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: DefaultScoringSystemHeaderWhereUniqueInput
+}
+
+input DefaultScoringSystemHeaderUpdateOneRequiredWithoutSystemDetailInput {
+  create: DefaultScoringSystemHeaderCreateWithoutSystemDetailInput
+  update: DefaultScoringSystemHeaderUpdateWithoutSystemDetailDataInput
+  upsert: DefaultScoringSystemHeaderUpsertWithoutSystemDetailInput
+  connect: DefaultScoringSystemHeaderWhereUniqueInput
+}
+
+input DefaultScoringSystemHeaderUpdateWithoutSystemDetailDataInput {
+  name: String
+  description: String
+  isCustom: Boolean
+}
+
+input DefaultScoringSystemHeaderUpsertNestedInput {
+  update: DefaultScoringSystemHeaderUpdateDataInput!
+  create: DefaultScoringSystemHeaderCreateInput!
+}
+
+input DefaultScoringSystemHeaderUpsertWithoutSystemDetailInput {
+  update: DefaultScoringSystemHeaderUpdateWithoutSystemDetailDataInput!
+  create: DefaultScoringSystemHeaderCreateWithoutSystemDetailInput!
+}
+
+input DefaultScoringSystemHeaderWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  isCustom: Boolean
+  isCustom_not: Boolean
+  systemDetail_every: DefaultScoringSystemDetailWhereInput
+  systemDetail_some: DefaultScoringSystemDetailWhereInput
+  systemDetail_none: DefaultScoringSystemDetailWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [DefaultScoringSystemHeaderWhereInput!]
+  OR: [DefaultScoringSystemHeaderWhereInput!]
+  NOT: [DefaultScoringSystemHeaderWhereInput!]
+}
+
+input DefaultScoringSystemHeaderWhereUniqueInput {
+  id: ID
+}
 
 type FandemSubscription {
   id: ID!
@@ -918,6 +3973,11 @@ input FixtureCreateManyWithoutEventInput {
   connect: [FixtureWhereUniqueInput!]
 }
 
+input FixtureCreateOneInput {
+  create: FixtureCreateInput
+  connect: FixtureWhereUniqueInput
+}
+
 input FixtureCreateOneWithoutTeamAInput {
   create: FixtureCreateWithoutTeamAInput
   connect: FixtureWhereUniqueInput
@@ -1164,6 +4224,24 @@ input FixtureSubscriptionWhereInput {
   NOT: [FixtureSubscriptionWhereInput!]
 }
 
+input FixtureUpdateDataInput {
+  fplCode: Int
+  event: GameweekUpdateOneRequiredWithoutFixturesInput
+  finished: Boolean
+  finishedProvisional: Boolean
+  fixtureId: Int
+  kickoffTime: DateTime
+  minutes: Int
+  provisionalStartTime: Boolean
+  started: Boolean
+  teamA: AwayTeamFixtureUpdateOneRequiredWithoutFixtureInput
+  teamADifficulty: Int
+  teamAScore: Int
+  teamH: HomeTeamFixtureUpdateOneRequiredWithoutFixtureInput
+  teamHDifficulty: Int
+  teamHScore: Int
+}
+
 input FixtureUpdateInput {
   fplCode: Int
   event: GameweekUpdateOneRequiredWithoutFixturesInput
@@ -1227,6 +4305,13 @@ input FixtureUpdateManyWithoutEventInput {
 input FixtureUpdateManyWithWhereNestedInput {
   where: FixtureScalarWhereInput!
   data: FixtureUpdateManyDataInput!
+}
+
+input FixtureUpdateOneRequiredInput {
+  create: FixtureCreateInput
+  update: FixtureUpdateDataInput
+  upsert: FixtureUpsertNestedInput
+  connect: FixtureWhereUniqueInput
 }
 
 input FixtureUpdateOneRequiredWithoutTeamAInput {
@@ -1297,6 +4382,11 @@ input FixtureUpdateWithoutTeamHDataInput {
 input FixtureUpdateWithWhereUniqueWithoutEventInput {
   where: FixtureWhereUniqueInput!
   data: FixtureUpdateWithoutEventDataInput!
+}
+
+input FixtureUpsertNestedInput {
+  update: FixtureUpdateDataInput!
+  create: FixtureCreateInput!
 }
 
 input FixtureUpsertWithoutTeamAInput {
@@ -1688,6 +4778,11 @@ input GameweekCreateManyWithoutSeasonInput {
   connect: [GameweekWhereUniqueInput!]
 }
 
+input GameweekCreateOneInput {
+  create: GameweekCreateInput
+  connect: GameweekWhereUniqueInput
+}
+
 input GameweekCreateOneWithoutFixturesInput {
   create: GameweekCreateWithoutFixturesInput
   connect: GameweekWhereUniqueInput
@@ -1922,6 +5017,24 @@ input GameweekSubscriptionWhereInput {
   NOT: [GameweekSubscriptionWhereInput!]
 }
 
+input GameweekUpdateDataInput {
+  season: SeasonUpdateOneRequiredWithoutEventsInput
+  averageEntryScore: Int
+  dataChecked: Boolean
+  deadlineTime: DateTime
+  deadlineTimeEpoch: Int
+  deadlineTimeGameOffset: Int
+  finished: Boolean
+  highestScore: Int
+  highestScoringEntry: Int
+  fplEventId: Int
+  isCurrent: Boolean
+  isNext: Boolean
+  isPrevious: Boolean
+  name: String
+  fixtures: FixtureUpdateManyWithoutEventInput
+}
+
 input GameweekUpdateInput {
   season: SeasonUpdateOneRequiredWithoutEventsInput
   averageEntryScore: Int
@@ -1989,6 +5102,15 @@ input GameweekUpdateManyWithWhereNestedInput {
   data: GameweekUpdateManyDataInput!
 }
 
+input GameweekUpdateOneInput {
+  create: GameweekCreateInput
+  update: GameweekUpdateDataInput
+  upsert: GameweekUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: GameweekWhereUniqueInput
+}
+
 input GameweekUpdateOneRequiredWithoutFixturesInput {
   create: GameweekCreateWithoutFixturesInput
   update: GameweekUpdateWithoutFixturesDataInput
@@ -2033,6 +5155,11 @@ input GameweekUpdateWithoutSeasonDataInput {
 input GameweekUpdateWithWhereUniqueWithoutSeasonInput {
   where: GameweekWhereUniqueInput!
   data: GameweekUpdateWithoutSeasonDataInput!
+}
+
+input GameweekUpsertNestedInput {
+  update: GameweekUpdateDataInput!
+  create: GameweekCreateInput!
 }
 
 input GameweekUpsertWithoutFixturesInput {
@@ -2556,12 +5683,86 @@ type Mutation {
   upsertAwayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!, create: AwayTeamFixtureCreateInput!, update: AwayTeamFixtureUpdateInput!): AwayTeamFixture!
   deleteAwayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
   deleteManyAwayTeamFixtures(where: AwayTeamFixtureWhereInput): BatchPayload!
+  createContest(data: ContestCreateInput!): Contest!
+  updateContest(data: ContestUpdateInput!, where: ContestWhereUniqueInput!): Contest
+  updateManyContests(data: ContestUpdateManyMutationInput!, where: ContestWhereInput): BatchPayload!
+  upsertContest(where: ContestWhereUniqueInput!, create: ContestCreateInput!, update: ContestUpdateInput!): Contest!
+  deleteContest(where: ContestWhereUniqueInput!): Contest
+  deleteManyContests(where: ContestWhereInput): BatchPayload!
+  createContestCreator(data: ContestCreatorCreateInput!): ContestCreator!
+  updateContestCreator(data: ContestCreatorUpdateInput!, where: ContestCreatorWhereUniqueInput!): ContestCreator
+  upsertContestCreator(where: ContestCreatorWhereUniqueInput!, create: ContestCreatorCreateInput!, update: ContestCreatorUpdateInput!): ContestCreator!
+  deleteContestCreator(where: ContestCreatorWhereUniqueInput!): ContestCreator
+  deleteManyContestCreators(where: ContestCreatorWhereInput): BatchPayload!
+  createContestInviter(data: ContestInviterCreateInput!): ContestInviter!
+  updateContestInviter(data: ContestInviterUpdateInput!, where: ContestInviterWhereUniqueInput!): ContestInviter
+  upsertContestInviter(where: ContestInviterWhereUniqueInput!, create: ContestInviterCreateInput!, update: ContestInviterUpdateInput!): ContestInviter!
+  deleteContestInviter(where: ContestInviterWhereUniqueInput!): ContestInviter
+  deleteManyContestInviters(where: ContestInviterWhereInput): BatchPayload!
+  createContestOwner(data: ContestOwnerCreateInput!): ContestOwner!
+  updateContestOwner(data: ContestOwnerUpdateInput!, where: ContestOwnerWhereUniqueInput!): ContestOwner
+  upsertContestOwner(where: ContestOwnerWhereUniqueInput!, create: ContestOwnerCreateInput!, update: ContestOwnerUpdateInput!): ContestOwner!
+  deleteContestOwner(where: ContestOwnerWhereUniqueInput!): ContestOwner
+  deleteManyContestOwners(where: ContestOwnerWhereInput): BatchPayload!
+  createContestPrediction(data: ContestPredictionCreateInput!): ContestPrediction!
+  updateContestPrediction(data: ContestPredictionUpdateInput!, where: ContestPredictionWhereUniqueInput!): ContestPrediction
+  updateManyContestPredictions(data: ContestPredictionUpdateManyMutationInput!, where: ContestPredictionWhereInput): BatchPayload!
+  upsertContestPrediction(where: ContestPredictionWhereUniqueInput!, create: ContestPredictionCreateInput!, update: ContestPredictionUpdateInput!): ContestPrediction!
+  deleteContestPrediction(where: ContestPredictionWhereUniqueInput!): ContestPrediction
+  deleteManyContestPredictions(where: ContestPredictionWhereInput): BatchPayload!
+  createContestPredictionScore(data: ContestPredictionScoreCreateInput!): ContestPredictionScore!
+  updateContestPredictionScore(data: ContestPredictionScoreUpdateInput!, where: ContestPredictionScoreWhereUniqueInput!): ContestPredictionScore
+  updateManyContestPredictionScores(data: ContestPredictionScoreUpdateManyMutationInput!, where: ContestPredictionScoreWhereInput): BatchPayload!
+  upsertContestPredictionScore(where: ContestPredictionScoreWhereUniqueInput!, create: ContestPredictionScoreCreateInput!, update: ContestPredictionScoreUpdateInput!): ContestPredictionScore!
+  deleteContestPredictionScore(where: ContestPredictionScoreWhereUniqueInput!): ContestPredictionScore
+  deleteManyContestPredictionScores(where: ContestPredictionScoreWhereInput): BatchPayload!
+  createContestSlate(data: ContestSlateCreateInput!): ContestSlate!
+  updateContestSlate(data: ContestSlateUpdateInput!, where: ContestSlateWhereUniqueInput!): ContestSlate
+  updateManyContestSlates(data: ContestSlateUpdateManyMutationInput!, where: ContestSlateWhereInput): BatchPayload!
+  upsertContestSlate(where: ContestSlateWhereUniqueInput!, create: ContestSlateCreateInput!, update: ContestSlateUpdateInput!): ContestSlate!
+  deleteContestSlate(where: ContestSlateWhereUniqueInput!): ContestSlate
+  deleteManyContestSlates(where: ContestSlateWhereInput): BatchPayload!
+  createContestSlateEntry(data: ContestSlateEntryCreateInput!): ContestSlateEntry!
+  updateContestSlateEntry(data: ContestSlateEntryUpdateInput!, where: ContestSlateEntryWhereUniqueInput!): ContestSlateEntry
+  upsertContestSlateEntry(where: ContestSlateEntryWhereUniqueInput!, create: ContestSlateEntryCreateInput!, update: ContestSlateEntryUpdateInput!): ContestSlateEntry!
+  deleteContestSlateEntry(where: ContestSlateEntryWhereUniqueInput!): ContestSlateEntry
+  deleteManyContestSlateEntries(where: ContestSlateEntryWhereInput): BatchPayload!
+  createContestType(data: ContestTypeCreateInput!): ContestType!
+  updateContestType(data: ContestTypeUpdateInput!, where: ContestTypeWhereUniqueInput!): ContestType
+  updateManyContestTypes(data: ContestTypeUpdateManyMutationInput!, where: ContestTypeWhereInput): BatchPayload!
+  upsertContestType(where: ContestTypeWhereUniqueInput!, create: ContestTypeCreateInput!, update: ContestTypeUpdateInput!): ContestType!
+  deleteContestType(where: ContestTypeWhereUniqueInput!): ContestType
+  deleteManyContestTypes(where: ContestTypeWhereInput): BatchPayload!
+  createContestUser(data: ContestUserCreateInput!): ContestUser!
+  updateContestUser(data: ContestUserUpdateInput!, where: ContestUserWhereUniqueInput!): ContestUser
+  updateManyContestUsers(data: ContestUserUpdateManyMutationInput!, where: ContestUserWhereInput): BatchPayload!
+  upsertContestUser(where: ContestUserWhereUniqueInput!, create: ContestUserCreateInput!, update: ContestUserUpdateInput!): ContestUser!
+  deleteContestUser(where: ContestUserWhereUniqueInput!): ContestUser
+  deleteManyContestUsers(where: ContestUserWhereInput): BatchPayload!
+  createContestUserType(data: ContestUserTypeCreateInput!): ContestUserType!
+  updateContestUserType(data: ContestUserTypeUpdateInput!, where: ContestUserTypeWhereUniqueInput!): ContestUserType
+  updateManyContestUserTypes(data: ContestUserTypeUpdateManyMutationInput!, where: ContestUserTypeWhereInput): BatchPayload!
+  upsertContestUserType(where: ContestUserTypeWhereUniqueInput!, create: ContestUserTypeCreateInput!, update: ContestUserTypeUpdateInput!): ContestUserType!
+  deleteContestUserType(where: ContestUserTypeWhereUniqueInput!): ContestUserType
+  deleteManyContestUserTypes(where: ContestUserTypeWhereInput): BatchPayload!
   createCountry(data: CountryCreateInput!): Country!
   updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
   updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
   upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
   deleteCountry(where: CountryWhereUniqueInput!): Country
   deleteManyCountries(where: CountryWhereInput): BatchPayload!
+  createDefaultScoringSystemDetail(data: DefaultScoringSystemDetailCreateInput!): DefaultScoringSystemDetail!
+  updateDefaultScoringSystemDetail(data: DefaultScoringSystemDetailUpdateInput!, where: DefaultScoringSystemDetailWhereUniqueInput!): DefaultScoringSystemDetail
+  updateManyDefaultScoringSystemDetails(data: DefaultScoringSystemDetailUpdateManyMutationInput!, where: DefaultScoringSystemDetailWhereInput): BatchPayload!
+  upsertDefaultScoringSystemDetail(where: DefaultScoringSystemDetailWhereUniqueInput!, create: DefaultScoringSystemDetailCreateInput!, update: DefaultScoringSystemDetailUpdateInput!): DefaultScoringSystemDetail!
+  deleteDefaultScoringSystemDetail(where: DefaultScoringSystemDetailWhereUniqueInput!): DefaultScoringSystemDetail
+  deleteManyDefaultScoringSystemDetails(where: DefaultScoringSystemDetailWhereInput): BatchPayload!
+  createDefaultScoringSystemHeader(data: DefaultScoringSystemHeaderCreateInput!): DefaultScoringSystemHeader!
+  updateDefaultScoringSystemHeader(data: DefaultScoringSystemHeaderUpdateInput!, where: DefaultScoringSystemHeaderWhereUniqueInput!): DefaultScoringSystemHeader
+  updateManyDefaultScoringSystemHeaders(data: DefaultScoringSystemHeaderUpdateManyMutationInput!, where: DefaultScoringSystemHeaderWhereInput): BatchPayload!
+  upsertDefaultScoringSystemHeader(where: DefaultScoringSystemHeaderWhereUniqueInput!, create: DefaultScoringSystemHeaderCreateInput!, update: DefaultScoringSystemHeaderUpdateInput!): DefaultScoringSystemHeader!
+  deleteDefaultScoringSystemHeader(where: DefaultScoringSystemHeaderWhereUniqueInput!): DefaultScoringSystemHeader
+  deleteManyDefaultScoringSystemHeaders(where: DefaultScoringSystemHeaderWhereInput): BatchPayload!
   createFandemSubscription(data: FandemSubscriptionCreateInput!): FandemSubscription!
   updateFandemSubscription(data: FandemSubscriptionUpdateInput!, where: FandemSubscriptionWhereUniqueInput!): FandemSubscription
   updateManyFandemSubscriptions(data: FandemSubscriptionUpdateManyMutationInput!, where: FandemSubscriptionWhereInput): BatchPayload!
@@ -2602,6 +5803,24 @@ type Mutation {
   upsertPhoto(where: PhotoWhereUniqueInput!, create: PhotoCreateInput!, update: PhotoUpdateInput!): Photo!
   deletePhoto(where: PhotoWhereUniqueInput!): Photo
   deleteManyPhotos(where: PhotoWhereInput): BatchPayload!
+  createScoringSystemDetail(data: ScoringSystemDetailCreateInput!): ScoringSystemDetail!
+  updateScoringSystemDetail(data: ScoringSystemDetailUpdateInput!, where: ScoringSystemDetailWhereUniqueInput!): ScoringSystemDetail
+  updateManyScoringSystemDetails(data: ScoringSystemDetailUpdateManyMutationInput!, where: ScoringSystemDetailWhereInput): BatchPayload!
+  upsertScoringSystemDetail(where: ScoringSystemDetailWhereUniqueInput!, create: ScoringSystemDetailCreateInput!, update: ScoringSystemDetailUpdateInput!): ScoringSystemDetail!
+  deleteScoringSystemDetail(where: ScoringSystemDetailWhereUniqueInput!): ScoringSystemDetail
+  deleteManyScoringSystemDetails(where: ScoringSystemDetailWhereInput): BatchPayload!
+  createScoringSystemHeader(data: ScoringSystemHeaderCreateInput!): ScoringSystemHeader!
+  updateScoringSystemHeader(data: ScoringSystemHeaderUpdateInput!, where: ScoringSystemHeaderWhereUniqueInput!): ScoringSystemHeader
+  updateManyScoringSystemHeaders(data: ScoringSystemHeaderUpdateManyMutationInput!, where: ScoringSystemHeaderWhereInput): BatchPayload!
+  upsertScoringSystemHeader(where: ScoringSystemHeaderWhereUniqueInput!, create: ScoringSystemHeaderCreateInput!, update: ScoringSystemHeaderUpdateInput!): ScoringSystemHeader!
+  deleteScoringSystemHeader(where: ScoringSystemHeaderWhereUniqueInput!): ScoringSystemHeader
+  deleteManyScoringSystemHeaders(where: ScoringSystemHeaderWhereInput): BatchPayload!
+  createScoringType(data: ScoringTypeCreateInput!): ScoringType!
+  updateScoringType(data: ScoringTypeUpdateInput!, where: ScoringTypeWhereUniqueInput!): ScoringType
+  updateManyScoringTypes(data: ScoringTypeUpdateManyMutationInput!, where: ScoringTypeWhereInput): BatchPayload!
+  upsertScoringType(where: ScoringTypeWhereUniqueInput!, create: ScoringTypeCreateInput!, update: ScoringTypeUpdateInput!): ScoringType!
+  deleteScoringType(where: ScoringTypeWhereUniqueInput!): ScoringType
+  deleteManyScoringTypes(where: ScoringTypeWhereInput): BatchPayload!
   createSeason(data: SeasonCreateInput!): Season!
   updateSeason(data: SeasonUpdateInput!, where: SeasonWhereUniqueInput!): Season
   updateManySeasons(data: SeasonUpdateManyMutationInput!, where: SeasonWhereInput): BatchPayload!
@@ -2871,9 +6090,48 @@ type Query {
   awayTeamFixture(where: AwayTeamFixtureWhereUniqueInput!): AwayTeamFixture
   awayTeamFixtures(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AwayTeamFixture]!
   awayTeamFixturesConnection(where: AwayTeamFixtureWhereInput, orderBy: AwayTeamFixtureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AwayTeamFixtureConnection!
+  contest(where: ContestWhereUniqueInput!): Contest
+  contests(where: ContestWhereInput, orderBy: ContestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Contest]!
+  contestsConnection(where: ContestWhereInput, orderBy: ContestOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestConnection!
+  contestCreator(where: ContestCreatorWhereUniqueInput!): ContestCreator
+  contestCreators(where: ContestCreatorWhereInput, orderBy: ContestCreatorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestCreator]!
+  contestCreatorsConnection(where: ContestCreatorWhereInput, orderBy: ContestCreatorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestCreatorConnection!
+  contestInviter(where: ContestInviterWhereUniqueInput!): ContestInviter
+  contestInviters(where: ContestInviterWhereInput, orderBy: ContestInviterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestInviter]!
+  contestInvitersConnection(where: ContestInviterWhereInput, orderBy: ContestInviterOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestInviterConnection!
+  contestOwner(where: ContestOwnerWhereUniqueInput!): ContestOwner
+  contestOwners(where: ContestOwnerWhereInput, orderBy: ContestOwnerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestOwner]!
+  contestOwnersConnection(where: ContestOwnerWhereInput, orderBy: ContestOwnerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestOwnerConnection!
+  contestPrediction(where: ContestPredictionWhereUniqueInput!): ContestPrediction
+  contestPredictions(where: ContestPredictionWhereInput, orderBy: ContestPredictionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestPrediction]!
+  contestPredictionsConnection(where: ContestPredictionWhereInput, orderBy: ContestPredictionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestPredictionConnection!
+  contestPredictionScore(where: ContestPredictionScoreWhereUniqueInput!): ContestPredictionScore
+  contestPredictionScores(where: ContestPredictionScoreWhereInput, orderBy: ContestPredictionScoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestPredictionScore]!
+  contestPredictionScoresConnection(where: ContestPredictionScoreWhereInput, orderBy: ContestPredictionScoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestPredictionScoreConnection!
+  contestSlate(where: ContestSlateWhereUniqueInput!): ContestSlate
+  contestSlates(where: ContestSlateWhereInput, orderBy: ContestSlateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestSlate]!
+  contestSlatesConnection(where: ContestSlateWhereInput, orderBy: ContestSlateOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestSlateConnection!
+  contestSlateEntry(where: ContestSlateEntryWhereUniqueInput!): ContestSlateEntry
+  contestSlateEntries(where: ContestSlateEntryWhereInput, orderBy: ContestSlateEntryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestSlateEntry]!
+  contestSlateEntriesConnection(where: ContestSlateEntryWhereInput, orderBy: ContestSlateEntryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestSlateEntryConnection!
+  contestType(where: ContestTypeWhereUniqueInput!): ContestType
+  contestTypes(where: ContestTypeWhereInput, orderBy: ContestTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestType]!
+  contestTypesConnection(where: ContestTypeWhereInput, orderBy: ContestTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestTypeConnection!
+  contestUser(where: ContestUserWhereUniqueInput!): ContestUser
+  contestUsers(where: ContestUserWhereInput, orderBy: ContestUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestUser]!
+  contestUsersConnection(where: ContestUserWhereInput, orderBy: ContestUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestUserConnection!
+  contestUserType(where: ContestUserTypeWhereUniqueInput!): ContestUserType
+  contestUserTypes(where: ContestUserTypeWhereInput, orderBy: ContestUserTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestUserType]!
+  contestUserTypesConnection(where: ContestUserTypeWhereInput, orderBy: ContestUserTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContestUserTypeConnection!
   country(where: CountryWhereUniqueInput!): Country
   countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
   countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
+  defaultScoringSystemDetail(where: DefaultScoringSystemDetailWhereUniqueInput!): DefaultScoringSystemDetail
+  defaultScoringSystemDetails(where: DefaultScoringSystemDetailWhereInput, orderBy: DefaultScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DefaultScoringSystemDetail]!
+  defaultScoringSystemDetailsConnection(where: DefaultScoringSystemDetailWhereInput, orderBy: DefaultScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DefaultScoringSystemDetailConnection!
+  defaultScoringSystemHeader(where: DefaultScoringSystemHeaderWhereUniqueInput!): DefaultScoringSystemHeader
+  defaultScoringSystemHeaders(where: DefaultScoringSystemHeaderWhereInput, orderBy: DefaultScoringSystemHeaderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DefaultScoringSystemHeader]!
+  defaultScoringSystemHeadersConnection(where: DefaultScoringSystemHeaderWhereInput, orderBy: DefaultScoringSystemHeaderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DefaultScoringSystemHeaderConnection!
   fandemSubscription(where: FandemSubscriptionWhereUniqueInput!): FandemSubscription
   fandemSubscriptions(where: FandemSubscriptionWhereInput, orderBy: FandemSubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FandemSubscription]!
   fandemSubscriptionsConnection(where: FandemSubscriptionWhereInput, orderBy: FandemSubscriptionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FandemSubscriptionConnection!
@@ -2895,6 +6153,15 @@ type Query {
   photo(where: PhotoWhereUniqueInput!): Photo
   photos(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Photo]!
   photosConnection(where: PhotoWhereInput, orderBy: PhotoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PhotoConnection!
+  scoringSystemDetail(where: ScoringSystemDetailWhereUniqueInput!): ScoringSystemDetail
+  scoringSystemDetails(where: ScoringSystemDetailWhereInput, orderBy: ScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ScoringSystemDetail]!
+  scoringSystemDetailsConnection(where: ScoringSystemDetailWhereInput, orderBy: ScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ScoringSystemDetailConnection!
+  scoringSystemHeader(where: ScoringSystemHeaderWhereUniqueInput!): ScoringSystemHeader
+  scoringSystemHeaders(where: ScoringSystemHeaderWhereInput, orderBy: ScoringSystemHeaderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ScoringSystemHeader]!
+  scoringSystemHeadersConnection(where: ScoringSystemHeaderWhereInput, orderBy: ScoringSystemHeaderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ScoringSystemHeaderConnection!
+  scoringType(where: ScoringTypeWhereUniqueInput!): ScoringType
+  scoringTypes(where: ScoringTypeWhereInput, orderBy: ScoringTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ScoringType]!
+  scoringTypesConnection(where: ScoringTypeWhereInput, orderBy: ScoringTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ScoringTypeConnection!
   season(where: SeasonWhereUniqueInput!): Season
   seasons(where: SeasonWhereInput, orderBy: SeasonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Season]!
   seasonsConnection(where: SeasonWhereInput, orderBy: SeasonOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SeasonConnection!
@@ -2926,6 +6193,767 @@ type Query {
   userStatuses(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStatus]!
   userStatusesConnection(where: UserStatusWhereInput, orderBy: UserStatusOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStatusConnection!
   node(id: ID!): Node
+}
+
+type ScoringSystemDetail {
+  id: ID!
+  system: ScoringSystemHeader!
+  inheritedFrom: DefaultScoringSystemDetail!
+  name: String!
+  description: String
+  scoringType: ScoringType!
+  isActive: Boolean!
+  isDefault: Boolean!
+  lastModifiedBy: User!
+  startDate: DateTime!
+  endDate: DateTime
+  points: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ScoringSystemDetailConnection {
+  pageInfo: PageInfo!
+  edges: [ScoringSystemDetailEdge]!
+  aggregate: AggregateScoringSystemDetail!
+}
+
+input ScoringSystemDetailCreateInput {
+  id: ID
+  system: ScoringSystemHeaderCreateOneWithoutDetailInput!
+  inheritedFrom: DefaultScoringSystemDetailCreateOneInput!
+  name: String!
+  description: String
+  scoringType: ScoringTypeCreateOneInput!
+  isActive: Boolean
+  isDefault: Boolean
+  lastModifiedBy: UserCreateOneInput!
+  startDate: DateTime!
+  endDate: DateTime
+  points: Int!
+}
+
+input ScoringSystemDetailCreateManyWithoutSystemInput {
+  create: [ScoringSystemDetailCreateWithoutSystemInput!]
+  connect: [ScoringSystemDetailWhereUniqueInput!]
+}
+
+input ScoringSystemDetailCreateOneInput {
+  create: ScoringSystemDetailCreateInput
+  connect: ScoringSystemDetailWhereUniqueInput
+}
+
+input ScoringSystemDetailCreateWithoutSystemInput {
+  id: ID
+  inheritedFrom: DefaultScoringSystemDetailCreateOneInput!
+  name: String!
+  description: String
+  scoringType: ScoringTypeCreateOneInput!
+  isActive: Boolean
+  isDefault: Boolean
+  lastModifiedBy: UserCreateOneInput!
+  startDate: DateTime!
+  endDate: DateTime
+  points: Int!
+}
+
+type ScoringSystemDetailEdge {
+  node: ScoringSystemDetail!
+  cursor: String!
+}
+
+enum ScoringSystemDetailOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  isActive_ASC
+  isActive_DESC
+  isDefault_ASC
+  isDefault_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  points_ASC
+  points_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ScoringSystemDetailPreviousValues {
+  id: ID!
+  name: String!
+  description: String
+  isActive: Boolean!
+  isDefault: Boolean!
+  startDate: DateTime!
+  endDate: DateTime
+  points: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ScoringSystemDetailScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  isActive: Boolean
+  isActive_not: Boolean
+  isDefault: Boolean
+  isDefault_not: Boolean
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  points: Int
+  points_not: Int
+  points_in: [Int!]
+  points_not_in: [Int!]
+  points_lt: Int
+  points_lte: Int
+  points_gt: Int
+  points_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ScoringSystemDetailScalarWhereInput!]
+  OR: [ScoringSystemDetailScalarWhereInput!]
+  NOT: [ScoringSystemDetailScalarWhereInput!]
+}
+
+type ScoringSystemDetailSubscriptionPayload {
+  mutation: MutationType!
+  node: ScoringSystemDetail
+  updatedFields: [String!]
+  previousValues: ScoringSystemDetailPreviousValues
+}
+
+input ScoringSystemDetailSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ScoringSystemDetailWhereInput
+  AND: [ScoringSystemDetailSubscriptionWhereInput!]
+  OR: [ScoringSystemDetailSubscriptionWhereInput!]
+  NOT: [ScoringSystemDetailSubscriptionWhereInput!]
+}
+
+input ScoringSystemDetailUpdateDataInput {
+  system: ScoringSystemHeaderUpdateOneRequiredWithoutDetailInput
+  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
+  name: String
+  description: String
+  scoringType: ScoringTypeUpdateOneRequiredInput
+  isActive: Boolean
+  isDefault: Boolean
+  lastModifiedBy: UserUpdateOneRequiredInput
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input ScoringSystemDetailUpdateInput {
+  system: ScoringSystemHeaderUpdateOneRequiredWithoutDetailInput
+  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
+  name: String
+  description: String
+  scoringType: ScoringTypeUpdateOneRequiredInput
+  isActive: Boolean
+  isDefault: Boolean
+  lastModifiedBy: UserUpdateOneRequiredInput
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input ScoringSystemDetailUpdateManyDataInput {
+  name: String
+  description: String
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input ScoringSystemDetailUpdateManyMutationInput {
+  name: String
+  description: String
+  isActive: Boolean
+  isDefault: Boolean
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input ScoringSystemDetailUpdateManyWithoutSystemInput {
+  create: [ScoringSystemDetailCreateWithoutSystemInput!]
+  delete: [ScoringSystemDetailWhereUniqueInput!]
+  connect: [ScoringSystemDetailWhereUniqueInput!]
+  set: [ScoringSystemDetailWhereUniqueInput!]
+  disconnect: [ScoringSystemDetailWhereUniqueInput!]
+  update: [ScoringSystemDetailUpdateWithWhereUniqueWithoutSystemInput!]
+  upsert: [ScoringSystemDetailUpsertWithWhereUniqueWithoutSystemInput!]
+  deleteMany: [ScoringSystemDetailScalarWhereInput!]
+  updateMany: [ScoringSystemDetailUpdateManyWithWhereNestedInput!]
+}
+
+input ScoringSystemDetailUpdateManyWithWhereNestedInput {
+  where: ScoringSystemDetailScalarWhereInput!
+  data: ScoringSystemDetailUpdateManyDataInput!
+}
+
+input ScoringSystemDetailUpdateOneRequiredInput {
+  create: ScoringSystemDetailCreateInput
+  update: ScoringSystemDetailUpdateDataInput
+  upsert: ScoringSystemDetailUpsertNestedInput
+  connect: ScoringSystemDetailWhereUniqueInput
+}
+
+input ScoringSystemDetailUpdateWithoutSystemDataInput {
+  inheritedFrom: DefaultScoringSystemDetailUpdateOneRequiredInput
+  name: String
+  description: String
+  scoringType: ScoringTypeUpdateOneRequiredInput
+  isActive: Boolean
+  isDefault: Boolean
+  lastModifiedBy: UserUpdateOneRequiredInput
+  startDate: DateTime
+  endDate: DateTime
+  points: Int
+}
+
+input ScoringSystemDetailUpdateWithWhereUniqueWithoutSystemInput {
+  where: ScoringSystemDetailWhereUniqueInput!
+  data: ScoringSystemDetailUpdateWithoutSystemDataInput!
+}
+
+input ScoringSystemDetailUpsertNestedInput {
+  update: ScoringSystemDetailUpdateDataInput!
+  create: ScoringSystemDetailCreateInput!
+}
+
+input ScoringSystemDetailUpsertWithWhereUniqueWithoutSystemInput {
+  where: ScoringSystemDetailWhereUniqueInput!
+  update: ScoringSystemDetailUpdateWithoutSystemDataInput!
+  create: ScoringSystemDetailCreateWithoutSystemInput!
+}
+
+input ScoringSystemDetailWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  system: ScoringSystemHeaderWhereInput
+  inheritedFrom: DefaultScoringSystemDetailWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  scoringType: ScoringTypeWhereInput
+  isActive: Boolean
+  isActive_not: Boolean
+  isDefault: Boolean
+  isDefault_not: Boolean
+  lastModifiedBy: UserWhereInput
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
+  points: Int
+  points_not: Int
+  points_in: [Int!]
+  points_not_in: [Int!]
+  points_lt: Int
+  points_lte: Int
+  points_gt: Int
+  points_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ScoringSystemDetailWhereInput!]
+  OR: [ScoringSystemDetailWhereInput!]
+  NOT: [ScoringSystemDetailWhereInput!]
+}
+
+input ScoringSystemDetailWhereUniqueInput {
+  id: ID
+}
+
+type ScoringSystemHeader {
+  id: ID!
+  contest: Contest!
+  inheritedFrom: DefaultScoringSystemHeader
+  isCustom: Boolean!
+  detail(where: ScoringSystemDetailWhereInput, orderBy: ScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ScoringSystemDetail!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ScoringSystemHeaderConnection {
+  pageInfo: PageInfo!
+  edges: [ScoringSystemHeaderEdge]!
+  aggregate: AggregateScoringSystemHeader!
+}
+
+input ScoringSystemHeaderCreateInput {
+  id: ID
+  contest: ContestCreateOneWithoutScoringSystemInput!
+  inheritedFrom: DefaultScoringSystemHeaderCreateOneInput
+  isCustom: Boolean!
+  detail: ScoringSystemDetailCreateManyWithoutSystemInput
+}
+
+input ScoringSystemHeaderCreateOneWithoutContestInput {
+  create: ScoringSystemHeaderCreateWithoutContestInput
+  connect: ScoringSystemHeaderWhereUniqueInput
+}
+
+input ScoringSystemHeaderCreateOneWithoutDetailInput {
+  create: ScoringSystemHeaderCreateWithoutDetailInput
+  connect: ScoringSystemHeaderWhereUniqueInput
+}
+
+input ScoringSystemHeaderCreateWithoutContestInput {
+  id: ID
+  inheritedFrom: DefaultScoringSystemHeaderCreateOneInput
+  isCustom: Boolean!
+  detail: ScoringSystemDetailCreateManyWithoutSystemInput
+}
+
+input ScoringSystemHeaderCreateWithoutDetailInput {
+  id: ID
+  contest: ContestCreateOneWithoutScoringSystemInput!
+  inheritedFrom: DefaultScoringSystemHeaderCreateOneInput
+  isCustom: Boolean!
+}
+
+type ScoringSystemHeaderEdge {
+  node: ScoringSystemHeader!
+  cursor: String!
+}
+
+enum ScoringSystemHeaderOrderByInput {
+  id_ASC
+  id_DESC
+  isCustom_ASC
+  isCustom_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ScoringSystemHeaderPreviousValues {
+  id: ID!
+  isCustom: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ScoringSystemHeaderSubscriptionPayload {
+  mutation: MutationType!
+  node: ScoringSystemHeader
+  updatedFields: [String!]
+  previousValues: ScoringSystemHeaderPreviousValues
+}
+
+input ScoringSystemHeaderSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ScoringSystemHeaderWhereInput
+  AND: [ScoringSystemHeaderSubscriptionWhereInput!]
+  OR: [ScoringSystemHeaderSubscriptionWhereInput!]
+  NOT: [ScoringSystemHeaderSubscriptionWhereInput!]
+}
+
+input ScoringSystemHeaderUpdateInput {
+  contest: ContestUpdateOneRequiredWithoutScoringSystemInput
+  inheritedFrom: DefaultScoringSystemHeaderUpdateOneInput
+  isCustom: Boolean
+  detail: ScoringSystemDetailUpdateManyWithoutSystemInput
+}
+
+input ScoringSystemHeaderUpdateManyMutationInput {
+  isCustom: Boolean
+}
+
+input ScoringSystemHeaderUpdateOneRequiredWithoutContestInput {
+  create: ScoringSystemHeaderCreateWithoutContestInput
+  update: ScoringSystemHeaderUpdateWithoutContestDataInput
+  upsert: ScoringSystemHeaderUpsertWithoutContestInput
+  connect: ScoringSystemHeaderWhereUniqueInput
+}
+
+input ScoringSystemHeaderUpdateOneRequiredWithoutDetailInput {
+  create: ScoringSystemHeaderCreateWithoutDetailInput
+  update: ScoringSystemHeaderUpdateWithoutDetailDataInput
+  upsert: ScoringSystemHeaderUpsertWithoutDetailInput
+  connect: ScoringSystemHeaderWhereUniqueInput
+}
+
+input ScoringSystemHeaderUpdateWithoutContestDataInput {
+  inheritedFrom: DefaultScoringSystemHeaderUpdateOneInput
+  isCustom: Boolean
+  detail: ScoringSystemDetailUpdateManyWithoutSystemInput
+}
+
+input ScoringSystemHeaderUpdateWithoutDetailDataInput {
+  contest: ContestUpdateOneRequiredWithoutScoringSystemInput
+  inheritedFrom: DefaultScoringSystemHeaderUpdateOneInput
+  isCustom: Boolean
+}
+
+input ScoringSystemHeaderUpsertWithoutContestInput {
+  update: ScoringSystemHeaderUpdateWithoutContestDataInput!
+  create: ScoringSystemHeaderCreateWithoutContestInput!
+}
+
+input ScoringSystemHeaderUpsertWithoutDetailInput {
+  update: ScoringSystemHeaderUpdateWithoutDetailDataInput!
+  create: ScoringSystemHeaderCreateWithoutDetailInput!
+}
+
+input ScoringSystemHeaderWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  contest: ContestWhereInput
+  inheritedFrom: DefaultScoringSystemHeaderWhereInput
+  isCustom: Boolean
+  isCustom_not: Boolean
+  detail_every: ScoringSystemDetailWhereInput
+  detail_some: ScoringSystemDetailWhereInput
+  detail_none: ScoringSystemDetailWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ScoringSystemHeaderWhereInput!]
+  OR: [ScoringSystemHeaderWhereInput!]
+  NOT: [ScoringSystemHeaderWhereInput!]
+}
+
+input ScoringSystemHeaderWhereUniqueInput {
+  id: ID
+}
+
+type ScoringType {
+  id: ID!
+  name: String!
+  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ScoringTypeConnection {
+  pageInfo: PageInfo!
+  edges: [ScoringTypeEdge]!
+  aggregate: AggregateScoringType!
+}
+
+input ScoringTypeCreateInput {
+  id: ID
+  name: String!
+  description: String!
+}
+
+input ScoringTypeCreateOneInput {
+  create: ScoringTypeCreateInput
+  connect: ScoringTypeWhereUniqueInput
+}
+
+type ScoringTypeEdge {
+  node: ScoringType!
+  cursor: String!
+}
+
+enum ScoringTypeOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ScoringTypePreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ScoringTypeSubscriptionPayload {
+  mutation: MutationType!
+  node: ScoringType
+  updatedFields: [String!]
+  previousValues: ScoringTypePreviousValues
+}
+
+input ScoringTypeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ScoringTypeWhereInput
+  AND: [ScoringTypeSubscriptionWhereInput!]
+  OR: [ScoringTypeSubscriptionWhereInput!]
+  NOT: [ScoringTypeSubscriptionWhereInput!]
+}
+
+input ScoringTypeUpdateDataInput {
+  name: String
+  description: String
+}
+
+input ScoringTypeUpdateInput {
+  name: String
+  description: String
+}
+
+input ScoringTypeUpdateManyMutationInput {
+  name: String
+  description: String
+}
+
+input ScoringTypeUpdateOneRequiredInput {
+  create: ScoringTypeCreateInput
+  update: ScoringTypeUpdateDataInput
+  upsert: ScoringTypeUpsertNestedInput
+  connect: ScoringTypeWhereUniqueInput
+}
+
+input ScoringTypeUpsertNestedInput {
+  update: ScoringTypeUpdateDataInput!
+  create: ScoringTypeCreateInput!
+}
+
+input ScoringTypeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ScoringTypeWhereInput!]
+  OR: [ScoringTypeWhereInput!]
+  NOT: [ScoringTypeWhereInput!]
+}
+
+input ScoringTypeWhereUniqueInput {
+  id: ID
 }
 
 type Season {
@@ -3382,7 +7410,20 @@ input StatusWhereUniqueInput {
 type Subscription {
   activeSubscriptions(where: ActiveSubscriptionsSubscriptionWhereInput): ActiveSubscriptionsSubscriptionPayload
   awayTeamFixture(where: AwayTeamFixtureSubscriptionWhereInput): AwayTeamFixtureSubscriptionPayload
+  contest(where: ContestSubscriptionWhereInput): ContestSubscriptionPayload
+  contestCreator(where: ContestCreatorSubscriptionWhereInput): ContestCreatorSubscriptionPayload
+  contestInviter(where: ContestInviterSubscriptionWhereInput): ContestInviterSubscriptionPayload
+  contestOwner(where: ContestOwnerSubscriptionWhereInput): ContestOwnerSubscriptionPayload
+  contestPrediction(where: ContestPredictionSubscriptionWhereInput): ContestPredictionSubscriptionPayload
+  contestPredictionScore(where: ContestPredictionScoreSubscriptionWhereInput): ContestPredictionScoreSubscriptionPayload
+  contestSlate(where: ContestSlateSubscriptionWhereInput): ContestSlateSubscriptionPayload
+  contestSlateEntry(where: ContestSlateEntrySubscriptionWhereInput): ContestSlateEntrySubscriptionPayload
+  contestType(where: ContestTypeSubscriptionWhereInput): ContestTypeSubscriptionPayload
+  contestUser(where: ContestUserSubscriptionWhereInput): ContestUserSubscriptionPayload
+  contestUserType(where: ContestUserTypeSubscriptionWhereInput): ContestUserTypeSubscriptionPayload
   country(where: CountrySubscriptionWhereInput): CountrySubscriptionPayload
+  defaultScoringSystemDetail(where: DefaultScoringSystemDetailSubscriptionWhereInput): DefaultScoringSystemDetailSubscriptionPayload
+  defaultScoringSystemHeader(where: DefaultScoringSystemHeaderSubscriptionWhereInput): DefaultScoringSystemHeaderSubscriptionPayload
   fandemSubscription(where: FandemSubscriptionSubscriptionWhereInput): FandemSubscriptionSubscriptionPayload
   fixture(where: FixtureSubscriptionWhereInput): FixtureSubscriptionPayload
   follower(where: FollowerSubscriptionWhereInput): FollowerSubscriptionPayload
@@ -3390,6 +7431,9 @@ type Subscription {
   homeTeamFixture(where: HomeTeamFixtureSubscriptionWhereInput): HomeTeamFixtureSubscriptionPayload
   influencer(where: InfluencerSubscriptionWhereInput): InfluencerSubscriptionPayload
   photo(where: PhotoSubscriptionWhereInput): PhotoSubscriptionPayload
+  scoringSystemDetail(where: ScoringSystemDetailSubscriptionWhereInput): ScoringSystemDetailSubscriptionPayload
+  scoringSystemHeader(where: ScoringSystemHeaderSubscriptionWhereInput): ScoringSystemHeaderSubscriptionPayload
+  scoringType(where: ScoringTypeSubscriptionWhereInput): ScoringTypeSubscriptionPayload
   season(where: SeasonSubscriptionWhereInput): SeasonSubscriptionPayload
   status(where: StatusSubscriptionWhereInput): StatusSubscriptionPayload
   team(where: TeamSubscriptionWhereInput): TeamSubscriptionPayload

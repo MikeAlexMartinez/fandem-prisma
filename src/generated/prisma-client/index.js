@@ -83,6 +83,70 @@ var models = [
   {
     name: "Fixture",
     embedded: false
+  },
+  {
+    name: "ContestType",
+    embedded: false
+  },
+  {
+    name: "ContestCreator",
+    embedded: false
+  },
+  {
+    name: "ContestOwner",
+    embedded: false
+  },
+  {
+    name: "Contest",
+    embedded: false
+  },
+  {
+    name: "ContestUserType",
+    embedded: false
+  },
+  {
+    name: "ContestInviter",
+    embedded: false
+  },
+  {
+    name: "ContestUser",
+    embedded: false
+  },
+  {
+    name: "ContestSlate",
+    embedded: false
+  },
+  {
+    name: "ContestSlateEntry",
+    embedded: false
+  },
+  {
+    name: "ContestPrediction",
+    embedded: false
+  },
+  {
+    name: "ScoringType",
+    embedded: false
+  },
+  {
+    name: "DefaultScoringSystemHeader",
+    embedded: false
+  },
+  {
+    name: "DefaultScoringSystemDetail",
+    embedded: false
+  },
+  {
+    name: "ScoringSystemHeader",
+    embedded: false
+  },
+  {
+    name: "ScoringSystemDetail",
+    embedded: false
+  },
+  {
+    name: "ContestPredictionScore",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({

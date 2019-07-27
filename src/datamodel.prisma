@@ -228,3 +228,189 @@ type Fixture {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
+
+type ContestType {
+  id: ID! @unique @id
+  name: String! @unique
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ContestCreator {
+  id: ID! @unique @id
+  user: User! @relation(link: INLINE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ContestOwner {
+  id: ID! @unique @id
+  user: User! @relation(link: INLINE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Contest {
+  id: ID! @unique @id
+  contestName: String!
+  isActive: Boolean! @default(value: true)
+  isDefault: Boolean! @default(value: true)
+  isPublic: Boolean!
+  createdBy: ContestCreator!
+  currentOwner: ContestOwner!
+  contestTypeId: ContestType! @relation(link: INLINE)
+  invitationCode: String! @unique
+  startDate: DateTime
+  endDate: DateTime
+  nextEvent: Int
+  currentEvent: Int
+  totalEvents: Int
+  isPremium: Boolean! @default(value: false)
+  playerLimit: Int! @default(value: 50)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  users: [ContestUser!]!
+  scoringSystem: ScoringSystemHeader! @relation(link: INLINE)
+}
+
+type ContestUserType {
+  id: ID! @unique @id
+  name: String!
+  description: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ContestInviter {
+  id: ID! @unique @id
+  user: User! @relation(link: INLINE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ContestUser {
+  id: Int! @unique @id
+  contest: Contest!
+  userType: ContestUserType!
+  user: User! @relation(link: INLINE)
+  isInvited: Boolean! @default(value: false)
+  isActive: Boolean! @default(value: false)
+  isBlocked: Boolean! @default(value: false)
+  balance: Int! @default(value: 0)
+  invitedBy: ContestInviter
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ContestSlate {
+  id: Int! @unique @id
+  contest: Contest! @relation(link: INLINE)
+  gameweekId: Gameweek @relation(link: INLINE)
+  fromDefault: Boolean!
+  isActive: Boolean! @default(value: false)
+  startDate: DateTime!
+  endDate: DateTime!
+  hasStarted: Boolean! @default(value: false)
+  hasFinished: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  entries: [ContestSlateEntry]!
+}
+
+type ContestSlateEntry {
+  id: Int! @unique @id
+  slate: ContestSlate! @relation(link: INLINE)
+  prediction: ContestPrediction!
+  fixture: Fixture!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ContestPrediction {
+  id: Int! @unique @id
+  contestSlateEntryId: ContestSlateEntry! @relation(link: INLINE)
+  contestUser: ContestUser! @relation(link: INLINE)
+  homeScore: Int!
+  awayScore: Int!
+  expectedResult: String!
+  homeScoreMatches: Boolean! @default(value: false)
+  awayScoreMatches: Boolean! @default(value: false)
+  scoresMatch: Boolean! @default(value: false)
+  resultMatches: Boolean! @default(value: false)
+  isBanker: Boolean! @default(value: false)
+  hasFinished: Boolean! @default(value: false)
+  deadlineTime: DateTime!
+  predictionResult: [ContestPredictionScore]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ScoringType {
+  id: ID! @unique @id
+  name: String!
+  description: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type DefaultScoringSystemHeader {
+  id: ID! @unique @id
+  name: String!
+  description: String
+  isCustom: Boolean! @default(value: true)
+  systemDetail: [DefaultScoringSystemDetail!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type DefaultScoringSystemDetail {
+  id: ID! @unique @id
+  scoringSystem: DefaultScoringSystemHeader! @relation(link: INLINE)
+  name: String!
+  description: String!
+  scoringType: ScoringType! @relation(link: INLINE)
+  isActive: Boolean!
+  isDefault: Boolean!
+  startDate: DateTime!
+  endDate: DateTime!
+  points: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+ 
+type ScoringSystemHeader {
+  id: ID! @unique @id
+  contest: Contest!
+  inheritedFrom: DefaultScoringSystemHeader
+  isCustom: Boolean!
+  detail: [ScoringSystemDetail!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ScoringSystemDetail {
+  id: ID! @unique @id
+  system: ScoringSystemHeader! @relation(value: INLINE)
+  inheritedFrom: DefaultScoringSystemDetail!
+  name: String!
+  description: String
+  scoringType: ScoringType!
+  isActive: Boolean! @default(value: true)
+  isDefault: Boolean! @default(value: true)
+  lastModifiedBy: User! @relation(link: INLINE)
+  startDate: DateTime!
+  endDate: DateTime
+  points: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ContestPredictionScore {
+  id: ID! @unique @id
+  scoringDetail: ScoringSystemDetail! @relation(link: INLINE)
+  contestPrediciton: ContestPrediction! @relation(link: INLINE)
+  pointsAvailable: Int! @default(value: 0)
+  pointsScored: Int! @default(value: 0)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
