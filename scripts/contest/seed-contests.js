@@ -2,6 +2,8 @@ const {
   scoringTypes: definedScoringTypes,
   defaultScoringSystem,
 } = require('./scoring-systems');
+const predefinedContestTypes = require('./contest-types');
+const predefinedContestUserTypes = require('./contest-user-types');
 
 /*
 // Seed Contests
@@ -34,19 +36,43 @@ async function createDefaultScoringSystem({ db, systemHeader }) {
   );
 }
 
+async function seedContestUserTypes({ db, userTypes }) {
+  return Promise.all(
+    userTypes.map(async contestUserType => db.mutation.createContestUserType(
+      { data: contestUserType },
+      '{ id name }',
+    )),
+  );
+}
+
+async function seedContestTypes({ db, contestTypes }) {
+  return Promise.all(
+    contestTypes.map(async contestType => db.mutation.createContestType(
+      { data: contestType },
+      '{ id name }',
+    )),
+  );
+}
+
 async function seedContests({ db }) {
   try {
-    const scoringTypes = await seedScoringTypes({
-      db,
-      scoringTypes: definedScoringTypes,
+    // const scoringTypes = await seedScoringTypes({
+    //   db, scoringTypes: definedScoringTypes,
+    // });
+    // const defaultScoringSystemHeader = await createDefaultScoringSystem({
+    //   db, systemHeader: defaultScoringSystem,
+    // });
+    const contestTypes = await seedContestTypes({
+      db, contestTypes: predefinedContestTypes,
     });
-    const defaultScoringSystemHeader = await createDefaultScoringSystem({
-      db,
-      systemHeader: defaultScoringSystem,
+    const contestUserTypes = await seedContestUserTypes({
+      db, userTypes: predefinedContestUserTypes,
     });
     return {
-      scoringTypes,
-      defaultScoringSystemHeader,
+      // scoringTypes,
+      // defaultScoringSystemHeader,
+      contestTypes,
+      contestUserTypes,
     };
   } catch (err) {
     console.error(err);

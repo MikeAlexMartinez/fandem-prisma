@@ -274,7 +274,7 @@ type Contest {
 
 type ContestUserType {
   id: ID! @unique @id
-  name: String!
+  name: String! @unique
   description: String
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -289,16 +289,16 @@ type ContestInviter {
 
 type ContestUser {
   id: Int! @unique @id
-  contest: Contest!
-  userType: ContestUserType!
-  user: User! @relation(link: INLINE)
   isInvited: Boolean! @default(value: false)
   isActive: Boolean! @default(value: false)
   isBlocked: Boolean! @default(value: false)
   balance: Int! @default(value: 0)
-  invitedBy: ContestInviter
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  user: User! @relation(link: INLINE)
+  contest: Contest!
+  invitedBy: ContestInviter
+  userType: ContestUserType!
 }
 
 type ContestSlate {
