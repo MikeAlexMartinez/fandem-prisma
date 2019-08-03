@@ -1,5 +1,5 @@
 # source: http://localhost:6464
-# timestamp: Sat Jul 27 2019 16:18:56 GMT+0100 (BST)
+# timestamp: Sat Aug 03 2019 16:58:41 GMT+0100 (BST)
 
 type ActiveSubscriptions implements Node {
   id: ID!
@@ -2731,7 +2731,7 @@ type ContestSlate {
   hasFinished: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  contest: Contest!
+  contest: Contest
   gameweekId: Gameweek
   entries(where: ContestSlateEntryWhereInput, orderBy: ContestSlateEntryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContestSlateEntry!]
 }
@@ -2753,7 +2753,7 @@ input ContestSlateCreateInput {
   endDate: DateTime
   hasStarted: Boolean
   hasFinished: Boolean
-  contest: ContestCreateOneWithoutContestSlatesInput!
+  contest: ContestCreateOneWithoutContestSlatesInput
   gameweekId: GameweekCreateOneInput
   entries: ContestSlateEntryCreateManyWithoutSlateInput
 }
@@ -2786,7 +2786,7 @@ input ContestSlateCreateWithoutEntriesInput {
   endDate: DateTime
   hasStarted: Boolean
   hasFinished: Boolean
-  contest: ContestCreateOneWithoutContestSlatesInput!
+  contest: ContestCreateOneWithoutContestSlatesInput
   gameweekId: GameweekCreateOneInput
 }
 
@@ -3336,7 +3336,7 @@ input ContestSlateUpdateInput {
   endDate: DateTime
   hasStarted: Boolean
   hasFinished: Boolean
-  contest: ContestUpdateOneRequiredWithoutContestSlatesInput
+  contest: ContestUpdateOneWithoutContestSlatesInput
   gameweekId: GameweekUpdateOneInput
   entries: ContestSlateEntryUpdateManyWithoutSlateInput
 }
@@ -3401,7 +3401,7 @@ input ContestSlateUpdateWithoutEntriesDataInput {
   endDate: DateTime
   hasStarted: Boolean
   hasFinished: Boolean
-  contest: ContestUpdateOneRequiredWithoutContestSlatesInput
+  contest: ContestUpdateOneWithoutContestSlatesInput
   gameweekId: GameweekUpdateOneInput
 }
 
@@ -3895,23 +3895,29 @@ input ContestUpdateManyMutationInput {
   playerLimit: Int
 }
 
-input ContestUpdateOneRequiredWithoutContestSlatesInput {
+input ContestUpdateOneWithoutContestSlatesInput {
   create: ContestCreateWithoutContestSlatesInput
   connect: ContestWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: ContestUpdateWithoutContestSlatesDataInput
   upsert: ContestUpsertWithoutContestSlatesInput
 }
 
-input ContestUpdateOneRequiredWithoutScoringSystemInput {
+input ContestUpdateOneWithoutScoringSystemInput {
   create: ContestCreateWithoutScoringSystemInput
   connect: ContestWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: ContestUpdateWithoutScoringSystemDataInput
   upsert: ContestUpsertWithoutScoringSystemInput
 }
 
-input ContestUpdateOneRequiredWithoutUsersInput {
+input ContestUpdateOneWithoutUsersInput {
   create: ContestCreateWithoutUsersInput
   connect: ContestWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: ContestUpdateWithoutUsersDataInput
   upsert: ContestUpsertWithoutUsersInput
 }
@@ -3994,7 +4000,7 @@ type ContestUser {
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User!
-  contest: Contest!
+  contest: Contest
   invitedBy: ContestInviter
   userType: ContestUserType!
 }
@@ -4015,7 +4021,7 @@ input ContestUserCreateInput {
   isBlocked: Boolean
   balance: Int
   user: UserCreateOneInput!
-  contest: ContestCreateOneWithoutUsersInput!
+  contest: ContestCreateOneWithoutUsersInput
   invitedBy: ContestInviterCreateOneInput
   userType: ContestUserTypeCreateOneInput!
 }
@@ -4537,7 +4543,7 @@ input ContestUserUpdateDataInput {
   isBlocked: Boolean
   balance: Int
   user: UserUpdateOneRequiredInput
-  contest: ContestUpdateOneRequiredWithoutUsersInput
+  contest: ContestUpdateOneWithoutUsersInput
   invitedBy: ContestInviterUpdateOneInput
   userType: ContestUserTypeUpdateOneRequiredInput
 }
@@ -4548,7 +4554,7 @@ input ContestUserUpdateInput {
   isBlocked: Boolean
   balance: Int
   user: UserUpdateOneRequiredInput
-  contest: ContestUpdateOneRequiredWithoutUsersInput
+  contest: ContestUpdateOneWithoutUsersInput
   invitedBy: ContestInviterUpdateOneInput
   userType: ContestUserTypeUpdateOneRequiredInput
 }
@@ -11555,7 +11561,7 @@ type ScoringSystemHeader implements Node {
   isCustom: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  contest: Contest!
+  contest: Contest
   inheritedFrom: DefaultScoringSystemHeader
   detail(where: ScoringSystemDetailWhereInput, orderBy: ScoringSystemDetailOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ScoringSystemDetail!]
 }
@@ -11573,7 +11579,7 @@ type ScoringSystemHeaderConnection {
 input ScoringSystemHeaderCreateInput {
   id: ID
   isCustom: Boolean!
-  contest: ContestCreateOneWithoutScoringSystemInput!
+  contest: ContestCreateOneWithoutScoringSystemInput
   inheritedFrom: DefaultScoringSystemHeaderCreateOneInput
   detail: ScoringSystemDetailCreateManyWithoutSystemInput
 }
@@ -11598,7 +11604,7 @@ input ScoringSystemHeaderCreateWithoutContestInput {
 input ScoringSystemHeaderCreateWithoutDetailInput {
   id: ID
   isCustom: Boolean!
-  contest: ContestCreateOneWithoutScoringSystemInput!
+  contest: ContestCreateOneWithoutScoringSystemInput
   inheritedFrom: DefaultScoringSystemHeaderCreateOneInput
 }
 
@@ -11670,7 +11676,7 @@ input ScoringSystemHeaderSubscriptionWhereInput {
 
 input ScoringSystemHeaderUpdateInput {
   isCustom: Boolean
-  contest: ContestUpdateOneRequiredWithoutScoringSystemInput
+  contest: ContestUpdateOneWithoutScoringSystemInput
   inheritedFrom: DefaultScoringSystemHeaderUpdateOneInput
   detail: ScoringSystemDetailUpdateManyWithoutSystemInput
 }
@@ -11701,7 +11707,7 @@ input ScoringSystemHeaderUpdateWithoutContestDataInput {
 
 input ScoringSystemHeaderUpdateWithoutDetailDataInput {
   isCustom: Boolean
-  contest: ContestUpdateOneRequiredWithoutScoringSystemInput
+  contest: ContestUpdateOneWithoutScoringSystemInput
   inheritedFrom: DefaultScoringSystemHeaderUpdateOneInput
 }
 

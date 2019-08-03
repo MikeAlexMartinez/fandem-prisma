@@ -76,15 +76,16 @@ async function constructContestSlateEntries({ db }) {
             id: gameweek.id,
           },
         },
-        entries: gameweek.fixtures.map(fixture => ({
-          create: {
+        entries: {
+          create: gameweek.fixtures.map(fixture => ({
             fixture: {
               connect: {
                 id: fixture.id,
               },
             },
-          },
-        })),
+            predictions: [],
+          })),
+        },
       })),
     };
   } catch (e) {
@@ -100,6 +101,21 @@ function constructUserConnection(creator) {
         connect: {
           displayName: creator,
         },
+      },
+    },
+  };
+}
+
+function constructContestUser(creator, userType) {
+  return {
+    user: {
+      connect: {
+        displayName: creator,
+      },
+    },
+    userType: {
+      connect: {
+        name: userType,
       },
     },
   };
@@ -150,28 +166,26 @@ function constructScoringDetail(detail, user) {
     },
   } = detail;
   return {
-    create: {
-      name,
-      description,
-      isActive,
-      isDefault,
-      startDate,
-      points,
-      range,
-      scoringType: {
-        connect: {
-          id: scoringTypeId,
-        },
+    name,
+    description,
+    isActive,
+    isDefault,
+    startDate,
+    points,
+    range,
+    scoringType: {
+      connect: {
+        id: scoringTypeId,
       },
-      lastModifiedBy: {
-        connect: {
-          name: user,
-        },
+    },
+    lastModifiedBy: {
+      connect: {
+        displayName: user,
       },
-      inheritedFrom: {
-        connect: {
-          id,
-        },
+    },
+    inheritedFrom: {
+      connect: {
+        id,
       },
     },
   };
@@ -186,8 +200,10 @@ function constructContestScoring(defaultSystemHeader, user) {
           id: defaultSystemHeader.id,
         },
       },
-      detail: defaultSystemHeader.systemDetail
-        .map(detail => constructScoringDetail(detail, user)),
+      detail: {
+        create: defaultSystemHeader.systemDetail
+          .map(detail => constructScoringDetail(detail, user)),
+      },
     },
   };
 }
@@ -213,28 +229,37 @@ async function seedContests({ db, contests }) {
         startDate,
         playerLimit,
         creator,
+        userType
       } = contest;
       const userConnection = constructUserConnection(creator);
+      const contestUser = constructContestUser(creator, userType);
       const contestType = constructContestType(isPublic);
       const contestSlates = await constructContestSlateEntries({ db });
       const scoringSystem = await constructContestScoringFromDefaults({
         db, user: creator,
       });
 
-      return {
-        contestName,
-        isAll,
-        isPublic,
-        invitationCode,
-        startDate,
-        playerLimit,
-        contestType,
-        createdBy: userConnection,
-        currentOwner: userConnection,
-        scoringSystem,
-        users: [userConnection],
-        contestSlates,
-      };
+      return db.mutation.createContest(
+        {
+          data: {
+            contestName,
+            isAll,
+            isPublic,
+            invitationCode,
+            startDate,
+            playerLimit,
+            contestType,
+            createdBy: userConnection,
+            currentOwner: userConnection,
+            scoringSystem,
+            users: {
+              create: [contestUser]
+            },
+            contestSlates,
+          }
+        },
+          '{ id contestName }'
+        );
     }),
   );
 }

@@ -5240,7 +5240,7 @@ export interface ContestUserUpdateInput {
   isBlocked?: Maybe<Boolean>;
   balance?: Maybe<Int>;
   user?: Maybe<UserUpdateOneRequiredInput>;
-  contest?: Maybe<ContestUpdateOneRequiredWithoutUsersInput>;
+  contest?: Maybe<ContestUpdateOneWithoutUsersInput>;
   invitedBy?: Maybe<ContestInviterUpdateOneInput>;
   userType?: Maybe<ContestUserTypeUpdateOneRequiredInput>;
 }
@@ -5738,7 +5738,7 @@ export interface ContestSlateUpdateWithoutEntriesDataInput {
   endDate?: Maybe<DateTimeInput>;
   hasStarted?: Maybe<Boolean>;
   hasFinished?: Maybe<Boolean>;
-  contest?: Maybe<ContestUpdateOneRequiredWithoutContestSlatesInput>;
+  contest?: Maybe<ContestUpdateOneWithoutContestSlatesInput>;
   gameweekId?: Maybe<GameweekUpdateOneInput>;
 }
 
@@ -7619,7 +7619,7 @@ export interface ContestUserCreateInput {
   isBlocked?: Maybe<Boolean>;
   balance?: Maybe<Int>;
   user: UserCreateOneInput;
-  contest: ContestCreateOneWithoutUsersInput;
+  contest?: Maybe<ContestCreateOneWithoutUsersInput>;
   invitedBy?: Maybe<ContestInviterCreateOneInput>;
   userType: ContestUserTypeCreateOneInput;
 }
@@ -7636,7 +7636,7 @@ export interface ContestCreateOneWithoutUsersInput {
 
 export interface ScoringSystemHeaderUpdateInput {
   isCustom?: Maybe<Boolean>;
-  contest?: Maybe<ContestUpdateOneRequiredWithoutScoringSystemInput>;
+  contest?: Maybe<ContestUpdateOneWithoutScoringSystemInput>;
   inheritedFrom?: Maybe<DefaultScoringSystemHeaderUpdateOneInput>;
   detail?: Maybe<ScoringSystemDetailUpdateManyWithoutSystemInput>;
 }
@@ -7762,7 +7762,7 @@ export interface DefaultScoringSystemHeaderUpdateInput {
 export interface ScoringSystemHeaderCreateWithoutDetailInput {
   id?: Maybe<ID_Input>;
   isCustom: Boolean;
-  contest: ContestCreateOneWithoutScoringSystemInput;
+  contest?: Maybe<ContestCreateOneWithoutScoringSystemInput>;
   inheritedFrom?: Maybe<DefaultScoringSystemHeaderCreateOneInput>;
 }
 
@@ -7961,7 +7961,7 @@ export interface ContestSlateUpdateInput {
   endDate?: Maybe<DateTimeInput>;
   hasStarted?: Maybe<Boolean>;
   hasFinished?: Maybe<Boolean>;
-  contest?: Maybe<ContestUpdateOneRequiredWithoutContestSlatesInput>;
+  contest?: Maybe<ContestUpdateOneWithoutContestSlatesInput>;
   gameweekId?: Maybe<GameweekUpdateOneInput>;
   entries?: Maybe<ContestSlateEntryUpdateManyWithoutSlateInput>;
 }
@@ -8018,10 +8018,12 @@ export interface ContestOwnerUpsertNestedInput {
   create: ContestOwnerCreateInput;
 }
 
-export interface ContestUpdateOneRequiredWithoutContestSlatesInput {
+export interface ContestUpdateOneWithoutContestSlatesInput {
   create?: Maybe<ContestCreateWithoutContestSlatesInput>;
   update?: Maybe<ContestUpdateWithoutContestSlatesDataInput>;
   upsert?: Maybe<ContestUpsertWithoutContestSlatesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<ContestWhereUniqueInput>;
 }
 
@@ -9195,7 +9197,7 @@ export interface ContestSlateCreateInput {
   endDate?: Maybe<DateTimeInput>;
   hasStarted?: Maybe<Boolean>;
   hasFinished?: Maybe<Boolean>;
-  contest: ContestCreateOneWithoutContestSlatesInput;
+  contest?: Maybe<ContestCreateOneWithoutContestSlatesInput>;
   gameweekId?: Maybe<GameweekCreateOneInput>;
   entries?: Maybe<ContestSlateEntryCreateManyWithoutSlateInput>;
 }
@@ -9698,7 +9700,7 @@ export interface ContestPredictionUpdateWithoutContestSlateEntryDataInput {
 export interface ScoringSystemHeaderCreateInput {
   id?: Maybe<ID_Input>;
   isCustom: Boolean;
-  contest: ContestCreateOneWithoutScoringSystemInput;
+  contest?: Maybe<ContestCreateOneWithoutScoringSystemInput>;
   inheritedFrom?: Maybe<DefaultScoringSystemHeaderCreateOneInput>;
   detail?: Maybe<ScoringSystemDetailCreateManyWithoutSystemInput>;
 }
@@ -9731,7 +9733,7 @@ export interface ContestUserUpdateDataInput {
   isBlocked?: Maybe<Boolean>;
   balance?: Maybe<Int>;
   user?: Maybe<UserUpdateOneRequiredInput>;
-  contest?: Maybe<ContestUpdateOneRequiredWithoutUsersInput>;
+  contest?: Maybe<ContestUpdateOneWithoutUsersInput>;
   invitedBy?: Maybe<ContestInviterUpdateOneInput>;
   userType?: Maybe<ContestUserTypeUpdateOneRequiredInput>;
 }
@@ -9743,10 +9745,12 @@ export interface ContestUserUpdateManyMutationInput {
   balance?: Maybe<Int>;
 }
 
-export interface ContestUpdateOneRequiredWithoutUsersInput {
+export interface ContestUpdateOneWithoutUsersInput {
   create?: Maybe<ContestCreateWithoutUsersInput>;
   update?: Maybe<ContestUpdateWithoutUsersDataInput>;
   upsert?: Maybe<ContestUpsertWithoutUsersInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<ContestWhereUniqueInput>;
 }
 
@@ -9994,7 +9998,7 @@ export type ContestUserTypeWhereUniqueInput = AtLeastOne<{
 
 export interface ScoringSystemHeaderUpdateWithoutDetailDataInput {
   isCustom?: Maybe<Boolean>;
-  contest?: Maybe<ContestUpdateOneRequiredWithoutScoringSystemInput>;
+  contest?: Maybe<ContestUpdateOneWithoutScoringSystemInput>;
   inheritedFrom?: Maybe<DefaultScoringSystemHeaderUpdateOneInput>;
 }
 
@@ -10003,10 +10007,12 @@ export interface HomeTeamFixtureUpdateInput {
   homeTeam?: Maybe<TeamUpdateOneRequiredWithoutHomeFixturesInput>;
 }
 
-export interface ContestUpdateOneRequiredWithoutScoringSystemInput {
+export interface ContestUpdateOneWithoutScoringSystemInput {
   create?: Maybe<ContestCreateWithoutScoringSystemInput>;
   update?: Maybe<ContestUpdateWithoutScoringSystemDataInput>;
   upsert?: Maybe<ContestUpsertWithoutScoringSystemInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<ContestWhereUniqueInput>;
 }
 
@@ -10043,7 +10049,7 @@ export interface ContestSlateCreateWithoutEntriesInput {
   endDate?: Maybe<DateTimeInput>;
   hasStarted?: Maybe<Boolean>;
   hasFinished?: Maybe<Boolean>;
-  contest: ContestCreateOneWithoutContestSlatesInput;
+  contest?: Maybe<ContestCreateOneWithoutContestSlatesInput>;
   gameweekId?: Maybe<GameweekCreateOneInput>;
 }
 
