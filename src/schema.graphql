@@ -43,7 +43,7 @@ type Query {
   currentUser: User
   countries(orderBy: CountryOrderByInput): [Country!]!
   gameplayData: [Season]!
-  gameweeks(where: GameweekWhereInput!): [Gameweek]!
+  gameweeks: [Gameweek]!
 }
 
 # hide password and resetToken fields
