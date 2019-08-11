@@ -3,23 +3,23 @@ services:
   prisma:
     image: prismagraphql/prisma:1.31
     # I don't want this to always restart during development
-    # restart: always
+    restart: always
     ports:
       - "${PRISMA_PORT}:${PRISMA_PORT}"
     environment:
       PRISMA_CONFIG: |
         port: ${PRISMA_PORT}
-        # uncomment the next line and provide the env var PRISMA_MANAGEMENT_API_SECRET=my-secret to activate cluster security
-        managementApiSecret: ${PRISMA_MANAGEMENT_API_SECRET}
+        # uncomment the next line and provide the env var MY_SECRET=my-secret to activate cluster security
+        managementApiSecret: ${MY_SECRET}
         databases:
           default:
             connector: postgres
-            host: postgres
+            host: ${PG_HOST}
             database: ${PG_DB}
             user: ${PG_USER}
             password: ${PG_PWD}
             rawAccess: true
-            port: 5432
+            port: ${PG_PORT}
             migrations: true
   postgres:
     image: postgres:10.7
