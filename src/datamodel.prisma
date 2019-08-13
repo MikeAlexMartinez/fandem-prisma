@@ -415,3 +415,85 @@ type ContestPredictionScore {
   scoringDetail: ScoringSystemDetail! @relation(link: INLINE)
   contestPrediciton: ContestPrediction! @relation(link: INLINE)
 }
+
+type TransferChangeEvent {
+  id: ID! @unique @id
+  eventTime: DateTime!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type TransferChangeType {
+  id: ID! @unique @id
+  name: String!
+  description: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type PlayerTransferChange {
+  id: ID! @unique @id
+  changeType: TransferChangeType! @relation(link: INLINE)
+  event: TransferChangeEvent! @relation(link: INLINE)
+  player: PlayerHeader! @relation(link: INLINE)
+  startValue: Int!
+  endValue: Int!
+  movement: Int!
+}
+
+type PlayerHeader {
+  id: ID! @unique @id
+  fpl_id: Int
+  element_type: Int
+  team: Int
+  first_name: String
+  second_name: String
+  now_cost: Int
+  total_points: Int
+  transfers_in: Int
+  transfers_in_event: Int
+  transfers_out: Int
+  transfers_out_event: Int
+  assists: Int
+  bonus: Int
+  bps: Int
+  chance_of_playing_next_round: Int
+  chance_of_playing_this_round: Int
+  clean_sheets: Int
+  code: Int
+  cost_change_event: Int
+  cost_change_event_fall: Int
+  cost_change_start: Int
+  cost_change_start_fall: Int
+  creativity: String
+  dreamteam_count: Int
+  ep_next: Int
+  ep_this: Int
+  event_points: Int
+  form: String
+  goals_conceded: Int
+  goals_scored: Int
+  ict_index: String
+  in_dreamteam: Boolean
+  influence: String
+  minutes: Int
+  news: String
+  news_added: Boolean
+  own_goals: Int
+  penalties_missed: Int
+  penalties_saved: Int
+  photo: String
+  points_per_game: String
+  red_cards: Int
+  saves: Int
+  selected_by_percent: String
+  special: Boolean
+  squad_Int: Int
+  status: String
+  team_code: Int
+  threat: String
+  value_form: String
+  value_season: String
+  web_name: String
+  yellow_cards: Int
+}
