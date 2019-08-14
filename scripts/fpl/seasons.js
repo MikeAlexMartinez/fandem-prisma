@@ -16,17 +16,17 @@
  * @type {{ [key: string]: Season }}
  */
 const seasons = {
-  "201920": {
-    label: "2019/20",
+  201920: {
+    label: '2019/20',
     fplId: 274,
-    competition: "Premier League",
+    competition: 'Premier League',
     startYear: 2019,
     endYear: 2020,
     isCurrent: true,
     isPrevious: false,
     isNext: false,
-    events: []
-  }
+    events: [],
+  },
 };
 
 module.exports = seasons;

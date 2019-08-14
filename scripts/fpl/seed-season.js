@@ -1,7 +1,3 @@
-const { Prisma } = require("prisma-binding");
-
-module.exports = { seedSeason };
-
 /**
  *
  * @param { Object } param
@@ -12,7 +8,7 @@ module.exports = { seedSeason };
 async function seedSeason({ db, season }) {
   return db.mutation.createSeason(
     { data: season },
-    "{ id, label, competition }"
+    '{ id, label, competition }',
   );
 }
 
@@ -23,3 +19,5 @@ async function seedSeason({ db, season }) {
  * @property {string} label
  * @property {string} competition
  */
+
+module.exports = { seedSeason };

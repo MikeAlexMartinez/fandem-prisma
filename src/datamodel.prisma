@@ -9,20 +9,20 @@ type User {
   displayName: String! @unique
   isPrivate: Boolean! @default(value: false)
   password: String!
-  photos: [UserPhoto]!
   emailValidationToken: String
   emailValidationTokenExpiry: Float
   emailValidated: Boolean! @default(value: false)
   emailValidationDate: DateTime
   resetToken: String
   resetTokenExpiry: Float
-  subscriptions: [FandemSubscription!]!
-  userRoles: [UserRole!]!
-  status: [UserStatus]!
   followers: UserFollowers @relation(link: INLINE)
   influencers: UserInfluencers @relation(link: INLINE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
+  photos: [UserPhoto]!
+  subscriptions: [FandemSubscription!]!
+  userRoles: [UserRole!]!
+  status: [UserStatus]!
 }
 
 type UserPhoto {
@@ -425,7 +425,7 @@ type TransferChangeEvent {
 
 type TransferChangeType {
   id: ID! @unique @id
-  name: String!
+  name: String! @unique
   description: String!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -460,7 +460,7 @@ type PlayerHeader {
   chance_of_playing_next_round: Int
   chance_of_playing_this_round: Int
   clean_sheets: Int
-  code: Int
+  code: Int @unique
   cost_change_event: Int
   cost_change_event_fall: Int
   cost_change_start: Int
@@ -490,7 +490,7 @@ type PlayerHeader {
   special: Boolean
   squad_Int: Int
   status: String
-  team_code: Int
+  team_code: Team! @relation(link: INLINE)
   threat: String
   value_form: String
   value_season: String

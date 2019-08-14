@@ -1,17 +1,15 @@
-const { Prisma } = require("prisma-binding");
+const { fetchMain } = require('./fetch-main-data');
+const { fetchFixtures } = require('./fetch-fixtures');
 
-const { fetchMain } = require("./fetch-main-data");
-const { fetchFixtures } = require("./fetch-fixtures");
-
-const { seedSeason } = require("./seed-season");
-const { seedTeamData } = require("./seed-team-data");
-const { seedGameweeks } = require("./seed-gameweeks");
-const { seedFixtures } = require("./seed-fixtures");
+const { seedSeason } = require('./seed-season');
+const { seedTeamData } = require('./seed-team-data');
+const { seedGameweeks } = require('./seed-gameweeks');
+const { seedFixtures } = require('./seed-fixtures');
+const { seedTransferChangeTypes } = require('./seed-transfer-change-types');
 
 // Hardcoded data
-const seasons = require("./seasons");
-
-module.exports = seedFplData;
+const seasons = require('./seasons');
+const transferChangeTypes = require('./transfer-change-types');
 
 /**
  *
@@ -20,12 +18,13 @@ module.exports = seedFplData;
  * @property { Array.<import('./seed-gameweeks').InsertedGameweek> } gameweeks
  * @property { import('./seed-season').InsertedSeason } season
  * @property { Array.<import('./seed-fixtures').InsertedFixture> } fixtures
+ * @property
  */
 
 /**
  *
  * @param { Object } param
- * @param { Prisma } param.db
+ * @param { import('request-promise').Prisma } param.db
  * @returns { Promise<SeededFPLData> }
  */
 async function seedFplData({ db }) {
@@ -34,17 +33,18 @@ async function seedFplData({ db }) {
     const { teams, gameweeks } = mainApiData;
     // - seed season data
     const createdSeason = await seedSeason({ db, season: seasons[201920] });
+    const createdTranferChangeTypes = await seedTransferChangeTypes({ db, transferChangeTypes });
     // - seed team data
     const insertedTeams = await seedTeamData({
       db,
       teams,
-      season: createdSeason
+      season: createdSeason,
     });
     // - seed events (gameweek) data
     const insertedGameweeks = await seedGameweeks({
       db,
       gameweeks,
-      season: createdSeason
+      season: createdSeason,
     });
 
     const fixtures = await fetchFixtures({ gameweeks: insertedGameweeks });
@@ -52,7 +52,7 @@ async function seedFplData({ db }) {
     const insertedFixtures = await seedFixtures({
       db,
       gameweekFixtures: fixtures,
-      teams: insertedTeams
+      teams: insertedTeams,
     });
 
     //    - fetch gameweek data
@@ -61,9 +61,12 @@ async function seedFplData({ db }) {
       teams: insertedTeams,
       gameweeks: insertedGameweeks,
       season: createdSeason,
-      fixtures: insertedFixtures
+      fixtures: insertedFixtures,
+      changeTypes: createdTranferChangeTypes,
     };
   } catch (e) {
     throw e;
   }
 }
+
+module.exports = seedFplData;
