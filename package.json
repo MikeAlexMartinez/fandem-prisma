@@ -47,7 +47,7 @@
     "graphql-yoga": "^1.17.4"
   },
   "devDependencies": {
-    "acorn": "^6.1.1",
+    "acorn": "^6.4.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.15.3",
     "eslint-config-airbnb": "^17.1.0",
